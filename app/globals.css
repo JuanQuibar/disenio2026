@@ -1,0 +1,90 @@
+/* 1. Importar Tailwind */
+@import "tailwindcss";
+
+@import "swiper/css";
+@import "swiper/css/pagination";
+
+@theme inline {
+  --font-serif: var(--font-playfair-display);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Asegurar scroll vertical y evitar desbordamiento horizontal */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
+  /* touch-action: pan-y;  Permite scroll vertical, bloquea gestos horizontales del navegador (opcional) */
+}
+
+/* --- Estilos para la paginación de Swiper --- */
+.swiper-pagination {
+  bottom: 4px !important;
+}
+
+/* Puntos INACTIVOS (Círculos grises) */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #9ca3af; /* Gris */
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+/* Punto ACTIVO (Ovalado y azul) */
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 16px; /* Ancho ovalado */
+  height: 10px;
+  border-radius: 9999px; /* Forma de píldora */
+}
+
+/* Clase global para font-size "cabezal" */
+.text-cabezal {
+  font-size: var(--text-xs); /* 0.75rem = 12px */
+  line-height: var(
+    --tw-leading,
+    var(--text-xs--line-height)
+  ); /* calc(1 / 0.75) ≈ 1.333333 */
+}
+.color-cabezal {
+  /* color: #3391dd; */
+  color: #ffffff;
+}
+.separadores {
+  /* border-color: #1c69a8; */
+  border-color: #ffffff;
+}
+/* PALETA */
+/* https://www.colorhexa.com/1c69a8 */
+
+/* Animaciones para banners publicitarios */
+@keyframes gradient-xy {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-gradient-xy {
+  background-size: 200% 200%;
+  animation: gradient-xy 3s ease infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
