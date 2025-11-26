@@ -18,23 +18,17 @@ export function YoutubeShortsCarrusel({ shorts }: YoutubeShortsCarruselProps) {
     setIsChainMode(true);
   };
 
-  const handleSlideChange = (swiper: any) => {
-    // Si el modo cadena está activo, reproducimos automáticamente el video que queda en foco
-    if (isChainMode) {
-      // Nota: swiper.activeIndex puede no ser exacto si usamos slidesPerView fraccionario,
-      // pero para este caso de uso simple suele funcionar bien alineado a la izquierda.
-      // Si se necesita más precisión, se puede usar swiper.realIndex
-      const nextVideo = shorts[swiper.activeIndex];
-      if (nextVideo) {
-        setActiveVideoId(nextVideo.id);
-      }
-    }
+  const handleSlideChange = () => {
+    // Cuando el usuario desliza, reseteamos el video activo.
+    // Esto cumple con: "Si el usuario desliza al siguiente video, el anterior se apaga"
+    // Y el nuevo aparece "apagado" (thumbnail) hasta que se le de play.
+    setActiveVideoId(null);
+    setIsChainMode(false);
   };
 
   return (
     <div className="relative mb-6">
       <Swiper
-       
         spaceBetween={16}
         slidesPerView={1.2}
         breakpoints={{

@@ -11,8 +11,8 @@ export function Canal7Live() {
       <div className="relative aspect-video w-full bg-black">
         <iframe
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src="https://www.youtube.com/embed/aqz-KE-bpKQ?playsinline=1&rel=0"
-          title="Video de Prueba"
+          src="https://www.youtube.com/embed/Vh8xmLBJtR8?playsinline=1&rel=0"
+          title="Canal 7 Mendoza en Vivo"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
