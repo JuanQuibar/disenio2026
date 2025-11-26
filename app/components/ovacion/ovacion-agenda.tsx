@@ -23,7 +23,7 @@ export function OvacionAgenda() {
         `}</style>
         <iframe
           src={DATAFACTORY_WIDGETS.FIXTURE_PRIMERA_A}
-          className="w-full h-[150px] border-0 hide-scrollbar"
+          className="w-full h-[90px] border-0 hide-scrollbar"
           title="Fixture Primera A"
           loading="lazy"
           scrolling="no"

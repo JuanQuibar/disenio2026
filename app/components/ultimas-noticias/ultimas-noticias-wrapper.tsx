@@ -3,8 +3,8 @@ import { fetchFotos } from "@/app/services/fetchs";
 
 export async function UltimasNoticiasWrapper() {
   const fotos = await fetchFotos();
-  const fotosUltimas = fotos.slice(16, 26);
-  
+  const fotosUltimas = fotos.slice(28, 38);
+
   return (
     <div className="mb-4 border-t-2 separadores pb-2 pt-1">
       <h3 className="text-cabezal font-sans font-bold uppercase color-cabezal pb-2">

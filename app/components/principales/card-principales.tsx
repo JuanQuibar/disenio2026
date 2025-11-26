@@ -34,7 +34,11 @@ export function CardPrincipales({ fotos, priority = false }: CardPrincipalesProp
             "Lorem ipsum dolor sit amet consectetur adipisicing elit libero consectetur esse minus labore qui aliquam veritatis "
           }
         </h2>
-        <CardSummary />
+        <p className="pt-2 text-xs font-sans">
+          Sit amet consectetur adipisicing elit, placeat officiis, consectetur
+          alias iusto delectus cum, neque sapiente accusamus magni eius odit amet consectetur adipisicing eli
+        </p>
+        {/* <CardSummary /> */}
       </div>
     </div>
   );

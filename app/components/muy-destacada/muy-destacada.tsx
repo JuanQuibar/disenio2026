@@ -2,7 +2,6 @@ import { PencilIcon } from "@heroicons/react/16/solid";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { fetchVideosCuadrados } from "@/app/services/fetchs";
 
-
 export async function MuyDestacada() {
   const videos = await fetchVideosCuadrados();
   // Usar el primer video del array, o fallback si no hay videos
