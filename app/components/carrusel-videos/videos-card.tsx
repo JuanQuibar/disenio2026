@@ -8,7 +8,6 @@ interface CardVideosProps {
 }
 
 export function VideosCard({ videos, index }: CardVideosProps) {
-
   const noticias = [
     "Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
@@ -21,14 +20,14 @@ export function VideosCard({ videos, index }: CardVideosProps) {
     "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia",
     "Consectetur adipisicing elit sed do eiusmod tempor incididunt labore dolore",
   ];
-  
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const videoElement = videoRef.current;
     const containerElement = containerRef.current;
-    
+
     if (!videoElement || !containerElement) return;
 
     // Auto-reproducir el primer video inmediatamente
@@ -82,10 +81,10 @@ export function VideosCard({ videos, index }: CardVideosProps) {
           className="w-full h-full rounded-t-md object-cover"
         ></video>
       </div>
-      
+
       {/* Título debajo del video */}
       <div className="flex flex-col justify-center py-2 bg-white  border-black">
-        <h3 className="font-serif text-xs font-medium text-gray-900 line-clamp-3 leading-snug">
+        <h3 className="font-serif text-sm font-medium text-gray-900 line-clamp-3 leading-snug">
           {noticias[index ?? 0]}
         </h3>
       </div>

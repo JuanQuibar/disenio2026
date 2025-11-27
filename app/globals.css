@@ -63,7 +63,8 @@ body {
 
 /* Animaciones para banners publicitarios */
 @keyframes gradient-xy {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -87,4 +88,8 @@ body {
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+.bajada {
+  font-size: 0.875rem;
+  line-height: 1.5;
 }

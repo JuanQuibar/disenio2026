@@ -56,7 +56,7 @@ export async function fetchFotos(): Promise<
 
   const randomPage = Math.floor(Math.random() * 100) + 1;
   const query = "people";
-  const url = `https://api.pexels.com/v1/search?query=${query}&orientation=landscape&per_page=38&page=${randomPage}`;
+  const url = `https://api.pexels.com/v1/search?query=${query}&orientation=landscape&per_page=40&page=${randomPage}`;
 
   try {
     const res = await fetch(url, {

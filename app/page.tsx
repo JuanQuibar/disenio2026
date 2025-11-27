@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { MuyDestacada } from "./components/muy-destacada/muy-destacada";
+import { AperturaWrapper } from "./components/apertura/apertura-wrapper";
 import { PrincipalesWrapper } from "./components/principales/principales-wrapper";
 import { PoliticaWrapper } from "./components/politica/politica-wrapper";
 import { OpinionWrapper } from "./components/opinion/opinion-wrapper";
@@ -11,6 +12,7 @@ import { VideosWrapperCarrusel } from "./components/carrusel-videos/videos-wrapp
 import { ServiciosWrapper } from "./components/servicios/servicios-wrapper";
 import { Canal7LiveWrapper } from "./components/live/canal7-live-wrapper";
 import { RadioNihuilWrapper } from "./components/live/radio-nihuil-wrapper";
+import { ListadoWrapper } from "./components/listado-sin-fotos/listado-wrapper";
 import { ChatBotWrapper } from "./components/chat-bot/chat-bot-wrapper";
 import { Footer } from "./components/footer/footer";
 import { SociedadWrapper } from "./components/sociedad/sociedad-wrapper";
@@ -26,6 +28,8 @@ import {
   YoutubeShortsSkeleton,
   OvacionSkeleton,
   UltimasNoticiasSkeleton,
+  AperturaSkeleton,
+  ListadoSinFotosSkeleton,
 } from "./components/skeletons";
 
 export default async function Home() {
@@ -35,8 +39,16 @@ export default async function Home() {
         <MuyDestacada />
       </Suspense>
 
+      <Suspense fallback={<AperturaSkeleton />}>
+        <AperturaWrapper />
+      </Suspense>
+
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PrincipalesWrapper />
+      </Suspense>
+
+      <Suspense fallback={<VideosSkeleton />}>
+        <VideosWrapperCarrusel />
       </Suspense>
 
       <Suspense fallback={<SeccionListadoSkeleton />}>
@@ -55,10 +67,6 @@ export default async function Home() {
         <SenatusWrapper />
       </Suspense>
 
-      <Suspense fallback={<VideosSkeleton />}>
-        <VideosWrapperCarrusel />
-      </Suspense>
-
       <BannerPublicitario />
 
       <Suspense fallback={<SeccionListadoSkeleton />}>
@@ -71,6 +79,10 @@ export default async function Home() {
 
       <Canal7LiveWrapper />
       <RadioNihuilWrapper />
+
+      <Suspense fallback={<ListadoSinFotosSkeleton />}>
+        <ListadoWrapper />
+      </Suspense>
 
       <ChatBotWrapper />
 

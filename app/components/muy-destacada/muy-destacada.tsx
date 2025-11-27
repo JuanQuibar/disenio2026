@@ -5,10 +5,11 @@ import { fetchVideosCuadrados } from "@/app/services/fetchs";
 export async function MuyDestacada() {
   const videos = await fetchVideosCuadrados();
   // Usar el primer video del array, o fallback si no hay videos
-  const videoUrl = videos.length > 0 
-    ? videos[0] 
-    : "https://videos.pexels.com/video-files/9040724/9040724-hd_720_720_30fps.mp4";
-  
+  const videoUrl =
+    videos.length > 0
+      ? videos[0]
+      : "https://videos.pexels.com/video-files/9040724/9040724-hd_720_720_30fps.mp4";
+
   const urlFoto =
     "https://images.pexels.com/photos/318236/pexels-photo-318236.jpeg?auto=compress&cs=tinysrgb&w=720";
   const fotos = {
@@ -33,7 +34,7 @@ export async function MuyDestacada() {
             "Lorem ipsum dolor sit amet consectetur adipisicing elit libero consectetur esse "
           }
         </h1>
-        <p className="pt-2 text-xs font-sans">
+        <p className="pt-2 bajada font-sans">
           Sit amet consectetur adipisicing elit, placeat officiis, consectetur
           alias iusto delectus cum, neque sapiente accusamus magni eius odit
         </p>

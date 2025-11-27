@@ -1,25 +1,19 @@
 import Image from "next/image";
 import { PencilIcon } from "@heroicons/react/16/solid";
-import { CardSummary } from "./card-summary";
 
-interface CardPrincipalesProps {
-  fotos: { src: string; alt: string };
-  priority?: boolean;
+interface AperturaCardProps {
+  foto: { src: string; alt: string };
 }
 
-export function CardPrincipales({
-  fotos,
-  priority = false,
-}: CardPrincipalesProps) {
+export function AperturaCard({ foto }: AperturaCardProps) {
   return (
     <div className="rounded-md bg-white aspect-square border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 pb-6">
       <div className="">
         <Image
-          src={fotos.src}
-          alt={fotos.alt}
+          src={foto.src}
+          alt={foto.alt}
           width={525}
           height={350}
-          priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="w-full h-auto rounded-t-md overflow-hidden object-cover aspect-4/3"
         />
@@ -32,7 +26,7 @@ export function CardPrincipales({
           </p>
         </div>
 
-        <h2 className="font-serif text-lg/6 line-clamp-3 mb-1 ">
+        <h2 className="font-serif font-bold text-[1.5rem]/[1.8rem] line-clamp-3 ">
           {
             "Lorem ipsum dolor sit amet consectetur adipisicing elit libero consectetur esse minus labore qui aliquam veritatis "
           }
@@ -42,7 +36,6 @@ export function CardPrincipales({
           alias iusto delectus cum, neque sapiente accusamus magni eius odit
           amet consectetur adipisicing eli
         </p>
-        {/* <CardSummary /> */}
       </div>
     </div>
   );

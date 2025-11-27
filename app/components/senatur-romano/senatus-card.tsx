@@ -10,14 +10,18 @@ interface SenatusCardProps {
   alt?: string;
 }
 
-export function SenatusCard({ mediaType, mediaSrc, alt = "Senatus Romano" }: SenatusCardProps) {
+export function SenatusCard({
+  mediaType,
+  mediaSrc,
+  alt = "Senatus Romano",
+}: SenatusCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (mediaType === "video" && videoRef.current) {
       const video = videoRef.current;
       video.muted = true;
-      
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -68,11 +72,13 @@ export function SenatusCard({ mediaType, mediaSrc, alt = "Senatus Romano" }: Sen
       </div>
       <div className="">
         <h2 className="font-serif text-lg leading-snug text-gray-900 mb-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          voluptatum
         </h2>
-        
-        <p className="font-sans text-xs text-gray-600 line-clamp-2 mb-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit
+
+        <p className="font-sans bajada text-gray-600 line-clamp-2 mb-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit
         </p>
 
         <div className="flex items-center gap-1">

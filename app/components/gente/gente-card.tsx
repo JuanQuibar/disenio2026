@@ -29,7 +29,7 @@ export function GenteListado({ fotos }: GenteListadoProps) {
             />
           </div>
           <div className="flex flex-col justify-center py-2">
-            <h3 className="font-serif text-xs font-medium text-gray-900 line-clamp-3 leading-snug mb-1">
+            <h3 className="font-serif text-sm font-medium text-gray-900 line-clamp-3 leading-snug mb-1">
               {noticias[index]}
             </h3>
           </div>

@@ -17,10 +17,7 @@ export function SociedadListado({ fotos }: SociedadListadoProps) {
   return (
     <div className="grid grid-cols-2 gap-4 ">
       {fotos.map((foto, index) => (
-        <article
-          key={index}
-          className="flex flex-col gap-2rounded-md "
-        >
+        <article key={index} className="flex flex-col gap-2rounded-md ">
           <div className="border border-gray-300 w-full aspect-[3/4] overflow-hidden object-cover rounded-md">
             <Image
               src={foto.src}
@@ -32,11 +29,9 @@ export function SociedadListado({ fotos }: SociedadListadoProps) {
             />
           </div>
           <div className="flex flex-col justify-center py-2">
-            <h3 className="font-serif text-xs font-medium text-gray-900 line-clamp-3 leading-snug mb-1">
+            <h3 className="font-serif text-sm font-medium text-gray-900 line-clamp-3 leading-snug mb-1">
               {noticias[index]}
             </h3>
-            
-            
           </div>
         </article>
       ))}
