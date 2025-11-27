@@ -76,7 +76,7 @@ export function SenatusCard({
           voluptatum
         </h2>
 
-        <p className="font-sans bajada text-gray-600 line-clamp-2 mb-2">
+        <p className="font-sans bajada line-clamp-2 mb-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
           voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit
         </p>

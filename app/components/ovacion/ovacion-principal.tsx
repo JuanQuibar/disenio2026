@@ -19,11 +19,13 @@ export function OvacionPrincipal({ foto }: OvacionPrincipalProps) {
       </div>
       <div className="">
         <h2 className="font-sans font-bold text-lg leading-snug text-gray-900 mb-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          voluptatum
         </h2>
-        
-        <p className="font-sans text-xs text-gray-600 line-clamp-2 mb-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit
+
+        <p className="font-sans bajada line-clamp-2 mb-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit
         </p>
 
         <div className="flex items-center gap-1">

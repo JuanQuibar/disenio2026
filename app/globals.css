@@ -90,6 +90,6 @@ body {
   animation: shimmer 2s infinite;
 }
 .bajada {
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.5 !important;
 }

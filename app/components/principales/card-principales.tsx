@@ -25,14 +25,7 @@ export function CardPrincipales({
         />
       </div>
       <div className="px-2 pt-2">
-        <div className="flex gap-1">
-          <PencilIcon className="w-3 h-3 text-gray-500" />
-          <p className="font-sans font-bold text-gray-500 uppercase text-[8px]">
-            Sara González
-          </p>
-        </div>
-
-        <h2 className="font-serif text-lg/6 line-clamp-3 mb-1 ">
+        <h2 className="font-serif text-lg/6 line-clamp-3  ">
           {
             "Lorem ipsum dolor sit amet consectetur adipisicing elit libero consectetur esse minus labore qui aliquam veritatis "
           }
@@ -42,7 +35,12 @@ export function CardPrincipales({
           alias iusto delectus cum, neque sapiente accusamus magni eius odit
           amet consectetur adipisicing eli
         </p>
-        {/* <CardSummary /> */}
+        <div className="flex items-center gap-1 pt-2">
+          <PencilIcon className="w-3 h-3 text-gray-500" />
+          <p className="font-sans font-bold text-gray-500 uppercase text-[8px]">
+            Sara González
+          </p>
+        </div>
       </div>
     </div>
   );
