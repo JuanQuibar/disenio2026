@@ -79,7 +79,7 @@ export function YoutubeShortsCard({
       </div>
 
       {/* Título Fijo Debajo */}
-      <h3 className="font-serif text-sm text-black line-clamp-2 leading-tight min-h-[2.5em]">
+      <h3 className="font-sans text-sm text-black line-clamp-2 leading-tight min-h-[2.5em]">
         {title}
       </h3>
     </div>

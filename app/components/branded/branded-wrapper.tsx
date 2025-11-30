@@ -1,8 +1,12 @@
 import VideoBranded from "./branded-card";
+import Image from "next/image";
+import { VideoCarruselSwiper } from "../carrusel-videos/videos-carrusel-swiper";
+import { fetchVideosVerticales } from "@/app/services/fetchs";
 
-import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
+//import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
 
 export async function BrandedWrapper() {
+  const videos = await fetchVideosVerticales();
   return (
     <>
       <div className="pt-2 md:pt-0 md:mb-4 border-t-2 separadores pb-2">
@@ -12,9 +16,16 @@ export async function BrandedWrapper() {
         </h3>
         <div className="p-2 bg-white rounded-lg shadow-md  md:h-auto flex flex-col justify-center">
           {/* Custom Header */}
-          <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
-            {/* Left: Section Logo "qué comer" */}
-            <div className="flex items-center gap-1">
+          <div className="flex justify-between items-center pb-2">
+            <Image
+              src="/a-comer.png"
+              alt="Qué comer"
+              width={1000}
+              height={190}
+              className="p-0 w-36 h-auto"
+            />
+
+            {/* <div className="flex items-center gap-1">
               <ChatBubbleOvalLeftIcon className="w-5 h-5 text-teal-800" />
               <h4
                 className="font-serif font-bold text-xl italic text-teal-800"
@@ -22,7 +33,7 @@ export async function BrandedWrapper() {
               >
                 #qué comer
               </h4>
-            </div>
+            </div> */}
 
             {/* Right: Sponsor Logo */}
             <div className="flex items-center">
@@ -31,8 +42,9 @@ export async function BrandedWrapper() {
               </div>
             </div>
           </div>
-
-          <VideoBranded />
+          <div className=" p-2 bg-white rounded-lg shadow-md">
+            <VideoCarruselSwiper videos={videos} />
+          </div>
         </div>
       </div>
     </>

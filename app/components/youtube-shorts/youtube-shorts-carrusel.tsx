@@ -10,7 +10,7 @@ interface YoutubeShortsCarruselProps {
 
 export function YoutubeShortsCarrusel({ shorts }: YoutubeShortsCarruselProps) {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [isChainMode, setIsChainMode] = useState(false);
 
   const handlePlay = (id: string) => {

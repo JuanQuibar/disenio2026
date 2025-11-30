@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 // Declaramos window para que TS no se queje
 declare global {
@@ -17,6 +18,11 @@ export interface JWVideo {
   duration: number;
 }
 
+export interface JWPlaylistResponse {
+  title: string;
+  playlist: JWVideo[];
+}
+
 export function JwpNoticiasCard({
   video,
   onEnded,
@@ -31,6 +37,7 @@ export function JwpNoticiasCard({
   const PLAYER_ID = "REo268Kx"; // Tu Player ID
   const playerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null); // Ref para el contenedor principal
+  const [playerReady, setPlayerReady] = useState(false);
   // Creamos un ID único para el div basado en el mediaid para que no choquen en el Swiper
   const containerId = `jwplayer-${video.mediaid}`;
 
@@ -96,6 +103,11 @@ export function JwpNoticiasCard({
           stretching: "uniform",
           autostart: false,
           displaytitle: false,
+        });
+
+        // Ocultar la imagen de carga una vez que el player esté listo
+        player.on("ready", () => {
+          setPlayerReady(true);
         });
 
         // Evento cuando termina el video
@@ -172,12 +184,17 @@ export function JwpNoticiasCard({
       <div className="aspect-[9/16] relative">
         {/* Este es el DIV vacío que JWP llenará con el video */}
         <div id={containerId} ref={playerRef} className="w-full h-full">
-          {/* Opcional: Mostrar imagen mientras carga el script */}
-          <img
-            src={video.image}
-            alt={video.title}
-            className="w-full h-full object-cover"
-          />
+          {/* Imagen de carga optimizada - se oculta cuando el player está listo */}
+          {!playerReady && (
+            <Image
+              src={video.image}
+              alt={video.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+          )}
         </div>
       </div>
       <div className="p-3 bg-white">

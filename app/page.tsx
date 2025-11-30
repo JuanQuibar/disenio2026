@@ -32,6 +32,8 @@ import {
   UltimasNoticiasSkeleton,
   AperturaSkeleton,
   ListadoSinFotosSkeleton,
+  JwpNoticiasSkeleton,
+  BrandedSkeleton,
 } from "./components/skeletons";
 import { JwpNoticiasWrapper } from "./components/jwp-noticias/jwp-noticcias-wrapper";
 
@@ -41,16 +43,22 @@ export default async function Home() {
       <Suspense fallback={<MuyDestacadaSkeleton />}>
         <MuyDestacada />
       </Suspense>
-      <JwpNoticiasWrapper />
+      <Suspense fallback={<JwpNoticiasSkeleton />}>
+        <JwpNoticiasWrapper />
+      </Suspense>
       <Suspense fallback={<AperturaSkeleton />}>
         <AperturaWrapper />
       </Suspense>
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PrincipalesWrapper />
       </Suspense>
-      <Suspense fallback={<VideosSkeleton />}>
-        <VideosWrapperCarrusel />
+      <Suspense fallback={<YoutubeShortsSkeleton />}>
+        <YoutubeShortsWrapper />
       </Suspense>
+
+      {/* <Suspense fallback={<VideosSkeleton />}>
+        <VideosWrapperCarrusel />
+      </Suspense> */}
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PoliticaWrapper />
       </Suspense>
@@ -58,6 +66,10 @@ export default async function Home() {
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <OpinionWrapper />
       </Suspense>
+      <Suspense fallback={<BrandedSkeleton />}>
+        <BrandedWrapper />
+      </Suspense>
+
       <EncuestaWrapper />
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <SenatusWrapper />
@@ -66,9 +78,7 @@ export default async function Home() {
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <SociedadWrapper />
       </Suspense>
-      <Suspense fallback={<YoutubeShortsSkeleton />}>
-        <YoutubeShortsWrapper />
-      </Suspense>
+
       <Canal7LiveWrapper />
       <RadioNihuilWrapper />
       <Suspense fallback={<ListadoSinFotosSkeleton />}>
@@ -85,9 +95,7 @@ export default async function Home() {
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <CrimenWrapper />
       </Suspense>
-      <Suspense fallback={<SeccionListadoSkeleton />}>
-        <BrandedWrapper />
-      </Suspense>
+
       <SudokuWrapper />
       <Suspense fallback={<UltimasNoticiasSkeleton />}>
         <UltimasNoticiasWrapper />

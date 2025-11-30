@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import Nav from "./nav";
 import { LogoIcon } from "./icons";
@@ -27,22 +28,24 @@ export default function Header() {
 
         {/* Logo */}
         <div className="flex-1 flex justify-center md:justify-start ">
-          <LogoIcon className="block md:hidden w-30 h-auto" />
-          {/* <Image
+          <Link href="/" className="flex items-center">
+            <LogoIcon className="block md:hidden w-30 h-auto" />
+            {/* <Image
             src="/LOGO-UNO_BLANCO.svg"
             alt="Logo Diario UNO"
             width={150}
             height={50}
             className="block md:hidden w-20 h-auto"
           /> */}
-          <Image
-            src="/LOGO-UNO_AZUL.svg"
-            alt="Logo Diario UNO"
-            width={150}
-            height={50}
-            priority
-            className="hidden md:block w-20 h-auto"
-          />
+            <Image
+              src="/LOGO-UNO_AZUL.svg"
+              alt="Logo Diario UNO"
+              width={150}
+              height={50}
+              priority
+              className="hidden md:block w-20 h-auto"
+            />
+          </Link>
         </div>
 
         {/* Nav en dispositivos mayores a 768px */}
@@ -50,7 +53,7 @@ export default function Header() {
           <Nav />
         </div>
       </div>
-      
+
       {/* Borde separador con margen */}
       <div className="border-b-2 separadores mx-2 md:hidden"></div>
     </header>

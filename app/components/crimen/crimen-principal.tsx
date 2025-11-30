@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PencilIcon } from "@heroicons/react/16/solid";
+import Link from "next/link";
 
 interface CrimenPrincipalProps {
   foto: { src: string; alt: string };
@@ -18,10 +19,12 @@ export function CrimenPrincipal({ foto }: CrimenPrincipalProps) {
         />
       </div>
       <div className="">
-        <h2 className="font-serif text-lg leading-snug text-gray-900 mb-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          voluptatum
-        </h2>
+        <Link href="/detalle-nota">
+          <h2 className="font-serif text-lg leading-snug text-gray-900 mb-1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+            voluptatum
+          </h2>
+        </Link>
 
         <p className="font-sans bajada line-clamp-2 mb-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,

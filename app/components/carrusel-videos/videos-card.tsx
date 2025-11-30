@@ -9,13 +9,13 @@ interface CardVideosProps {
 
 export function VideosCard({ videos, index }: CardVideosProps) {
   const noticias = [
-    "Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-    "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit quisquam voluptatum numquam",
+    "Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore ",
+    "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ",
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore ",
+    "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia ",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit quisquam voluptatum  ",
     "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim",
-    "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ",
     "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
     "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia",
     "Consectetur adipisicing elit sed do eiusmod tempor incididunt labore dolore",
@@ -84,7 +84,7 @@ export function VideosCard({ videos, index }: CardVideosProps) {
 
       {/* Título debajo del video */}
       <div className="flex flex-col justify-center py-2 bg-white  border-black">
-        <h3 className="font-serif text-sm font-medium text-gray-900 line-clamp-3 leading-snug">
+        <h3 className="font-sans text-sm font-medium text-gray-900 line-clamp-3 leading-snug">
           {noticias[index ?? 0]}
         </h3>
       </div>

@@ -44,7 +44,7 @@ export async function MuyDestacada() {
             Natalia Sosa Abagianos
           </p>
         </div>
-        <div className="aspect-[1/1">
+        <div className="aspect-[1/1]">
           <video
             src={videoUrl}
             controls

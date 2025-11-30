@@ -29,7 +29,7 @@ export function MuyDestacadaSkeleton() {
         </div>
 
         {/* Video cuadrado - con aspect ratio fijo para evitar layout shift */}
-        <div className="w-full aspect-square bg-gray-300 rounded-t-md mb-4"></div>
+        <div className="w-full aspect-[1/1] bg-gray-300 rounded-t-md mb-4"></div>
 
         {/* Artículo 1 */}
         <div className="border-t border-gray-200 p-2">
@@ -266,6 +266,48 @@ export function ListadoSinFotosSkeleton() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function JwpNoticiasSkeleton() {
+  return (
+    <div className="mb-4 border-t-2 border-white pb-2 pt-1 animate-pulse">
+      {/* Cabezal */}
+      <div className="h-3 bg-gray-300 rounded w-32 mb-2"></div>
+
+      {/* Contenedor */}
+      <div className="p-2 bg-white rounded-lg shadow-md">
+        {/* Video card carousel */}
+        <div className="flex gap-4 overflow-hidden">
+          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
+          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function BrandedSkeleton() {
+  return (
+    <div className="mb-4 border-t-2 border-white pb-2 pt-1 animate-pulse">
+      {/* Cabezal */}
+      <div className="h-3 bg-gray-300 rounded w-32 mb-2"></div>
+
+      {/* Contenedor */}
+      <div className="p-2 bg-white rounded-lg shadow-md">
+        {/* Custom header */}
+        <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
+          <div className="w-24 h-6 bg-gray-300 rounded"></div>
+          <div className="w-16 h-8 bg-gray-200 rounded"></div>
+        </div>
+
+        {/* Video carousel */}
+        <div className="flex gap-4 overflow-hidden">
+          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
+          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
         </div>
       </div>
     </div>

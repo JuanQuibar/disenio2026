@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-
 interface OpinionCardProps {
   author: string;
   imageSrc: string;
@@ -19,7 +18,7 @@ export function OpinionCard({ author, imageSrc, title }: OpinionCardProps) {
           sizes="(max-width: 768px) 80px, 80px"
         />
       </div>
-      
+
       <div className="flex flex-col items-center justify-start gap-2">
         <span className="font-sans font-bold text-xs text-[#1c69a8]  tracking-wider">
           {author}
