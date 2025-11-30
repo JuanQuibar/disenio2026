@@ -18,8 +18,10 @@ import { Footer } from "./components/footer/footer";
 import { SociedadWrapper } from "./components/sociedad/sociedad-wrapper";
 import { GenteWrapper } from "./components/gente/gente-wrapper";
 import { CrimenWrapper } from "./components/crimen/crimen-wrapper";
+import { BrandedWrapper } from "./components/branded/branded-wrapper";
 import { OvacionWrapper } from "./components/ovacion/ovacion-wrapper";
 import { UltimasNoticiasWrapper } from "./components/ultimas-noticias/ultimas-noticias-wrapper";
+
 import { BannerPublicitario } from "./components/banner-publicitario";
 import {
   MuyDestacadaSkeleton,
@@ -31,6 +33,7 @@ import {
   AperturaSkeleton,
   ListadoSinFotosSkeleton,
 } from "./components/skeletons";
+import { JwpNoticiasWrapper } from "./components/jwp-noticias/jwp-noticcias-wrapper";
 
 export default async function Home() {
   return (
@@ -38,74 +41,57 @@ export default async function Home() {
       <Suspense fallback={<MuyDestacadaSkeleton />}>
         <MuyDestacada />
       </Suspense>
-
+      <JwpNoticiasWrapper />
       <Suspense fallback={<AperturaSkeleton />}>
         <AperturaWrapper />
       </Suspense>
-
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PrincipalesWrapper />
       </Suspense>
-
       <Suspense fallback={<VideosSkeleton />}>
         <VideosWrapperCarrusel />
       </Suspense>
-
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PoliticaWrapper />
       </Suspense>
-
       <ServiciosWrapper />
-
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <OpinionWrapper />
       </Suspense>
-
       <EncuestaWrapper />
-
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <SenatusWrapper />
       </Suspense>
-
       <BannerPublicitario />
-
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <SociedadWrapper />
       </Suspense>
-
       <Suspense fallback={<YoutubeShortsSkeleton />}>
         <YoutubeShortsWrapper />
       </Suspense>
-
       <Canal7LiveWrapper />
       <RadioNihuilWrapper />
-
       <Suspense fallback={<ListadoSinFotosSkeleton />}>
         <ListadoWrapper />
       </Suspense>
-
       <ChatBotWrapper />
-
       <Suspense fallback={<OvacionSkeleton />}>
         <OvacionWrapper />
       </Suspense>
-
       <BannerPublicitario />
-
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <GenteWrapper />
       </Suspense>
-
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <CrimenWrapper />
       </Suspense>
-
+      <Suspense fallback={<SeccionListadoSkeleton />}>
+        <BrandedWrapper />
+      </Suspense>
       <SudokuWrapper />
-
       <Suspense fallback={<UltimasNoticiasSkeleton />}>
         <UltimasNoticiasWrapper />
       </Suspense>
-
       <Footer />
     </main>
   );

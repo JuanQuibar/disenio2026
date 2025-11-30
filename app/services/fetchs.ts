@@ -21,6 +21,19 @@ type PexelsVideo = {
 type PexelsVideoResponse = {
   videos: PexelsVideo[];
 };
+interface JWVideo {
+  mediaid: string;
+  title: string;
+  description: string;
+  image: string;
+  duration: number;
+  // JWP devuelve muchas más propiedades (sources, tracks, etc.)
+}
+
+interface JWPlaylistResponse {
+  title: string; // Título de la playlist
+  playlist: JWVideo[]; // Array de videos
+}
 
 function findBestVerticalVideo(
   files: PexelsVideoFile[]
@@ -46,17 +59,34 @@ function findBestVerticalVideo(
   return verticalMp4Files[0];
 }
 
+export async function getPlaylistData(
+  playlistId: string
+): Promise<JWPlaylistResponse> {
+  // Usamos fetch nativo. Next.js cacheará esto por defecto.
+  // Si necesitas datos frescos siempre, añade { cache: 'no-store' }
+
+  const res = await fetch(
+    `https://cdn.jwplayer.com/v2/playlists/${playlistId}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Fallo al obtener la playlist de JWPlayer");
+  }
+
+  return res.json();
+}
+
 export async function fetchFotos(): Promise<
   Array<{ src: string; alt: string }>
 > {
-  noStore();
   if (!apiKey) {
     throw new Error("API Key de Pexels no está definida");
   }
 
-  const randomPage = Math.floor(Math.random() * 100) + 1;
+  // Usamos una página fija para mantener el contenido consistente en la maqueta
+  const randomPage = 1;
   const query = "people";
-  const url = `https://api.pexels.com/v1/search?query=${query}&orientation=landscape&per_page=40&page=${randomPage}`;
+  const url = `https://api.pexels.com/v1/search?query=${query}&orientation=landscape&per_page=46&page=${randomPage}`;
 
   try {
     const res = await fetch(url, {
@@ -92,12 +122,12 @@ export async function fetchFotos(): Promise<
 export async function fetchDeportes(): Promise<
   Array<{ src: string; alt: string }>
 > {
-  noStore();
   if (!apiKey) {
     throw new Error("API Key de Pexels no está definida");
   }
 
-  const randomPage = Math.floor(Math.random() * 100) + 1;
+  // Usamos una página fija para mantener el contenido consistente en la maqueta
+  const randomPage = 1;
   const query = "sports";
   const url = `https://api.pexels.com/v1/search?query=${query}&orientation=landscape&per_page=5&page=${randomPage}`;
 
@@ -131,15 +161,15 @@ export async function fetchDeportes(): Promise<
 }
 
 export async function fetchVideosVerticales(): Promise<string[]> {
-  noStore();
   if (!apiKey) {
     throw new Error("API Key de Pexels no está definida");
   }
 
-  const randomPage = Math.floor(Math.random() * 100) + 1;
+  // Usamos una página fija para mantener el contenido consistente en la maqueta
+  const randomPage = 1;
 
   // 1. Usamos /search en lugar de /popular
-  const query = "vertical"; // Buscamos videos que Pexels ya etiquetó como verticales
+  const query = "food"; // Buscamos videos que Pexels ya etiquetó como verticales
 
   // 2. Pedimos el máximo (80) para tener más material para filtrar
   const url = `https://api.pexels.com/videos/search?query=${query}&orientation=portrait&per_page=10&page=${randomPage}`;
@@ -177,7 +207,6 @@ export async function fetchVideosVerticales(): Promise<string[]> {
 }
 
 export async function fetchVideosCuadrados(): Promise<string[]> {
-  noStore();
   if (!apiKey) {
     throw new Error("API Key de Pexels no está definida");
   }
@@ -232,12 +261,12 @@ export async function fetchVideosCuadrados(): Promise<string[]> {
 }
 
 export async function fetchVideosPaisaje(): Promise<string[]> {
-  noStore();
   if (!apiKey) {
     throw new Error("API Key de Pexels no está definida");
   }
 
-  const randomPage = Math.floor(Math.random() * 100) + 1;
+  // Usamos una página fija para mantener el contenido consistente en la maqueta
+  const randomPage = 1;
   const query = "people";
   const url = `https://api.pexels.com/videos/search?query=${query}&orientation=landscape&per_page=10&page=${randomPage}`;
 

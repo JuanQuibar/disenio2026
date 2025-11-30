@@ -22,7 +22,7 @@ export function YoutubeShortsCard({
   // Estado local para controlar si este video específico ya se le dio play
   // Esto permite que el usuario le de play, y si se mueve el carrusel, se mantenga (o se resetee si queremos)
   // Por simplicidad, usamos la prop shouldPlay que viene del padre para coordinar "solo uno sonando"
-  
+
   return (
     <div className="flex flex-col gap-2 w-full max-w-sm mx-auto group/card">
       <div className="rounded-md bg-black border border-gray-200 shadow-sm overflow-hidden aspect-[9/16] relative">
@@ -67,7 +67,9 @@ export function YoutubeShortsCard({
         ) : (
           <iframe
             className="w-full h-full"
-            src={`https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0`}
+            src={`https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0&mute=${
+              isMuted ? 1 : 0
+            }`}
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
