@@ -36,6 +36,7 @@ import {
   BrandedSkeleton,
 } from "./components/skeletons";
 import { JwpNoticiasWrapper } from "./components/jwp-noticias/jwp-noticcias-wrapper";
+import { JwpViralesWrapper } from "./components/jwp-virales/jwp-virales-wrapper";
 
 export default async function Home() {
   return (
@@ -94,6 +95,10 @@ export default async function Home() {
       </Suspense>
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <CrimenWrapper />
+      </Suspense>
+
+      <Suspense fallback={<JwpNoticiasSkeleton />}>
+        <JwpViralesWrapper />
       </Suspense>
 
       <SudokuWrapper />

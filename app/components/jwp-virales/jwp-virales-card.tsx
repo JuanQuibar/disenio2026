@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-export function JwpNoticiasCard({
+export function JwpViralesCard({
   video,
   onEnded,
   onPlay,
@@ -27,7 +27,7 @@ export function JwpNoticiasCard({
   const containerRef = useRef<HTMLDivElement>(null); // Ref para el contenedor principal
   const [playerReady, setPlayerReady] = useState(false);
   // Creamos un ID único para el div basado en el mediaid para que no choquen en el Swiper
-  const containerId = `jwplayer-${video.mediaid}`;
+  const containerId = `jwplayer-virales-${video.mediaid}`;
 
   // Intersection Observer para pausar si sale de pantalla
   useEffect(() => {

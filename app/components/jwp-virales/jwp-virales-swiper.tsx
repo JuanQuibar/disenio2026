@@ -1,14 +1,13 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import { JwpNoticiasCard } from "./jwp-noticias-card";
+import { JwpViralesCard } from "./jwp-virales-card";
 import { JWVideo } from "@/app/services/fetchs";
 
 import { useState, useRef } from "react";
 
-export function JwpNoticiasSwiper({ videos }: { videos: JWVideo[] }) {
+export function JwpViralesSwiper({ videos }: { videos: JWVideo[] }) {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   // Map para rastrear el estado de reproducción de CADA video por su índice
   const playingStates = useRef<Record<number, boolean>>({});
@@ -24,7 +23,7 @@ export function JwpNoticiasSwiper({ videos }: { videos: JWVideo[] }) {
       const nextIndex = index + 1;
       if (nextIndex < videos.length) {
         const nextVideo = videos[nextIndex];
-        const nextContainerId = `jwplayer-${nextVideo.mediaid}`;
+        const nextContainerId = `jwplayer-virales-${nextVideo.mediaid}`;
 
         // Esperamos un poco a que el slide termine de moverse
         setTimeout(() => {
@@ -64,7 +63,7 @@ export function JwpNoticiasSwiper({ videos }: { videos: JWVideo[] }) {
 
     // 2. Pausar TODOS los videos (limpieza general)
     videos.forEach((video, index) => {
-      const containerId = `jwplayer-${video.mediaid}`;
+      const containerId = `jwplayer-virales-${video.mediaid}`;
       if (window.jwplayer) {
         try {
           const player = window.jwplayer(containerId);
@@ -84,7 +83,7 @@ export function JwpNoticiasSwiper({ videos }: { videos: JWVideo[] }) {
     // 3. Si corresponde, reproducir el nuevo video
     if (shouldPlayNext && activeIndex >= 0 && activeIndex < videos.length) {
       const activeVideo = videos[activeIndex];
-      const activeContainerId = `jwplayer-${activeVideo.mediaid}`;
+      const activeContainerId = `jwplayer-virales-${activeVideo.mediaid}`;
 
       setTimeout(() => {
         if (window.jwplayer) {
@@ -116,7 +115,7 @@ export function JwpNoticiasSwiper({ videos }: { videos: JWVideo[] }) {
       >
         {videos.map((video, index) => (
           <SwiperSlide key={index}>
-            <JwpNoticiasCard
+            <JwpViralesCard
               video={video}
               onEnded={() => handleVideoEnded(index)}
               onPlay={() => {

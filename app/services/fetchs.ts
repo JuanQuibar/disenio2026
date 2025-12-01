@@ -21,7 +21,7 @@ type PexelsVideo = {
 type PexelsVideoResponse = {
   videos: PexelsVideo[];
 };
-interface JWVideo {
+export interface JWVideo {
   mediaid: string;
   title: string;
   description: string;
@@ -30,7 +30,7 @@ interface JWVideo {
   // JWP devuelve muchas más propiedades (sources, tracks, etc.)
 }
 
-interface JWPlaylistResponse {
+export interface JWPlaylistResponse {
   title: string; // Título de la playlist
   playlist: JWVideo[]; // Array de videos
 }
@@ -65,15 +65,27 @@ export async function getPlaylistData(
   // Usamos fetch nativo. Next.js cacheará esto por defecto.
   // Si necesitas datos frescos siempre, añade { cache: 'no-store' }
 
-  const res = await fetch(
-    `https://cdn.jwplayer.com/v2/playlists/${playlistId}`
-  );
+  try {
+    const res = await fetch(
+      `https://cdn.jwplayer.com/v2/playlists/${playlistId}`,
+      { next: { revalidate: 3600 } } // Cache por 1 hora
+    );
 
-  if (!res.ok) {
-    throw new Error("Fallo al obtener la playlist de JWPlayer");
+    if (!res.ok) {
+      console.error(
+        `Error fetching JWPlayer playlist ${playlistId}: ${res.status}`
+      );
+      return { title: "", playlist: [] };
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error(
+      `Network error fetching JWPlayer playlist ${playlistId}:`,
+      error
+    );
+    return { title: "", playlist: [] };
   }
-
-  return res.json();
 }
 
 export async function fetchFotos(): Promise<
