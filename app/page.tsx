@@ -44,11 +44,12 @@ export default async function Home() {
       <Suspense fallback={<MuyDestacadaSkeleton />}>
         <MuyDestacada />
       </Suspense>
-      <Suspense fallback={<JwpNoticiasSkeleton />}>
-        <JwpNoticiasWrapper />
-      </Suspense>
+
       <Suspense fallback={<AperturaSkeleton />}>
         <AperturaWrapper />
+      </Suspense>
+      <Suspense fallback={<JwpNoticiasSkeleton />}>
+        <JwpNoticiasWrapper />
       </Suspense>
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PrincipalesWrapper />
