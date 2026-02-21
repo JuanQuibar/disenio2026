@@ -21,6 +21,7 @@ import { CrimenWrapper } from "./components/crimen/crimen-wrapper";
 import { BrandedWrapper } from "./components/branded/branded-wrapper";
 import { OvacionWrapper } from "./components/ovacion/ovacion-wrapper";
 import { UltimasNoticiasWrapper } from "./components/ultimas-noticias/ultimas-noticias-wrapper";
+import { CarruselMam } from "./components/carrusel-mam/carrusel-mam";
 
 import { BannerPublicitario } from "./components/banner-publicitario";
 import {
@@ -44,6 +45,7 @@ export default async function Home() {
       <Suspense fallback={<MuyDestacadaSkeleton />}>
         <MuyDestacada />
       </Suspense>
+      <CarruselMam />
 
       <Suspense fallback={<AperturaSkeleton />}>
         <AperturaWrapper />
