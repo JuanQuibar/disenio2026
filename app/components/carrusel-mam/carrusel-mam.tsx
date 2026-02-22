@@ -6,17 +6,23 @@ import { useState } from "react";
 export function CarruselMam() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       const messageType = event.data?.type;
 
       if (messageType === "playerFullscreen") {
+        scrollPositionRef.current = window.scrollY;
         setIsFullscreen(true);
       }
 
       if (messageType === "playerNormal") {
         setIsFullscreen(false);
+        // Restaurar scroll después de que React actualice el DOM
+        requestAnimationFrame(() => {
+          window.scrollTo(0, scrollPositionRef.current);
+        });
       }
     };
 
@@ -30,7 +36,7 @@ export function CarruselMam() {
   return (
     <div className="mb-4 border-t-2 separadores pb-2 pt-1">
       <h3 className="text-cabezal font-sans font-bold uppercase color-cabezal pb-2">
-        MAM
+        MAM 2
       </h3>
 
       <div className="p-2 bg-white rounded-lg shadow-md">
