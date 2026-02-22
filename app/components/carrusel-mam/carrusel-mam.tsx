@@ -6,23 +6,17 @@ import { useState } from "react";
 export function CarruselMam() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       const messageType = event.data?.type;
 
       if (messageType === "playerFullscreen") {
-        scrollPositionRef.current = window.scrollY;
         setIsFullscreen(true);
       }
 
       if (messageType === "playerNormal") {
         setIsFullscreen(false);
-        // Restaurar scroll después de que React actualice el DOM
-        requestAnimationFrame(() => {
-          window.scrollTo(0, scrollPositionRef.current);
-        });
       }
     };
 
@@ -40,22 +34,28 @@ export function CarruselMam() {
       </h3>
 
       <div className="p-2 bg-white rounded-lg shadow-md">
+        {/* Wrapper para mantener el espacio cuando el iframe sea fixed y evitar saltos de scroll */}
         <div
-          id="dpReels"
-          ref={containerRef}
-          className={
-            isFullscreen
-              ? "fixed inset-0 w-full h-full max-h-none z-999999 overflow-hidden bg-black"
-              : "relative w-full h-[85vh] max-h-[720px] overflow-hidden bg-black"
-          }
+          className="relative w-full"
+          style={{ height: isFullscreen ? "85vh" : "auto" }}
         >
-          <iframe
-            src="https://mam.grupoamericainterior.com.ar/playlist/s95tWnrDuP?embed=1"
-            className="absolute inset-0 w-full h-full border-0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            title="MAM reels"
-          />
+          <div
+            id="dpReels"
+            ref={containerRef}
+            className={
+              isFullscreen
+                ? "fixed inset-0 w-full h-full max-h-none z-[999999] overflow-hidden bg-black"
+                : "relative w-full h-[85vh] max-h-[720px] overflow-hidden bg-black"
+            }
+          >
+            <iframe
+              src="https://mam.grupoamericainterior.com.ar/playlist/s95tWnrDuP?embed=1"
+              className="absolute inset-0 w-full h-full border-0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              title="MAM reels"
+            />
+          </div>
         </div>
       </div>
     </div>
