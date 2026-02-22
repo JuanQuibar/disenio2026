@@ -1,13 +1,16 @@
 import { PencilIcon } from "@heroicons/react/16/solid";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { fetchVideosCuadrados } from "@/app/services/fetchs";
+import { unstable_noStore as noStore } from "next/cache";
 
 export async function MuyDestacada() {
+  noStore();
   const videos = await fetchVideosCuadrados();
-  // Usar el primer video del array, o fallback si no hay videos
+  // Al ser una muestra de diseño, elegimos un video al azar del array.
+  // En entorno de desarrollo esto cambiará el video en cada recarga sin consumir más recursos de la API.
   const videoUrl =
     videos.length > 0
-      ? videos[0]
+      ? videos[Math.floor(Math.random() * videos.length)]
       : "https://videos.pexels.com/video-files/9040724/9040724-hd_720_720_30fps.mp4";
 
   const urlFoto =
