@@ -45,7 +45,6 @@ export default async function Home() {
       <Suspense fallback={<MuyDestacadaSkeleton />}>
         <MuyDestacada />
       </Suspense>
-      <CarruselMam />
 
       <Suspense fallback={<AperturaSkeleton />}>
         <AperturaWrapper />

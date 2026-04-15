@@ -37,7 +37,7 @@ export function CarruselMam() {
         {/* Wrapper para mantener el espacio cuando el iframe sea fixed y evitar saltos de scroll */}
         <div
           className="relative w-full"
-          style={{ height: isFullscreen ? "85vh" : "auto" }}
+          style={{ height: isFullscreen ? "40vh" : "auto" }}
         >
           <div
             id="dpReels"
@@ -45,7 +45,7 @@ export function CarruselMam() {
             className={
               isFullscreen
                 ? "fixed inset-0 w-full h-full max-h-none z-[999999] overflow-hidden bg-black"
-                : "relative w-full h-[85vh] max-h-[720px] overflow-hidden bg-black"
+                : "relative w-full aspect-[9/16] max-h-[720px] overflow-hidden bg-black"
             }
           >
             <iframe
