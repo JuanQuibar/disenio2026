@@ -16,14 +16,67 @@ Prototipo mobile-first funcionando. `npm run build` y `npx tsc --noEmit` pasan s
 errores. La home renderiza los **tres carruseles de video definitivos** (MAM,
 Shorts y Branded), validados en viewport 414×896 sin errores de consola.
 
-MAM y Branded ya abren **modal fullscreen con scroll vertical**, con controles de
-pausa, barra de progreso y silencio (este último sólo en MAM). Shorts todavía no.
+MAM, Branded y Shorts abren **modal fullscreen con scroll vertical**, con
+controles de pausa, barra de progreso y silencio (el silencio, sólo en MAM y
+Shorts). Los tres carruseles están completos en mobile.
 
 No hay trabajo a medio terminar: el último tramo cerró completo.
 
 ---
 
 ## ✅ Hecho
+
+### 2026-09-27 — Modal fullscreen para YouTube Shorts
+
+Último carrusel que faltaba. Se cargó la **IFrame Player API** de YouTube para
+tener los mismos controles propios que MAM y Branded, en vez de dejar a la vista
+los controles nativos del player.
+
+**Cambio de fondo en el carrusel.** La tarjeta dejó de montar un iframe inline al
+hacer click: ahora es sólo thumbnail más botón, y **el carrusel no monta ningún
+iframe**. El iframe existe únicamente dentro del modal, y sólo el del slide
+activo: al deslizar, el player anterior se destruye. Verificado en navegador: 12
+slides, siempre 1 iframe.
+
+**Archivos nuevos**
+
+| Archivo | Rol |
+|---|---|
+| `videos-shared/youtube-iframe-api.ts` | Cargador singleton de la API + tipos. El `declare global` de `window.YT` vive acá, no en `global.d.ts` |
+| `videos-shared/video-modal-controls.tsx` | Capa inferior compartida por mp4 e iframe. No sabe cómo se reproduce: recibe estado y devuelve intenciones |
+| `youtube-shorts/youtube-shorts-modal-slide.tsx` | Crea y destruye el player según `isActive` |
+| `youtube-shorts/youtube-shorts-modal.tsx` | Arma el `VideoModalShell` con los slides de Shorts |
+
+**Trampas de la IFrame API que ya costaron tiempo** — no volver a pisarlas:
+
+- **`YT.Player` reemplaza el nodo que recibe por el iframe.** Hay que pasarle un
+  hijo descartable creado con `document.createElement`, no el div que React
+  controla; si no, al recrear, el ref apunta a un nodo removido.
+- **`loop: 1` sin `playlist: videoId` no repite un video suelto.** Es requisito
+  de la API, no una redundancia.
+- **`cc_load_policy: 0` NO apaga los subtítulos**: sólo el valor 1 es vinculante.
+  Hay que llamar a `unloadModule("captions")` / `("cc")`, y **repetirlo cuando el
+  estado pasa a `PLAYING`**: en `onReady` el módulo todavía no cargó y la
+  descarga no tiene efecto. Importaba porque los subtítulos se dibujan al pie y
+  pisaban los botones de pausa y silencio.
+- **El iframe necesita `pointer-events: none`.** Un iframe de otro origen se
+  queda con el gesto táctil y Swiper nunca vería el swipe vertical: el modal
+  quedaba trabado en el primer video. Como los controles son propios y el player
+  va con `controls: 0`, el iframe no necesita recibir nada.
+- **El player encaja el video (`contain`), no lo cubre.** Un 9:16 en una pantalla
+  más alargada queda con bandas negras (84 px arriba y abajo en un iPhone de
+  932 px). No se puede aplicar `object-fit` sobre un iframe: se lo agranda con
+  `max()` hasta cubrir, se lo centra y el sobrante lo recorta el `overflow` del
+  contenedor. Así queda a sangre completa como MAM y Branded.
+- **Warning benigno de `postMessage`** al crear cada player: *"target origin
+  ('https://www.youtube.com') does not match recipient window's origin"*. El
+  stack lo ubica en `www-widgetapi.js`, dentro de un `setInterval` propio de
+  YouTube. **Se probó el parámetro `origin`, que es el remedio documentado, y no
+  lo elimina.** No perseguirlo.
+
+Verificado en navegador con viewport de iPhone (430×932): swipe vertical pasa de
+slide, la barra avanza en el slide nuevo, pausa congela, silencio alterna y el
+thumbnail se desvanece al estar listo el player.
 
 ### 2026-09-27 — Controles de reproducción en el modal
 
@@ -168,32 +221,12 @@ Nada en curso.
 
 ## ⏭️ Siguiente
 
-### Modal fullscreen para YouTube Shorts  ← **prioridad**
+Los tres carruseles están completos en mobile. Lo próximo es la **versión
+desktop**, que queda a cargo de otro agente (ver Backlog).
 
-Extender el modal a Shorts, que quedó fuera del tramo anterior a propósito.
-
-**Por qué se pospuso.** Shorts es un iframe de YouTube, no un mp4 propio: no se
-puede controlar la reproducción sin cargar la IFrame Player API, cada swipe obliga
-a montar y desmontar el iframe (costoso), y la marca de YouTube se impone sobre el
-diseño.
-
-**Lo que ya está resuelto.** `VideoModalShell` es agnóstico de la fuente: recibe
-`renderSlide` y no conoce ningún tipo concreto. Alcanza con escribir
-`youtube-shorts/youtube-shorts-modal.tsx` que renderice el iframe en lugar de
-`VideoModalSlide` (ese slide es solo para mp4).
-
-**A resolver:**
-
-- Montar el iframe únicamente del slide activo, o el rendimiento se cae.
-- Decidir si se carga la IFrame Player API para poder pausar al deslizar, o si
-  alcanza con desmontar el iframe.
-- El autoplay con sonido en un iframe embebido es menos confiable que en un
-  `<video>` propio: verificar comportamiento real.
-- Replicar los controles (pausa, progreso, silencio) exige la IFrame Player API:
-  un iframe no expone `currentTime` ni `paused` como un `<video>`. Si no se
-  carga la API, el modal de Shorts quedará sin barra de progreso y habrá que
-  decidir si eso es aceptable o si conviene dejar los controles nativos de
-  YouTube a la vista.
+Al probar Shorts en un iPhone real, lo único no verificado es si el **autoplay
+con sonido** del iframe funciona: es más restrictivo que un `<video>` propio. Hay
+un fallback que reintenta muteado a los 1500 ms si el player no arrancó.
 
 ---
 
@@ -209,7 +242,7 @@ diseño.
 - **Títulos de maqueta.** Branded usa copys ficticios de `branded-content.ts`;
   reemplazar cuando haya contenido comercial real.
 - **Refinamientos del modal**, deliberadamente fuera del primer tramo: cierre por
-  gesto de arrastre, precarga del video siguiente y barra de progreso.
+  gesto de arrastre y precarga del video siguiente.
 
 ---
 
@@ -222,9 +255,13 @@ diseño.
 
 ### Decisiones ya resueltas
 
-- **Alcance del modal (2026-09-27)**: se implementa en MAM y Branded, que sirven
-  mp4 propio. Shorts queda para un tramo aparte por ser un iframe, con las
-  limitaciones descritas en *Siguiente*.
+- **Alcance del modal (2026-09-27)**: se implementó primero en MAM y Branded, que
+  sirven mp4 propio, y después en Shorts vía IFrame Player API. Los tres
+  carruseles lo tienen.
+- **Controles de Shorts (2026-09-27)**: se usan los **controles propios**, no los
+  nativos de YouTube (`controls: 0`). Cuesta cargar la IFrame Player API, pero
+  mantiene la misma interfaz en los tres carruseles; los controles nativos
+  romperían la ilusión de producto propio en una presentación a accionistas.
 - **Audio del modal (2026-09-27)**: abre con sonido, como TikTok. El toque que lo
   abre cuenta como gesto del usuario, así que el navegador lo permite.
 - **Sonido por fuente (2026-09-27)**: la regla anterior aplica a **MAM**.

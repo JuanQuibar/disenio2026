@@ -61,15 +61,16 @@ su propia estrategia de reproducción. No comparten player: comparten primitives
 | Módulo | Wrapper | Fuente | Reproducción | Modal |
 |---|---|---|---|---|
 | `carrusel-mam/` | `carrusel-mam-wrapper.tsx` | API MAM (mp4 propios) | Autoplay muteado del slide activo | Sí |
-| `youtube-shorts/` | `youtube-shorts-wrapper.tsx` | YouTube Data API | Click-to-Load (fachada) | Todavía no |
+| `youtube-shorts/` | `youtube-shorts-wrapper.tsx` | YouTube Data API | Solo en el modal (IFrame Player API) | Sí |
 | `branded/` | `branded-wrapper.tsx` | Pexels (solo muestra de diseño) | Autoplay muteado del slide activo | Sí |
 
 *   **`carrusel-mam/`**: Reels de producción de Diario UNO. Consume la playlist vía
     API y reproduce los `.mp4` en un `<video>` nativo, con badge de duración,
     control de sonido y título enlazado a la nota.
-*   **`youtube-shorts/`**: Shorts del canal. Mantiene el patrón fachada: muestra el
-    thumbnail y solo monta el iframe tras el clic del usuario. Al deslizar, el
-    iframe anterior se desmonta (nunca hay dos videos sonando).
+*   **`youtube-shorts/`**: Shorts del canal. **El carrusel no monta ningún
+    iframe**: la tarjeta es thumbnail más botón, y el iframe existe solo dentro
+    del modal, únicamente el del slide activo. Se controla con la IFrame Player
+    API para que tenga los mismos controles propios que MAM y Branded.
 *   **`branded/`**: Demuestra que se puede mostrar **contenido brandeado por
     vertical** (comidas, autos, etc.). Pexels es solo la fuente de maqueta: las
     verticales se definen en `branded-content.ts` y cambiar de vertical no requiere
@@ -135,8 +136,10 @@ faltante. Nunca lanzan: una fuente caída oculta su sección, no rompe la home.
     *   Solo reproduce el **slide activo** del carrusel, y solo si está en viewport
         (IntersectionObserver).
     *   Se pausan al salir de pantalla para ahorrar batería, CPU y datos.
-2.  **Fachada para YouTube (Click-to-Load)**:
-    *   Aplica a Shorts y a las transmisiones en vivo.
+2.  **Shorts sin iframe en el feed**:
+    *   El carrusel de Shorts muestra solo thumbnails; el iframe se monta
+        únicamente dentro del modal y solo para el slide activo.
+    *   La fachada Click-to-Load sigue aplicando a las transmisiones en vivo.
     *   Evita la carga inicial de ~1MB+ de JS de YouTube por cada video.
     *   Mejora drásticamente el TTI y el FCP.
 3.  **SSR + islas interactivas**: los wrappers resuelven datos en el servidor y solo
@@ -158,17 +161,19 @@ faltante. Nunca lanzan: una fuente caída oculta su sección, no rompe la home.
     fuente: los videos de MAM son todos 9:16 y el servicio de Pexels descarta los
     horizontales. Con todo el material vertical, `contain` solo agregaba bandas
     negras sin proteger de ningún recorte.
-*   **El modal llegó primero a MAM y Branded.** Ambos sirven mp4 propio, con
-    control total de la reproducción. Shorts es un iframe y queda para un tramo
-    aparte.
+*   **El modal llegó primero a MAM y Branded**, que sirven mp4 propio con control
+    total de la reproducción, y después a Shorts vía **IFrame Player API**. En
+    Shorts se usan **controles propios** (`controls: 0`) para mantener la misma
+    interfaz en los tres carruseles. El iframe va con `pointer-events: none`,
+    porque si no se queda con el gesto táctil y bloquea el swipe vertical.
 *   **Solo existe la versión mobile.** La versión desktop está pendiente. Los
     componentes conservan los puntos de extensión (`slidesPerView`, breakpoints,
     aspect ratios) para no bloquearla.
 
 ## ❓ Preguntas Pendientes / Definiciones
 *   **Monetización**: Ads nativos en el feed programáticos.
-*   **Navegación**: extender el modal inmersivo a YouTube Shorts, que hoy es la
-    única fuente sin él.
+*   **Navegación**: versión desktop de los tres carruseles (a cargo de otro
+    agente).
 
 ---
 

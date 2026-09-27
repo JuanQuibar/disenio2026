@@ -4,18 +4,14 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { YoutubeShort } from "@/app/services/videos/types";
 import { YoutubeShortsCard } from "./youtube-shorts-card";
+import { YoutubeShortsModal } from "./youtube-shorts-modal";
 
 interface YoutubeShortsCarruselProps {
   shorts: YoutubeShort[];
 }
 
 export function YoutubeShortsCarrusel({ shorts }: YoutubeShortsCarruselProps) {
-  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
-
-  // Al deslizar se desmonta el iframe anterior: nunca queda mas de un video sonando.
-  const handleSlideChange = () => {
-    setActiveVideoId(null);
-  };
+  const [modalVideoId, setModalVideoId] = useState<string | null>(null);
 
   return (
     <div className="relative mb-6">
@@ -29,19 +25,24 @@ export function YoutubeShortsCarrusel({ shorts }: YoutubeShortsCarruselProps) {
         }}
         pagination={{ clickable: true }}
         className="pb-10"
-        onSlideChange={handleSlideChange}
       >
         {shorts.map((short) => (
           <SwiperSlide key={short.id}>
             <YoutubeShortsCard
               short={short}
-              shouldPlay={activeVideoId === short.id}
-              isMuted={false}
-              onPlay={() => setActiveVideoId(short.id)}
+              onOpen={() => setModalVideoId(short.id)}
             />
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {modalVideoId && (
+        <YoutubeShortsModal
+          shorts={shorts}
+          activeVideoId={modalVideoId}
+          onClose={() => setModalVideoId(null)}
+        />
+      )}
     </div>
   );
 }
