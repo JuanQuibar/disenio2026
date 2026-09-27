@@ -6,6 +6,7 @@
 >
 > - ¿Qué es el proyecto y cómo está arquitecturado? → [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md)
 > - ¿Cómo levanto el proyecto? → [README.md](./README.md)
+> - ¿Sos un agente de IA? → [AGENTS.md](./AGENTS.md)
 
 ---
 
