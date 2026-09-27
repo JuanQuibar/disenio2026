@@ -25,7 +25,6 @@ export interface BrandedVerticalConfig {
   /** Etiqueta visible de la vertical: comidas, autos, etc. */
   category: string;
   brandName: string;
-  sponsorLabel: string;
   perPage?: number;
 }
 
@@ -103,7 +102,6 @@ export async function fetchBrandedVideos(
         thumbnailUrl: video.image,
         category: config.category,
         brandName: config.brandName,
-        sponsorLabel: config.sponsorLabel,
       };
 
       return [normalized];

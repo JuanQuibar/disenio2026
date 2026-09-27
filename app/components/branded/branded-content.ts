@@ -18,7 +18,6 @@ export const BRANDED_VERTICALES = {
     query: "food",
     category: "Comidas",
     brandName: "Qué comer",
-    sponsorLabel: "Contenido patrocinado",
     titulo: "Branded",
     logoSrc: "/a-comer.png",
     logoAlt: "Qué comer",
@@ -39,7 +38,6 @@ export const BRANDED_VERTICALES = {
     query: "car",
     category: "Autos",
     brandName: "Motores UNO",
-    sponsorLabel: "Contenido patrocinado",
     titulo: "Branded",
     copys: [
       "Qué revisar antes de salir a la ruta en verano",

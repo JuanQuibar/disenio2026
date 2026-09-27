@@ -33,8 +33,11 @@ export interface YoutubeShort extends VideoItem {
 export interface BrandedVideo extends VideoItem {
   source: "pexels";
   videoUrl: string;
-  /** Vertical comercial demostrada: comidas, autos, etc. */
+  /**
+   * Atribucion comercial. Hoy no se muestra en la tarjeta (se quito la leyenda
+   * por decision de diseno), pero se mantiene en el contrato porque es el dato
+   * que necesita el modal inmersivo para identificar al anunciante.
+   */
   category: string;
   brandName: string;
-  sponsorLabel: string;
 }

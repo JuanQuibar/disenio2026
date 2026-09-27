@@ -25,20 +25,12 @@ export function BrandedCard({ video, isActive }: BrandedCardProps) {
           preload="metadata"
           className="h-full w-full object-cover"
         />
-
-        <span className="absolute left-2 top-2 rounded bg-black/60 px-1.5 py-0.5 font-sans text-[10px] uppercase tracking-wider text-white">
-          {video.sponsorLabel}
-        </span>
       </div>
 
-      <div className="flex flex-col gap-1 bg-white py-2">
+      <div className="bg-white py-2">
         <h4 className="font-sans text-sm font-medium leading-snug text-gray-900 line-clamp-3">
           {video.title}
         </h4>
-
-        <p className="font-sans text-xs text-gray-500">
-          {video.brandName} · {video.category}
-        </p>
       </div>
     </div>
   );
