@@ -26,11 +26,7 @@ export function BrandedModal({
           posterUrl={video.thumbnailUrl}
           isActive={isActive}
         >
-          <h3 className="font-sans text-base font-medium leading-snug text-white">
-            {video.title}
-          </h3>
-
-          <p className="mt-2 font-sans text-xs uppercase tracking-wider text-white/70">
+          <p className="font-sans text-xs uppercase tracking-wider text-white/70">
             {video.brandName} · {video.category}
           </p>
         </VideoModalSlide>

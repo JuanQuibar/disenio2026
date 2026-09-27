@@ -23,14 +23,10 @@ export function MamModal({ videos, activeVideoId, onClose }: MamModalProps) {
           isActive={isActive}
           allowSound
         >
-          <h3 className="font-sans text-base font-medium leading-snug text-white">
-            {video.title}
-          </h3>
-
           {video.articleUrl && (
             <a
               href={video.articleUrl}
-              className="mt-2 inline-block font-sans text-sm text-white/80 underline"
+              className="inline-block font-sans text-sm text-white/80 underline"
             >
               Leer la nota
             </a>
