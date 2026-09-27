@@ -49,6 +49,10 @@ export function YoutubeShortsModalSlide({
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  // `isReady` dice que el player acepta ordenes; `hasStarted`, que el video ya
+  // tiene imagen. Son momentos distintos: entre uno y otro YouTube muestra su
+  // pantalla negra con spinner, y es lo que el thumbnail tiene que tapar.
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
     if (!isActive) return;
@@ -60,6 +64,30 @@ export function YoutubeShortsModalSlide({
     let cancelled = false;
     let player: YouTubePlayer | null = null;
     let fallbackTimer = 0;
+    let didRetryMuted = false;
+    let started = false;
+
+    /**
+     * iOS bloquea el autoplay con sonido de un iframe de otro origen y el
+     * player se queda detenido sin avisar. Se reintenta muteado, una sola vez y
+     * solo si el video nunca arranco, para no pisar una pausa del usuario.
+     */
+    const retryMuted = () => {
+      if (cancelled || didRetryMuted || started) return;
+
+      const current = playerRef.current;
+
+      if (!current) return;
+
+      const state = current.getPlayerState();
+
+      if (state === YT_STATE.PLAYING || state === YT_STATE.BUFFERING) return;
+
+      didRetryMuted = true;
+      current.mute();
+      setIsMuted(true);
+      current.playVideo();
+    };
 
     // `YT.Player` reemplaza el nodo que recibe por el iframe, asi que se le
     // entrega un hijo descartable y no el contenedor que React controla.
@@ -98,25 +126,28 @@ export function YoutubeShortsModalSlide({
               setIsReady(true);
               event.target.playVideo();
 
-              // Si el navegador bloquea el audio, el player queda detenido sin
-              // avisar. Se reintenta muteado, igual que el slide de mp4.
-              fallbackTimer = window.setTimeout(() => {
-                if (cancelled || !playerRef.current) return;
-
-                const state = playerRef.current.getPlayerState();
-
-                if (state !== YT_STATE.PLAYING && state !== YT_STATE.BUFFERING) {
-                  playerRef.current.mute();
-                  setIsMuted(true);
-                  playerRef.current.playVideo();
-                }
-              }, 1500);
+              // Respaldo por si el bloqueo no dispara ningun cambio de estado.
+              // Era de 1500 ms: demasiado, porque en iOS el bloqueo es la regla
+              // y esa espera se sumaba entera al arranque de cada video.
+              fallbackTimer = window.setTimeout(retryMuted, 600);
             },
             onStateChange: (event) => {
               if (cancelled) return;
-              // Se repite al arrancar: en `onReady` el modulo de subtitulos
-              // todavia no esta cargado y la descarga no tiene efecto.
-              if (event.data === YT_STATE.PLAYING) hideCaptions(event.target);
+
+              if (event.data === YT_STATE.PLAYING) {
+                started = true;
+                setHasStarted(true);
+                // Se repite al arrancar: en `onReady` el modulo de subtitulos
+                // todavia no esta cargado y la descarga no tiene efecto.
+                hideCaptions(event.target);
+              }
+
+              // Volver a UNSTARTED o CUED despues de pedir play es la senal de
+              // que el navegador lo rechazo: se reintenta sin esperar al timer.
+              if (event.data === YT_STATE.UNSTARTED || event.data === YT_STATE.CUED) {
+                retryMuted();
+              }
+
               setIsPlaying(event.data === YT_STATE.PLAYING);
             },
           },
@@ -139,6 +170,7 @@ export function YoutubeShortsModalSlide({
       playerRef.current = null;
       container.replaceChildren();
       setIsReady(false);
+      setHasStarted(false);
       setIsPlaying(false);
       setProgress(0);
     };
@@ -198,14 +230,16 @@ export function YoutubeShortsModalSlide({
 
   return (
     <div className="relative h-full w-full bg-black">
-      {/* El thumbnail sostiene la imagen hasta que el player responde: crear el
-          iframe tarda bastante mas que arrancar un mp4 propio. */}
+      {/* Tapa toda la carga del iframe, que es mucho mas lenta que arrancar un
+          mp4 propio. Se desvanece recien cuando el video esta reproduciendo, no
+          cuando el player responde: en el medio se ve la pantalla negra con
+          spinner de YouTube. */}
       <img
         src={short.thumbnailUrl}
         alt=""
         aria-hidden="true"
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
-          isReady ? "opacity-0" : "opacity-100"
+        className={`absolute inset-0 z-10 h-full w-full object-cover transition-opacity duration-300 ${
+          hasStarted ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       />
 

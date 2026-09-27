@@ -26,6 +26,32 @@ No hay trabajo a medio terminar: el último tramo cerró completo.
 
 ## ✅ Hecho
 
+### 2026-09-27 — Arreglo del arranque de Shorts en producción
+
+Al deslizar se veía una secuencia fea: fotograma, pantalla negra con spinner,
+**el overlay de marca de YouTube** (barra de título, botón rojo gigante y "Ver en
+YouTube") y recién ahí el video, mudo. Reportado en iPhone, Chrome y Safari.
+
+**Causa 1 — el thumbnail se iba demasiado pronto.** Se desvanecía con `isReady`,
+que solo avisa que *el player acepta órdenes*, no que el video tenga imagen.
+Entre un momento y otro YouTube muestra su pantalla negra y, si el autoplay fue
+bloqueado, su overlay de marca. Ahora hay dos estados separados: `isReady` y
+`hasStarted`, y el thumbnail se sostiene hasta que el estado pasa a `PLAYING`.
+
+Detalle importante: el overlay de marca **solo aparece en el estado no-iniciado**.
+Al pausar con el botón propio, el fotograma queda limpio (verificado). Por eso
+alcanza con tapar el arranque y no hace falta tapar la pausa.
+
+**Causa 2 — el reintento muteado tardaba 1500 ms.** En iOS el bloqueo del
+autoplay con sonido es la regla, no la excepción, así que esa espera se sumaba
+entera al arranque de *cada* video. Ahora son 600 ms, y además se reintenta
+apenas el player vuelve a `UNSTARTED` o `CUED` después de pedir play, que es la
+señal de que el navegador lo rechazó. El reintento corre una sola vez y solo si
+el video nunca arrancó, para no pisar una pausa del usuario.
+
+Queda mudo igual: es política de iOS, no un bug. El botón de sonido permite
+recuperarlo con un toque.
+
 ### 2026-09-27 — Modal fullscreen para YouTube Shorts
 
 Último carrusel que faltaba. Se cargó la **IFrame Player API** de YouTube para
@@ -224,9 +250,11 @@ Nada en curso.
 Los tres carruseles están completos en mobile. Lo próximo es la **versión
 desktop**, que queda a cargo de otro agente (ver Backlog).
 
-Al probar Shorts en un iPhone real, lo único no verificado es si el **autoplay
-con sonido** del iframe funciona: es más restrictivo que un `<video>` propio. Hay
-un fallback que reintenta muteado a los 1500 ms si el player no arrancó.
+Al probar Shorts en un iPhone real, lo único no verificado es si el **botón de
+sonido** logra activar el audio. El autoplay con sonido está bloqueado por iOS y
+el video arranca mudo (esperado); lo que falta confirmar es si el toque en un
+botón de la página propia alcanza como gesto para que el iframe de otro origen
+acepte quitar el silencio.
 
 ---
 
