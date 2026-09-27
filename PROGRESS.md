@@ -175,3 +175,23 @@ Actualizarlo **al cerrar cada tramo de trabajo**: mover lo terminado a *Hecho* c
 fecha y motivo, y dejar *Siguiente* apuntando a la próxima prioridad. Si una
 decisión se resuelve, sacarla de *Decisiones pendientes* y registrarla en
 [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md).
+
+### Qué se registra y qué no
+
+Este archivo no es un log de commits: para eso está `git log`. Se registra lo que
+alguien necesitaría saber **antes de tocar el código**, no todo lo que se hizo.
+
+| Se registra | No se registra |
+| --- | --- |
+| Una feature o módulo nuevo | Ajustes de estilo, copys, colores |
+| Un cambio de arquitectura o de convención | Renombres y refactors internos |
+| Una decisión con contrapartida asumida | Correcciones de tipos o de lint |
+| Dar de baja una dependencia o proveedor | Bugs detectados y resueltos en el acto |
+| Un intento descartado, con el motivo | Trabajo aún sin terminar (va en *En curso*) |
+
+Regla práctica: si al leer el cambio dentro de seis meses alguien podría
+preguntarse **«¿por qué está hecho así?»**, va acá — y lo que se escribe es esa
+respuesta, no la lista de archivos tocados.
+
+Los intentos fallidos importan tanto como los logros: evitan que el próximo
+agente reintente un camino ya descartado.
