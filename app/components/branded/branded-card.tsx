@@ -7,9 +7,10 @@ interface BrandedCardProps {
   video: BrandedVideo;
   /** Solo el slide activo reproduce, para no cargar varios mp4 en paralelo. */
   isActive: boolean;
+  onOpen: () => void;
 }
 
-export function BrandedCard({ video, isActive }: BrandedCardProps) {
+export function BrandedCard({ video, isActive, onOpen }: BrandedCardProps) {
   const { containerRef, videoRef } = useVideoAutoplay(isActive);
 
   return (
@@ -24,6 +25,12 @@ export function BrandedCard({ video, isActive }: BrandedCardProps) {
           playsInline
           preload="metadata"
           className="h-full w-full object-cover"
+        />
+
+        <button
+          onClick={onOpen}
+          aria-label={`Abrir video: ${video.title}`}
+          className="absolute inset-0 z-10 h-full w-full cursor-pointer"
         />
       </div>
 

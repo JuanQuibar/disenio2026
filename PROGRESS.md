@@ -16,11 +16,60 @@ Prototipo mobile-first funcionando. `npm run build` y `npx tsc --noEmit` pasan s
 errores. La home renderiza los **tres carruseles de video definitivos** (MAM,
 Shorts y Branded), validados en viewport 414×896 sin errores de consola.
 
+MAM y Branded ya abren **modal fullscreen con scroll vertical**. Shorts todavía no.
+
 No hay trabajo a medio terminar: el último tramo cerró completo.
 
 ---
 
 ## ✅ Hecho
+
+### 2026-09-27 — Modal fullscreen con scroll vertical (MAM y Branded)
+
+Al tocar un video se abre a pantalla completa y se pasa a los demás videos del
+mismo carrusel con desplazamiento vertical, estilo TikTok/Reels.
+
+**Cómo está armado.** Un shell compartido con todo lo que no depende de la fuente
+(`videos-shared/video-modal-shell.tsx`: portal, fullscreen, Swiper vertical,
+cierre, foco, bloqueo de scroll), un slide mp4 reutilizable
+(`videos-shared/video-modal-slide.tsx`) y un modal fino por fuente
+(`mam-modal.tsx`, `branded-modal.tsx`). No hay un player universal con ramas por
+tipo de fuente.
+
+**Decisiones y el porqué:**
+
+- **`createPortal` es obligatorio, no una preferencia.** El modal se dispara desde
+  dentro de un slide de Swiper, cuyo wrapper lleva `transform`. Un `position: fixed`
+  dentro de un ancestro transformado se posiciona respecto de ese ancestro y no del
+  viewport: sin portal, el "fullscreen" queda recortado dentro de la tarjeta.
+- **Abre con sonido.** El toque que abre cuenta como gesto del usuario, así que el
+  navegador lo permite. Si aun así lo bloquea, el slide reintenta muteado antes de
+  rendirse.
+- **El modal no reutiliza `useVideoAutoplay`.** Ese hook combina slide activo con
+  IntersectionObserver, útil en la home; en fullscreen solo hay un slide visible por
+  definición y su `rootMargin` de 50px podría activar vecinos.
+- **`object-cover` en vez de `object-contain`.** Se verificó contra la API: los 30
+  videos de MAM son 9:16 y el servicio de Pexels ya descarta los horizontales. Con
+  todo el material vertical, `contain` solo agregaba bandas negras sin proteger de
+  nada.
+- **El disparador es un `<button>` superpuesto** (z-10), no un `onClick` en el
+  contenedor: la tarjeta de MAM ya tiene un botón de mute (ahora z-20) y anidar
+  interactivos es HTML inválido y rompe el teclado.
+- **Se bloquea el scroll de `html` además del de `body`.** Con overflow solo en
+  `body`, la barra de scroll seguía ocupando ancho y el modal no llegaba al borde
+  derecho (medido: 485px contra un viewport de 500px).
+- **Se pausa el carrusel mientras el modal está abierto**
+  (`isActive={index === activeIndex && modalVideoId === null}`), o suenan dos videos
+  a la vez.
+
+**Efecto lateral.** `brandName` y `category`, que habían quedado sin consumidor al
+sacar la leyenda de las tarjetas, se muestran ahora en el modal de branded.
+
+**Verificado en navegador:** apertura en el video correcto y no en el primero,
+navegación vertical, un solo video reproduciéndose a la vez, cierre con botón y con
+`Escape`, foco que va al botón de cerrar y vuelve a la tarjeta de origen, scroll de
+la home restaurado en la posición exacta, y el botón de mute que sigue funcionando
+sin abrir el modal.
 
 ### 2026-09-27 — Reorganización de la arquitectura de video
 
@@ -80,43 +129,27 @@ Nada en curso.
 
 ## ⏭️ Siguiente
 
-### Modal fullscreen con scroll vertical  ← **prioridad**
+### Modal fullscreen para YouTube Shorts  ← **prioridad**
 
-Al tocar un video de un carrusel, abrir un modal a pantalla completa con ese video,
-y permitir pasar a los demás videos **del mismo carrusel** con desplazamiento
-vertical (patrón TikTok/Reels).
+Extender el modal a Shorts, que quedó fuera del tramo anterior a propósito.
 
-**Diseño acordado.** Un shell compartido + un modal por fuente. No un player
-universal con ramas `if (source === ...)`.
+**Por qué se pospuso.** Shorts es un iframe de YouTube, no un mp4 propio: no se
+puede controlar la reproducción sin cargar la IFrame Player API, cada swipe obliga
+a montar y desmontar el iframe (costoso), y la marca de YouTube se impone sobre el
+diseño.
 
-```text
-videos-shared/
-└── video-modal-shell.tsx    → fullscreen, cierre, navegación vertical,
-                                foco y bloqueo del scroll del documento
+**Lo que ya está resuelto.** `VideoModalShell` es agnóstico de la fuente: recibe
+`renderSlide` y no conoce ningún tipo concreto. Alcanza con escribir
+`youtube-shorts/youtube-shorts-modal.tsx` que renderice el iframe en lugar de
+`VideoModalSlide` (ese slide es solo para mp4).
 
-carrusel-mam/mam-modal.tsx         → reproduce <video> mp4
-branded/branded-modal.tsx          → reproduce <video> mp4
-youtube-shorts/…-modal.tsx         → reproduce iframe
-```
+**A resolver:**
 
-**Contrato propuesto** (se prefiere `activeVideoId` sobre un índice, porque es
-estable si cambia el orden):
-
-```ts
-type VideoModalProps<TVideo> = {
-  videos: TVideo[];
-  activeVideoId: string;
-  onClose: () => void;
-};
-```
-
-**Precondiciones ya resueltas** por la reorganización: cada video tiene `id`
-estable, los datos son objetos (no `string[]`) y la lógica del modal no vive en
-`page.tsx`.
-
-**A tener en cuenta**: el estado del modal debe vivir en el carrusel o en un
-coordinador, no en el wrapper (que es Server Component). Al abrir el modal hay que
-pausar el video del carrusel para no duplicar reproducción.
+- Montar el iframe únicamente del slide activo, o el rendimiento se cae.
+- Decidir si se carga la IFrame Player API para poder pausar al deslizar, o si
+  alcanza con desmontar el iframe.
+- El autoplay con sonido en un iframe embebido es menos confiable que en un
+  `<video>` propio: verificar comportamiento real.
 
 ---
 
@@ -131,6 +164,8 @@ pausar el video del carrusel para no duplicar reproducción.
 - **Ads nativos en el feed** (programáticos).
 - **Títulos de maqueta.** Branded usa copys ficticios de `branded-content.ts`;
   reemplazar cuando haya contenido comercial real.
+- **Refinamientos del modal**, deliberadamente fuera del primer tramo: cierre por
+  gesto de arrastre, precarga del video siguiente y barra de progreso.
 
 ---
 
@@ -138,12 +173,16 @@ pausar el video del carrusel para no duplicar reproducción.
 
 | Tema | Pregunta abierta |
 |---|---|
-| Alcance del modal | ¿El modal aplica a los tres carruseles o solo a MAM y Branded? |
 | Branded en producción | ¿De dónde vendrá el contenido brandeado real: CMS, anunciante o MAM? |
 | Orden en la home | El orden actual de los tres carruseles es provisorio. |
 
 ### Decisiones ya resueltas
 
+- **Alcance del modal (2026-09-27)**: se implementa en MAM y Branded, que sirven
+  mp4 propio. Shorts queda para un tramo aparte por ser un iframe, con las
+  limitaciones descritas en *Siguiente*.
+- **Audio del modal (2026-09-27)**: abre con sonido, como TikTok. El toque que lo
+  abre cuenta como gesto del usuario, así que el navegador lo permite.
 - **Métricas de MAM (2026-09-27)**: no se reimplementan. Al ser un prototipo de
   diseño, la pérdida del tracking del player del proveedor es aceptable. Queda
   como tema a retomar solo si el prototipo avanza a producción.

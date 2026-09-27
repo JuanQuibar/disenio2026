@@ -58,11 +58,11 @@ Reglas:
 El prototipo presenta **tres carruseles de video**, cada uno con su propia fuente y
 su propia estrategia de reproducción. No comparten player: comparten primitives.
 
-| Módulo | Wrapper | Fuente | Reproducción |
-|---|---|---|---|
-| `carrusel-mam/` | `carrusel-mam-wrapper.tsx` | API MAM (mp4 propios) | Autoplay muteado del slide activo |
-| `youtube-shorts/` | `youtube-shorts-wrapper.tsx` | YouTube Data API | Click-to-Load (fachada) |
-| `branded/` | `branded-wrapper.tsx` | Pexels (solo muestra de diseño) | Autoplay muteado del slide activo |
+| Módulo | Wrapper | Fuente | Reproducción | Modal |
+|---|---|---|---|---|
+| `carrusel-mam/` | `carrusel-mam-wrapper.tsx` | API MAM (mp4 propios) | Autoplay muteado del slide activo | Sí |
+| `youtube-shorts/` | `youtube-shorts-wrapper.tsx` | YouTube Data API | Click-to-Load (fachada) | Todavía no |
+| `branded/` | `branded-wrapper.tsx` | Pexels (solo muestra de diseño) | Autoplay muteado del slide activo | Sí |
 
 *   **`carrusel-mam/`**: Reels de producción de Diario UNO. Consume la playlist vía
     API y reproduce los `.mp4` en un `<video>` nativo, con badge de duración,
@@ -75,8 +75,24 @@ su propia estrategia de reproducción. No comparten player: comparten primitives
     verticales se definen en `branded-content.ts` y cambiar de vertical no requiere
     tocar componentes.
 *   **`videos-shared/`**: Solo primitives transversales, **nunca un player
-    genérico**: el contenedor visual de sección, el botón de play y el hook
-    `useVideoAutoplay` (IntersectionObserver).
+    genérico**: el contenedor visual de sección, el botón de play, el hook
+    `useVideoAutoplay` (IntersectionObserver), el shell del modal y el slide mp4.
+
+#### Modal inmersivo
+Al tocar un video se abre a pantalla completa y se pasa a los demás videos **del
+mismo carrusel** con desplazamiento vertical (patrón TikTok/Reels).
+
+La división sigue la misma lógica que los carruseles: un **shell compartido**
+(`videos-shared/video-modal-shell.tsx`) resuelve portal, fullscreen, navegación
+vertical, cierre, foco y bloqueo de scroll; un **slide mp4 reutilizable**
+(`video-modal-slide.tsx`) sirve a las fuentes con video propio; y cada fuente
+aporta un **modal fino** que solo decide qué metadatos superpone. No hay un player
+universal con ramas por tipo de fuente.
+
+El shell se monta con `createPortal` sobre `document.body`, y esto **no es
+opcional**: el modal se dispara desde dentro de un slide de Swiper, cuyo wrapper
+lleva `transform`, y un `position: fixed` dentro de un ancestro transformado se
+posiciona respecto de ese ancestro en lugar del viewport.
 
 #### Capa de datos (`services/videos/`)
 Un archivo por fuente (`mam.ts`, `youtube.ts`, `pexels.ts`) más `types.ts`, que
@@ -84,7 +100,7 @@ define el contrato común `VideoItem` (`id` estable + `source`). Cada fuente
 extiende ese contrato con sus propios campos.
 
 El `id` es **estable y propio de la fuente**, no el índice del carrusel: es lo que
-permitirá construir la futura experiencia inmersiva sin depender del orden visual.
+permite abrir el modal en el video correcto sin depender del orden visual.
 
 Todos los servicios **degradan a array vacío** ante un error de red o una API key
 faltante. Nunca lanzan: una fuente caída oculta su sección, no rompe la home.
@@ -120,14 +136,24 @@ faltante. Nunca lanzan: una fuente caída oculta su sección, no rompe la home.
     contador de views de la playlist). **No es un problema en esta etapa**: se
     trata de un prototipo de diseño, no de una pieza de producción. Si el
     prototipo avanza a producción, habrá que definir el tracking del lado de UNO.
+*   **El modal abre con sonido**, como TikTok: el toque que lo abre cuenta como
+    gesto del usuario y el navegador lo permite. Si aun así lo bloquea, el slide
+    reintenta muteado antes de rendirse.
+*   **El modal usa `object-cover`, no `object-contain`.** Se verificó contra la
+    fuente: los videos de MAM son todos 9:16 y el servicio de Pexels descarta los
+    horizontales. Con todo el material vertical, `contain` solo agregaba bandas
+    negras sin proteger de ningún recorte.
+*   **El modal llegó primero a MAM y Branded.** Ambos sirven mp4 propio, con
+    control total de la reproducción. Shorts es un iframe y queda para un tramo
+    aparte.
 *   **Solo existe la versión mobile.** La versión desktop está pendiente. Los
     componentes conservan los puntos de extensión (`slidesPerView`, breakpoints,
     aspect ratios) para no bloquearla.
 
 ## ❓ Preguntas Pendientes / Definiciones
 *   **Monetización**: Ads nativos en el feed programáticos.
-*   **Navegación**: Definir flujo de videos inmersivos (modal fullscreen con
-    scroll vertical entre videos del mismo carrusel).
+*   **Navegación**: extender el modal inmersivo a YouTube Shorts, que hoy es la
+    única fuente sin él.
 
 ---
 

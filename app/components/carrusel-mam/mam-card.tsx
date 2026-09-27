@@ -9,6 +9,7 @@ interface MamCardProps {
   isActive: boolean;
   isMuted: boolean;
   onToggleMute: () => void;
+  onOpen: () => void;
 }
 
 function formatDuration(seconds: number) {
@@ -25,6 +26,7 @@ export function MamCard({
   isActive,
   isMuted,
   onToggleMute,
+  onOpen,
 }: MamCardProps) {
   const { containerRef, videoRef } = useVideoAutoplay(isActive);
   const duration = formatDuration(video.durationSeconds);
@@ -44,15 +46,21 @@ export function MamCard({
         />
 
         {duration && (
-          <span className="absolute left-2 top-2 rounded bg-black/60 px-1.5 py-0.5 font-sans text-[11px] text-white">
+          <span className="absolute left-2 top-2 z-20 rounded bg-black/60 px-1.5 py-0.5 font-sans text-[11px] text-white">
             {duration}
           </span>
         )}
 
         <button
+          onClick={onOpen}
+          aria-label={`Abrir video: ${video.title}`}
+          className="absolute inset-0 z-10 h-full w-full cursor-pointer"
+        />
+
+        <button
           onClick={onToggleMute}
           aria-label={isMuted ? "Activar sonido" : "Silenciar video"}
-          className="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-full border border-white/40 bg-black/50 text-white backdrop-blur-sm"
+          className="absolute bottom-2 right-2 z-20 flex h-8 w-8 items-center justify-center rounded-full border border-white/40 bg-black/50 text-white backdrop-blur-sm"
         >
           {isMuted ? (
             <svg
