@@ -250,15 +250,25 @@ Nada en curso.
 Los tres carruseles están completos en mobile. Lo próximo es la **versión
 desktop**, que queda a cargo de otro agente (ver Backlog).
 
-Al probar Shorts en un iPhone real, lo único no verificado es si el **botón de
-sonido** logra activar el audio. El autoplay con sonido está bloqueado por iOS y
-el video arranca mudo (esperado); lo que falta confirmar es si el toque en un
-botón de la página propia alcanza como gesto para que el iframe de otro origen
-acepte quitar el silencio.
+Shorts arranca mudo por política de iOS y el botón de sonido lo activa
+(verificado en iPhone). Que arranque con sonido queda en el Backlog.
 
 ---
 
 ## 📋 Backlog
+
+- **Arranque con sonido en Shorts.** Hoy arranca mudo y se activa con el botón
+  (verificado en iPhone: el botón funciona). **Los controles nativos de YouTube
+  NO lo resuelven**: el bloqueo es una política del navegador sobre el autoplay
+  con audio, no una limitación de qué controles se muestran; cambiarlos sumaría
+  la marca de YouTube sin ganar nada.
+  El motivo real es que el toque que abre el modal ocurre en nuestra página y no
+  cuenta como gesto dentro del iframe de otro origen. Por eso MAM sí arranca con
+  sonido: es un `<video>` propio, en el mismo documento.
+  **Camino a probar**: que el player exista *antes* del toque y que el propio
+  gesto que abre el modal dispare `unMute()` + `playVideo()` sobre un player ya
+  creado. Encarece el feed (habría que mantener un player vivo) y no hay garantía
+  de que iOS lo acepte: verificar en dispositivo real antes de invertir en ello.
 
 - **Versión desktop.** Hoy solo existe mobile. Queda a cargo de otro agente. Los
   componentes ya conservan los puntos de extensión (`slidesPerView`, breakpoints,
