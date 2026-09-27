@@ -94,6 +94,21 @@ opcional**: el modal se dispara desde dentro de un slide de Swiper, cuyo wrapper
 lleva `transform`, y un `position: fixed` dentro de un ancestro transformado se
 posiciona respecto de ese ancestro en lugar del viewport.
 
+**Controles.** Cada slide trae pausa/reproducción, una barra de progreso fina al
+pie y, sólo cuando la fuente lo habilita, silencio. El estado de reproducción se
+sincroniza desde los eventos `play`/`pause` del elemento y no desde el click, para
+que siga siendo correcto cuando la reproducción la cambia el navegador. La barra
+se refresca por frame (`requestAnimationFrame`) en vez de con `timeupdate`, que
+dispara unas cuatro veces por segundo y se vería a saltos.
+
+**Audio por fuente.** El control de sonido se habilita con la prop `allowSound`,
+activa en MAM y ausente en branded. No es una preferencia estética: se midieron
+los archivos reales con `ffprobe`/`ffmpeg` y el stock de Pexels que alimenta
+branded está mudo (sólo 2 de 20 tienen sonido audible; 4 más traen pista pero a
+-91 dB, silencio digital), mientras que MAM ronda -12 a -19 dB en 7 de 9. Un
+botón de silencio sobre material mudo no haría nada, y habilitar el audio
+global haría que un video suelto arrancara fuerte sin que el usuario lo espere.
+
 #### Capa de datos (`services/videos/`)
 Un archivo por fuente (`mam.ts`, `youtube.ts`, `pexels.ts`) más `types.ts`, que
 define el contrato común `VideoItem` (`id` estable + `source`). Cada fuente

@@ -21,6 +21,7 @@ export function MamModal({ videos, activeVideoId, onClose }: MamModalProps) {
           videoUrl={video.videoUrl}
           posterUrl={video.thumbnailUrl || undefined}
           isActive={isActive}
+          allowSound
         >
           <h3 className="font-sans text-base font-medium leading-snug text-white">
             {video.title}

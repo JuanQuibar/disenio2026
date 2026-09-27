@@ -16,13 +16,52 @@ Prototipo mobile-first funcionando. `npm run build` y `npx tsc --noEmit` pasan s
 errores. La home renderiza los **tres carruseles de video definitivos** (MAM,
 Shorts y Branded), validados en viewport 414×896 sin errores de consola.
 
-MAM y Branded ya abren **modal fullscreen con scroll vertical**. Shorts todavía no.
+MAM y Branded ya abren **modal fullscreen con scroll vertical**, con controles de
+pausa, barra de progreso y silencio (este último sólo en MAM). Shorts todavía no.
 
 No hay trabajo a medio terminar: el último tramo cerró completo.
 
 ---
 
 ## ✅ Hecho
+
+### 2026-09-27 — Controles de reproducción en el modal
+
+El modal pasó de reproducir sin intervención posible a tener pausa, barra de
+progreso y silencio. Todo vive en `video-modal-slide.tsx`, así que las dos
+fuentes mp4 lo heredan sin duplicar nada.
+
+**Qué se agregó**
+
+- Botón de pausa/reproducción, abajo a la derecha, con el mismo lenguaje visual
+  que el botón de silencio de la tarjeta MAM.
+- Barra de progreso de 3 px pegada al borde inferior, con `role="progressbar"`.
+- Botón de silencio **condicional**, gobernado por la nueva prop `allowSound`.
+
+**Decisiones y por qué**
+
+- **El estado sigue al elemento, no al click.** `isPlaying` se actualiza desde
+  los eventos `play`/`pause` del `<video>`. Si se dedujera del click, quedaría
+  desincronizado cuando el navegador pausa por su cuenta o cuando falla el
+  autoplay.
+- **La barra se refresca por frame, no con `timeupdate`.** Ese evento dispara
+  unas cuatro veces por segundo y la barra avanzaría a saltos. El valor se
+  redondea a milésimas, así que React descarta el render cuando no cambia nada
+  visible.
+- **Margen inferior con `env(safe-area-inset-bottom)`.** Sin eso, en iPhone el
+  indicador de inicio tapa la barra por estar pegada al borde.
+- **El sonido se decide por fuente, con datos.** Ver la decisión de audio más
+  abajo: no fue una elección estética.
+
+**Verificado en navegador** (430 px, dev server): en MAM el video abre con
+`muted: false`, la pausa congela `currentTime` y el botón de silencio alterna
+estado y etiqueta; en Branded el slide activo abre con `muted: true` y sin botón
+de silencio. Barra medida en el borde exacto (`y=592 + 3px` en viewport de 595).
+Sin errores de consola. `npm run build` y `npx tsc --noEmit` pasan.
+
+> Nota de método: dos mediciones iniciales dieron falsos negativos porque
+> `querySelector('video')` devuelve el primer video del DOM y no el del slide
+> activo. Para inspeccionar el modal hay que apuntar a `.swiper-slide-active`.
 
 ### 2026-09-27 — Modal fullscreen con scroll vertical (MAM y Branded)
 
@@ -150,6 +189,11 @@ diseño.
   alcanza con desmontar el iframe.
 - El autoplay con sonido en un iframe embebido es menos confiable que en un
   `<video>` propio: verificar comportamiento real.
+- Replicar los controles (pausa, progreso, silencio) exige la IFrame Player API:
+  un iframe no expone `currentTime` ni `paused` como un `<video>`. Si no se
+  carga la API, el modal de Shorts quedará sin barra de progreso y habrá que
+  decidir si eso es aceptable o si conviene dejar los controles nativos de
+  YouTube a la vista.
 
 ---
 
@@ -183,6 +227,14 @@ diseño.
   limitaciones descritas en *Siguiente*.
 - **Audio del modal (2026-09-27)**: abre con sonido, como TikTok. El toque que lo
   abre cuenta como gesto del usuario, así que el navegador lo permite.
+- **Sonido por fuente (2026-09-27)**: la regla anterior aplica a **MAM**.
+  **Branded abre siempre mudo y sin botón de silencio**, porque se midieron los
+  archivos reales con `ffprobe`/`ffmpeg`: de los 20 mp4 de Pexels que consume la
+  app, sólo 2 tienen sonido audible, 4 traen pista a -91 dB (silencio digital) y
+  14 no traen pista. MAM, en cambio, ronda -12 a -19 dB en 7 de 9. Ofrecer un
+  control de sonido sobre material mudo sería un botón que no hace nada, y
+  habilitarlo igual haría que un video suelto arranque fuerte sin aviso.
+  Se implementa con la prop `allowSound` del slide.
 - **Métricas de MAM (2026-09-27)**: no se reimplementan. Al ser un prototipo de
   diseño, la pérdida del tracking del player del proveedor es aceptable. Queda
   como tema a retomar solo si el prototipo avanza a producción.
