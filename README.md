@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UNO 2026 — Rediseño Diario UNO
 
-## Getting Started
+Prototipo de alto impacto para el rediseño de `diariouno.com.ar`, pensado para
+presentar la visión a los accionistas.
 
-First, run the development server:
+**Mobile first**: por ahora solo existe la versión mobile. Para verlo como fue
+diseñado, usar el modo dispositivo del navegador (por ejemplo 414×896).
+
+## Requisitos
+
+- Node.js 20 o superior
+- npm
+
+## Instalación
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variables de entorno
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Crear un archivo `.env` en la raíz con estas dos claves:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+NEXT_PUBLIC_PEXELS_API_KEY=...
+NEXT_PUBLIC_YOUTUBE_API_KEY=...
+```
 
-## Learn More
+| Variable | Alimenta | Si falta |
+|---|---|---|
+| `NEXT_PUBLIC_PEXELS_API_KEY` | Fotos de maqueta y el carrusel Branded | Las secciones que dependen de ella no se renderizan |
+| `NEXT_PUBLIC_YOUTUBE_API_KEY` | Carrusel de YouTube Shorts | La sección Shorts no se renderiza |
 
-To learn more about Next.js, take a look at the following resources:
+El carrusel MAM consume una API pública y **no requiere credenciales**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Los servicios degradan a vacío en lugar de lanzar: si falta una clave, la sección
+correspondiente simplemente desaparece y el resto de la home sigue funcionando.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> `.env` está ignorado por git. No commitear credenciales.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run dev     # servidor de desarrollo en http://localhost:3000
+npm run build   # build de producción
+npm run start   # sirve el build de producción
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Chequeo de tipos:
+
+```bash
+npx tsc --noEmit
+```
+
+## Rutas
+
+| Ruta | Descripción |
+|---|---|
+| `/` | Home del prototipo |
+| `/detalle-nota` | Prototipo de página de nota |
+
+## Documentación
+
+| Archivo | Contenido |
+|---|---|
+| [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md) | Visión, stack, arquitectura y decisiones vigentes |
+| [PROGRESS.md](./PROGRESS.md) | Bitácora, backlog y convenciones. **Empezar por acá al retomar el trabajo** |
+
+## Stack
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · Swiper

@@ -93,7 +93,7 @@ export function SeccionListadoSkeleton() {
   );
 }
 
-export function VideosSkeleton() {
+export function MamSkeleton() {
   return (
     <div className="mb-4 border-t-2 border-white pb-2 pt-1 animate-pulse">
       {/* Cabezal */}
@@ -266,24 +266,6 @@ export function ListadoSinFotosSkeleton() {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function JwpNoticiasSkeleton() {
-  return (
-    <div className="mb-4 border-t-2 border-white pb-2 pt-1 animate-pulse">
-      {/* Cabezal */}
-      <div className="h-3 bg-gray-300 rounded w-32 mb-2"></div>
-
-      {/* Contenedor */}
-      <div className="p-2 bg-white rounded-lg shadow-md">
-        {/* Video card carousel */}
-        <div className="flex gap-4 overflow-hidden">
-          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
-          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
         </div>
       </div>
     </div>

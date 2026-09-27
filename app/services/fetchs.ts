@@ -1,5 +1,3 @@
-import { unstable_noStore as noStore } from "next/cache";
-
 const apiKey = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
 
 type PexelsVideoFile = {
@@ -21,72 +19,6 @@ type PexelsVideo = {
 type PexelsVideoResponse = {
   videos: PexelsVideo[];
 };
-export interface JWVideo {
-  mediaid: string;
-  title: string;
-  description: string;
-  image: string;
-  duration: number;
-  // JWP devuelve muchas más propiedades (sources, tracks, etc.)
-}
-
-export interface JWPlaylistResponse {
-  title: string; // Título de la playlist
-  playlist: JWVideo[]; // Array de videos
-}
-
-function findBestVerticalVideo(
-  files: PexelsVideoFile[]
-): PexelsVideoFile | null {
-  const verticalMp4Files = files.filter(
-    (f) => f.file_type === "video/mp4" && f.width < f.height
-  );
-
-  if (verticalMp4Files.length === 0) {
-    return null;
-  }
-
-  const hdVertical = verticalMp4Files.find((f) => f.width === 720);
-  if (hdVertical) {
-    return hdVertical;
-  }
-  const fullHdVertical = verticalMp4Files.find((f) => f.width === 1080);
-  if (fullHdVertical) {
-    return fullHdVertical;
-  }
-
-  verticalMp4Files.sort((a, b) => b.width - a.width);
-  return verticalMp4Files[0];
-}
-
-export async function getPlaylistData(
-  playlistId: string
-): Promise<JWPlaylistResponse> {
-  // Usamos fetch nativo. Next.js cacheará esto por defecto.
-  // Si necesitas datos frescos siempre, añade { cache: 'no-store' }
-
-  try {
-    const res = await fetch(
-      `https://cdn.jwplayer.com/v2/playlists/${playlistId}`,
-      { next: { revalidate: 3600 } } // Cache por 1 hora
-    );
-
-    if (!res.ok) {
-      console.error(
-        `Error fetching JWPlayer playlist ${playlistId}: ${res.status}`
-      );
-      return { title: "", playlist: [] };
-    }
-
-    return res.json();
-  } catch (error) {
-    console.error(
-      `Network error fetching JWPlayer playlist ${playlistId}:`,
-      error
-    );
-    return { title: "", playlist: [] };
-  }
-}
 
 export async function fetchFotos(): Promise<
   Array<{ src: string; alt: string }>
@@ -168,52 +100,6 @@ export async function fetchDeportes(): Promise<
     );
   } catch (error) {
     console.error("Error fetching sports photos from Pexels:", error);
-    return [];
-  }
-}
-
-export async function fetchVideosVerticales(): Promise<string[]> {
-  if (!apiKey) {
-    throw new Error("API Key de Pexels no está definida");
-  }
-
-  // Usamos una página fija para mantener el contenido consistente en la maqueta
-  const randomPage = 1;
-
-  // 1. Usamos /search en lugar de /popular
-  const query = "food"; // Buscamos videos que Pexels ya etiquetó como verticales
-
-  // 2. Pedimos el máximo (80) para tener más material para filtrar
-  const url = `https://api.pexels.com/videos/search?query=${query}&orientation=portrait&per_page=10&page=${randomPage}`;
-
-  try {
-    const res = await fetch(url, {
-      headers: {
-        Authorization: apiKey,
-      },
-      next: { revalidate: 3600 }, // Cache por 1 hora
-    });
-
-    if (!res.ok) {
-      console.error(
-        `Error al obtener videos de Pexels: ${res.status} ${res.statusText}`
-      );
-      // Retornar array vacío en lugar de lanzar error
-      return [];
-    }
-
-    const data: PexelsVideoResponse = await res.json();
-
-    // 3. El flatMap ahora tendrá 80 videos para revisar, en lugar de 10
-    const videoLinks = data.videos.flatMap((video) => {
-      const bestFile = findBestVerticalVideo(video.video_files);
-      return bestFile ? [bestFile.link] : [];
-    });
-
-    return videoLinks;
-  } catch (error) {
-    console.error("Error fetching videos from Pexels:", error);
-    // Retornar array vacío en caso de error de red o timeout
     return [];
   }
 }
@@ -323,40 +209,6 @@ export async function fetchVideosPaisaje(): Promise<string[]> {
     console.error("Error fetching landscape videos from Pexels:", error);
     return [];
   }
-}
-
-export async function fetchYoutubeShorts(): Promise<
-  Array<{ id: string; title: string; thumbnail: string }>
-> {
-  noStore();
-  const playlistId = "PLDedS24i-fT9rjzB0-Zd2LNe_z3YuZ8BK";
-  const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-
-  if (!apiKey) {
-    console.error("YouTube API Key no definida");
-    return [];
-  }
-  const maxResults = 12;
-
-  const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&channelId=UC64ZNqX0FQHabP8iIkmnR3A&playlistId=${playlistId}&part=snippet,id&order=date&maxResults=${maxResults}`;
-
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    console.error("Error fetching YouTube Shorts:", res.status, res.statusText);
-    return [];
-  }
-
-  const data = await res.json();
-
-  return data.items.map((item: any) => ({
-    id: item.snippet.resourceId.videoId,
-    title: item.snippet.title,
-    thumbnail:
-      item.snippet.thumbnails.maxres?.url ||
-      item.snippet.thumbnails.high?.url ||
-      item.snippet.thumbnails.medium?.url,
-  }));
 }
 
 export async function fetchDataFactoryWidget(url: string): Promise<string> {

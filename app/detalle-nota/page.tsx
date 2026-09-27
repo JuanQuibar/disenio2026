@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ShareIcon, BookmarkIcon } from "@heroicons/react/24/outline";
-import { JwpNoticiasWrapper } from "../components/jwp-noticias/jwp-noticcias-wrapper";
+import { CarruselMamWrapper } from "../components/carrusel-mam/carrusel-mam-wrapper";
 import { Footer } from "../components/footer/footer";
 
 export default async function DetalleNota() {
@@ -156,12 +156,12 @@ export default async function DetalleNota() {
           </p>
         </div>
 
-        {/* JWP Noticias Carousel */}
+        {/* Carrusel de videos MAM */}
         <div className="border-t border-gray-200 bg-gray-50 p-4 md:p-8">
           <h3 className="font-sans text-xl font-bold text-gray-900 mb-2">
             Más noticias
           </h3>
-          <JwpNoticiasWrapper />
+          <CarruselMamWrapper />
         </div>
 
         {/* Banner 300x250 */}

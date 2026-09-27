@@ -1,99 +1,45 @@
 "use client";
-import Script from "next/script";
-import { useEffect, useRef, useState } from "react";
 
-declare global {
-  interface Window {
-    jwplayer: any;
-  }
+import type { BrandedVideo } from "@/app/services/videos/types";
+import { useVideoAutoplay } from "../videos-shared/use-video-autoplay";
+
+interface BrandedCardProps {
+  video: BrandedVideo;
+  /** Solo el slide activo reproduce, para no cargar varios mp4 en paralelo. */
+  isActive: boolean;
 }
 
-interface VideoBrandedProps {
-  mediaId?: string; // ID del media desde JW Player dashboard
-  playlistId?: string; // ID de playlist desde JW Player dashboard
-}
-
-export default function VideoBranded({
-  mediaId = "ygHoePtt", // Media ID de JW Player
-  playlistId,
-}: VideoBrandedProps = {}) {
-  const playerRef = useRef<HTMLDivElement>(null);
-  const [playerReady, setPlayerReady] = useState(false);
-  const playerInstance = useRef<any>(null);
-
-  useEffect(() => {
-    if (!playerReady || !window.jwplayer || !playerRef.current) return;
-
-    // Evitar inicialización múltiple
-    if (playerInstance.current) {
-      return;
-    }
-
-    try {
-      const player = window.jwplayer(playerRef.current);
-
-      const config: any = {
-        width: "100%",
-        aspectratio: "9:16",
-        autostart: false,
-        mute: false,
-        repeat: true, // Match Loop: ON from dashboard
-        controls: true,
-        stretching: "uniform",
-      };
-
-      // Usar playlist si está disponible, sino usar media ID
-      if (playlistId) {
-        config.playlist = `https://cdn.jwplayer.com/v2/playlists/${playlistId}`;
-      } else if (mediaId) {
-        config.playlist = `https://cdn.jwplayer.com/v2/media/${mediaId}`;
-      }
-
-      player.setup(config);
-      playerInstance.current = player;
-
-      // Event listeners opcionales
-      player.on("ready", () => {
-        console.log("JW Player ready");
-      });
-
-      player.on("error", (error: any) => {
-        console.error("JW Player error:", error);
-      });
-    } catch (error) {
-      console.error("Error initializing JW Player:", error);
-    }
-
-    return () => {
-      if (playerInstance.current) {
-        try {
-          playerInstance.current.remove();
-          playerInstance.current = null;
-        } catch (e) {
-          console.error("Error removing player:", e);
-        }
-      }
-    };
-  }, [playerReady, mediaId, playlistId]);
+export function BrandedCard({ video, isActive }: BrandedCardProps) {
+  const { containerRef, videoRef } = useVideoAutoplay(isActive);
 
   return (
-    <div className=" rounded-xl bg-white border border-gray-900  shadow-md hover:shadow-lg transition-shadow duration-300 w-full aspect-9/16">
-      <Script
-        src="https://cdn.jwplayer.com/libraries/REo268Kx.js"
-        strategy="afterInteractive"
-        onReady={() => {
-          console.log("JW Player script loaded");
-          setPlayerReady(true);
-        }}
-        onError={(e) => {
-          console.error("Error loading JW Player script:", e);
-        }}
-      />
-      <div
-        ref={playerRef}
-        id="branded-player"
-        className="w-full  rounded-md overflow-hidden bg-black"
-      />
+    <div ref={containerRef} className="w-full max-w-sm mx-auto">
+      <div className="relative w-full aspect-9/16 overflow-hidden rounded-md border border-gray-900 bg-black shadow-md transition-shadow duration-300 hover:shadow-lg">
+        <video
+          ref={videoRef}
+          src={video.videoUrl}
+          poster={video.thumbnailUrl}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="h-full w-full object-cover"
+        />
+
+        <span className="absolute left-2 top-2 rounded bg-black/60 px-1.5 py-0.5 font-sans text-[10px] uppercase tracking-wider text-white">
+          {video.sponsorLabel}
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-1 bg-white py-2">
+        <h4 className="font-sans text-sm font-medium leading-snug text-gray-900 line-clamp-3">
+          {video.title}
+        </h4>
+
+        <p className="font-sans text-xs text-gray-500">
+          {video.brandName} · {video.category}
+        </p>
+      </div>
     </div>
   );
 }

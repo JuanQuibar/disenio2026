@@ -8,7 +8,6 @@ import { EncuestaWrapper } from "./components/encuesta/encuesta-wrapper";
 import { SudokuWrapper } from "./components/sudoku/sudoku-wrapper";
 import { SenatusWrapper } from "./components/senatur-romano/senatus-wrapper";
 import { YoutubeShortsWrapper } from "./components/youtube-shorts/youtube-shorts-wrapper";
-import { VideosWrapperCarrusel } from "./components/carrusel-videos/videos-wrapper-carrusel";
 import { ServiciosWrapper } from "./components/servicios/servicios-wrapper";
 import { Canal7LiveWrapper } from "./components/live/canal7-live-wrapper";
 import { RadioNihuilWrapper } from "./components/live/radio-nihuil-wrapper";
@@ -21,23 +20,20 @@ import { CrimenWrapper } from "./components/crimen/crimen-wrapper";
 import { BrandedWrapper } from "./components/branded/branded-wrapper";
 import { OvacionWrapper } from "./components/ovacion/ovacion-wrapper";
 import { UltimasNoticiasWrapper } from "./components/ultimas-noticias/ultimas-noticias-wrapper";
-import { CarruselMam } from "./components/carrusel-mam/carrusel-mam";
+import { CarruselMamWrapper } from "./components/carrusel-mam/carrusel-mam-wrapper";
 
 import { BannerPublicitario } from "./components/banner-publicitario";
 import {
   MuyDestacadaSkeleton,
   SeccionListadoSkeleton,
-  VideosSkeleton,
+  MamSkeleton,
   YoutubeShortsSkeleton,
   OvacionSkeleton,
   UltimasNoticiasSkeleton,
   AperturaSkeleton,
   ListadoSinFotosSkeleton,
-  JwpNoticiasSkeleton,
   BrandedSkeleton,
 } from "./components/skeletons";
-import { JwpNoticiasWrapper } from "./components/jwp-noticias/jwp-noticcias-wrapper";
-import { JwpViralesWrapper } from "./components/jwp-virales/jwp-virales-wrapper";
 
 export default async function Home() {
   return (
@@ -49,8 +45,8 @@ export default async function Home() {
       <Suspense fallback={<AperturaSkeleton />}>
         <AperturaWrapper />
       </Suspense>
-      <Suspense fallback={<JwpNoticiasSkeleton />}>
-        <JwpNoticiasWrapper />
+      <Suspense fallback={<MamSkeleton />}>
+        <CarruselMamWrapper />
       </Suspense>
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PrincipalesWrapper />
@@ -59,9 +55,6 @@ export default async function Home() {
         <YoutubeShortsWrapper />
       </Suspense>
 
-      {/* <Suspense fallback={<VideosSkeleton />}>
-        <VideosWrapperCarrusel />
-      </Suspense> */}
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <PoliticaWrapper />
       </Suspense>
@@ -97,10 +90,6 @@ export default async function Home() {
       </Suspense>
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <CrimenWrapper />
-      </Suspense>
-
-      <Suspense fallback={<JwpNoticiasSkeleton />}>
-        <JwpViralesWrapper />
       </Suspense>
 
       <SudokuWrapper />
