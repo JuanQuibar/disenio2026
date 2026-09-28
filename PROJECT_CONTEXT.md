@@ -24,6 +24,9 @@ Crear un prototipo de alto impacto ("Wow Effect") para el rediseño de `diarioun
     *   **Estilo**: Premium, limpio, animaciones suaves.
     *   **Diseño**: Mobile First.
 
+La especificación visual del prototipo mobile (paleta, tipografía, layout y
+componentes) está en [DESIGN.md](./DESIGN.md).
+
 ## 🛠 Stack Tecnológico
 *   **Framework**: Next.js 16 (App Router).
 *   **Lenguaje**: TypeScript.

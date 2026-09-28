@@ -10,6 +10,9 @@ Prototipo de rediseño de **Diario UNO**. Next.js 16 · React 19 · Tailwind 4 �
    arquitecturado y qué decisiones ya están tomadas.
 3. **[README.md](./README.md)** — cómo levantarlo y qué variables de entorno pide.
 
+Para trabajar en la interfaz, consultá también [DESIGN.md](./DESIGN.md): reúne
+las decisiones visuales y los patrones de componentes de la versión mobile.
+
 ## Reglas que no se negocian
 
 - **`page.tsx` importa wrappers.** Todo componente que traiga datos expone un
