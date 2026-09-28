@@ -598,10 +598,10 @@ Más noticias, Apertura, Listado sin fotos, Branded.
 
 1. MuyDestacada — nota principal con video cuadrado + LIVE
 2. Apertura — hero card con foto 4:3
-3. **Carrusel MAM** — videos de producción (mp4)
-4. Principales — carrusel Swiper de noticias
-5. **YouTube Shorts** — Shorts del canal
-6. Política — principal + 4 listado
+3. Principales — carrusel Swiper de noticias
+4. **Carrusel MAM** — videos de producción (mp4)
+5. Política — principal + 4 listado
+6. **YouTube Shorts** — Shorts del canal
 7. Servicios — widgets clima, dólar, tránsito, claves
 8. Opinión — grid 2×2 columnistas
 9. **Branded Content** — videos por vertical comercial

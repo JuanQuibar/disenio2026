@@ -41,22 +41,20 @@ export default async function Home() {
       <Suspense fallback={<MuyDestacadaSkeleton />}>
         <MuyDestacada />
       </Suspense>
-
       <Suspense fallback={<AperturaSkeleton />}>
         <AperturaWrapper />
+      </Suspense>
+      <Suspense fallback={<SeccionListadoSkeleton />}>
+        <PrincipalesWrapper />
       </Suspense>
       <Suspense fallback={<MamSkeleton />}>
         <CarruselMamWrapper />
       </Suspense>
       <Suspense fallback={<SeccionListadoSkeleton />}>
-        <PrincipalesWrapper />
+        <PoliticaWrapper />
       </Suspense>
       <Suspense fallback={<YoutubeShortsSkeleton />}>
         <YoutubeShortsWrapper />
-      </Suspense>
-
-      <Suspense fallback={<SeccionListadoSkeleton />}>
-        <PoliticaWrapper />
       </Suspense>
       <ServiciosWrapper />
       <Suspense fallback={<SeccionListadoSkeleton />}>
@@ -65,7 +63,6 @@ export default async function Home() {
       <Suspense fallback={<BrandedSkeleton />}>
         <BrandedWrapper />
       </Suspense>
-
       <EncuestaWrapper />
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <SenatusWrapper />
@@ -74,7 +71,6 @@ export default async function Home() {
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <SociedadWrapper />
       </Suspense>
-
       <Canal7LiveWrapper />
       <RadioNihuilWrapper />
       <Suspense fallback={<ListadoSinFotosSkeleton />}>
@@ -91,7 +87,6 @@ export default async function Home() {
       <Suspense fallback={<SeccionListadoSkeleton />}>
         <CrimenWrapper />
       </Suspense>
-
       <SudokuWrapper />
       <Suspense fallback={<UltimasNoticiasSkeleton />}>
         <UltimasNoticiasWrapper />
