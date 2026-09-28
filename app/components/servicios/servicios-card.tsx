@@ -79,7 +79,7 @@ export function ServiciosCard() {
         <div className="bg-white p-3 rounded-lg shadow-md flex flex-col ">
           <h3 className=" text-gray-800 text-lg">Riesgo País</h3>
           <div className="flex">
-            <p className="text-lgfont-bold text-[900] ">600</p>
+            <p className="text-lg font-black">600</p>
             <div className="flex items-center  font-semibold">
               <ArrowDownIcon className="text-green-600 w-6 h-6" />
               <span className="text-black text-xs">-5%</span>
