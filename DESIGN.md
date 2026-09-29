@@ -6,9 +6,7 @@
 > [!IMPORTANT]
 > **Todo lo documentado acá corresponde exclusivamente a la versión mobile
 > (viewport ~414px).** La versión desktop no existe todavía — es lo que se va a
-> diseñar a partir de estas especificaciones. Los pocos prefijos `md:` que
-> aparecen en el código son puntos de extensión preparatorios, no un diseño
-> desktop resuelto.
+> diseñar a partir de estas especificaciones.
 
 ---
 
@@ -20,7 +18,7 @@ presencia de **video vertical** y consumo de contenido directo en la home
 (paradigma "Zero-Click", estilo TikTok/Reels).
 
 **Valores de diseño:** Credibilidad · Seriedad · Modernidad.
-**Estilo:** Premium, limpio, animaciones suaves, mobile-first.
+**Estilo:** Premium, limpio, animaciones suaves.
 
 ---
 
@@ -40,7 +38,6 @@ presencia de **video vertical** y consumo de contenido directo en la home
 | Contexto            | Clase Tailwind        | Hex       |
 | ------------------- | --------------------- | --------- |
 | Mobile general      | `bg-black`            | `#000000` |
-| Desktop general     | `md:bg-slate-100`     | `#f1f5f9` |
 | Tarjetas y contenedores | `bg-white`        | `#ffffff` |
 | Footer              | `bg-gray-800`         | `#1f2937` |
 | Contenedores de video | `bg-black`          | `#000000` |
@@ -161,12 +158,10 @@ presencia de **video vertical** y consumo de contenido directo en la home
 ### Contenedor principal
 
 ```
-Mobile:  pt-16 flex flex-col p-2 gap-2 min-h-screen mb-7
-Desktop: md:pt-0 md:p-8  |  body: md:max-w-8/10 mx-auto
+pt-16 flex flex-col p-2 gap-2 min-h-screen mb-7
 ```
 
-- `pt-16` en mobile compensa el header fijo de ~64px.
-- El ancho máximo desktop es 80% del viewport, centrado.
+- `pt-16` compensa el header fijo de ~64px.
 
 ### Sección estándar (patrón repetido en ~20 secciones)
 
@@ -289,43 +284,14 @@ Variantes:
 
 ---
 
-## 📱 Breakpoints responsive
-
-El codebase usa **exclusivamente** `sm:` y `md:`. No hay `lg:`, `xl:` ni `2xl:`.
-
-| Breakpoint | Ocurrencias | Usos principales                                    |
-| ---------- | ----------- | --------------------------------------------------- |
-| `md:`      | ~35         | Layout desktop (static header, padding, grid-cols, text sizes, visibility). |
-| `sm:`      | 2           | Solo en Sudoku (`sm:w-10 sm:h-10` para celdas).    |
-
-### Clases responsive más usadas
-
-```
-md:p-8          — Padding desktop del main y detalle-nota
-md:hidden       — Ocultar elementos mobile-only (hamburguesa, logo SVG, separador)
-md:block        — Mostrar elementos desktop-only (nav, logo imagen)
-md:static       — Header deja de ser fixed
-md:bg-slate-100 — Fondo gris claro desktop
-md:justify-start— Logo alineado izquierda en desktop
-md:pt-0         — Sin padding-top (no header fijo)
-md:max-w-8/10   — Ancho máximo 80% en desktop
-md:grid-cols-4  — Grid Opinión: 4 columnas en desktop
-md:grid-cols-3  — Grid en detalle-nota
-md:w-48         — Logo Ovación más ancho en desktop
-md:text-lg/xl/3xl/5xl — Escalado de títulos en detalle-nota
-```
-
----
-
 ## 📦 Catálogo de componentes
 
 ### Header
 
 ```
-Mobile:  fixed top-0 left-0 right-0 z-50 w-full bg-black
-         Logo SVG centrado (w-30), hamburguesa izquierda (w-6 h-6 text-white)
-         Borde inferior: border-b-2 separadores mx-2
-Desktop: md:static md:bg-slate-100, logo imagen izquierda (w-20), nav visible
+fixed top-0 left-0 right-0 z-50 w-full bg-black
+Logo SVG centrado (w-30), hamburguesa izquierda (w-6 h-6 text-white)
+Borde inferior: border-b-2 separadores mx-2
 ```
 
 ### Footer
@@ -385,7 +351,7 @@ Sin bajada ni byline.
 #### Arquetipo C: "Grid columnistas" (Opinión)
 
 ```
-Layout:  grid grid-cols-2 md:grid-cols-4 gap-4
+Layout:  grid grid-cols-2 gap-4
 Card:    flex-col items-center text-center p-4 rounded-md
          border border-gray-200 shadow-sm hover:shadow-md h-full
 Avatar:  w-20 h-20 rounded-full border-2 border-gray-100
@@ -625,8 +591,7 @@ Más noticias, Apertura, Listado sin fotos, Branded.
 
 ## ⚠️ Restricciones
 
-- **Mobile-first.** El diseño actual es exclusivamente mobile (viewport ~414px).
-  Solo existen breakpoints `sm:` (2 usos) y `md:` (~35 usos). No hay `lg:`/`xl:`/`2xl:`.
+- **Solo mobile.** El diseño actual es exclusivamente mobile (viewport ~414px). No hay versión desktop resuelta.
 - **No usar JW Player.** No hay contrato vigente con el proveedor.
 - **Contenido ficticio.** Textos e imágenes son de muestra (excepto MAM y Shorts, que son reales).
 - **El stack es fijo:** Next.js 16, React 19, Tailwind CSS 4, Swiper 12, @heroicons/react.
