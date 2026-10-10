@@ -12,19 +12,78 @@
 
 ## 📍 Estado actual
 
-Prototipo mobile-first funcionando. `npm run build` y `npx tsc --noEmit` pasan sin
-errores. La home renderiza los **tres carruseles de video definitivos** (MAM,
-Shorts y Branded), validados en viewport 414×896 sin errores de consola.
+Prototipo mobile-first funcionando. La home renderiza los **tres carruseles de
+video definitivos** (MAM, Shorts y Branded), validados en viewport 414×896 sin
+errores de consola.
 
 MAM, Branded y Shorts abren **modal fullscreen con scroll vertical**, con
 controles de pausa, barra de progreso y silencio (el silencio, sólo en MAM y
 Shorts). Los tres carruseles están completos en mobile.
 
+La ruta `/desktop` muestra una maqueta estática de Stitch, aislada de la home, para
+revisar la propuesta visual antes de decidir su integración. En esta sesión pasó
+el chequeo de tipos y se verificó en navegador; el build no pudo terminar porque
+este entorno no tiene una clave válida de Pexels y la home falla al prerenderizar
+con las respuestas 401.
+
+Al trasladar la base a la carpeta principal el 2026-10-10, con su configuración
+local existente, pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`.
+El bloqueo anterior correspondía al entorno del worktree, no al estado actual
+de la carpeta principal.
+
 No hay trabajo a medio terminar: el último tramo cerró completo.
+El plan de integración responsive está aprobado y documentado en
+[PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop).
+**La implementación no comenzó**: se retomará en una nueva sesión con contexto
+limpio. La home actual sigue siendo mobile-first.
 
 ---
 
 ## ✅ Hecho
+
+### 2026-10-10 — Base de Stitch y plan trasladados a la carpeta principal
+
+Se trasladaron `/desktop`, sus tokens y la documentación aprobada a `uno-2026-1`.
+Se conservaron los commits posteriores, el orden mobile actualizado (Principales
+antes de MAM y Política antes de Shorts) y el cambio local de MAM. El worktree
+`responsive-plan-implementation-inventory` queda como respaldo: no se incorporó
+su implementación. Continuar nuevas conversaciones sobre la carpeta principal,
+sin crear un worktree por sesión. La integración responsive sigue pendiente.
+
+Validación en la carpeta principal: tipos, build de producción (incluyendo
+`/desktop`) y chequeo de whitespace aprobados.
+
+### 2026-10-08 — Arquitectura y plan responsive aprobados
+
+Se acordó una home en `/` con composiciones mobile y desktop, compartiendo
+contenido, piezas y comportamiento. Mobile define el inventario de módulos;
+Stitch aporta la referencia visual desktop, con paridad obligatoria y sin
+importar funciones nuevas por aparecer en la maqueta.
+
+Se usará un único árbol en orden mobile y composición visual desktop por CSS
+desde 1024 px. **Contrapartida aceptada para esta maqueta:** Tab y lectores de
+pantalla conservarán el orden mobile aunque desktop tenga otro orden visual.
+Los modales de video se mantienen; API de Diario UNO y segunda grilla 3+6+3
+quedan fuera del tramo.
+
+El [plan persistente](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop)
+registra matriz inicial, arquitectura, fases y aceptación. Solo se consolidó
+documentación: el usuario comenzará la implementación en una nueva sesión.
+
+### 2026-10-07 — Maqueta desktop de Stitch en ruta aislada
+
+Se agregó `/desktop` como una página estática en un único archivo, sin conectar
+fuentes de datos ni reutilizar carruseles, y sin cambiar la home mobile. El HTML
+exportado se conserva como markup estático; sus tokens de color, tipografía y
+espaciado se declararon para Tailwind 4 en `globals.css`, sin incluir el runtime
+Tailwind CDN de Stitch.
+
+La exportación usa imágenes remotas de muestra y enlaces sin destino funcional. No
+se copió al repositorio la captura PNG de 54 MB. Esta ruta sirve para analizar el
+diseño con el usuario; no es todavía la versión desktop integrada del producto.
+Comparada con la publicación de Stitch en Netlify, conserva las mismas 18
+secciones y su orden. El scroll queda a cargo del documento, sin ocultar su barra;
+se verificó con rueda de mouse hasta el footer.
 
 ### 2026-09-27 — Arreglo del arranque de Shorts en producción
 
@@ -247,8 +306,19 @@ Nada en curso.
 
 ## ⏭️ Siguiente
 
-Los tres carruseles están completos en mobile. Lo próximo es la **versión
-desktop**, que queda a cargo de otro agente (ver Backlog).
+Comenzar en una **nueva sesión** la integración responsive según el
+[plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop).
+Leer primero esta bitácora, luego el contexto y el README.
+
+La primera tarea es cerrar el inventario de **submódulos** mobile/Stitch y el
+baseline visual, verificando configuración local. La correspondencia de módulos
+principales ya está documentada; no equivale a paridad de cada widget o card.
+Comparar la copia local `/desktop` con el
+[diseño original público de Stitch](https://2eaa6e7d-diario-uno-desktop-redesign.netlify.app/#).
+La home integrada se ajusta al inventario mobile, no a los agregados u omisiones
+de esa referencia.
+Después avanzar por marco/composición, noticias, videos, widgets y validación.
+Preservar la base de Stitch trasladada y cualquier cambio local preexistente.
 
 Shorts arranca mudo por política de iOS y el botón de sonido lo activa
 (verificado en iPhone). Que arranque con sonido queda en el Backlog.
@@ -270,9 +340,11 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
   creado. Encarece el feed (habría que mantener un player vivo) y no hay garantía
   de que iOS lo acepte: verificar en dispositivo real antes de invertir en ello.
 
-- **Versión desktop.** Hoy solo existe mobile. Queda a cargo de otro agente. Los
-  componentes ya conservan los puntos de extensión (`slidesPerView`, breakpoints,
-  aspect ratios) para no bloquearla.
+- **Versión desktop integrada.** La home actual sigue siendo mobile-first. Existe
+  una ruta `/desktop` con la maqueta de Stitch para evaluación, todavía estática y
+  separada de los datos y componentes del producto. Su integración tiene
+  [plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop),
+  pendiente de implementar.
 - **Verticales branded adicionales.** `branded-content.ts` ya soporta `comidas` y
   `autos`; agregar más es declarativo. Definir cuáles se muestran en la
   presentación.
@@ -289,7 +361,7 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
 | Tema | Pregunta abierta |
 |---|---|
 | Branded en producción | ¿De dónde vendrá el contenido brandeado real: CMS, anunciante o MAM? |
-| Orden en la home | El orden actual de los tres carruseles es provisorio. |
+| Evolución del diseño | Después de integrar, podrán revisarse orden y estructura de ambas versiones; el tramo actual conserva orden mobile y adopta orden visual de Stitch en desktop. |
 
 ### Decisiones ya resueltas
 
