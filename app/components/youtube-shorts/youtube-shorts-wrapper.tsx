@@ -10,7 +10,7 @@ export async function YoutubeShortsWrapper() {
   }
 
   return (
-    <VideoContenedor titulo="Shorts">
+    <VideoContenedor titulo="Shorts" moduleId="shorts">
       <YoutubeShortsCarrusel shorts={shorts} />
     </VideoContenedor>
   );

@@ -93,6 +93,23 @@ export function SeccionListadoSkeleton() {
   );
 }
 
+function VideoCarouselSkeleton({ source }: { source: "mam" | "shorts" | "branded" }) {
+  return (
+    <div
+      className={`grid grid-flow-col auto-cols-[calc((100%-16px)/1.2)] gap-4 overflow-hidden lg:grid-flow-row lg:auto-cols-auto lg:gap-6 ${
+        source === "mam" ? "lg:grid-cols-5" : "lg:grid-cols-6"
+      } ${source === "shorts" ? "sm:auto-cols-[calc((100%-24px)/2.5)] md:auto-cols-[calc((100%-40px)/3.5)]" : ""}`}
+    >
+      {Array.from({ length: source === "mam" ? 5 : 6 }, (_, index) => (
+        <div key={index} className="min-w-0">
+          <div className="aspect-9/16 rounded-md bg-gray-300" />
+          <div className="mt-2 h-3 w-3/4 rounded bg-gray-300" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function MamSkeleton() {
   return (
     <div className="mb-4 border-t-2 border-white pb-2 pt-1 animate-pulse">
@@ -100,12 +117,9 @@ export function MamSkeleton() {
       <div className="h-3 bg-gray-300 rounded w-40 mb-2"></div>
 
       {/* Contenedor */}
-      <div className="p-2 bg-white rounded-lg shadow-md">
+      <div className="p-2 bg-white rounded-lg shadow-md lg:p-5">
         {/* Video card */}
-        <div className="w-full max-w-sm mx-auto">
-          <div className="w-full aspect-9/16 bg-gray-300 rounded-md"></div>
-          <div className="mt-2 h-3 bg-gray-300 rounded w-3/4"></div>
-        </div>
+        <VideoCarouselSkeleton source="mam" />
       </div>
     </div>
   );
@@ -118,12 +132,9 @@ export function YoutubeShortsSkeleton() {
       <div className="h-3 bg-gray-300 rounded w-24 mb-2"></div>
 
       {/* Contenedor */}
-      <div className="p-2 bg-white rounded-lg shadow-md">
+      <div className="p-2 bg-white rounded-lg shadow-md lg:p-5">
         {/* Shorts card */}
-        <div className="flex gap-4 overflow-hidden">
-          <div className="w-40 aspect-9/16 bg-gray-300 rounded-md flex-shrink-0"></div>
-          <div className="w-40 aspect-9/16 bg-gray-300 rounded-md flex-shrink-0"></div>
-        </div>
+        <VideoCarouselSkeleton source="shorts" />
       </div>
     </div>
   );
@@ -279,7 +290,7 @@ export function BrandedSkeleton() {
       <div className="h-3 bg-gray-300 rounded w-32 mb-2"></div>
 
       {/* Contenedor */}
-      <div className="p-2 bg-white rounded-lg shadow-md">
+      <div className="p-2 bg-white rounded-lg shadow-md lg:p-5">
         {/* Custom header */}
         <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
           <div className="w-24 h-6 bg-gray-300 rounded"></div>
@@ -287,10 +298,7 @@ export function BrandedSkeleton() {
         </div>
 
         {/* Video carousel */}
-        <div className="flex gap-4 overflow-hidden">
-          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
-          <div className="w-48 aspect-[9/16] bg-gray-300 rounded-lg flex-shrink-0"></div>
-        </div>
+        <VideoCarouselSkeleton source="branded" />
       </div>
     </div>
   );

@@ -13,17 +13,38 @@ export function EncuestaCard() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <h3 className="font-sans text-xl font-bold text-gray-900 mb-2 leading-tight">
+    <div className="encuesta-card bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <div className="participacion-desktop-header encuesta-desktop-header">
+        <div className="participacion-desktop-header-main">
+          <svg
+            aria-hidden="true"
+            className="participacion-desktop-header-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <path d="M4 19V9m5 10V5m5 14v-7m5 7V3" />
+            <path d="M2.5 21h19" />
+          </svg>
+          <h2>LA ENCUESTA DE HOY</h2>
+        </div>
+        <span>SONDEO EXCLUSIVO</span>
+      </div>
+
+      <h3 className="encuesta-question font-sans text-xl font-bold text-gray-900 mb-2 leading-tight">
         {pollData.question}
       </h3>
-      <p className="text-xs text-gray-500 mb-6 uppercase tracking-wider font-sans">
+      <p className="encuesta-total encuesta-total-mobile text-xs text-gray-500 mb-6 uppercase tracking-wider font-sans">
         Total de votos: {pollData.totalVotes}
       </p>
 
-      <div className="space-y-4">
+      <div className="encuesta-options space-y-4">
         {pollData.options.map((option, index) => (
-          <div key={index} className="relative group cursor-pointer">
+          <div
+            key={index}
+            className="encuesta-option relative group cursor-pointer"
+          >
             {/* Label y Porcentaje */}
             <div className="flex justify-between items-end mb-1">
               <span className="text-sm font-medium font-sans text-gray-700 group-hover:text-[#1c69a8] transition-colors">
@@ -46,8 +67,11 @@ export function EncuestaCard() {
         ))}
       </div>
 
-      <div className="mt-6 flex justify-end">
-        <button className="text-xs font-bold text-[#1c69a8] font-sans uppercase tracking-wider hover:underline">
+      <div className="encuesta-footer mt-6 flex justify-end">
+        <p className="encuesta-total encuesta-total-desktop">
+          Total de votos: {pollData.totalVotes}
+        </p>
+        <button className="encuesta-history-button text-xs font-bold text-[#1c69a8] font-sans uppercase tracking-wider hover:underline">
           Ver resultados anteriores
         </button>
       </div>

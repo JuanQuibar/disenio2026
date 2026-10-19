@@ -62,7 +62,7 @@ export function VideoModalShell<T extends VideoItem>({
       document.removeEventListener("keydown", handleKeyDown);
       body.style.overflow = previousBodyOverflow;
       documentElement.style.overflow = previousHtmlOverflow;
-      previouslyFocused?.focus();
+      previouslyFocused?.focus({ preventScroll: true });
     };
   }, [onClose]);
 

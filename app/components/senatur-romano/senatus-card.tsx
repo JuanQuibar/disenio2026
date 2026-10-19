@@ -3,16 +3,22 @@
 import Image from "next/image";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import { useRef, useEffect } from "react";
+import {
+  getCalibrationSummary,
+  getCalibrationTitle,
+} from "@/app/content/typography-calibration";
 
 interface SenatusCardProps {
   mediaType: "video" | "image";
   mediaSrc: string;
+  contentIndex: number;
   alt?: string;
 }
 
 export function SenatusCard({
   mediaType,
   mediaSrc,
+  contentIndex,
   alt = "Senatus Romano",
 }: SenatusCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -48,8 +54,8 @@ export function SenatusCard({
   }, [mediaType]);
 
   return (
-    <div className="mb-2">
-      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-md mb-2 bg-gray-100">
+    <article className="senatus-card mb-2">
+      <div className="senatus-card-media relative aspect-[3/2] w-full overflow-hidden rounded-md mb-2 bg-gray-100">
         {mediaType === "video" ? (
           <video
             ref={videoRef}
@@ -58,36 +64,34 @@ export function SenatusCard({
             muted
             playsInline
             preload="metadata"
-            className="w-full h-full object-cover"
+            className="senatus-card-visual w-full h-full object-cover"
           />
         ) : (
           <Image
             src={mediaSrc}
             alt={alt}
             fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            className="senatus-card-visual object-cover"
+            sizes="(max-width: 1023px) 100vw, 30vw"
           />
         )}
       </div>
-      <div className="">
-        <h2 className="font-serif text-lg leading-snug text-gray-900 mb-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          voluptatum
+      <div className="senatus-card-copy">
+        <h2 className="senatus-card-title font-serif text-lg leading-snug text-gray-900 mb-1">
+          {getCalibrationTitle(contentIndex + 5)}
         </h2>
 
-        <p className="font-sans bajada line-clamp-2 mb-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit
+        <p className="senatus-card-summary font-sans bajada mb-2">
+          {getCalibrationSummary(contentIndex + 5)}
         </p>
 
-        <div className="flex items-center gap-1">
+        <div className="senatus-card-author flex items-center gap-1">
           <PencilIcon className="w-3 h-3 text-gray-500" />
           <p className="font-sans font-bold text-gray-500 uppercase text-[8px]">
             Marcus Aurelius
           </p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

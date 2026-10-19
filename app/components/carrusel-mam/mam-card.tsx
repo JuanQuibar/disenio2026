@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import type { MamVideo } from "@/app/services/videos/types";
 import { useVideoAutoplay } from "../videos-shared/use-video-autoplay";
 
@@ -8,6 +9,7 @@ interface MamCardProps {
   /** Solo el slide activo reproduce, para no superponer audio ni saturar la red. */
   isActive: boolean;
   isMuted: boolean;
+  forcePreview?: boolean;
   onToggleMute: () => void;
   onOpen: () => void;
 }
@@ -25,28 +27,79 @@ export function MamCard({
   video,
   isActive,
   isMuted,
+  forcePreview = false,
   onToggleMute,
   onOpen,
 }: MamCardProps) {
-  const { containerRef, videoRef } = useVideoAutoplay(isActive);
+  const { containerRef, videoRef, isInView } = useVideoAutoplay(isActive);
+  const [isPlaying, setIsPlaying] = useState(false);
   const duration = formatDuration(video.durationSeconds);
 
+  useEffect(() => {
+    const videoElement = videoRef.current;
+
+    if (
+      !videoElement ||
+      (!isInView && !forcePreview) ||
+      isActive ||
+      videoElement.currentTime > 0
+    ) {
+      return;
+    }
+
+    const loadCleanFirstFrame = () => {
+      if (videoElement.duration > 0 && videoElement.currentTime === 0) {
+        videoElement.currentTime = Math.min(0.01, videoElement.duration);
+      }
+    };
+
+    if (videoElement.readyState >= HTMLMediaElement.HAVE_METADATA) {
+      loadCleanFirstFrame();
+      return;
+    }
+
+    videoElement.addEventListener("loadedmetadata", loadCleanFirstFrame, {
+      once: true,
+    });
+
+    return () => {
+      videoElement.removeEventListener("loadedmetadata", loadCleanFirstFrame);
+    };
+  }, [forcePreview, isActive, isInView, videoRef]);
+
   return (
-    <div ref={containerRef} className="w-full max-w-sm mx-auto">
-      <div className="relative w-full aspect-9/16 overflow-hidden rounded-md border border-gray-900 bg-black shadow-md transition-shadow duration-300 hover:shadow-lg">
+    <div
+      ref={containerRef}
+      className="mam-card w-full max-w-sm mx-auto"
+      data-playing={isPlaying ? "true" : "false"}
+    >
+      <div className="mam-card-media relative w-full aspect-9/16 overflow-hidden rounded-md border border-gray-900 bg-black shadow-md transition-shadow duration-300 hover:shadow-lg">
         <video
           ref={videoRef}
           src={video.videoUrl}
-          poster={video.thumbnailUrl || undefined}
           muted={isMuted}
           loop
           playsInline
           preload="metadata"
-          className="h-full w-full object-cover"
+          onPlaying={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onEnded={() => setIsPlaying(false)}
+          className="mam-card-video h-full w-full object-cover"
         />
 
+        {!isPlaying && video.thumbnailUrl && (
+          <img
+            src={video.thumbnailUrl}
+            alt=""
+            aria-hidden="true"
+            className="mam-card-mobile-poster absolute inset-0 h-full w-full object-cover lg:hidden"
+          />
+        )}
+
+        <div aria-hidden="true" className="mam-card-gradient hidden lg:block" />
+
         {duration && (
-          <span className="absolute left-2 top-2 z-20 rounded bg-black/60 px-1.5 py-0.5 font-sans text-[11px] text-white">
+          <span className="mam-card-duration absolute left-2 top-2 z-20 rounded bg-black/60 px-1.5 py-0.5 font-sans text-[11px] text-white">
             {duration}
           </span>
         )}
@@ -55,7 +108,15 @@ export function MamCard({
           onClick={onOpen}
           aria-label={`Abrir video: ${video.title}`}
           className="absolute inset-0 z-10 h-full w-full cursor-pointer"
-        />
+        >
+          <span aria-hidden="true" className="mam-card-play hidden lg:flex">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
+              <path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.48-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14Z" />
+            </svg>
+          </span>
+        </button>
+
+        <p className="mam-card-title-overlay hidden line-clamp-2">{video.title}</p>
 
         <button
           onClick={onToggleMute}
@@ -84,7 +145,7 @@ export function MamCard({
         </button>
       </div>
 
-      <div className="flex flex-col justify-center border-black bg-white py-2">
+      <div className="mam-card-caption flex flex-col justify-center border-black bg-white py-2">
         {video.articleUrl ? (
           <a
             href={video.articleUrl}

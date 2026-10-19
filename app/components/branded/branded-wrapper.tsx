@@ -19,7 +19,7 @@ export async function BrandedWrapper() {
   }));
 
   const header = (
-    <div className="flex items-center justify-between pb-2">
+    <div className="branded-mobile-header flex items-center justify-between pb-2">
       {vertical.logoSrc ? (
         <Image
           src={vertical.logoSrc}
@@ -34,15 +34,24 @@ export async function BrandedWrapper() {
         </span>
       )}
 
-      <div className="flex h-6 w-24 items-center justify-center rounded bg-gray-200 font-sans text-xs uppercase tracking-wider text-gray-500">
+      <div className="branded-sponsor flex h-6 w-24 items-center justify-center rounded bg-gray-200 font-sans text-xs uppercase tracking-wider text-gray-500">
         Sponsor
       </div>
     </div>
   );
 
   return (
-    <VideoContenedor titulo={vertical.titulo} header={header}>
-      <BrandedCarrusel videos={videosConCopy} />
+    <VideoContenedor
+      titulo={vertical.titulo}
+      moduleId="branded"
+      header={header}
+    >
+      <BrandedCarrusel
+        videos={videosConCopy}
+        brandName={vertical.brandName}
+        logoSrc={vertical.logoSrc}
+        logoAlt={vertical.logoAlt}
+      />
     </VideoContenedor>
   );
 }

@@ -16,12 +16,17 @@ interface YoutubeShortsCardProps {
  */
 export function YoutubeShortsCard({ short, onOpen }: YoutubeShortsCardProps) {
   return (
-    <div className="flex flex-col gap-2 w-full max-w-sm mx-auto group/card">
-      <div className="relative aspect-9/16 overflow-hidden rounded-md border border-gray-200 bg-black shadow-sm">
+    <div className="youtube-shorts-card group/card flex w-full max-w-sm flex-col gap-2 mx-auto">
+      <div className="youtube-shorts-card-media relative aspect-9/16 overflow-hidden rounded-md border border-gray-200 bg-black shadow-sm">
         <img
           src={short.thumbnailUrl}
           alt={short.title}
-          className="absolute left-0 top-0 h-full w-full object-cover"
+          className="youtube-shorts-card-image absolute left-0 top-0 h-full w-full object-cover"
+        />
+
+        <div
+          aria-hidden="true"
+          className="youtube-shorts-card-gradient hidden lg:block"
         />
 
         <VideoPlayButton
@@ -29,7 +34,7 @@ export function YoutubeShortsCard({ short, onOpen }: YoutubeShortsCardProps) {
           onClick={onOpen}
         />
 
-        <div className="absolute right-2 top-2 z-20 rounded-md bg-red-600 p-1 shadow-sm">
+        <div className="youtube-shorts-card-badge absolute right-2 top-2 z-20 rounded-md bg-red-600 p-1 shadow-sm">
           <svg
             className="h-3 w-3 text-white"
             fill="currentColor"
@@ -41,7 +46,7 @@ export function YoutubeShortsCard({ short, onOpen }: YoutubeShortsCardProps) {
         </div>
       </div>
 
-      <h4 className="min-h-[2.5em] font-sans text-sm leading-tight text-black line-clamp-2">
+      <h4 className="youtube-shorts-card-title min-h-[2.5em] font-sans text-sm leading-tight text-black line-clamp-2">
         {short.title}
       </h4>
     </div>

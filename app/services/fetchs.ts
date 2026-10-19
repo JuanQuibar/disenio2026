@@ -24,7 +24,8 @@ export async function fetchFotos(): Promise<
   Array<{ src: string; alt: string }>
 > {
   if (!apiKey) {
-    throw new Error("API Key de Pexels no está definida");
+    console.error("API Key de Pexels no está definida; se omiten las fotos.");
+    return [];
   }
 
   // Usamos una página fija para mantener el contenido consistente en la maqueta
@@ -67,7 +68,8 @@ export async function fetchDeportes(): Promise<
   Array<{ src: string; alt: string }>
 > {
   if (!apiKey) {
-    throw new Error("API Key de Pexels no está definida");
+    console.error("API Key de Pexels no está definida; se omiten las fotos.");
+    return [];
   }
 
   // Usamos una página fija para mantener el contenido consistente en la maqueta
@@ -106,7 +108,8 @@ export async function fetchDeportes(): Promise<
 
 export async function fetchVideosCuadrados(): Promise<string[]> {
   if (!apiKey) {
-    throw new Error("API Key de Pexels no está definida");
+    console.error("API Key de Pexels no está definida; se omiten los videos.");
+    return [];
   }
 
   // Usamos página 1 que siempre tiene resultados
@@ -158,9 +161,62 @@ export async function fetchVideosCuadrados(): Promise<string[]> {
   }
 }
 
+export async function fetchPexelsVideoById(
+  videoId: number
+): Promise<string[]> {
+  if (!apiKey) {
+    console.error("API Key de Pexels no está definida; se omite el video.");
+    return [];
+  }
+
+  const url = `https://api.pexels.com/videos/videos/${videoId}`;
+
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Authorization: apiKey,
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      console.error(
+        `Error al obtener el video ${videoId} de Pexels: ${res.status} ${res.statusText}`
+      );
+      return [];
+    }
+
+    const data: PexelsVideo = await res.json();
+    const landscapeMp4Files = data.video_files.filter(
+      (file) => file.file_type === "video/mp4" && file.width > file.height
+    );
+
+    if (landscapeMp4Files.length === 0) {
+      console.error(
+        `El video ${videoId} de Pexels no tiene una variante MP4 horizontal.`
+      );
+      return [];
+    }
+
+    const preferredFile =
+      landscapeMp4Files.find(
+        (file) => file.width === 1280 && file.height === 720
+      ) ??
+      [...landscapeMp4Files].sort(
+        (a, b) => Math.abs(a.width - 1280) - Math.abs(b.width - 1280)
+      )[0];
+
+    return preferredFile ? [preferredFile.link] : [];
+  } catch (error) {
+    console.error(`Error fetching Pexels video ${videoId}:`, error);
+    return [];
+  }
+}
+
 export async function fetchVideosPaisaje(): Promise<string[]> {
   if (!apiKey) {
-    throw new Error("API Key de Pexels no está definida");
+    console.error("API Key de Pexels no está definida; se omiten los videos.");
+    return [];
   }
 
   // Usamos una página fija para mantener el contenido consistente en la maqueta

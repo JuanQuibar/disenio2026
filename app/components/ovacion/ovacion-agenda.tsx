@@ -4,10 +4,7 @@ import { DATAFACTORY_WIDGETS } from "@/config/datafactory";
 
 export function OvacionAgenda() {
   return (
-    <div className="mb-4">
-      {/* Título para diferenciar el contenido */}
-      
-      {/* Iframe de DataFactory */}
+    <div className="news-ovacion-agenda mb-4">
       <div className="w-full bg-gray-50 rounded-md border p-2 border-gray-300 overflow-hidden">
         <h3 className="text-sm font-bold text-gray-700 uppercase mb-2 border-l-4 border-red-600 pl-2">
           Fixture - Primera A
@@ -22,9 +19,9 @@ export function OvacionAgenda() {
           }
         `}</style>
         <iframe
-          src={DATAFACTORY_WIDGETS.FIXTURE_PRIMERA_A}
+          src={DATAFACTORY_WIDGETS.AGENDA_GENERAL}
           className="w-full h-[90px] border-0 hide-scrollbar"
-          title="Fixture Primera A"
+          title="Agenda deportiva"
           loading="lazy"
           scrolling="no"
         />

@@ -10,7 +10,7 @@ export async function CarruselMamWrapper() {
   }
 
   return (
-    <VideoContenedor titulo="MAM">
+    <VideoContenedor titulo="MAM" moduleId="mam">
       <MamCarrusel videos={videos} />
     </VideoContenedor>
   );

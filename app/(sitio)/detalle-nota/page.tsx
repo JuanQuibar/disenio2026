@@ -1,13 +1,12 @@
 import Image from "next/image";
 import { ShareIcon, BookmarkIcon } from "@heroicons/react/24/outline";
-import { CarruselMamWrapper } from "../components/carrusel-mam/carrusel-mam-wrapper";
-import { Footer } from "../components/footer/footer";
+import { CarruselMamWrapper } from "@/app/components/carrusel-mam/carrusel-mam-wrapper";
 
 export default async function DetalleNota() {
   return (
-    <main className="pt-16 md:pt-0 flex flex-col p-2 gap-2 md:p-8 min-h-screen mb-7">
+    <main className="site-detail-page">
       {/* Fixed Banner - Option 1 */}
-      <div className="fixed top-16 md:top-0 left-0 right-0 h-[50px] z-10 px-2 md:px-8">
+      <div className="fixed top-16 lg:top-[94px] left-0 right-0 h-[50px] z-10 px-2 lg:px-8">
         <div className="bg-gray-200 border-b border-gray-300 flex items-center justify-center h-full max-w-4xl mx-auto rounded-t-lg">
           <p className="text-gray-500 text-sm">Banner Superior 100% × 50px</p>
         </div>
@@ -193,9 +192,6 @@ export default async function DetalleNota() {
           </div>
         </div>
       </article>
-
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }

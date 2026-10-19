@@ -27,7 +27,7 @@ interface MamApiPlaylistResponse {
 }
 
 export async function fetchMamVideos(
-  playlistId: string = MAM_PLAYLIST_ID
+  playlistId: string = MAM_PLAYLIST_ID,
 ): Promise<MamVideo[]> {
   try {
     const res = await fetch(`${MAM_ORIGIN}/api/playlists/${playlistId}`, {
@@ -36,7 +36,7 @@ export async function fetchMamVideos(
 
     if (!res.ok) {
       console.error(
-        `Error al obtener la playlist MAM ${playlistId}: ${res.status} ${res.statusText}`
+        `Error al obtener la playlist MAM ${playlistId}: ${res.status} ${res.statusText}`,
       );
       return [];
     }

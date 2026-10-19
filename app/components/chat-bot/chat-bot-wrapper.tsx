@@ -3,7 +3,11 @@ import { Chatbot } from "./chat-bot";
 export function ChatBotWrapper() {
   return (
     <>
-      <div className="mb-4 border-t-2 separadores pb-2 pt-1">
+      <div
+        id="chat-vox-dei"
+        data-home-module="chat-vox-dei"
+        className="mb-4 border-t-2 separadores pb-2 pt-1"
+      >
         <h3 className="text-cabezal font-sans font-bold uppercase color-cabezal pb-2">
           {" "}
           chat vox dei

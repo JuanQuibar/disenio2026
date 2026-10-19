@@ -1,10 +1,7 @@
 import { CrimenPrincipal } from "./crimen-principal";
 import { CrimenListado } from "./crimen-listado";
 import { fetchFotos } from "@/app/services/fetchs";
-
-interface CrimenWrapperProps {
-  fotos: Array<{ src: string; alt: string }>;
-}
+import { EditorialLeadListLayout } from "@/app/components/news-shared/editorial-lead-list-layout";
 
 export async function CrimenWrapper() {
   const fotos = await fetchFotos();
@@ -16,16 +13,15 @@ export async function CrimenWrapper() {
   if (!principalFoto) return null;
 
   return (
-    <section className="mb-4 border-t-2 separadores pb-2 pt-1">
-      <h3 className="text-cabezal font-sans font-bold uppercase color-cabezal pb-2">
-        Crimen
-      </h3>
-
-      <div className="p-2 pb-4 bg-white rounded-lg shadow-md flex flex-col gap-2">
-        <CrimenPrincipal foto={principalFoto} />
-        <div className="border-t border-gray-200 my-1"></div>
-        <CrimenListado fotos={listaFotos} />
-      </div>
-    </section>
+    <EditorialLeadListLayout
+      id="crimen"
+      moduleName="crimen"
+      mobileTitle="Crimen"
+      desktopTitle="Crimen & Policiales"
+      desktopMeta="Investigación y Justicia"
+      tone="crime"
+      lead={<CrimenPrincipal foto={principalFoto} />}
+      list={<CrimenListado fotos={listaFotos} />}
+    />
   );
 }

@@ -1,8 +1,18 @@
 "use client";
 
-export function BannerPublicitario() {
+interface BannerPublicitarioProps {
+  moduleId: "ad-listado" | "ad-ovacion";
+}
+
+export function BannerPublicitario({
+  moduleId,
+}: BannerPublicitarioProps) {
   return (
-    <div className="mb-4 p-4 bg-white rounded-lg shadow-md flex flex-col items-center">
+    <div
+      id={moduleId}
+      data-home-module={moduleId}
+      className="mb-4 p-4 bg-white rounded-lg shadow-md flex flex-col items-center"
+    >
       {/* Leyenda PUBLICIDAD */}
       <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-2">
         Publicidad

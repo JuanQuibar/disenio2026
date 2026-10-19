@@ -1,21 +1,25 @@
-import { SociedadListado } from "./sociedad-card";
+import { SociedadListado, SociedadPrincipal } from "./sociedad-card";
 import { fetchFotos } from "@/app/services/fetchs";
+import { EditorialLeadListLayout } from "@/app/components/news-shared/editorial-lead-list-layout";
 
 export async function SociedadWrapper() {
-    const fotos = await fetchFotos();
-    const fotosSociedad = fotos.slice(10, 16);
-    
-    return (
-        <>
-            <div className="mb-4 border-t-2 separadores pb-2 pt-1">
-                <h3 className="text-cabezal font-sans font-bold uppercase color-cabezal pb-2">
-                    {" "}
-                    sociedad
-                </h3>
-                <div className=" p-2 pb-4 bg-white rounded-lg shadow-md">
-                    <SociedadListado fotos={fotosSociedad} />
-                </div>
-            </div>
-        </>
-    );
+  const fotos = await fetchFotos();
+  const fotosSociedad = fotos.slice(11, 16);
+  const principalFoto = fotosSociedad[0];
+  const listaFotos = fotosSociedad.slice(1);
+
+  if (!principalFoto) return null;
+
+  return (
+    <EditorialLeadListLayout
+      id="sociedad"
+      moduleName="sociedad"
+      mobileTitle="Sociedad"
+      desktopTitle="Sociedad & Comunidad"
+      desktopMeta="Educación, Salud y Ciudad"
+      tone="society"
+      lead={<SociedadPrincipal foto={principalFoto} />}
+      list={<SociedadListado fotos={listaFotos} />}
+    />
+  );
 }

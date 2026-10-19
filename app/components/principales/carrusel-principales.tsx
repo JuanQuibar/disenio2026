@@ -9,7 +9,7 @@ export function CarruselPrincipales({ fotos }: CarruselPrincipalesProps) {
     <>
       {fotos.map((foto: { src: string; alt: string }, index: number) => (
         <div key={index} className="mb-4">
-          <CardPrincipales fotos={foto} />
+          <CardPrincipales fotos={foto} contentIndex={index} />
         </div>
       ))}
     </>

@@ -1,38 +1,42 @@
 import Image from "next/image";
+import { getCalibrationTitle } from "@/app/content/typography-calibration";
 
 interface OvacionListadoProps {
   fotos: Array<{ src: string; alt: string }>;
 }
 
-export function OvacionListado({ fotos }: OvacionListadoProps) {
-  const noticias = [
-    "Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-    "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum",
-  ];
+const stories = [
+  { title: getCalibrationTitle(9), kicker: "COPA ARGENTINA" },
+  { title: getCalibrationTitle(10), kicker: "MERCADO DE PASES" },
+  { title: getCalibrationTitle(11), kicker: "LIGA PROFESIONAL" },
+  { title: getCalibrationTitle(12), kicker: "FÚTBOL INTERNACIONAL" },
+] as const;
 
+export function OvacionListado({ fotos }: OvacionListadoProps) {
   return (
-    <div className="flex flex-col">
+    <div className="news-story-list flex flex-col">
       {fotos.map((foto, index) => (
         <article
           key={index}
-          className={`flex gap-3 py-3 ${
+          className={`news-story-item flex gap-3 py-3 ${
             index !== fotos.length - 1 ? "border-b border-gray-200" : ""
           }`}
         >
-          <div className="relative w-30  aspect-[3/2] flex-shrink-0 overflow-hidden rounded-md">
+          <div className="news-ovacion-list-image relative w-30 aspect-[3/2] flex-shrink-0 overflow-hidden rounded-md">
             <Image
               src={foto.src}
               alt={foto.alt}
               fill
               className="object-cover"
-              sizes="120px"
+              sizes="(max-width: 1023px) 120px, 240px"
             />
           </div>
-          <div className="flex flex-col justify-center">
-            <h3 className="font-sans text-sm text-gray-900 line-clamp-3 leading-snug mb-1">
-              {noticias[index]}
+          <div className="news-ovacion-list-copy flex flex-col justify-center">
+            <p className="news-ovacion-kicker hidden lg:block">
+              {stories[index].kicker}
+            </p>
+            <h3 className="font-sans text-sm text-gray-900 leading-snug mb-1">
+              {stories[index].title}
             </h3>
             
             {/* Firmas solo en la segunda y cuarta noticia (índices 1 y 3) */}
