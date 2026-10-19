@@ -4,9 +4,187 @@
 > Consumidores previstos: **Google Stitch**, agentes de IA, diseñadores.
 
 > [!IMPORTANT]
-> **Todo lo documentado acá corresponde exclusivamente a la versión mobile
-> (viewport ~414px).** La versión desktop no existe todavía — es lo que se va a
-> diseñar a partir de estas especificaciones.
+> La base de este documento corresponde a mobile (viewport ~414px). Las
+> decisiones desktop ya aprobadas se registran explícitamente y prevalecen desde
+> 1024 px sin reemplazar la especificación mobile.
+>
+> Desde el 2026-10-17, `/desktop` no es fuente de verdad, referencia ni criterio
+> de aceptación de la home integrada. Su tarea alternativa ya comenzó: parte de
+> una réplica HTML visual y congelada de `/` desde 1024 px, sin hidratación ni
+> handlers React, y puede divergir de forma independiente. La etapa 5 se coteja
+> con la publicación y el MCP oficiales de Stitch; ante discrepancias prevalecen
+> las decisiones aprobadas de este documento.
+>
+> **Excepción cerrada:** por instrucción explícita, Ovación adoptó una línea
+> visual propia basada únicamente en su variante aprobada de `/desktop`. Está
+> implementada en mobile y desktop de la home real, no será adaptada a Stitch y
+> queda fuera del alcance de la etapa 5. Esta excepción no se extiende a ninguna
+> otra sección.
+
+### Diseño alternativo vigente de `/desktop`
+
+- Desde 1024 px, la fila de servicios del header se desplaza con la página y
+  solo la fila principal de 57 px permanece sticky. Al volver al inicio se ven
+  nuevamente ambas franjas.
+- La composición usa una grilla de doce columnas con gap de 24 px. Apertura y
+  Principales ocupan las ocho izquierdas; Agencia abarca las cuatro derechas
+  desde el inicio de Apertura hasta el final de Principales.
+- Apertura apila foto 16:9, título, bajada y meta. Oculta el cabezal interno,
+  volanta y claves, usa 16 px entre foto y título, conserva firma e `INFORME
+  ESPECIAL` y emplea una imagen de alta resolución para evitar pixelado.
+- Principales presenta sus seis cards estáticas en dos columnas y tres filas,
+  con gaps de 24 px y alturas uniformes.
+- Agencia reutiliza el HTML estático capturado sobre un panel negro con radio
+  exterior de 8 px, igual al contenedor de Apertura. Tras 24 px de espacio
+  superior, el cabezal blanco de 26 px deja 24 px a cada lado, usa radio de 6 px
+  y presenta en negro el punto rojo, `AHORA` y el reloj decorativo. El listado
+  oscuro muestra seis titulares y respeta los mismos márgenes laterales.
+- Debajo de Agencia, una tarjeta blanca inset 24 px lleva un separador
+  `PUBLICIDAD` y la pieza Pepsi 300×600; en 1024 px se reduce manteniendo ratio
+  1:2. Otro separador, `PARTICIPACIÓN`, antecede una copia visual de la encuesta
+  con su cabezal original; `SONDEO EXCLUSIVO` se oculta hasta 1100 px. La
+  encuesta real conserva su ubicación.
+- El lateral cierra con `AVANCES DE LA IA`, que repite el cabezal blanco y el
+  listado oscuro de Agencia. Reemplaza el punto rojo por tres nodos conectados
+  en `#1c69a8`; las filas conservan volanta, título y fuentes, pero no usan
+  pastillas. Para evitar recortes muestra 1, 2, 3 o 4 titulares completos en los
+  rangos 1024–1199, 1200–1279, 1280–1365 y desde 1366 px, respectivamente.
+  Todo el lateral es estático, sin scroll ni resúmenes interactivos; Timeline
+  permanece oculto.
+- Ovación usa un único panel `#111827` con padding de 24 px, radio de 8 px y
+  texto blanco. El cabezal alinea un logo de 135 px con una cinta deportiva de
+  11 px: volantas y puntos rojos avanzan en un loop lineal de 34 segundos, se
+  detienen con hover y respetan `prefers-reduced-motion`. Una línea blanca recta
+  separa el cabezal del contenido.
+- La agenda de Ovación usa el centro deportivo general de DataFactory y oculta
+  el rótulo del fixture. El iframe de 90 px queda en un marco gris 200 con 10 px
+  de padding y radio de 8 px. La zona editorial conserva principal 4:3 con
+  título uppercase 28/34 px y firma, sin bajada; las cuatro filas secundarias
+  usan fotos 3:2 y títulos uppercase 16/22 px, o 14/19 px entre 1024–1100 px.
+  Todos los títulos llevan volantas rojas y ambas columnas igualan su altura.
+- Salvo la excepción explícita de Ovación documentada debajo, estas reglas son
+  exclusivas del experimento `/desktop`; no son decisiones de la home integrada
+  ni de la etapa 5.
+
+### Ovación integrado — diseño propio fuera de la etapa 5
+
+- La implementación real conserva `OvacionWrapper`, `fetchDeportes()` y los
+  componentes existentes. `/desktop` fue una referencia visual excepcional
+  solo para este módulo; no se copió su HTML.
+- En ambos anchos, todo Ovación vive dentro de un único panel `#111827`, con
+  radio de 8 px y textos blancos. El cabezal alinea logo y ticker deportivo CSS
+  de 34 segundos, con pausa por hover y respeto de `prefers-reduced-motion`, y
+  termina en una línea blanca recta.
+- En mobile el panel usa 8 px de padding, el logo mide 96 px y quedan 16 px entre
+  la línea del cabezal y DataFactory. Desde 1024 px usa 24 px de padding y logo
+  de 135 px.
+- La agenda general de DataFactory se muestra en un iframe de 90 px dentro de su
+  marco gris. `FIXTURE - PRIMERA A` permanece oculto en ambos anchos.
+- La noticia principal conserva foto 4:3 y firma, pero no muestra bajada. Todos
+  los títulos son uppercase, blancos y llevan volanta roja; las cuatro noticias
+  secundarias y los datos reales se conservan.
+- Desde 1024 px rigen además el título principal 28/34 px, las filas secundarias
+  iguales con fotos 3:2 y títulos 16/22 px —14/19 px entre 1024 y 1100 px—, y la
+  igualdad exacta de altura entre principal y listado.
+- Este diseño es la referencia definitiva de Ovación en `/`. El módulo no entra
+  en el inventario pendiente, el cotejo ni los criterios de cierre de la etapa
+  5 y no debe compararse con Stitch cuando esa etapa se retome.
+
+### Transmisiones y anuncio en la home integrada
+
+- En mobile se apilan Canal 7, Radio Nihuil y el anuncio 300×250, en ese orden,
+  con los cabezales y las alturas mobile existentes.
+- Desde 1024 px comparten una fila: el anuncio reserva 332 px y los streams
+  dividen por igual el ancho restante, con gaps de 24 px. Los tres contenedores
+  blancos se estiran a la misma altura, determinada por el contenido más alto,
+  sin fijar una altura rígida ni deformar los videos 16:9 o la pieza 300×250.
+- Los streams usan padding de 16 px y cabezales oscuros con borde superior azul,
+  radio de 6 px, texto uppercase de 12/16 px y punto rojo pulsante:
+  `CANAL 7 EN VIVO` y `RADIO NIHUIL EN VIVO`. El punto no anima con
+  `prefers-reduced-motion`. Los reproductores se centran en el espacio restante.
+- Este ajuste no modifica `/desktop` ni cierra la revisión funcional de la
+  etapa 7 o el cotejo pendiente de estos módulos con Stitch.
+
+### Decisiones desktop aprobadas durante la etapa 5
+
+> **Estado:** la etapa 6, **ajuste de tamaño de fuentes**, quedó cerrada y
+> aprobada. La etapa 5 está suspendida por indicación del usuario y, cuando se
+> retome, continuará módulo por módulo. Shorts quedó adaptado y aprobado el
+> 2026-10-16; `# A COMER!`/Branded también quedó adaptado y aprobado ese día. Los
+> modales desktop de video y skeletons desktop están entre los pendientes para
+> su cierre.
+> Widgets/anuncios pueden adaptarse visualmente en la etapa 5; su revisión
+> funcional permanece en la etapa 7 y la validación integral y el cierre, en la
+> etapa 8.
+
+- **Marco desktop de la home:** `max-width: 1360px` y padding horizontal de
+  32 px desde 1024 px, equivalente al token `px-margin` de Stitch. A 1440 px el
+  ancho útil de los módulos es 1296 px. Mobile conserva 8 px de padding.
+- **Muy Destacada:** panel de cobertura con cabezal oscuro y cuerpo 8/4 desde
+  1024 px. La columna principal usa el video fijo de Pexels en 16:9, el contenido
+  editorial mobile y `EDICIÓN ESPECIAL`; la secundaria contiene dos cards de
+  `FOCO DE COBERTURA`. Mobile conserva contenido y orden, pero el video también
+  pasa a 16:9.
+- **Principales:** seis cards 3×2 desde 1024 px, gap de 24 px y tratamiento
+  visual documentado en `PROJECT_CONTEXT.md`.
+- **MAM:** panel negro con 24 px de padding; 15 previews 9:16 en grilla estática
+  5×3 y gap de 16 px desde 1024 px. No hay carrusel ni autoplay inline en
+  desktop; mobile conserva el Swiper y el catálogo completo.
+- **Shorts:** desde 1024 px elimina el panel blanco y usa un cabezal oscuro con
+  acento rojo, badge `SHORTS`, `CANAL OFICIAL DE YOUTUBE @DIARIOUNO` y flechas
+  conectadas al único Swiper. Conserva los 12 ítems y muestra seis cards 9:16
+  por vista con gap de 16 px. Los títulos Geist 14/17,5 se superponen en blanco
+  sobre degradado, limitados a dos líneas; el badge individual se oculta y el
+  thumbnail amplía en hover. Mobile y 1023 px permanecen intactos. No se agrega
+  suscripción y el modal desktop continúa diferido.
+- **`# A COMER!`/Branded:** desde 1024 px elimina el título y panel blanco
+  exteriores y usa un cabezal oscuro con acento azul, logo `# A COMER!`,
+  `BRANDED CONTENT • EXPERIENCIAS DE CUYO` y flechas conectadas al único Swiper.
+  Conserva los diez videos gastronómicos y muestra seis cards 9:16 por vista con
+  gap de 16 px. Los títulos Geist 14/17,5 se superponen en blanco sobre degradado,
+  limitados a dos líneas; el video amplía en hover y se mantiene un único autoplay
+  muteado. Mobile y 1023 px conservan título, panel, sponsor, densidad 1.2 y
+  títulos inferiores. El rótulo del cabezal usa Geist 12/16 px, peso 700 y
+  tracking `0.06em`. El modal desktop continúa diferido.
+- **Header:** dos franjas fijas con Geist y 94 px totales desde 1024 px. Solo
+  logo, `PORTADA` y transmisiones en vivo son interactivos. La transmisión no
+  tiene fondo rojo y conserva el punto rojo pulsante; `Suscribite` usa fondo
+  rojo y texto blanco. Home y detalle compensan la altura; mobile y `/desktop`
+  permanecen intactos.
+- **Política:** panel blanco con padding de 24 px, cabezal
+  `POLÍTICA & GOBIERNO` y cuerpo 7/5 con gap de 32 px desde 1024 px. Conserva
+  una principal y cuatro secundarias locales; las columnas tienen igual altura,
+  la principal usa foto 3:2 y las secundarias miniaturas 112×112. Mobile
+  permanece intacto.
+- **Crimen:** reutiliza desde 1024 px el mismo panel y cuerpo 7/5, con cabezal
+  `CRIMEN & POLICIALES`, meta `INVESTIGACIÓN Y JUSTICIA` y acento rojo.
+  Conserva una principal enlazada y cuatro secundarias locales; ambas columnas
+  tienen igual altura y mobile permanece intacto.
+- **Sociedad:** reutiliza desde 1024 px el panel y cuerpo 7/5, con cabezal
+  `SOCIEDAD & COMUNIDAD` y meta `EDUCACIÓN, SALUD Y CIUDAD`. Distribuye cinco
+  noticias locales como una principal y cuatro secundarias con miniaturas
+  96×96; ambas columnas tienen igual altura. Mobile también presenta una
+  principal y cuatro filas, igual que Política.
+- **Gente:** panel blanco con 24 px de padding, cabezal
+  `GENTE & CULTURA CUYANA` y meta `PERSONAJES & RETRATOS` desde 1024 px. Las seis
+  piezas se distribuyen 3×2 con gap de 24 px; cada retrato 3:4 usa radio de 8 px,
+  degradado negro y título completo superpuesto en Playfair Display 700 de
+  18/22,5 px. Mobile conserva la grilla 2×3 y los títulos debajo de las fotos.
+- **ULTIMATEM:** panel blanco con 24 px de padding, cabezal
+  `ULTIMATEM • MÁS NOTICIAS DE CUYO Y EL PAÍS` y meta `ACTUALIZACIÓN CONTINUA`
+  desde 1024 px. Las diez noticias se distribuyen en dos columnas de cinco, con
+  gap horizontal de 32 px y vertical de 16 px; las cards tonales usan padding de
+  8 px, radio de 8 px e imágenes 128×96. Cada título se muestra completo en
+  Playfair Display 500 de 18/24 px. Incluye categorías latinas de dos palabras,
+  conserva las cuatro firmas locales y presenta un botón de carga estrictamente
+  visual, sin paginación ni contenido adicional. Mobile permanece intacto.
+- **Cursor de acción:** desde 1024 px y solo con puntero fino, las superficies
+  visuales aprobadas de Muy Destacada, Principales, MAM, Política, Crimen,
+  Sociedad, Gente y ULTIMATEM, junto con el botón visual de carga y los controles
+  de presentación del header, usan `cursor: pointer`. No se agregan handlers,
+  enlaces ni navegación; las funciones reales preexistentes se preservan.
+- Entre los pendientes de la etapa 5 se mantienen el diseño desktop de los
+  modales de video y la revisión visual de los skeletons desktop.
 
 ---
 
@@ -151,6 +329,36 @@ presencia de **video vertical** y consumo de contenido directo en la home
 | Video cards      | `font-sans`      | MAM, Shorts, Branded.                      |
 | Opinión          | `font-serif italic` | Cursiva para diferenciar del resto.      |
 
+### Forma de titulación aprobada (etapa 6 — 2026-10-15)
+
+La calibración contempla el recorrido editorial de una noticia por la home:
+Live/Muy Destacada o Apertura → Principales → principal de sección → listado de
+sección → Últimas noticias. Un mismo título debe poder ocupar cualquiera de esas
+posiciones sin perder contenido.
+
+- El dataset de maqueta usa diez títulos de 89–91 caracteres y diez bajadas de
+  155–165 caracteres, aplicados de forma determinista desde
+  `app/content/typography-calibration.ts`.
+- Títulos y bajadas se presentan sin punto final.
+- Dentro del alcance no se truncan por cantidad de líneas: no usan
+  `line-clamp` y deben mostrarse completos. Esta regla reemplaza los límites de
+  dos, tres o cuatro líneas aprobados previamente para esos módulos.
+- El alcance mobile comprende Muy Destacada, Apertura, Principales, Política,
+  Senatus Romano, Sociedad, Listado sin fotos, Ovación, Gente, Crimen y Últimas
+  noticias, incluidas sus bajadas cuando existen.
+- Desde 1024 px la misma forma de titulación se aplica a todos los módulos
+  anteriores que comparten esos datos, aunque su adaptación visual desktop no
+  haya sido cerrada en la etapa 5.
+- En Principales/`LEGIONARIUS • NOTICIAS DESTACADAS`, las seis cards desktop
+  igualan su altura en la grilla 3×2 según la pieza de mayor contenido, sin
+  recortar títulos ni bajadas.
+- Quedan fuera MAM, Shorts, `# a comer!`/Branded, Opinión, Servicios,
+  transmisiones, Chat, Encuesta, Sudoku y el reader de detalle.
+- Esta aprobación fija la longitud de prueba, la puntuación terminal y la
+  ausencia de truncado. No modifica por sí misma tamaños, familias, pesos,
+  estructura, cantidades, comportamiento ni breakpoints; los tamaños se
+  calibran por separado durante la etapa 6.
+
 ---
 
 ## 📐 Espaciado y layout
@@ -183,7 +391,7 @@ Variantes:
 | `gap-1` (4px)  | 18          | Bylines, badges, íconos + texto.      |
 | `gap-2` (8px)  | 10          | Wrappers internos, controles modal.    |
 | `gap-3` (12px) | 10          | Filas de listado, controles modal.     |
-| `gap-4` (16px) | 9           | Grids (Opinión, Servicios, Sociedad).  |
+| `gap-4` (16px) | 9           | Grids (Opinión y Servicios).            |
 | `gap-px` (1px) | 1           | Grilla del Sudoku (líneas internas).   |
 | `16px`         | —           | `spaceBetween` de Swiper en carruseles.|
 
@@ -230,25 +438,26 @@ Variantes:
 | Ratio | Clase            | Componentes                                                      |
 | ----- | ---------------- | ---------------------------------------------------------------- |
 | 4:3   | `aspect-4/3`     | Apertura, Principales (foto dentro de card), Ovación principal, Más noticias. |
-| 3:2   | `aspect-[3/2]`   | Política principal, Crimen principal, Senatus, Ovación listado (thumbnail `w-30`). |
-| 3:4   | `aspect-[3/4]`   | Gente, Sociedad (retrato vertical, grid 2 columnas).            |
-| 1:1   | `aspect-square`  | Card contenedor de Apertura y Principales (la card es cuadrada; la foto interna es 4:3). |
+| 3:2   | `aspect-[3/2]`   | Política, Crimen y Sociedad principales; Senatus; Ovación listado (thumbnail `w-30`). |
+| 3:4   | `aspect-[3/4]`   | Gente mobile y desktop.    |
+| 1:1   | `aspect-square`  | Card contenedor mobile de Apertura y Principales (la foto interna es 4:3; Principales pasa a altura automática desde 1024 px). |
 
 ### Videos
 
 | Ratio | Clase            | Componentes                                     |
 | ----- | ---------------- | ----------------------------------------------- |
 | 9:16  | `aspect-9/16`    | MAM, Shorts y Branded (todos los videos verticales). |
-| 1:1   | `aspect-[1/1]`   | Video de nota muy destacada (cuadrado).         |
-| 16:9  | `aspect-video`   | Canal 7 Live, Radio Nihuil Live (streams).      |
+| 16:9  | `aspect-video`   | Muy Destacada, Canal 7 Live y Radio Nihuil Live. |
 
 ### Thumbnails en listados
 
 | Dimensión        | Componentes                                      |
 | ---------------- | ------------------------------------------------ |
-| `w-24 h-24` (96px cuadrado) | Política, Crimen (listados estándar).  |
+| `w-24 h-24` (96px cuadrado) | Política y Crimen mobile; Sociedad mobile y desktop. |
+| `112×112` (cuadrado) | Política y Crimen desktop.                  |
 | `w-30 aspect-[3/2]` (~120px) | Ovación listado (más ancho, rectangular). |
 | `flex-1 aspect-[4/3]` (50%) | Más noticias (ocupa mitad del ancho). |
+| `128×96` (4:3) | ULTIMATEM desktop. |
 | `w-20 h-20` (80px circular) | Opinión (avatar `rounded-full`).       |
 
 ---
@@ -277,7 +486,6 @@ Variantes:
 | `color-shift`       | `transition-colors`                                  | default  | Hover en encuesta, links.       |
 | `bar-fill`          | `transition-all duration-500`                        | 500ms    | Fill de barra de encuesta.      |
 | `shimmer`           | `translateX(-100% → 100%)` infinito                  | 2s       | Brillo en banners publicitarios.|
-| `gradient-xy`       | `background-position` infinito                       | 3s       | Degradados animados.            |
 | `pulse`             | `animate-pulse`                                      | default  | Skeleton loaders (9 usos).     |
 | `ping`              | `animate-ping`                                       | default  | Indicador LIVE en MuyDestacada. |
 | Swiper bullets      | `transition: all 0.3s ease` (CSS)                    | 300ms    | Paginación de carruseles.       |
@@ -286,12 +494,89 @@ Variantes:
 
 ## 📦 Catálogo de componentes
 
+### Última hora — dos variantes mobile
+
+Se conservan temporalmente timeline y agencia, en ese orden después de Apertura
+y antes de Principales,
+para someterlas a un focus group y elegir una sola variante definitiva.
+La coexistencia no forma parte del diseño final: la elección corresponde al
+usuario después de esa evaluación. Se comparan dos formas de leer resúmenes
+sin salir de la home. **Ambos bloques se ocultan desde 1024 px (`lg:hidden`),
+sin reservar espacio, hasta definir su ubicación adecuada en desktop.** No se
+eliminan ni se trasladan a otro lugar: mobile conserva su posición y comportamiento.
+Ambas usan cuerpo negro y marco blanco redondeado;
+el cabezal `AHORA` conserva el punto rojo pulsante y reloj local real.
+El pulso respeta movimiento reducido.
+Cada variante tiene un contenedor exterior con `data-home-module`, `pt-1 pb-2`
+(4 px arriba y 8 px abajo) y `lg:hidden`, separado del recuadro visual.
+No lleva `my-2`: este padding exterior se combina con el `gap-2` (8 px) de
+la home, sin márgenes verticales adicionales. Es el criterio de espaciado
+contrastado con Apertura, Principales y Política y aprobado visualmente.
+El padding interior de cada recuadro y cabezal se conserva independientemente.
+
+- **Cabezal timeline:** franja gris muy suave `bg-gray-100` con texto negro,
+  esquinas superiores de 7 px y padding `px-2 py-1` (8 px horizontal y 4 px
+  vertical). Reloj Geist Mono alineado a la derecha, peso 400: horas/minutos
+  de 14 px y segundos de 12 px, todos del mismo color negro. El módulo conserva
+  padding inferior de 8 px; no agrega padding exterior sobre la franja.
+- **Cabezal agencia:** fondo negro y texto blanco, sin franja clara; padding
+  horizontal de 8 px en el cabezal y vertical de 8 px en el módulo. Reloj Geist
+  Mono de 16 px, peso 200, junto a `AHORA`, con horas, minutos y segundos del
+  mismo tamaño. Una línea blanca continua de 1 px abarca el grupo completo
+  (punto rojo, `AHORA` y reloj), no todo el ancho del módulo. Se implementa como
+  borde inferior del grupo con `pb-2` (8 px de aire bajo el contenido) y `mb-2`
+  (8 px adicionales antes del listado, además del padding de su primera fila).
+  No adopta la posición ni el formato compacto del timeline.
+
+- **Timeline:** horas ficticias, línea tenue y punto por noticia; la primera
+  conserva `LO ÚLTIMO` y titular de 16 px semibold. Las demás usan 14 px.
+  El panel de resumen es superpuesto, con sombra; abre debajo o arriba según
+  el espacio disponible dentro del recuadro.
+- **Agencia:** sin horas ni timeline; titulares de 14 px, separadores tenues y
+  pastillas discretas de fondo rojo/verde al 10%, texto de 9 px y peso 500.
+  El resumen entra en flujo y desplaza las filas siguientes, recortadas sin
+  scroll interno; las últimas selecciones pueden desplazar el contenido hacia
+  arriba para mostrar íntegro el panel.
+- **Volantas compartidas:** Geist 10/16 px, peso 600, mayúsculas, tracking
+  `0.025em`, `text-gray-400`. Separación inferior de 2 px con el titular y
+  horizontal de 6 px con la pastilla de agencia. No agregar pastillas al
+  timeline: ya tiene hora, punto y `LO ÚLTIMO`.
+- **Fuentes bajo cada titular:** prefijo `Fuentes:` sin mayúsculas sostenidas,
+  Geist 10/16 px, peso normal, `text-gray-400`, separación superior de 4 px.
+  De dos a cuatro medios únicos, separados por `·`, con wrap y sin truncado.
+- **Titulares interactivos:** sin iconos `+`/`−`, superficie de ancho completo,
+  foco visible y tono `text-gray-300` al abrir. Se conserva el cierre explícito
+  del resumen; el cambio de color no es la única señal de estado accesible.
+- **Resumen:** blanco, texto negro, borde gris, radio de 6 px y padding de
+  12 px. Incluye el titular de 14 px semibold y un párrafo por fuente a
+  12/19,5 px, seguido de su atribución a 10/16 px en gris. Los bloques se
+  separan 12 px. Los textos y atribuciones son de muestra, no citas reales.
+
+**Condición de interacción:** el ancho y alto exterior del recuadro no cambian
+al abrir/cambiar/cerrar una noticia ni se mueven los módulos siguientes. Se mide
+el listado cerrado y se mantiene ese alto durante la interacción, sin fijarlo
+arbitrariamente; se adapta al cambiar el viewport. Mantener una noticia abierta
+por módulo, cierre visible, Escape y retorno del foco al titular. Los controles
+tapados o recortados no deben recibir foco.
+
 ### Header
 
 ```
 fixed top-0 left-0 right-0 z-50 w-full bg-black
 Logo SVG centrado (w-30), hamburguesa izquierda (w-6 h-6 text-white)
 Borde inferior: border-b-2 separadores mx-2
+```
+
+Desktop aprobado desde 1024 px:
+
+```
+Altura: 94px (franja de datos 37px + barra principal 57px), posición fixed
+Tipografía: Geist
+Interacción: logo + PORTADA + Canal 7/Radio Nihuil; el resto es solo visual
+Live: fondo transparente, texto blanco y punto rojo pulsante
+Suscribite: fondo rojo, texto blanco
+Anchos intermedios: fecha oculta; overflow interno sin scrollbar visible
+Offset: home y detalle compensan 94px; /desktop queda aislada
 ```
 
 ### Footer
@@ -306,22 +591,38 @@ bg-gray-800 text-white p-4 text-center
 ### Nota muy destacada (MuyDestacada)
 
 ```
-Card:    rounded-md bg-white border border-gray-300 shadow-md hover:shadow-lg
-Video:   aspect-[1/1] (cuadrado), controls autoPlay muted loop playsInline
-LIVE:    animate-ping bg-red-400 + bg-red-500 sólido + text-red-600 "LIVE"
-Título:  font-serif font-bold text-[1.5rem]/[1.8rem] line-clamp-3
-Bajada:  bajada font-sans
-Byline:  PencilIcon w-4 h-4 + font-sans font-bold uppercase text-[10px]
-Sub-artículos: border-t border-gray-300, font-serif, h2 (segundo sub: italic)
+Mobile (<1024):
+  Card:    rounded-md bg-white border border-gray-300 shadow-md hover:shadow-lg
+  Video:   aspect-video, controls autoPlay muted loop playsInline
+  LIVE:    animate-ping bg-red-400 + bg-red-500 sólido + text-red-600 "LIVE"
+  Título:  font-serif font-bold text-[1.5rem]/[1.8rem], sin truncado
+  Bajada:  bajada font-sans
+  Byline:  PencilIcon w-4 h-4 + font-sans font-bold uppercase text-[10px]
+  Relacionadas: border-t border-gray-300; conserva categorías, títulos y firma
+               mobile, sin las bajadas de Stitch
+
+Desktop (>=1024):
+  Marco:    panel blanco redondeado con sombra
+  Cabezal:  fondo oscuro, punto pulsante, EN VIVO, texto de cobertura y aviso
+            de transmisión simultánea
+  Cuerpo:   grid 8/4, gap 24px, padding 24px
+  Principal: video 16:9 + título/bajada/firma mobile + EDICIÓN ESPECIAL
+  Lateral:  panel gris claro FOCO DE COBERTURA con dos cards blancas
+            (títulos 2 y 3 de mobile, categorías y bajadas de Stitch;
+            primera sin firma y segunda con Facundo García)
+
+Fuente de video:
+  Pexels ID 34634812; prioriza MP4 1280x720 y omite la sección si la fuente falla
 ```
 
 ---
 
 ### Secciones editoriales — Arquetipos de layout
 
-#### Arquetipo A: "Principal + Listado" (Política, Crimen)
+#### Arquetipo A: "Principal + Listado" (Política, Crimen, Sociedad)
 
 ```
+Mobile (<1024):
 Layout:  1 card principal grande arriba + 4 filas horizontales de listado
 Divider: border-t border-gray-200 my-1  (entre principal y listado)
          border-b border-gray-200       (entre filas, excepto última)
@@ -329,23 +630,72 @@ Divider: border-t border-gray-200 my-1  (entre principal y listado)
 Principal:
   Foto:    aspect-[3/2] w-full rounded-md
   Título:  font-serif text-lg leading-snug text-gray-900
-  Bajada:  font-sans bajada line-clamp-2
+  Bajada:  font-sans bajada, sin truncado
   Byline:  PencilIcon w-3 h-3 + text-[8px] uppercase
 
 Listado:
   Layout:  flex gap-3 py-3
   Thumb:   w-24 h-24 rounded-md object-cover (96px cuadrado)
-  Título:  font-serif text-sm font-medium line-clamp-3
+  Título:  font-serif text-sm font-medium, sin truncado
   Byline:  Condicional en filas alternas (índices 1 y 3)
+
+Política desktop aprobado (>=1024):
+  Marco:      panel blanco, padding 24px, radio 8px y sombra
+  Cabezal:    26px, marcador azul, POLÍTICA & GOBIERNO y
+              LEGISLATURA Y PODER EJECUTIVO
+  Grilla:     7/5, gap 32px; principal y listado con igual altura
+  Principal:  foto 3:2; título Playfair Display 28/35 700;
+              bajada Geist 15/22; firma Analía Doña
+  Listado:    4 cards #f9fafb, padding 8px, radio 8px, fotos 112×112;
+              categorías Coparticipación, Congreso Nacional,
+              Poder Judicial y Municipios; firmas solo en filas 2 y 4
+  Omitir:     POLÍTICA CENTRAL y metas temáticas inferiores
+  Hover:      zoom de imagen, titular azul y fondo tonal; sin interacción
+
+Crimen desktop aprobado (>=1024):
+  Marco:      comparte panel, grilla 7/5, gap 32px y alturas iguales
+  Cabezal:    26px, marcador/borde rojos, CRIMEN & POLICIALES e
+              INVESTIGACIÓN Y JUSTICIA
+  Principal:  foto 3:2; título Playfair Display 28/35 700;
+              bajada Geist 15/22; conserva firma y enlace a /detalle-nota
+  Listado:    4 cards #f9fafb, padding 8px, radio 8px, fotos 112×112;
+              categorías Polo Judicial, Operativo Regional, Peritajes
+              Forenses y Poder Judicial; firmas solo en filas 2 y 4
+  Omitir:     meta principal y metas temáticas inferiores
+  Hover:      zoom de imagen, titular azul y fondo tonal; sin acción nueva
+
+Sociedad desktop aprobado (>=1024):
+  Marco:      comparte panel, grilla 7/5, gap 32px y alturas iguales
+  Cabezal:    26px, marcador azul, SOCIEDAD & COMUNIDAD y
+              EDUCACIÓN, SALUD Y CIUDAD
+  Principal:  foto 3:2; título Playfair Display 28/35 700;
+              bajada compartida con Crimen y firma Soledad Segade
+  Listado:    4 cards #f9fafb, padding 8px, radio 8px, fotos 96×96;
+              categorías Salud Pública, Biodiversidad, Educación y Patrimonio;
+              firmas en filas 1 y 3
+  Mobile:     conserva el mismo esquema de 1 principal + 4 filas; título,
+              bajada y firma en la principal
+  Omitir:     metas temáticas inferiores
+  Hover:      zoom de imagen, titular azul y fondo tonal; sin interacción
 ```
 
-#### Arquetipo B: "Grid retrato" (Sociedad, Gente)
+#### Arquetipo B: "Grid retrato" (Gente)
 
 ```
-Layout:  grid grid-cols-2 gap-4 (6 items, 2 columnas)
-Foto:    aspect-[3/4] border border-gray-300 rounded-md (retrato vertical)
-Título:  font-serif text-sm font-medium line-clamp-3
-Sin bajada ni byline.
+Mobile (<1024):
+  Layout:  grid grid-cols-2 gap-4 (Gente, 6 items, 2×3)
+  Foto:    aspect-[3/4] border border-gray-300 rounded-md
+  Título:  font-serif text-sm font-medium debajo de la foto, sin truncado
+  Sin bajada ni byline
+
+Gente desktop aprobado (>=1024):
+  Marco:    panel blanco, padding 24px, radio 8px y sombra
+  Cabezal:  26px, marcador azul, GENTE & CULTURA CUYANA y
+            PERSONAJES & RETRATOS
+  Grilla:   3×2, gap 24px; seis retratos aspect-ratio 3/4 y radio 8px
+  Título:   completo sobre degradado negro, Playfair Display 18/22,5 700;
+            usa directamente --font-playfair-display
+  Hover:    zoom suave y cursor pointer solo con puntero fino; sin acción
 ```
 
 #### Arquetipo C: "Grid columnistas" (Opinión)
@@ -366,7 +716,7 @@ Layout:  2 cards grandes apiladas (video + imagen), separador entre ellas
 Media:   aspect-[3/2] rounded-md (video con IntersectionObserver autoplay)
          bg-gray-100 como placeholder de carga
 Título:  font-serif text-lg leading-snug
-Bajada:  font-sans bajada line-clamp-2
+Bajada:  font-sans bajada, sin truncado
 ```
 
 #### Arquetipo E: "Hero card" (Apertura)
@@ -376,36 +726,55 @@ Layout:  1 sola card grande
 Card:    aspect-square rounded-md border border-gray-300 shadow-md hover:shadow-lg
 Foto:    aspect-4/3 rounded-t-md object-cover (dentro del card cuadrado)
 Orden:   Byline ENCIMA del título (único caso)
-Título:  font-serif font-bold text-[1.5rem]/[1.8rem] line-clamp-3
+Título:  font-serif font-bold text-[1.5rem]/[1.8rem], sin truncado
 Bajada:  bajada font-sans
 ```
 
 #### Arquetipo F: "Deportes" (Ovación)
 
 ```
-Igual que Arquetipo A PERO:
-  - Header con logo SVG (LOGO-OVACION.svg) en vez de texto
-  - Widget iframe DataFactory arriba (bg-gray-50, border-l-4 border-red-600)
-  - Principal usa aspect-[4/3] (no 3/2) y font-sans font-bold (no serif)
-  - Listado usa w-30 aspect-[3/2] (no w-24 h-24) y font-sans (no serif)
-  - pt-2 en vez de pt-1, my-2 en vez de my-1 para dividers
+Panel:       #111827, radio 8px, texto blanco; padding 8px mobile / 24px desktop
+Header:      logo SVG 96px mobile / 135px desktop + ticker CSS 34s
+Separador:   línea blanca recta; 16px hasta la agenda en mobile
+Agenda:      iframe general DataFactory de 90px; rótulo de fixture oculto
+Principal:   foto 4:3, font-sans bold, firma, sin bajada, título uppercase
+Listado:     4 noticias, fotos 3:2, font-sans, títulos uppercase
+Desktop:     principal y listado terminan a igual altura desde 1024px
+Alcance:     diseño propio; fuera del cotejo y adaptación de Stitch de etapa 5
 ```
 
 #### Arquetipo G: "Solo texto" (Listado sin fotos)
 
 ```
 Layout:  flex flex-col, artículos separados por border-b border-gray-200
-Título:  font-serif text-base line-clamp-4 leading-snug
+Título:  font-serif text-base leading-snug, sin truncado
 Sin foto, sin bajada, sin byline.
 ```
 
 #### Arquetipo H: "50/50 con foto" (Más noticias)
 
 ```
-Layout:  flex gap-3, texto izq (flex-1) + foto der (flex-1 aspect-[4/3])
-Título:  font-serif text-base line-clamp-4 leading-snug
-Byline:  Condicional en índices [2, 4, 7, 9]
-10 artículos, border-b border-gray-200 excepto el último.
+Mobile (<1024):
+  Layout:  flex gap-3, texto izq (flex-1) + foto der
+           (flex-1 aspect-[4/3])
+  Título:  font-serif text-base leading-snug, sin truncado
+  Byline:  condicional en índices [2, 4, 7, 9]
+  Lista:   10 artículos, border-b border-gray-200 excepto el último
+
+ULTIMATEM desktop aprobado (>=1024):
+  Marco:      panel blanco, padding 24px, radio 8px y sombra
+  Cabezal:    26px, marcador azul,
+              ULTIMATEM • MÁS NOTICIAS DE CUYO Y EL PAÍS y
+              ACTUALIZACIÓN CONTINUA
+  Grilla:     dos columnas de cinco; gap 32px horizontal y 16px vertical
+  Cards:      fondo #f9fafb, padding 8px, radio 8px; imágenes 128×96
+  Categoría:  dos palabras latinas, Geist 11/14 700 y azul
+  Título:     completo, Playfair Display 18/24 500, sin line-clamp
+  Firmas:     conserva los índices [2, 4, 7, 9]
+  Botón:      Cargar más noticias de la edición de hoy; solo visual,
+              sin handler, paginación ni noticias adicionales
+  Hover:      fondo tonal, titular azul, zoom y cursor pointer solo con
+              puntero fino; sin acción al click
 ```
 
 ---
@@ -435,7 +804,7 @@ slidesPerView: 1.2  (mobile — muestra peek del siguiente)
 Breakpoints (Shorts):
   640:  slidesPerView 2.5
   768:  slidesPerView 3.5
-  1024: slidesPerView 4.5
+  1024: slidesPerView 6, spaceBetween 24 (home responsive integrada)
 Pagination: bullets circulares #9ca3af (10×10px), activo en píldora (16×10px rounded-full)
 ```
 
@@ -545,26 +914,28 @@ Aspect ratios bloqueados para prevenir CLS:
 Thumbnails: w-24 h-24 rounded-md (o w-24 aspect-[4/3])
 ```
 
+`MuyDestacadaSkeleton` conserva temporalmente su placeholder 1:1. Su adaptación
+desktop está incluida en la revisión de skeletons diferida al final de la etapa 5.
+
 9 skeletons: MuyDestacada, SeccionListado (reutilizado ×7), MAM, Shorts, Ovación,
 Más noticias, Apertura, Listado sin fotos, Branded.
 
 ---
 
-## 🔢 Truncado de texto (line-clamp)
+## 🔢 Truncado de texto (`line-clamp`)
 
-| Valor          | Ocurrencias | Uso                                              |
-| -------------- | ----------- | ------------------------------------------------ |
-| `line-clamp-2` | 6           | Bajadas, títulos Shorts, notas relacionadas.     |
-| `line-clamp-3` | 11          | Títulos principales en cards y listados.         |
-| `line-clamp-4` | 3           | Listado sin fotos, Más noticias, Opinión.        |
+Los títulos y bajadas editoriales incluidos en la etapa 6 se muestran completos
+y no usan `line-clamp`. El truncado se conserva únicamente donde el módulo quedó
+fuera de este ajuste: cards y presentaciones de MAM, Shorts y Branded, Opinión y
+el reader de detalle. No extender esos clamps a los módulos calibrados.
 
 ---
 
 ## 🗂 Estructura de secciones en la Home (orden)
 
-1. MuyDestacada — nota principal con video cuadrado + LIVE
+1. MuyDestacada — nota principal con video 16:9 + LIVE
 2. Apertura — hero card con foto 4:3
-3. Principales — carrusel Swiper de noticias
+3. Principales — carrusel Swiper de **6 cards** de noticias
 4. **Carrusel MAM** — videos de producción (mp4)
 5. Política — principal + 4 listado
 6. **YouTube Shorts** — Shorts del canal
@@ -572,16 +943,16 @@ Más noticias, Apertura, Listado sin fotos, Branded.
 8. Opinión — grid 2×2 columnistas
 9. **Branded Content** — videos por vertical comercial
 10. Encuesta — poll interactivo
-11. Senatus Romano — 2 cards apiladas (video + imagen)
+11. Senatus Romano — 2 cards apiladas (video + imagen; conservar el video en la home integrada desktop)
 12. Banner Publicitario — 300×250 animado
-13. Sociedad — grid 2×2 con foto retrato
+13. Sociedad — **5 noticias**: 1 principal + 4 secundarias en mobile y desktop
 14. Canal 7 Live — stream 16:9
 15. Radio Nihuil Live — click-to-load stream
 16. Listado sin fotos — feed solo texto
 17. ChatBot — "Chat Vox Dei"
 18. Ovación — deportes (widget + principal + listado)
 19. Banner Publicitario — segundo 300×250
-20. Gente — grid 2×2 con foto retrato
+20. Gente — 6 retratos: grid 2×3 mobile y 3×2 desktop
 21. Crimen — principal + 4 listado
 22. Sudoku — juego interactivo
 23. Más noticias — feed 50/50 texto + foto
@@ -591,7 +962,69 @@ Más noticias, Apertura, Listado sin fotos, Branded.
 
 ## ⚠️ Restricciones
 
-- **Solo mobile.** El diseño actual es exclusivamente mobile (viewport ~414px). No hay versión desktop resuelta.
+- **Paridad acordada (2026-10-13, actualizada para Sociedad el 2026-10-19):**
+  Principales conserva 6 cards; Sociedad muestra 5 noticias en ambos anchos
+  como 1 principal + 4 secundarias y omite la última noticia anterior. Senatus
+  mantiene sus dos medios mobile, incluido el video, también en la home desktop
+  integrada. La encuesta desktop comparte exactamente la pregunta, total,
+  textos de opciones y porcentajes definidos por mobile; no agrega votación ni
+  persistencia. `/desktop` permanece como copia estática fiel de Stitch y no se
+  modifica para reflejar estos acuerdos.
+- **Principales aprobado (2026-10-14; titulación actualizada 2026-10-15):**
+  desde 1024 px adopta el cabezal
+  `LEGIONARIUS • NOTICIAS DESTACADAS` con `AL MINUTO`, seis cards en 3×2, altura
+  automática y uniforme entre las seis piezas, separación de 24 px, radio de
+  8 px, sombra y hover con elevación/zoom. El título usa Playfair Display 700
+  como compensación visual de la fuente local; no se agregan categorías ni se
+  modifica `/desktop`.
+  La grilla requiere `swiper/css/grid`; sin esa hoja, los seis slides quedan en
+  una sola fila horizontal. La regla posterior de etapa 6 elimina el límite de
+  dos líneas y muestra completos título y bajada en ambos anchos.
+- **Muy Destacada aprobada (2026-10-14):** mobile conserva contenido y orden,
+  pero usa video 16:9. Desde 1024 px adopta cabezal oscuro y cuerpo 8/4 con el
+  contenido principal mobile y `EDICIÓN ESPECIAL`; el lateral usa los títulos
+  segundo y tercero de mobile con categorías y bajadas de Stitch. El video se
+  obtiene por el ID fijo de Pexels `34634812`, hay una sola instancia y solo usa
+  controles nativos. No se agregan los metadatos inferiores de Stitch ni se
+  modifica `/desktop` o el skeleton pendiente.
+- **Política aprobada (2026-10-15):** desde 1024 px usa panel con cabezal
+  `POLÍTICA & GOBIERNO`, cuerpo 7/5 y cuatro secundarias; principal y listado
+  ocupan el mismo alto. Conserva contenido y firmas locales, miniaturas 112×112
+  y hover exclusivamente visual. Mobile y `/desktop` permanecen intactos.
+- **Crimen aprobado (2026-10-15):** desde 1024 px reutiliza el arquetipo 7/5
+  con cabezal `CRIMEN & POLICIALES`, meta editorial y acento rojo. Conserva
+  contenido, firmas y enlace principal locales; usa cuatro secundarias 112×112,
+  columnas de igual altura y hover visual. Mobile y `/desktop` permanecen
+  intactos.
+- **Sociedad actualizada (2026-10-19):** en ambos anchos reutiliza el arquetipo
+  principal + listado con una principal y cuatro secundarias. Se omite la última
+  noticia anterior; se conservan el cabezal `SOCIEDAD & COMUNIDAD`, la meta
+  editorial, la bajada y las firmas acordadas. Las cuatro secundarias usan
+  miniaturas 96×96; desktop conserva columnas de igual altura y hover visual.
+  `/desktop` permanece intacta.
+- **Gente aprobada (2026-10-15):** desde 1024 px usa panel con cabezal
+  `GENTE & CULTURA CUYANA`, meta editorial y seis retratos 3×2. Los títulos
+  completos se superponen sobre degradado en Playfair Display; el hover es
+  visual y mobile conserva su grilla 2×3. El marco general de la home adopta
+  32 px de padding horizontal desktop para igualar `px-margin`; `/desktop`
+  permanece intacto.
+- **ULTIMATEM aprobado (2026-10-15):** desde 1024 px usa panel con cabezal
+  `ULTIMATEM • MÁS NOTICIAS DE CUYO Y EL PAÍS`, meta de actualización y diez
+  noticias en dos columnas de cinco. Conserva títulos largos completos, firmas
+  y diez fotos; suma categorías latinas de dos palabras y un botón de carga solo
+  visual. Las cards usan imágenes 128×96 y hover sin acción. Mobile y `/desktop`
+  permanecen intactos.
+- **Cursor de acción aprobado (2026-10-15):** desde 1024 px y solo en
+  dispositivos con `hover` y puntero fino, Muy Destacada, Principales, MAM,
+  Política, Crimen, Sociedad, Gente, ULTIMATEM y los controles visuales del
+  header muestran `cursor: pointer`. Las superficies estáticas y el botón de
+  carga no ejecutan acciones al click; se preservan el modal y los enlaces que
+  ya eran funcionales.
+- **Mobile como base.** Las reglas mobile siguen definiendo el inventario; las
+  adaptaciones desktop aprobadas se aplican desde 1024 px.
+- **Ovación fuera de la etapa 5.** Su panel oscuro integrado es la referencia
+  definitiva en mobile y desktop. No será adaptado ni cotejado con Stitch; la
+  excepción que permitió usar `/desktop` no aplica a ninguna otra sección.
 - **No usar JW Player.** No hay contrato vigente con el proveedor.
 - **Contenido ficticio.** Textos e imágenes son de muestra (excepto MAM y Shorts, que son reales).
 - **El stack es fijo:** Next.js 16, React 19, Tailwind CSS 4, Swiper 12, @heroicons/react.

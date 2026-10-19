@@ -20,26 +20,951 @@ MAM, Branded y Shorts abren **modal fullscreen con scroll vertical**, con
 controles de pausa, barra de progreso y silencio (el silencio, sólo en MAM y
 Shorts). Los tres carruseles están completos en mobile.
 
-La ruta `/desktop` muestra una maqueta estática de Stitch, aislada de la home, para
-revisar la propuesta visual antes de decidir su integración. En esta sesión pasó
-el chequeo de tipos y se verificó en navegador; el build no pudo terminar porque
-este entorno no tiene una clave válida de Pexels y la home falla al prerenderizar
-con las respuestas 401.
+La home `/` ya comparte un único árbol para mobile y desktop; el cambio visual a
+desktop comienza en 1024 px. La composición desktop presenta Encuesta/Senatus y
+Legionarius/chat en parejas de dos columnas, y Canal 7/Radio Nihuil junto al
+primer anuncio en una fila de tres columnas. Mobile apila el contenido y deja
+ese anuncio inmediatamente debajo de los dos streams.
+Desde 1024 px los tres contenedores mantienen la misma altura; los streams
+tienen cabezales `CANAL 7 EN VIVO` y `RADIO NIHUIL EN VIVO` con punto rojo
+pulsante, respetando la preferencia de movimiento reducido.
+La ruta `/desktop` inició su tarea independiente de diseño alternativo. Su
+baseline es una réplica HTML estática de la home actual desde 1024 px, aislada
+de sus wrappers, datos y handlers React. Su primera composición aprobada usa
+header sticky de una sola fila y una columna editorial de ocho columnas para
+Apertura y Principales. Apertura evolucionó a foto 16:9 sin cabezal interno.
+Agencia ocupa las cuatro derechas durante ambos módulos;
+su panel negro reúne seis noticias, una pieza publicitaria 300×600 y una copia
+visual de la encuesta; debajo cierra con el listado estático `AVANCES DE LA IA`.
+Ovación ya tiene una variante aprobada de ancho completo: panel oscuro, agenda
+DataFactory enmarcada, contenido editorial principal/listado de igual altura y
+una cinta deportiva continua junto al logo.
+Sigue excluida de las referencias y validaciones de la integración.
+Por instrucción explícita del usuario, esa variante fue trasladada después al
+módulo real de Ovación en `/` como un trabajo independiente de la etapa 5. El
+desktop integrado quedó aprobado desde 1024 px usando los wrappers, servicios y
+datos reales; Stitch no intervino. La adaptación mobile posterior quedó cerrada
+con el mismo panel oscuro, ticker CSS junto al logo, agenda deportiva general de
+DataFactory, títulos uppercase y sin bajada ni rótulo de fixture. Ovación adopta
+desde ahora esta línea visual propia en ambos anchos: no será adaptado a Stitch y
+queda definitivamente fuera del alcance de la etapa 5.
 
 Al trasladar la base a la carpeta principal el 2026-10-10, con su configuración
 local existente, pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`.
 El bloqueo anterior correspondía al entorno del worktree, no al estado actual
 de la carpeta principal.
 
-No hay trabajo a medio terminar: el último tramo cerró completo.
-El plan de integración responsive está aprobado y documentado en
+El estado acumulado se revalidó técnicamente el 2026-10-19: pasaron
+`npx tsc --noEmit`, `npm run build` y `git diff --check`, conservando las rutas
+`/`, `/detalle-nota` y `/desktop`. Esta comprobación no sustituye la validación
+visual ni cierra las etapas 5, 7 u 8; sus pendientes y aprobaciones se mantienen.
+
+La inspección y las etapas 2 (marco/composición), 3 (noticias) y 4 (adaptación de
+videos) están implementadas y verificadas localmente, con la salvedad de Shorts
+registrada abajo. La etapa 5 fue retomada: Muy Destacada, APERTUM, Principales,
+MAM, el header, Política, Crimen, Sociedad, Gente, ULTIMATEM, Shorts y
+`# A COMER!`/Branded fueron adaptados y aprobados, incluido su cursor de acción
+desktop sin interacciones nuevas. Los módulos restantes se
+abordarán uno por uno y el cierre visual sigue pendiente dentro de esa etapa.
+La etapa 6, **ajuste de tamaño de fuentes**, quedó cerrada y aprobada con títulos
+y bajadas largos, completos, sin punto final y sin truncado dentro del alcance
+acordado. La etapa 5 queda en pausa por indicación del usuario; el tramo
+independiente de Última hora se limita a mobile y conserva dos variantes
+conservadas temporalmente para un focus group: timeline y agencia. Tras esa
+evaluación, el usuario elegirá una sola variante definitiva; la coexistencia
+no es el diseño final. Ambas tienen cabezal pulsante,
+reloj real y resúmenes por fuente que se leen sin salir de la home ni cambiar
+el tamaño del recuadro al abrir o cerrar. Ambos bloques se ocultan desde
+1024 px, sin reservar espacio, hasta definir su ubicación adecuada en desktop;
+mobile permanece intacto. Continúan pendientes
+de cotejo y adaptación visual a Stitch: Servicios, Opinión,
+Encuesta/Senatus, los dos anuncios, Canal 7/Radio Nihuil, Legionarius/chat,
+Sudoku, el footer, los modales desktop de video y los skeletons desktop.
+Los widgets y anuncios pueden recibir su adaptación visual en esta etapa, pero
+su revisión funcional y el cierre de paridad se mantienen en la etapa 7; la
+etapa 8 conserva la validación integral y el cierre.
+El plan está documentado en
 [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop).
-**La implementación no comenzó**: se retomará en una nueva sesión con contexto
-limpio. La home actual sigue siendo mobile-first.
+Principales (6), Sociedad (5; una principal y cuatro secundarias), Senatus
+(video e imagen) y encuesta compartida quedaron alineados con las decisiones
+acordadas. La etapa 5 usa la publicación y
+el MCP oficiales de Stitch; las decisiones aprobadas de `DESIGN.md` prevalecen.
+El [resultado autosuficiente](./PROJECT_CONTEXT.md#etapa-1-verificada-inventario-y-baseline-2026-10-10)
+registra cantidades, controles reales, diferencias, fuentes y pendientes.
+Las capturas están en la conversación de esta etapa, no en el repositorio;
+una sesión nueva no debe asumir acceso a ellas.
+
+El MCP oficial de Stitch quedó disponible y verificado el 2026-10-14. Se
+identificaron el proyecto `Diario UNO Desktop Redesign` y su pantalla principal
+`Diario UNO — Portada Desktop 2026`; los identificadores y las reglas de uso
+consultivo están en `PROJECT_CONTEXT.md`. Es una fuente complementaria a la web
+pública, no autoriza mutaciones y su credencial nunca se guarda en el repositorio.
+`/desktop` queda excluida del cotejo.
 
 ---
 
 ## ✅ Hecho
+
+### 2026-10-19 — Anuncio de participación junto a las transmisiones
+
+El anuncio `ad-listado`, antes ubicado entre Participación (Encuesta/Senatus) y
+Sociedad, ahora se presenta debajo de la pareja de transmisiones de Canal 7 y
+Radio Nihuil en mobile. Desde 1024 px comparte una fila de tres columnas con
+ambos streams: el anuncio ocupa 332 px (banner 300×250 más padding) y el espacio
+restante se divide por igual entre las transmisiones. El wrapper conserva el
+anuncio si faltara alguno de los dos streams; cuando ambos están presentes,
+comparten el mismo grid. Se mantiene el anuncio 300×250 y no se altera
+`/desktop`.
+
+La fila desktop iguala además la altura de sus tres contenedores blancos según
+el contenido más alto, sin altura fija y conservando los videos 16:9. Canal 7 y
+Nihuil tienen cabezales oscuros con borde azul y los textos `CANAL 7 EN VIVO` y
+`RADIO NIHUIL EN VIVO`, con punto rojo pulsante que respeta movimiento reducido.
+Mobile conserva sus cabezales y alturas independientes. Se verificaron alturas
+iguales a 1024, 1440 y 1920 px, incluida la activación del iframe de Nihuil;
+mobile a 414 px y el límite de 1023 px mantienen el apilado sin overflow.
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`. No se cierra
+el cotejo pendiente con Stitch ni la revisión funcional de la etapa 7.
+
+### 2026-10-19 — Sociedad con una principal y cuatro secundarias
+
+Por indicación del usuario, Sociedad ahora usa en mobile la misma estructura
+editorial que Política: una noticia principal con imagen, titular, bajada y
+firma, seguida por cuatro filas secundarias. Se conserva este esquema en
+desktop y se omite la última noticia que antes completaba las seis piezas; las
+categorías y firmas restantes se mantienen. La composición reemplaza la grilla
+mobile de retratos.
+
+El wrapper conserva la selección de fotos `[11, 16)`, usa el layout compartido y
+sigue omitiendo la sección si falta la foto principal. La respuesta renderizada
+de producción contiene cinco artículos (uno principal y cuatro secundarios),
+sin la grilla de retratos. Pasaron `npx tsc --noEmit`, `npm run build` y
+`git diff --check`.
+
+### 2026-10-19 — Ovación mobile integrado y excluido de la etapa 5
+
+Después de la aprobación del desktop, Ovación adoptó en mobile la misma línea
+visual independiente: todo el módulo usa un único contenedor `#111827` con radio
+de 8 px y padding de 8 px; el cabezal combina el logo de 96 px con la cinta
+deportiva CSS de 34 segundos y termina en una línea blanca recta. Se dejaron
+16 px entre esa línea y el widget de DataFactory.
+
+La agenda general de DataFactory se conserva en un iframe de 90 px. El rótulo
+`FIXTURE - PRIMERA A` y la bajada de la noticia principal están ocultos, y todos
+los títulos se muestran en uppercase y blanco. La implementación sigue usando
+los componentes, wrappers, datos y comportamientos reales, sin copiar HTML de
+`/desktop`; el desktop aprobado no cambió y no hay overflow horizontal.
+
+Por decisión explícita del usuario, esta presentación pasa a ser la referencia
+propia de Ovación para mobile y desktop. El módulo **no será adaptado a la
+versión de Stitch** y queda fuera del inventario pendiente, el cotejo y los
+criterios de cierre de la etapa 5. La etapa 5 continúa suspendida y esta decisión
+no convierte a `/desktop` en referencia para ninguna otra sección. El cierre
+pasó `npx tsc --noEmit`, `npm run build` y `git diff --check`.
+
+### 2026-10-19 — Ovación desktop integrado en `/` y aprobado
+
+Por indicación explícita del usuario, el diseño aprobado de Ovación en
+`/desktop` se usó excepcionalmente como referencia exclusiva para trasladar ese
+módulo a la home real. Este trabajo no reanuda la etapa 5, no usa Stitch y no
+autoriza tomar `/desktop` como referencia para ninguna otra sección.
+
+La implementación conserva `OvacionWrapper`, `fetchDeportes()` y los
+componentes reales. Desde 1024 px presenta un único panel `#111827` con padding
+de 24 px y radio de 8 px; logo de 135 px, línea blanca recta, ticker deportivo
+CSS de 34 segundos con pausa por hover y `prefers-reduced-motion`, agenda general
+de DataFactory, una noticia principal y cuatro secundarias. El título principal
+es uppercase 28/34 px, sin bajada y con firma; el listado usa cuatro filas
+iguales, fotos 3:2 y títulos uppercase 16/22 px, reducidos a 14/19 px entre 1024
+y 1100 px. Las dos columnas terminan a la misma altura.
+
+La agenda general reemplazó al fixture de Primera A también en mobile, por
+decisión posterior del usuario; fue el único cambio visual/funcional mobile de
+este tramo. Se verificaron 1024×900, 1366×768 y 1440×900, carga del iframe,
+ticker, pausa, alineaciones, igualdad de alturas y ausencia de overflow. Pasaron
+`npx tsc --noEmit` y `git diff --check`. El usuario aprobó visualmente el desktop;
+después de esa aprobación se actualizó esta documentación y pasó también
+`npm run build`.
+
+### 2026-10-19 — `/desktop`: Apertura compactada y Ovación aprobado
+
+La prueba alternativa avanzó sin modificar la home `/`. Apertura ocultó su
+cabezal interno y pasó la foto a 16:9 con una fuente de mayor resolución para
+mantener el encuadre sin pixelado. Conserva título, bajada, firma e `INFORME
+ESPECIAL`. Al reducirse su alto, `AVANCES DE LA IA` adapta el cierre de la
+columna derecha mostrando una, dos, tres o cuatro filas completas en los rangos
+1024–1199, 1200–1279, 1280–1365 y desde 1366 px, respectivamente.
+
+Ovación quedó reunido en un único contenedor `#111827`, con radio de 8 px,
+padding de 24 px y tipografía blanca. El logo se redujo a 135 px y el cabezal
+termina en una línea blanca. A su derecha, una cinta visual de novedades
+deportivas simula una fuente RSS: duplica el grupo para un loop CSS continuo de
+34 segundos, usa volantas y puntos rojos, se pausa con hover y queda estática
+con `prefers-reduced-motion`.
+
+La agenda reemplaza el fixture específico por el centro deportivo general de
+DataFactory y oculta `FIXTURE - PRIMERA A`. El iframe de 90 px queda dentro de
+un marco gris 200 con 10 px de padding y radio de 8 px. Debajo, la noticia
+principal conserva foto 4:3, firma y título sans de 28/34 px, sin bajada. Las
+cuatro secundarias forman filas iguales, con fotos 3:2 alineadas arriba y
+títulos de 16/22 px; entre 1024 y 1100 px bajan a 14/19 px. Principal y listado
+terminan a la misma altura. Los cinco títulos son uppercase y llevan volantas
+rojas: `INDEPENDIENTE RIVADAVIA`, `COPA ARGENTINA`, `MERCADO DE PASES`, `LIGA
+PROFESIONAL` y `FÚTBOL INTERNACIONAL`.
+
+Se verificaron 1024×900, 1366×768 y 1440×900, igualdad de columnas, alineación,
+loop, movimiento reducido y ausencia de overflow horizontal. Pasaron
+`npx tsc --noEmit`, `npm run build` y `git diff --check`. La etapa 5 permanece
+suspendida.
+
+### 2026-10-18 — `/desktop`: primera composición alternativa aprobada
+
+El usuario aprobó la primera divergencia visual respecto del baseline. Desde
+1024 px, la franja de servicios del header sale del viewport con el scroll y la
+fila principal de 57 px permanece sticky; al regresar al inicio reaparecen las
+dos. El cambio conserva los 94 px iniciales en el flujo y no desplaza el primer
+módulo.
+
+La composición usa una grilla 8/4 con gap de 24 px. Apertura apila su foto 4:3 y
+texto, elimina volanta y claves, iguala a 16 px la distancia foto-título de Live
+y conserva bajada, firma e `INFORME ESPECIAL`. Principales continúa debajo en
+las ocho columnas izquierdas: seis cards estáticas en dos columnas y tres filas,
+con gaps de 24 px, igual altura y contenido completo.
+
+Agencia ocupa las cuatro columnas derechas desde el inicio de Apertura hasta el
+final de Principales, sobre un contenedor negro con radio exterior de 8 px. Tras
+24 px de espacio superior, su cabezal blanco de 26 px presenta punto rojo,
+`AHORA` y reloj negro, con radio de 6 px y 24 px libres a cada lado. Sólo se
+muestran los primeros seis titulares, alineados a esos mismos márgenes. Debajo
+hay una tarjeta blanca, también inset 24 px, con separador `PUBLICIDAD` y la
+pieza Pepsi 300×600 de `public/ads/pepsi-300x600.png`; a 1024 px escala
+proporcionalmente. Un corte `PARTICIPACIÓN` precede una réplica visual estática
+de la encuesta. Su cabezal conserva los estilos de la original y oculta
+`SONDEO EXCLUSIVO` hasta 1100 px para no crecer en altura. La encuesta original
+permanece en su ubicación, los titulares no abren resúmenes y Timeline sigue
+oculto. El espacio restante se completa con `AVANCES DE LA IA`: un cabezal
+blanco con tres nodos conectados en azul institucional y noticias con volanta,
+título y fuentes, sin pastillas. El listado conserva seis ítems en el HTML y
+muestra sólo filas completas: dos entre 1024–1199 px, tres entre 1200–1279 px,
+cinco entre 1280–1365 px y seis desde 1366 px.
+
+Se verificaron 1024×900, 1200×900, 1280×900, 1366×768 y 1440×900: columnas,
+gap, igualdad de alto, header sticky, filas completas, clics inertes, anchos
+posteriores y ausencia de overflow horizontal. No hubo errores de consola
+nuevos. Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`. La home
+`/` no fue modificada y la etapa 5 permanece suspendida.
+
+### 2026-10-17 — `/desktop` adopta la home actual como baseline estático
+
+Comenzó la tarea independiente de diseño desktop alternativo. El HTML anterior
+de Stitch fue reemplazado por una instantánea congelada de `.site-layout`
+capturada desde `/` a 1440×900, con header, 25 contenedores de módulo y footer.
+La ruta conserva `dangerouslySetInnerHTML`, no importa wrappers, servicios ni
+componentes y no hidrata ni recrea interacciones React. Enlaces, iframes y medios
+mantienen únicamente su comportamiento HTML nativo; no hay soporte requerido
+por debajo de 1024 px ni mecanismo de regeneración.
+
+Los estilos globales siguen siendo la fuente de presentación. Dos reglas locales
+calculan los anchos responsive de Principales, Shorts y Branded para neutralizar
+los valores inline congelados por Swiper. A 1024×900 y 1440×900, `/desktop`
+coincide con `/` en posición y dimensiones de todos los módulos, header, footer
+y alto total, sin overflow horizontal. La etapa 5 permanece suspendida y esta
+ruta continúa fuera de sus criterios y de las etapas 7 y 8.
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`; el acceso
+directo en un contexto de navegador aislado no produjo errores de consola.
+
+### 2026-10-17 — `/desktop` reclasificado como prueba alternativa
+
+`/desktop` permanece disponible y sin cambios, pero deja de ser referencia,
+fallback o criterio de aceptación de las etapas 5, 7 y 8. La etapa 5 continúa
+cotejando cada módulo con la publicación y el MCP oficiales de Stitch; las
+decisiones aprobadas de `DESIGN.md` prevalecen ante discrepancias. Si esas fuentes
+no están disponibles, se usan la documentación y el ZIP preservado, nunca
+`/desktop`.
+
+La ruta queda congelada para una tarea futura independiente de diseño desktop
+alternativo. Ese trabajo no tiene todavía objetivos, alcance ni criterios de
+éxito y no debe iniciarse sin indicación explícita del usuario. Esta decisión no
+reescribe los tramos históricos que sí fueron cotejados con `/desktop`.
+
+### 2026-10-17 — Última hora: ocultación temporal en desktop
+
+Por indicación del usuario, timeline y agencia se ocultan desde 1024 px
+(`lg:hidden` en sus contenedores exteriores), sin dejar espacio vacío en la
+home. No se eliminan ni se decide una ubicación desktop: permanecen ocultos
+hasta definirla. Por debajo de ese breakpoint conservan su orden, presentación
+e interacción. Esta decisión es independiente del focus group que determinará
+la única variante definitiva y no implica retomar la etapa 5.
+En mobile, el usuario reubicó el wrapper de comparación después de Apertura
+y antes de Principales, manteniendo timeline antes de agencia. Los dos
+contenedores quedan sin márgenes verticales propios. Tras cotejar Apertura,
+Principales y Política, se separó el contenedor exterior del recuadro visual:
+cada variante usa `data-home-module`, `pt-1 pb-2` (4 px arriba y 8 px abajo)
+y `lg:hidden`, más el gap de 8 px de la home. El padding interno y los cabezales
+se preservan. El usuario aprobó visualmente este criterio; pasaron tipos,
+build y `git diff --check`, y se verificó la ocultación desde 1024 px.
+Esta es la ubicación y separación mobile vigente, sin definir todavía una
+ubicación desktop.
+
+### 2026-10-17 — Última hora: lectura en home y fuentes compartidas
+
+Se incorporaron resúmenes accionables desde los titulares en ambas variantes,
+sin navegación a otra página. El timeline superpone el resumen sobre las filas
+siguientes y lo abre hacia arriba cuando falta espacio inferior; agencia lo
+inserta en el flujo y recorta el excedente, sin scroll interno. En las últimas
+noticias de agencia el contenido se desplaza temporalmente hacia arriba para
+mostrar el resumen y su cierre completos; al cerrar se recupera el listado.
+La altura se mide a partir de las filas cerradas, no de un valor arbitrario:
+abrir, cambiar o cerrar una noticia no debe modificar ancho/alto del recuadro,
+mover el módulo siguiente ni desplazar la home. El alto sí se adapta al ancho
+del viewport y al contenido del listado cerrado.
+
+Cada módulo admite una noticia abierta. El titular completo es un botón con
+estado accesible y foco visible; no lleva indicadores `+`/`−`, para conservar
+el aspecto periodístico. El seleccionado cambia sutilmente de color. Hay cierre
+explícito, Escape y retorno del foco al titular; las filas cubiertas o recortadas
+no reciben foco. Los paneles blancos incluyen el titular y un párrafo de muestra
+por fuente, con atribución debajo y cuerpo de 12 px.
+
+Las diez noticias comparten entre variantes entre dos y cuatro fuentes únicas,
+elegidas al cargar de Infobae, Clarín, La Nación, Cronista, Página 12,
+iProfesional y a24. Permanecen estables durante la lectura y se reasignan al
+recargar. Son atribuciones ficticias de maqueta, no citas ni contenido obtenido
+de esos medios. El wrapper de comparación genera un solo dataset por carga en
+el servidor y lo entrega a ambos wrappers; el cliente recibe los datos
+serializados, sin sortear fuentes durante la hidratación.
+
+Ambas variantes tienen volantas temáticas y la línea tenue `Fuentes:` debajo
+del titular. Las pastillas `URGENTE`/`TENDENCIA` siguen siendo exclusivas de
+agencia; el timeline conserva hora, punto y `LO ÚLTIMO`. No se elige una
+variante definitiva todavía: ambas se someterán a un focus group y el usuario
+elegirá una sola para conservar. La duplicación es temporal, no una decisión
+de mostrar dos módulos en la versión final. No se avanza en desktop.
+Para esa comparación, los cabezales también quedan diferenciados: timeline
+usa franja gris clara y reloj monoespaciado compacto a la derecha; agencia
+conserva fondo negro y reloj monoespaciado junto a `AHORA`. Tras la revisión
+visual del 2026-10-19, agencia incorpora una línea blanca continua bajo el
+grupo completo (punto rojo, `AHORA` y reloj), con aire bajo el texto y separación
+adicional del listado. No son subrayados individuales ni una línea a todo el
+ancho del módulo. La especificación
+visual vigente está en [DESIGN.md](./DESIGN.md), sin registrar cada prueba de
+estilo como un hito separado. Los últimos ajustes pasaron
+`npx tsc --noEmit` y `npm run build`.
+
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`. Se verificaron
+320 y 414 px, correspondencia de fuentes y párrafos, fuentes únicas compartidas,
+cuerpo de 12 px, resúmenes de hasta cuatro fuentes, cierre y foco. Las mediciones
+confirmaron dimensiones y posición del módulo siguiente constantes al abrir y
+cerrar. También se probó cambio de ancho con un resumen abierto; el build de
+producción se comprobó sin errores de hidratación. El usuario autorizó
+documentar el tramo tras revisar los ajustes visuales.
+
+### 2026-10-17 — Última hora: dos variantes mobile conservadas
+
+Tras la revisión visual, el usuario indicó conservar por ahora ambas versiones
+en la home, una debajo de la otra y antes de Apertura, para someterlas a un
+focus group. Después de esa evaluación quedará una sola, elegida por el usuario;
+la coexistencia es exclusivamente temporal.
+El timeline mantiene diez titulares completos, horas ficticias descendentes,
+línea vertical tenue y la primera noticia destacada como `LO ÚLTIMO`. La variante
+de agencia repite los mismos diez titulares y su orden, sin horas por noticia
+ni timeline: cada uno lleva una volanta temática y una pastilla discreta
+`URGENTE` roja o `TENDENCIA` verde.
+
+Las pastillas se asignan aleatoriamente al montar, permanecen estables durante
+la lectura y se vuelven a asignar al recargar; no hay alternancia estricta ni
+clasificación editorial real. Su estado inicial reserva espacio para evitar
+saltos y diferencias de hidratación. Ambas versiones conservan fondo oscuro,
+marco blanco y cabezal `AHORA` con indicador pulsante y reloj local real.
+No se incorporan fotos, noticias nuevas ni una fuente de actualización en vivo.
+
+En este primer tramo, cada variante entraba a la página por su wrapper de servidor; solo el reloj
+compartido y las pastillas aleatorias son componentes cliente. La versión
+timeline se preserva al introducir la alternativa. El trabajo sigue siendo
+exclusivamente mobile, independiente de la etapa 5 desktop, que continúa en pausa.
+
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`. Se verificaron
+320 y 414 px sin overflow ni titulares truncados, diez noticias por variante,
+el orden de los módulos y las pastillas estables mientras avanza el reloj,
+con nueva asignación al recargar y sin errores de hidratación detectados.
+La documentación se actualiza después de la validación visual y autorización
+del usuario, no antes.
+
+### 2026-10-17 — Última hora: cabezal mobile con reloj real
+
+Se completó la parte superior del módulo ya iniciado, sin cambiar sus seis
+noticias de muestra ni avanzar en la adaptación desktop. `AHORA+` muestra un
+punto rojo con halo pulsante de dos segundos, desactivado si el dispositivo
+solicita movimiento reducido.
+
+El wrapper sigue siendo un Server Component y solo el reloj es cliente. Muestra
+la hora local del dispositivo en formato de 24 horas `HH:mm:ss`, consultando la
+hora real cada segundo y liberando el intervalo al desmontarse. El servidor y
+el primer render muestran `--:--:--` para evitar diferencias de hidratación;
+los dígitos tabulares mantienen estable su ancho. No hay conexión a una fuente
+de noticias en tiempo real ni se simulan actualizaciones del listado.
+
+Pasaron `npx tsc --noEmit` y `npm run build`. En navegador a 414×896 se
+verificaron tres actualizaciones consecutivas coincidentes con la hora local,
+pulso de dos segundos, movimiento reducido sin animación, seis noticias y
+ausencia de overflow horizontal. La etapa 5 permanece en pausa.
+
+### 2026-10-16 — Etapa 5: `# A COMER!`/Branded adaptado y aprobado
+
+Branded se cotejó con Stitch oficial, la web pública y `/desktop`. Desde 1024 px
+el título y panel blanco exteriores se ocultan y el módulo usa un cabezal oscuro
+con acento azul, el logo `# A COMER!`,
+`BRANDED CONTENT • EXPERIENCIAS DE CUYO` y flechas reales. El mismo Swiper
+conserva los diez videos gastronómicos recibidos y muestra seis cards 9:16 por
+vista, con 16 px de separación; no se sustituyeron por las experiencias
+estáticas ni por los copys mixtos de Stitch.
+
+Las cards desktop usan radio de 8 px, sombra, degradado inferior, play central,
+zoom suave y títulos Geist de 14/17,5 px en blanco, superpuestos y limitados a
+dos líneas. Se mantiene el autoplay muteado de un único video del feed y la
+apertura del modal por `id`. Mobile y 1023 px conservan el título `Branded`, el
+panel blanco, logo y sponsor, 1.2 slides, gap de 16 px y título debajo del video.
+El cotejo tipográfico final corrigió el rótulo del cabezal a Geist 12/16 px,
+peso 700 y tracking `0.06em`, igualando el token de Stitch.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: breakpoint exacto, diez slides,
+seis visibles desde desktop, gap de 16 px, cero overflow y estados inicial/final
+de las flechas. La navegación alcanzó el décimo video, que abrió el modal en el
+índice correcto por su `id`; hubo un solo video activo, Escape cerró y el foco
+regresó a su card. Pasaron `npx tsc --noEmit`, `npm run build` y
+`git diff --check`. Servicios, wrapper de datos, verticales, modal, skeleton y
+`/desktop` permanecieron intactos. El usuario aprobó visualmente el resultado.
+
+### 2026-10-16 — Etapa 5: Shorts adaptado y aprobado
+
+Shorts se cotejó con Stitch oficial, la web pública y `/desktop`. Desde 1024 px
+el panel blanco exterior desaparece y el módulo usa un cabezal oscuro con acento
+rojo, badge `SHORTS`, `CANAL OFICIAL DE YOUTUBE @DIARIOUNO` y flechas reales. El
+mismo Swiper conserva los 12 videos recibidos y muestra seis tarjetas 9:16 por
+vista, con 16 px de separación; no se agregó suscripción ni un segundo carrusel.
+
+Las cards usan radio de 8 px, sombra, degradado inferior, play central y títulos
+Geist de 14/17,5 px en blanco, superpuestos y limitados a dos líneas. En desktop
+se oculta el badge individual de YouTube y el thumbnail amplía suavemente en
+hover. Mobile y 1023 px conservan el cabezal, panel blanco, badge por card,
+título debajo de la imagen, gap de 16 px y densidades 1.2/2.5/3.5 anteriores.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: breakpoint exacto, 12 slides,
+seis visibles desde desktop, gaps de 16 px, flechas hasta el extremo, apertura
+por `id`, cero iframes en feed y cero overflow. El modal existente mantuvo un
+único iframe activo, sonido, Escape y retorno de foco por teclado; su rediseño
+desktop continúa diferido. No hubo errores nuevos de consola, solo el aviso LCP
+preexistente. Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`.
+`/desktop`, skeletons, servicios y el ZIP sin seguimiento permanecieron
+intactos. El usuario aprobó visualmente el resultado.
+
+### 2026-10-15 — Etapa 5: ULTIMATEM adaptado y aprobado
+
+ULTIMATEM se cotejó con Stitch oficial, la web pública y `/desktop`. Desde
+1024 px usa un panel blanco con radio de 8 px, sombra y 24 px de padding; el
+cabezal oscuro de 26 px presenta marcador azul,
+`ULTIMATEM • MÁS NOTICIAS DE CUYO Y EL PAÍS` y `ACTUALIZACIÓN CONTINUA`. Las
+diez noticias se distribuyen en dos columnas de cinco, con 32 px entre columnas
+y 16 px entre filas. Cada card usa fondo tonal, 8 px de padding, radio de 8 px
+y una imagen fija de 128×96.
+
+Los títulos conservan la calibración larga de etapa 6: Playfair Display 18/24
+en peso 500, completos y sin `line-clamp`. Se agregaron diez categorías latinas
+de dos palabras y se preservaron las cuatro firmas locales; no se incorporaron
+los metadatos editoriales de Stitch. El botón
+`Cargar más noticias de la edición de hoy` se conserva como recurso visual, sin
+handler, paginación ni noticias adicionales. En desktop con puntero fino, las
+cards aplican fondo tonal, título azul, zoom de imagen y cursor pointer sin
+acción al click.
+
+Mobile y 1023 px conservan el rótulo, las diez noticias, la composición 50/50,
+las firmas y los separadores anteriores; categorías y botón permanecen ocultos.
+Se verificaron 414×896, 1023, 1024 y 1440×900, incluido el orden 1–5/6–10, click
+inerte, hover, transición exacta y cero overflow. A 1440 px el módulo mide
+1296×773, igual que la referencia pública. No hubo errores nuevos de consola;
+permanecen únicamente los avisos preexistentes de imágenes lazy, campos sin
+`id`/`name` y CORB. Pasaron tipos, build y `git diff --check`. `/desktop`,
+skeletons, servicios, MAM y el ZIP sin seguimiento permanecieron intactos.
+
+### 2026-10-15 — Etapa 5: Gente adaptado y aprobado
+
+Gente se cotejó con Stitch oficial, la web pública y `/desktop`. Desde 1024 px
+usa un panel blanco con radio de 8 px, sombra y 24 px de padding; el cabezal
+oscuro de 26 px presenta marcador azul, `GENTE & CULTURA CUYANA` y `PERSONAJES &
+RETRATOS`. Las seis piezas forman una grilla 3×2 con 24 px de separación y
+retratos 3:4. Cada título largo se muestra completo, sin `line-clamp`, sobre un
+degradado negro y en Playfair Display 700 de 18/22,5 px.
+
+La familia se referencia directamente mediante `--font-playfair-display`: el
+token `--font-headline-sm` definido en `@theme inline` no existe como variable
+CSS en ejecución y hacía que el navegador heredara la sans del documento. En
+desktop y solo con puntero fino, las tarjetas usan cursor de acción y zoom suave
+de imagen, sin enlace, handler ni efecto al click. Mobile y 1023 px conservan
+las dos columnas, los títulos debajo de las fotos y su comportamiento anterior.
+
+Como ajuste de marco aprobado durante el cotejo, el padding horizontal desktop
+de toda la home pasó de 24 a 32 px, igualando el token `px-margin` de Stitch. A
+1440 px la home conserva `max-width: 1360px`, Gente mide 1296×1180,66 y cada
+retrato 400×533,33; la decisión estrecha también en 16 px los demás módulos
+desktop y no modifica el padding mobile.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: breakpoint exacto, seis tarjetas,
+títulos completos dentro de los retratos, Playfair calculada, hover y ausencia
+de overflow. No hubo errores nuevos de consola; permanecen avisos preexistentes
+de LCP y proporción del logo de Ovación. Pasaron `npx tsc --noEmit`,
+`npm run build` y `git diff --check`; el usuario aprobó visualmente el resultado.
+`/desktop`, el ZIP sin seguimiento y el cambio previo de MAM no se modificaron.
+
+### 2026-10-15 — Etapa 5: APERTUM adaptado y aprobado
+
+APERTUM se cotejó con la referencia de Stitch y desde 1024 px se presenta como
+`APERTUM • APERTURA DEL DÍA`: panel blanco con sombra, cabezal oscuro con
+indicador azul y `EDICIÓN CENTRAL`, seguido por una composición 7/5. Conserva la
+foto 4:3 a la izquierda y, a la derecha, la volanta `DECISIÓN ESTRATÉGICA
+REGIONAL`, título y bajada calibrados, caja de tres claves, firma `GUSTAVO DE
+MARINIS` e `INFORME ESPECIAL`.
+
+La altura de la columna editorial iguala exactamente la de la foto en desktop.
+En el rango 1024–1199 px se compactan solo los espaciados y tamaños de esa
+presentación para que todo el contenido entre en la altura 4:3; desde 1200 px
+recupera la escala amplia. El hover y `cursor: pointer` son exclusivamente
+visuales en desktop con puntero fino: no agregan navegación, modal ni handlers.
+
+Mobile y 1023 px conservan el título de sección, la card cuadrada, la firma
+existente y los textos calibrados. El wrapper mantiene fetch, `slice(39, 40)` y
+retorno `null` ante foto ausente. Se verificaron 414×896, 1023, 1024 y
+1440×900: breakpoint exacto, alturas iguales desde 1024 px, ausencia de
+overflow y consola limpia. Pasaron `npx tsc --noEmit`, `npm run build` y
+`git diff --check`; el usuario aprobó visualmente el resultado. `/desktop`,
+skeletons, modales, el ZIP sin seguimiento y el cambio previo de MAM no se
+modificaron.
+
+### 2026-10-15 — Etapa 5: cursor de acción desktop aprobado
+
+Desde 1024 px y solo en dispositivos con puntero fino, las superficies visuales
+de Muy Destacada, Principales, MAM, Política, Crimen y Sociedad, junto con los
+controles de presentación del header, usan `cursor: pointer`. El cambio es una
+señal visual: no agrega handlers, enlaces, foco ni navegación a las piezas que
+eran estáticas. Las funciones preexistentes se preservan, incluidos el modal de
+MAM, el enlace principal de Crimen y los enlaces reales del header.
+
+Mobile y 1023 px conservan sus cursores y comportamiento anteriores. Se
+verificaron 414×896, 1023, 1024 y 1440×900, clicks sin efecto en las nuevas
+superficies de presentación, ausencia de overflow y consola limpia. Pasaron
+`npx tsc --noEmit`, `npm run build` y `git diff --check`; el usuario aprobó
+visualmente el resultado. `/desktop`, el ZIP sin seguimiento y el cambio previo
+de MAM se preservaron.
+
+### 2026-10-15 — Etapa 6: forma de titulación calibrada y aprobada
+
+Para representar el recorrido de una noticia por Live/Muy Destacada o Apertura,
+Principales, la principal y el listado de una sección y Últimas noticias, se
+probaron diez títulos de 89–91 caracteres y diez bajadas de 155–165. La forma
+aprobada los muestra completos, sin punto final y sin `line-clamp`; reemplaza
+dentro de este alcance los límites anteriores de dos, tres o cuatro líneas.
+
+La calibración alcanza en mobile a Muy Destacada, Apertura, Principales,
+Política, Senatus Romano, Sociedad, Listado sin fotos, Ovación, Gente, Crimen y
+Últimas noticias, incluidas las bajadas disponibles. Desde 1024 px usa los mismos
+datos en todos esos módulos, aunque no hayan cerrado su adaptación de etapa 5.
+Quedan fuera MAM, Shorts, `# a comer!`/Branded, Opinión, Servicios,
+transmisiones, Chat, Encuesta, Sudoku y el reader de detalle.
+
+Este tramo no cambió tamaños de fuente, familias, pesos, estructura, cantidades,
+comportamientos ni breakpoints. Se verificaron 414×896, 1023, 1024 y 1440×900:
+textos completos, sin puntuación terminal, sin clamps activos ni overflow.
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`; el usuario
+aprobó visualmente el resultado. Como corrección posterior del mismo tramo,
+Principales iguala desde 1024 px la altura de sus seis cards 3×2 según la pieza
+de mayor contenido, sin reintroducir truncado; también quedó aprobado
+visualmente. `/desktop`, el ZIP sin seguimiento y el cambio previo de MAM se
+preservaron.
+
+### 2026-10-15 — Etapa 5: Sociedad adaptada y aprobada
+
+Sociedad se cotejó con el proyecto y la pantalla oficiales de Stitch, la web
+pública y `/desktop`. Desde 1024 px reutiliza el layout presentacional de
+principal + listado: panel blanco con 24 px de padding, radio de 8 px y sombra;
+cabezal oscuro de 26 px con marcador azul, `SOCIEDAD & COMUNIDAD` y `EDUCACIÓN,
+SALUD Y CIUDAD`; y cuerpo 7/5 con 32 px de separación.
+
+Se conservan las seis fotos y los seis titulares locales como una principal y
+cinco secundarias. La principal usa imagen 3:2, titular Playfair Display 28/35
+en peso 700, la misma bajada de muestra que Crimen y firma `Soledad Segade`. El
+lateral usa cards `#f9fafb` con padding y radio de 8 px, miniaturas 96×96 y las
+categorías `SALUD PÚBLICA`, `BIODIVERSIDAD`, `EDUCACIÓN`, `PATRIMONIO` y
+`COMUNIDAD`; la primera fila lleva la firma `Daniel Calivares` y la tercera,
+`Miguel Guayama`. No se incorporaron metas temáticas inferiores.
+
+Principal y listado ocupan exactamente el mismo alto. El hover desktop es
+exclusivamente visual —zoom de imagen, titular azul y fondo tonal— y no agrega
+enlaces, foco, cursor de acción ni controles. Mobile y 1023 px conservan el
+título `SOCIEDAD`, la grilla de seis cards de retrato en dos columnas y el
+contenido anterior, sin exponer los rótulos desktop.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: breakpoint exacto, panel, grilla,
+cinco filas, columnas de igual altura, miniaturas 96×96, categorías, firmas,
+hover y ausencia de overflow. Pasaron `npx tsc --noEmit`, `npm run build` y
+`git diff --check`; el usuario aprobó visualmente el resultado. `/desktop`,
+skeletons, MAM y el ZIP sin seguimiento no se modificaron.
+
+### 2026-10-15 — Etapa 5: Crimen adaptado y aprobado
+
+Crimen se cotejó con el proyecto y la pantalla oficiales de Stitch, la web
+pública y `/desktop`. Desde 1024 px reutiliza el layout presentacional de
+principal + listado estrenado en Política: panel blanco con 24 px de padding,
+radio de 8 px y sombra; cabezal oscuro de 26 px con marcador y borde rojos,
+`CRIMEN & POLICIALES` e `INVESTIGACIÓN Y JUSTICIA`; y cuerpo 7/5 con 32 px de
+separación.
+
+La principal conserva foto, titular, bajada, firma y el enlace local a
+`/detalle-nota`; usa imagen 3:2, Playfair Display 28/35 en peso 700 y bajada
+Geist 15/22. El lateral conserva las cuatro noticias y usa cards `#f9fafb` con
+padding y radio de 8 px, miniaturas 112×112 y las categorías `POLO JUDICIAL`,
+`OPERATIVO REGIONAL`, `PERITAJES FORENSES` y `PODER JUDICIAL`. Solo la segunda
+y cuarta card muestran sus firmas existentes. No se incorporaron la meta de la
+principal ni las metas temáticas inferiores de Stitch.
+
+Principal y listado ocupan exactamente el mismo alto. El hover desktop es
+exclusivamente visual —zoom de imagen, titular azul y fondo tonal— y no agrega
+interacciones; se conserva únicamente el enlace real que ya tenía la principal.
+Mobile y 1023 px mantienen título `CRIMEN`, cuatro filas, contenido, tamaños,
+firmas y comportamiento anteriores.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: breakpoint exacto, panel, grilla,
+cuatro filas, columnas de igual altura, miniaturas 112×112, rótulos, firmas,
+hover, enlace existente y ausencia de overflow. Pasaron `npx tsc --noEmit`,
+`npm run build` y `git diff --check`; el usuario aprobó visualmente el resultado.
+`/desktop`, Sociedad, skeletons, MAM y el ZIP sin seguimiento no se modificaron.
+
+### 2026-10-15 — Etapa 5: Política adaptada y aprobada
+
+Política se cotejó con el proyecto y la pantalla oficiales de Stitch, la web
+pública y `/desktop`. Desde 1024 px usa un panel blanco con 24 px de padding,
+radio de 8 px y sombra; el cabezal oscuro de 26 px presenta marcador azul,
+`POLÍTICA & GOBIERNO` y `LEGISLATURA Y PODER EJECUTIVO`. El cuerpo se organiza
+en una grilla 7/5 con 32 px de separación.
+
+La principal conserva foto, titular, bajada y firma locales, con imagen 3:2,
+Playfair Display 28/35 en peso 700 y bajada Geist 15/22. El listado conserva las
+cuatro noticias locales y usa cards de fondo `#f9fafb`, padding y radio de 8 px,
+miniaturas cuadradas de 112 px y las categorías `COPARTICIPACIÓN`,
+`CONGRESO NACIONAL`, `PODER JUDICIAL` y `MUNICIPIOS`; solo la segunda y cuarta
+card muestran sus firmas existentes. Ambas columnas ocupan exactamente el mismo
+alto. No se muestran las metas temáticas inferiores ni `POLÍTICA CENTRAL`.
+
+El hover desktop se limita a zoom de imagen, titular azul y fondo tonal, sin
+enlaces, foco, cursor de acción ni controles ficticios. Mobile y 1023 px
+conservan el título `POLÍTICA`, cuatro filas, contenido, tamaños y firmas
+anteriores. El wrapper mantiene fetch, selección de cinco fotos y retorno
+`null`; un layout presentacional interno por slots admite una cantidad variable
+de secundarias para futuras adaptaciones, sin intervenir Crimen ni Sociedad.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: breakpoint exacto, cuatro filas,
+columnas de igual altura, miniaturas 112×112, tipografía, categorías, firmas,
+hover y ausencia de overflow. Pasaron `npx tsc --noEmit`, `npm run build` y
+`git diff --check`; el usuario aprobó visualmente el resultado. `/desktop`,
+Crimen, Sociedad, skeletons, MAM y el ZIP sin seguimiento no se modificaron.
+
+### 2026-10-14 — Etapa 5: Muy Destacada adaptada y aprobada
+
+Muy Destacada se cotejó con Stitch y se adaptó desde 1024 px como una cobertura
+especial dentro de un panel blanco: cabezal oscuro con indicador pulsante,
+`EN VIVO`, texto de cobertura y aviso de transmisión simultánea, seguido por una
+composición 8/4 con 24 px de separación. La columna principal muestra el video
+16:9 y conserva el título, la bajada y la firma de mobile; suma
+`EDICIÓN ESPECIAL` solo en desktop. La columna secundaria replica
+`FOCO DE COBERTURA` con dos cards: usa los títulos segundo y tercero de mobile,
+las categorías y bajadas de Stitch, omite la firma de la primera y conserva
+`Facundo García` en la segunda. No se incorporaron los metadatos inferiores ni
+controles simulados de la referencia.
+
+La selección aleatoria se reemplazó por el video fijo de Pexels con ID
+`34634812`. El servicio obtiene sus archivos por ID y prioriza la variante
+1280×720; ante clave ausente, error o respuesta inválida registra el problema y
+devuelve `[]`, por lo que el wrapper omite el módulo. El mismo video se usa una
+sola vez en ambos modos con controles nativos, autoplay silenciado, loop y
+reproducción inline. Mobile conserva su contenido y orden anteriores, con la
+única modificación acordada del video cuadrado a 16:9.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: breakpoint exacto, estructura
+8/4, textos y firmas, reproducción, una única instancia de video y ausencia de
+overflow o errores de hidratación. Permanecen solo avisos preexistentes de
+imágenes/campos de formulario y CORB. Pasaron `npx tsc --noEmit`,
+`npm run build` y `git diff --check`; el usuario aprobó visualmente el resultado.
+`/desktop` y `MuyDestacadaSkeleton` no se modificaron.
+
+### 2026-10-14 — Etapa 5: header adaptado y aprobado
+
+Desde 1024 px el header replica las dos franjas de Stitch con Geist, altura total
+de 94 px, posición fija, bordes y sombra. La franja superior conserva datos
+demostrativos estáticos y fecha; esta última se oculta en anchos intermedios, y
+datos/navegación resuelven la falta de espacio con overflow interno sin scrollbar
+visible. La barra principal incorpora hamburguesa, logo, sello `MENDOZA`,
+navegación completa, búsqueda, `Acceder` y `Suscribite`. El indicador de MAM
+permanece pulsante.
+
+Solo el logo, `PORTADA` y `Canal 7 & Radio Nihuil EN VIVO` tienen navegación y
+foco. Las demás categorías y controles son presentación sin acciones ficticias;
+el dataset funcional del footer permanece separado. Por ajuste final aprobado,
+la transmisión en vivo no usa fondo rojo y conserva el punto rojo pulsante;
+`Suscribite` usa fondo rojo y texto blanco.
+
+El header desktop compensa sus 94 px en la home y el detalle, incluido el banner
+fijo de la nota. Mobile conserva su header anterior y `/desktop` permanece
+aislada. Se verificaron 414×896, 1023, 1024 y 1440×900, ambas rutas del sitio,
+los únicos tres enlaces permitidos, ausencia de overflow, consola e hidratación.
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`; el usuario
+aprobó visualmente el resultado.
+
+### 2026-10-14 — Etapa 5: MAM adaptado y aprobado
+
+MAM se cotejó con la publicación de Stitch y con `/desktop`. Desde 1024 px el
+panel es negro, usa cabezal interno, radio de 12 px y padding de 24 px; presenta
+los primeros 15 videos del dataset en una grilla estática de cinco columnas por
+tres filas, con 16 px de separación. Las cards 9:16 muestran un frame limpio del
+mp4, duración, degradado, play central y título de hasta dos líneas. No hay
+flechas, arrastre ni reproducción inline en desktop; al abrir una pieza se
+conserva el modal existente y la selección por `id`.
+
+Mobile mantiene el único Swiper y el catálogo completo recibido de MAM, con su
+poster oficial, autoplay muteado del slide activo y presentación previa. No se
+duplicaron datasets, carruseles ni reproductores. Se verificaron 414×896, 1023,
+1024 y 1440×900, el modal, la ausencia de overflow y de errores de consola o
+hidratación. Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`; el
+usuario aprobó visualmente el resultado. `/desktop` no se modificó.
+
+Quedan diferidos para el final de la etapa 5 el diseño específico de los modales
+de video en desktop y la revisión visual de los skeletons desktop.
+
+### 2026-10-14 — Etapa 5: Principales adaptado y aprobado
+
+Principales se cotejó con la publicación de Stitch y con `/desktop`. Desde
+1024 px incorpora el cabezal `LEGIONARIUS • NOTICIAS DESTACADAS`, marcador azul
+y `AL MINUTO`; se retiró el panel blanco exterior y las seis cards conservan el
+Swiper existente en una grilla 3×2 con 24 px de separación. Las cards usan radio
+de 8 px, sombra, cuerpo con 16 px de padding, bajada de dos líneas y elevación/
+zoom de imagen al hover. No se agregaron las categorías de Stitch.
+
+Se preservaron fuente de datos, cantidad, orden, controles y una única instancia
+de Swiper. Por acuerdo posterior, el título queda limitado a dos líneas en ambos
+anchos; mobile conserva el resto de su presentación. La diferencia de raster de
+Playfair Display se resolvió con peso local 700 solo desde 1024 px: aunque Stitch
+declara 500, el archivo servido allí se veía más grueso que el de `next/font`.
+Los textos ficticios de título y bajada fueron abreviados por el usuario.
+
+Se verificaron 414×896, 1023, 1024 y 1440×900: seis cards, transición del
+breakpoint, hover, ausencia de overflow y un solo Swiper. No hubo errores nuevos
+de consola o hidratación. Pasaron `npx tsc --noEmit`, `npm run build` y
+`git diff --check`; el usuario aprobó visualmente el resultado. `/desktop` no se
+modificó. En el cierre del header se detectó que faltaba cargar `swiper/css/grid`:
+las seis cards existían, pero quedaban en una fila horizontal. Se añadió esa hoja
+de estilos y se volvió a verificar la grilla real 3×2 a 1024 y 1440 px y las seis
+cards del carrusel mobile. La etapa 5 continúa con los módulos restantes.
+
+### 2026-10-13 — Etapa 4: carruseles de video responsive
+
+MAM muestra cinco slides y Shorts/Branded seis desde 1024 px, separados por
+24 px, tomando la densidad de las referencias local y pública de Stitch. Los
+datos completos siguen en un único Swiper por fuente: no se truncaron ni
+duplicaron listas. Por debajo se conserva MAM/Branded a 1.2 slides y 16 px;
+Shorts conserva 1.2, 2.5 desde 640 px y 3.5 desde 768 px. Los cabezales desktop
+reutilizan el tratamiento de noticias y los skeletons acompañan la densidad
+responsive. El detalle, que usa MAM, recibe el mismo comportamiento.
+
+Los controles anterior/siguiente desktop usan el Swiper existente y se
+deshabilitan en los extremos o si no hay desplazamiento. MAM/Branded mantienen
+un solo video activo por ID, únicamente en viewport, y pausan el feed al abrir
+el modal. Se preservan las reglas de sonido: MAM feed mudo inicialmente/modal
+con sonido; Branded siempre mudo, sin control de sonido; Shorts con controles
+propios y su fallback muteado existente. No se rediseñaron los modales ni se
+añadieron iframes al feed de Shorts.
+
+En la prueba de resize con modal abierto se detectó que devolver el foco podía
+desplazar el contenedor de Swiper al botón que quedó fuera de vista. La
+restauración usa ahora `focus({ preventScroll: true })`: conserva foco, scroll
+del documento y posición del carrusel sin cambiar la reproducción.
+
+Verificado en 414×896, 768×1024, 1023×900, 1024×900 y 1440×900, sin overflow:
+cinco/seis slides enteros desktop, controles y extremos, selección de cards
+no activas por ID, pausa al salir del viewport, progreso y play/pausa, sonido
+por fuente, cierre por botón/Escape, retorno de foco y resize en ambos sentidos.
+MAM/Branded reproducen un único slide del modal; Shorts monta un iframe activo
+y lo reemplaza al avanzar, retirándolo al cerrar. En las fuentes presentes se
+conservan 23 módulos, tres parejas, dos anuncios y seis cards de Sociedad.
+
+**Salvedad de fuente externa:** se comprobó reproducción y progreso de un Short,
+play/pausa y mute, pero otro Short seleccionado permaneció en estado YouTube
+`UNSTARTED`, duración/progreso cero, incluso tras pedir play de nuevo. Su ID
+y thumbnail corresponden al elegido; no se simuló reproducción ni se alteró
+el player para ocultarlo. No se declara verificada la reproducción de todos
+los videos remotos ni las políticas de autoplay de iOS en dispositivo real.
+La consola mantiene avisos de preload de imágenes y del handshake postMessage
+de YouTube; no hubo errores nuevos de aplicación.
+
+Pasaron tipos, build y `git diff --check`, además de ocho pruebas dirigidas de
+geometría, selección por ID, pausa del feed y wrappers con fuentes vacías.
+`/desktop` permanece sin cambios. No hubo commits ni avance a etapa 5.
+
+### 2026-10-13 — Sociedad con seis cards y limpieza de CSS global
+
+Sociedad vuelve a seis cards compartidas por mobile y desktop, con seis títulos
+de muestra. Se conservaron sus cinco fotos anteriores y se agregó la foto de
+`[40, 41)` de la fuente existente, sin solaparla con Gente ni cambiar los rangos
+de otras secciones. `/desktop` sigue siendo referencia estática sin cambios.
+
+Se revisaron las clases de `app/globals.css` contra los componentes y la
+referencia: se retiraron `gradient-xy` y su clase sin consumidores, comentarios
+con estilos descartados y dos overrides desktop redundantes del header
+(`height: 62px` y `display: none`). Se conservaron los tokens de Stitch,
+los estilos de noticias y la paginación/animación shimmer que siguen en uso.
+No quedaron clases custom sin referencia en los archivos de la aplicación.
+
+Pasaron tipos, build y `git diff --check`. En navegador: seis cards con título,
+dos columnas/tres filas a 414×896 y tres columnas/dos filas a 1024×900 y
+1440×900; sin overflow, sin foto compartida con Gente y altura del header
+principal conservada. `/desktop` conserva tipografía y aislamiento del marco.
+Sin errores de consola; sigue el aviso de preload de imágenes no utilizado a
+tiempo. No hubo commits ni cambios a videos.
+
+### 2026-10-13 — Pareja Legionarius/chat
+
+Se agregó Legionarius/chat como tercera pareja responsive, reutilizando
+`HomePair` y los wrappers de servidor existentes. Conserva su posición después
+de las transmisiones y antes de Ovación: Legionarius primero, chat después.
+Se apila por debajo de 1024 px y comparte fila desde ese ancho. Si un wrapper
+devuelve `null`, se omiten ambos módulos y el contenedor. Sus contenidos son
+estáticos; no se agrega fetch ni skeleton permanente.
+
+Pasaron tipos, build, `git diff --check` y 17 pruebas dirigidas (incluidos los
+cuatro escenarios presente/ausente para la nueva pareja). En navegador se
+verificaron 414×896, 1023×900, 1024×900 y 1440×900: orden conservado, breakpoint
+correcto, cinco notas Legionarius y un chat, sin overflow ni truncamiento de
+notas en 1024 px. El chat envía y muestra su respuesta de maqueta. Sin errores
+de consola; apareció un aviso de preload de imágenes ajeno a la pareja.
+
+### 2026-10-13 — Simplificación aprobada de composición responsive
+
+Se reemplazó el orden desktop de Stitch por la secuencia mobile en todos los
+anchos. El `<main>` usa Tailwind para una columna general; Encuesta/Senatus y
+Canal 7/Radio Nihuil usan grillas locales apiladas en mobile y de dos columnas
+desde 1024 px. Se retiraron `order`, anchos `flex-basis` y las demás parejas:
+publicidad, Listado, Crimen, asistente y Sudoku ahora ocupan filas propias.
+Crimen ya no requiere su excepción de ancho compartido entre 1024 y 1199 px.
+Se preservaron los estilos internos de noticias de etapa 3 y los reproductores.
+
+Dos wrappers de grupo reutilizan los wrappers de servidor existentes y validan
+sus resultados antes de montar el contenedor. Si falta cualquiera, no se muestra
+la pareja completa, tampoco en mobile. Los skeletons se usan solo durante carga;
+el fallback de participación conserva la grilla del grupo. Las transmisiones
+siguen siendo fachadas estáticas, sin chequeo de disponibilidad remota.
+
+Verificado en navegador a 414×896, 768×1024, 1023×900, 1024×900 y 1440×900:
+sin overflow, mismo orden DOM/visual, breakpoint correcto, 23 módulos con datos
+disponibles, dos anuncios, seis Principales y un footer. `/desktop` sigue aislada
+y sin cambios. Sin errores/warnings de consola en la home revisada.
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`; trece pruebas
+dirigidas verificaron omisión total de ambos grupos con resultados ausentes,
+una invocación por wrapper y Senatus real con fuentes vacías.
+No se avanzó a las etapas de videos ni widgets; no hubo commits.
+
+### 2026-10-13 — Etapa 3: módulos de noticias responsive
+
+Se adaptaron cobertura, Apertura, Principales, Política, Opinión, listado
+Legionarius, Sociedad, Gente, Ovación, Crimen y últimas noticias, manteniendo
+sus wrappers, los datos existentes y la presentación mobile.
+
+Desde 1024 px, cobertura combina historia principal y notas relacionadas;
+Apertura presenta imagen/texto en columnas; Principales muestra seis cards en
+grilla Swiper de tres columnas por dos filas. Política, Ovación y Crimen
+disponen historias principales y listados; Opinión conserva sus cuatro
+columnistas, las listas se distribuyen en columnas y Sociedad/Gente conservan
+sus cards de retrato. Crimen apila su historia principal y el listado interno
+entre 1024 y 1199 px por el ancho compartido con el segundo anuncio. Los textos
+de muestra intervenidos quedaron separados del JSX. No se cambió `/desktop` ni
+se duplicaron datasets.
+
+Se comprobó mobile a 414×896, y la transición responsive a 768×1024, 1023×900,
+1024×900 y 1440×900. No hubo overflow horizontal; el DOM conserva el orden
+mobile, seis cards de Principales y los conteos existentes. Los seis slides de
+Principales quedan visibles en dos filas a 1024 y 1440 px. No se detectaron
+errores ni warnings de consola en las vistas revisadas.
+
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`. Quedan
+pendientes etapas 4 (videos) y 5 (widgets/anuncios); no se avanzó a ellas.
+
+### 2026-10-13 — Etapa 2: marco y composición responsive
+
+Se creó el route group `app/(sitio)/` sin cambiar las URLs `/` y `/detalle-nota`.
+El header y footer ahora pertenecen al marco del sitio; `/desktop` permanece
+aislada. La home importa wrappers para sus módulos con datos, incluida cobertura,
+y mantiene una sola instancia de cada módulo en orden DOM mobile.
+
+La composición desktop usa flex-wrap y `order`/spans CSS desde 1024 px. Se
+verificaron las 23 secciones, ambas inserciones publicitarias, las dos
+transmisiones y los pares de módulos definidos por el plan. Los anuncios no se
+estiran a la altura del módulo vecino. Las funciones Pexels retornan `[]` ante
+falta de clave o error; las secciones sin datos retornan `null`.
+
+En navegador se validaron `/` a 414×896, 768×1024, 1023×900, 1024×900 y
+1440×900: sin overflow horizontal, orden mobile bajo el breakpoint y orden
+visual desktop desde él. `/detalle-nota` se revisó a 414×896 y 1440×900, con
+banner inmediatamente debajo del header y un footer. `/desktop` se cotejó a
+1440 px con Stitch pública y no recibe el marco compartido.
+
+No aparecieron errores de consola. DevTools sí reportó avisos de dimensiones de
+imágenes/campos sin `id` o `name` y una respuesta CORB; quedan anotados, sin
+ampliar esta etapa. Pasaron `npx tsc --noEmit`, `npm run build` y
+`git diff --check`. La etapa 4 (videos) y la etapa 5 (widgets/anuncios) siguen pendientes. No hubo
+commits y se preservaron los cambios locales preexistentes.
+
+### 2026-10-13 — Cantidades mobile y paridad acordada antes de etapa 2
+
+Principales pasó a 6 cards y Sociedad a 5, alineadas con Stitch. Se reasignaron
+rangos de fotos de muestra para evitar duplicados: Principales `[0, 6)`,
+Política `[6, 11)` y Sociedad `[11, 16)`. Gente y rangos posteriores conservan
+sus fotografías. `/desktop` no se modificó.
+
+Senatus ya tiene una card de video y otra de imagen en mobile; su video se
+conservará también al componer la futura home desktop. La encuesta desktop
+reutilizará pregunta, total, opciones y porcentajes mobile, sin añadir
+interacción de voto ni persistencia. Aún no se implementó su presentación
+integrada.
+
+Se actualizaron [DESIGN.md](./DESIGN.md) y
+[PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md#ajustes-acordados-antes-de-la-etapa-2-2026-10-13).
+Pasaron tipos, build, whitespace y verificación de cantidades en la home; no se
+comenzó la etapa 2.
+
+### 2026-10-10 — Inventario interno y baseline responsive
+
+Se cerró la etapa 1 en la carpeta principal sobre `main` / `8c5066a`, sin
+refactorizar la home ni cambiar estilos o `/desktop`. Se preservaron el cambio
+local de formato de MAM y el ZIP sin seguimiento, sin incorporar el worktree de
+respaldo ni hacer commits.
+
+El cotejo de home mobile, copia local y Stitch público registra todos los
+submódulos y controles. La paridad exige preservar las cantidades mobile
+(Principales 5, Sociedad 6, Ovación 1+4), el video de Senatus, la agenda
+DataFactory, ambas transmisiones y dos anuncios 300×250. No importar votación,
+herramientas, nuevas funciones de Sudoku/chat ni carga de noticias de Stitch.
+La encuesta actual no registra votos; Canal 7 ya monta un iframe y solo Radio
+es click-to-load. Estas observaciones definen qué comportamiento se conserva.
+
+Se recorrieron las tres páginas hasta footer y se capturaron viewport/página
+completa a 414×896 (home) y 1440×900 (referencias). El usuario aceptó conservar
+imágenes en la conversación porque el navegador no permite guardarlas en las
+carpetas de trabajo/sesión; no se cambió su configuración.
+La copia conserva las 18 secciones de Stitch, pero presenta diferencias de
+tipografía del header y barras de scroll internas: no es equivalencia píxel a
+píxel. Detalles y URLs en el
+[inventario y baseline](./PROJECT_CONTEXT.md#etapa-1-verificada-inventario-y-baseline-2026-10-10).
+
+Configuración existente y fuentes verificadas sin exponer claves: respuestas
+200 de Pexels, MAM, YouTube y agenda DataFactory; 30/12/10 slides de
+MAM/Shorts/Branded. Tipos, build y whitespace aprobados. Sin errores de consola
+en rutas locales; el público advierte sobre Tailwind CDN. No se recertificaron
+modales, audio en dispositivos reales ni fuentes caídas.
 
 ### 2026-10-10 — Base de Stitch y plan trasladados a la carpeta principal
 
@@ -48,7 +973,8 @@ Se conservaron los commits posteriores, el orden mobile actualizado (Principales
 antes de MAM y Política antes de Shorts) y el cambio local de MAM. El worktree
 `responsive-plan-implementation-inventory` queda como respaldo: no se incorporó
 su implementación. Continuar nuevas conversaciones sobre la carpeta principal,
-sin crear un worktree por sesión. La integración responsive sigue pendiente.
+sin crear un worktree por sesión. Al cierre de esta nota, la integración
+responsive seguía pendiente.
 
 Validación en la carpeta principal: tipos, build de producción (incluyendo
 `/desktop`) y chequeo de whitespace aprobados.
@@ -300,25 +1226,71 @@ Branded ya no arrastra el contenedor blanco duplicado.
 
 ## 🔄 En curso
 
-Nada en curso.
+La etapa 5 está en pausa y `# A COMER!`/Branded ya quedó aprobado. Ovación está
+cerrado en mobile y desktop como tarea independiente: no se cotejará ni adaptará
+a Stitch y queda fuera de la etapa 5. Última hora
+conserva temporalmente sus dos variantes mobile, timeline y agencia, para un
+focus group que permitirá al usuario elegir una única versión definitiva;
+los resúmenes en home y las fuentes compartidas quedaron implementados y
+documentados. No hay una nueva intervención en curso en ese módulo. Además de los
+modales desktop de video y los skeletons desktop, siguen sin cerrar Servicios, Opinión,
+Encuesta/Senatus, ambos anuncios, las transmisiones, Legionarius/chat,
+Sudoku y el footer. La etapa 6, ajuste de tamaño de fuentes, permanece cerrada y
+aprobada. La tarea alternativa de `/desktop` ya tiene su baseline estático; no
+hay una intervención visual en curso: Apertura y Ovación quedaron cerrados tras
+la aprobación del usuario.
 
 ---
 
 ## ⏭️ Siguiente
 
-Comenzar en una **nueva sesión** la integración responsive según el
-[plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop).
-Leer primero esta bitácora, luego el contexto y el README.
+Definir con el usuario el próximo módulo u objetivo visual de la prueba
+alternativa antes de volver a modificar `/desktop`. Mantener los tramos
+aprobados y no sincronizar automáticamente la ruta con cambios futuros de `/`.
+La etapa 5 continúa suspendida.
 
-La primera tarea es cerrar el inventario de **submódulos** mobile/Stitch y el
-baseline visual, verificando configuración local. La correspondencia de módulos
-principales ya está documentada; no equivale a paridad de cada widget o card.
-Comparar la copia local `/desktop` con el
-[diseño original público de Stitch](https://2eaa6e7d-diario-uno-desktop-redesign.netlify.app/#).
-La home integrada se ajusta al inventario mobile, no a los agregados u omisiones
-de esa referencia.
-Después avanzar por marco/composición, noticias, videos, widgets y validación.
-Preservar la base de Stitch trasladada y cualquier cambio local preexistente.
+Esperar la evaluación del focus group y la elección del usuario de una sola
+variante definitiva de Última hora. Hasta entonces, conservar ambas variantes
+mobile en su orden actual; no elegir, eliminar ni fusionar una por cuenta propia.
+La coexistencia es temporal y no representa la composición final de la home.
+La actualización real de noticias sigue fuera del alcance.
+Preservar la lectura en home, las fuentes compartidas y el tamaño estable de
+los recuadros durante la interacción.
+Mantener ambos bloques ocultos desde 1024 px hasta que el usuario defina su
+ubicación desktop; no mostrarlos ni reubicarlos por cuenta propia.
+No retomar la adaptación desktop automáticamente. En próximos tramos, actualizar
+la documentación solo después de la validación visual y el OK del usuario.
+
+Cuando el usuario indique retomar la **etapa 5**, elegir con él el próximo módulo pendiente.
+Antes de editarlo, comparar la implementación actual con Stitch oficial, la web
+pública y el MCP oficial; intervenir un tramo por vez, aplicar las decisiones
+aprobadas de `DESIGN.md`, preservar la forma de titulación aprobada en la etapa 6
+y no avanzar por cuenta propia a la etapa 7. No usar `/desktop` como referencia.
+La elección no se limita a modales y skeletons: también quedan Servicios,
+Opinión, Encuesta/Senatus, los dos anuncios, Canal 7/Radio Nihuil,
+Legionarius/chat, Sudoku y el footer. Ovación queda excluido de este inventario:
+su diseño propio ya está cerrado en ambos anchos y no debe cotejarse con Stitch.
+Seguir el
+[plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop)
+y leer primero esta bitácora, luego el contexto y el README.
+
+El [inventario interno y baseline](./PROJECT_CONTEXT.md#etapa-1-verificada-inventario-y-baseline-2026-10-10)
+ya está cerrado. Las etapas 2 (marco/composición), 3 (noticias) y 4 (videos) están
+implementadas y verificadas localmente con la salvedad de Shorts registrada.
+La etapa 5 compara e interviene un solo módulo por vez, conservando mobile,
+el orden general, las tres parejas y los datos/comportamientos compartidos. Antes
+de cambiar contenido, cantidades, controles o comportamiento se consulta al
+usuario. Cada módulo se valida en navegador y se documenta antes de esperar la
+siguiente elección. La etapa 5 está en pausa. La etapa 6 quedó cerrada y
+aprobada. La adaptación visual de widgets y anuncios puede realizarse durante
+la etapa 5; la etapa 7 conserva la revisión de su comportamiento y su paridad
+completa, y la etapa 8 realizará la validación integral y el cierre.
+Repetir capturas si hace falta: las imágenes anteriores viven
+en su conversación, no en Git. La home integrada se ajusta a mobile, no a
+cantidades, medios omitidos o funciones nuevas de Stitch. Preservar la base de
+Stitch, los cambios locales preexistentes y el orden mobile (Principales antes
+de MAM; Política antes de Shorts). No avanzar de etapa sin la indicación del
+usuario.
 
 Shorts arranca mudo por política de iOS y el botón de sonido lo activa
 (verificado en iPhone). Que arranque con sonido queda en el Backlog.
@@ -340,11 +1312,24 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
   creado. Encarece el feed (habría que mantener un player vivo) y no hay garantía
   de que iOS lo acepte: verificar en dispositivo real antes de invertir en ello.
 
-- **Versión desktop integrada.** La home actual sigue siendo mobile-first. Existe
-  una ruta `/desktop` con la maqueta de Stitch para evaluación, todavía estática y
-  separada de los datos y componentes del producto. Su integración tiene
-  [plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop),
-  pendiente de implementar.
+- **Integración responsive.** La adaptación de etapa 4 (videos) está implementada.
+  La etapa 5 permanece en pausa, con Muy Destacada, APERTUM, Principales, MAM, el
+  header, Política, Crimen, Sociedad, Gente, ULTIMATEM, Shorts y
+  `# A COMER!`/Branded aprobados. Permanecen pendientes de adaptación visual Servicios, Opinión,
+  Encuesta/Senatus, los dos anuncios, Canal 7/Radio Nihuil, Legionarius/chat,
+  Sudoku, el footer, los modales desktop de video y los skeletons
+  desktop. La etapa 6 quedó cerrada y aprobada; cuando se indique retomar la
+  etapa 5, se continuará módulo por módulo. Después siguen la revisión funcional y
+  de paridad de widgets/anuncios en la etapa 7 y la validación integral en la
+  etapa 8, según el
+  [plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop).
+- **Prueba desktop alternativa.** `/desktop` ya inició su tarea independiente y
+  conserva como baseline una réplica HTML visual de `/` desde 1024 px. No
+  interviene en las etapas 5, 7 u 8 ni funciona como referencia o fallback. Su
+  composición aprobada usa Apertura/Principales en ocho columnas y una columna
+  derecha continua para Agencia, publicidad, encuesta y `AVANCES DE LA IA`; el
+  módulo Ovación ya tiene su variante oscura aprobada con agenda, ticker y
+  composición editorial. El próximo objetivo debe acordarse antes de continuar.
 - **Verticales branded adicionales.** `branded-content.ts` ya soporta `comidas` y
   `autos`; agregar más es declarativo. Definir cuáles se muestran en la
   presentación.
@@ -353,6 +1338,13 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
   reemplazar cuando haya contenido comercial real.
 - **Refinamientos del modal**, deliberadamente fuera del primer tramo: cierre por
   gesto de arrastre y precarga del video siguiente.
+- **Pendientes visuales de etapa 5.** Cotejar y adaptar de a un tramo Servicios,
+  Opinión, Encuesta/Senatus, ambos
+  anuncios, transmisiones, Legionarius/chat, Sudoku y el footer. Ovación está
+  explícitamente excluido y conserva su diseño independiente. Diseñar
+  además la variante desktop de los modales de video y revisar la presentación
+  desktop de todos los skeletons, sin alterar mientras tanto sus comportamientos
+  actuales.
 
 ---
 
@@ -361,7 +1353,7 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
 | Tema | Pregunta abierta |
 |---|---|
 | Branded en producción | ¿De dónde vendrá el contenido brandeado real: CMS, anunciante o MAM? |
-| Evolución del diseño | Después de integrar, podrán revisarse orden y estructura de ambas versiones; el tramo actual conserva orden mobile y adopta orden visual de Stitch en desktop. |
+| Evolución del diseño | Ambos anchos conservan el orden mobile; Encuesta/Senatus, Canal 7/Radio Nihuil y Legionarius/chat comparten fila desktop. Stitch aporta referencia visual, no el orden. |
 
 ### Decisiones ya resueltas
 
