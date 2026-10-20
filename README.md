@@ -3,12 +3,30 @@
 Prototipo de alto impacto para el rediseño de `diariouno.com.ar`, pensado para
 presentar la visión a los accionistas.
 
+Hay dos propuestas funcionales aprobadas: **`/` y `/opcion-2`**. Ambas usan
+`HomeWrapper`, comparten la experiencia mobile, Live y todos los módulos desde
+MAM, incluido. La segunda cambia solo desde 1024 px: Apertura y Principales
+ocupan ocho columnas y el lateral cuatro, con seis titulares interactivos en
+AHORA, publicidad, encuesta y cuatro titulares interactivos en AVANCES DE LA IA.
+El lateral tiene altura natural y no oculta noticias según el ancho. Su diseño
+superior toma `/desktop` como referencia visual, pero está implementado con
+React, sin `String.raw` ni `dangerouslySetInnerHTML`. El usuario aprobó
+visualmente `/opcion-2` el 2026-10-19.
+
 **Mobile first**: la home `/` conserva la experiencia mobile y compone su
 presentación desktop desde 1024 px. Para revisar mobile, usar el modo dispositivo
 del navegador (por ejemplo 414×896).
-La home conserva el mismo orden en ambos anchos y una columna general; solo
-Encuesta/Senatus y Legionarius/chat comparten fila de dos columnas desde
-1024 px. Canal 7 y Radio Nihuil comparten una fila de tres columnas con el
+La home usa una columna general. En mobile, las cinco notas de Legionarius, el
+chat y Sudoku aparecen consecutivamente. Desde 1024 px, esa zona se convierte
+en una fila con `GRÁFICO INTERACTIVO` a la izquierda y `CHAT VOX DEI` en una
+columna de 448 px; ambos paneles igualan su altura y Sudoku queda oculto.
+Debajo aparece únicamente en desktop una reserva blanca de ancho completo y
+400 px de altura para el futuro espacio de juegos, antes de Gente.
+Después de Encuesta/Senatus, la composición aprobada continúa con Ovación, el
+segundo anuncio y Sociedad, en ese orden y en ambos anchos. Ese anuncio conserva
+el formato 300×250 en mobile y adopta desde 1024 px el leaderboard
+`VENDIMIA CONNECT 2026` de Stitch. Encuesta/Senatus comparte una fila de dos
+columnas en desktop. Canal 7 y Radio Nihuil comparten una fila de tres columnas con el
 anuncio 300×250: el anuncio reserva 332 px y el espacio restante se divide entre
 ambas transmisiones. En mobile, el anuncio queda debajo de los dos streams.
 Los tres contenedores igualan su altura desde 1024 px; los streams muestran
@@ -45,27 +63,27 @@ La API de Diario UNO y la segunda grilla 3+6+3 quedan fuera del tramo.
 
 ## Estado de la integración responsive
 
-Las etapas 1–4 están implementadas y verificadas. La etapa 6, forma de
-titulación, también está cerrada y aprobada. Dentro de la etapa 5 ya fueron
-adaptados y aprobados Muy Destacada, APERTUM, Principales, MAM, el header,
-Política, Crimen, Sociedad, Gente, ULTIMATEM, Shorts y
-`# A COMER!`/Branded. La etapa 5 está suspendida por indicación del usuario.
-
-Continúan pendientes de cotejo y adaptación visual a Stitch: Servicios,
-Opinión, Encuesta/Senatus, los dos anuncios, Canal 7/Radio Nihuil,
-Legionarius/chat, Sudoku, Últimas noticias, el footer, los modales
-desktop de video y los skeletons desktop. Se trabaja un único tramo por vez y
-no hay un módulo actualmente en intervención.
+Las etapas 1–8 están implementadas, verificadas y aprobadas. El usuario cerró la
+etapa 5 el 2026-10-19 y la presentación visual actual de `/` constituye su línea
+base final. Los módulos que no recibieron una adaptación específica a Stitch se
+aceptan tal como están implementados y no quedan pendientes visuales dentro de
+esa etapa.
 
 Ovación es una excepción cerrada a esa lista: tiene una línea visual propia en
 mobile y desktop, con panel `#111827`, ticker CSS, agenda general de DataFactory,
-títulos uppercase y sin bajada principal ni rótulo de fixture. No será adaptado
-a la versión de Stitch y queda fuera del alcance y del cierre de la etapa 5.
+títulos uppercase y sin bajada principal ni rótulo de fixture. No se adapta a
+la versión de Stitch y quedó incorporado a la línea base al cerrar la etapa 5.
 
-Los widgets y anuncios pueden recibir su adaptación visual durante la etapa 5,
-pero su revisión funcional y el cierre de paridad permanecen reservados para la
-etapa 7. La etapa 8 conserva la validación integral y el cierre final; ninguna
-de las dos debe iniciarse automáticamente.
+Las revisiones funcional e integral cerraron las etapas 7 y 8. `/opcion-2` es
+un tramo posterior también cerrado y aprobado; no hay una etapa siguiente
+automática.
+
+## Navegador de pruebas compartido
+
+Copilot y Codex usan un único Chrome de pruebas, con perfil separado y conexión
+local en el puerto 9222. Configuración, arranque y verificación en
+[BROWSER_TESTING.md](./BROWSER_TESTING.md). No usar navegadores adicionales para
+las pruebas del proyecto.
 
 ## Requisitos
 
@@ -120,9 +138,11 @@ npx tsc --noEmit
 
 Referencia original: [diseño público completo de Stitch](https://2eaa6e7d-diario-uno-desktop-redesign.netlify.app/#).
 La home integrada debe ajustarse al inventario mobile, no incorporar
-automáticamente agregados u omisiones de Stitch. `/desktop` no es una referencia
-de la home ni un fallback de la integración: su baseline quedó congelado como
-una instantánea visual independiente, sin datos ni handlers React.
+automáticamente agregados u omisiones de Stitch. `/desktop` no es un fallback
+ni una referencia general de `/`: conserva su implementación estática y
+aportó el diseño superior acordado para `/opcion-2`. `/desktop2` es otro
+experimento estático independiente. Ninguna de esas instantáneas se sincroniza
+automáticamente con las homes funcionales.
 
 El cliente del agente puede disponer además del MCP oficial de Stitch. Esta
 integración es una fuente consultiva externa, no una dependencia del proyecto ni
@@ -134,9 +154,11 @@ para modificar el diseño remoto.
 
 | Ruta | Descripción |
 |---|---|
-| `/` | Home del prototipo |
+| `/` | Primera home funcional; diseño original aprobado |
+| `/opcion-2` | Segunda home funcional; variante 8/4 desde 1024 px, misma home mobile y tramo compartido desde MAM |
 | `/detalle-nota` | Prototipo de página de nota |
 | `/desktop` | Prototipo desktop alternativo; baseline estático con experimentos visuales independientes desde 1024 px |
+| `/desktop2` | Segunda instantánea estática independiente, con experimentos editoriales propios; distinta de `/opcion-2` |
 
 ## Documentación
 

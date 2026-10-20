@@ -11,15 +11,48 @@
 > Desde el 2026-10-17, `/desktop` no es fuente de verdad, referencia ni criterio
 > de aceptación de la home integrada. Su tarea alternativa ya comenzó: parte de
 > una réplica HTML visual y congelada de `/` desde 1024 px, sin hidratación ni
-> handlers React, y puede divergir de forma independiente. La etapa 5 se coteja
-> con la publicación y el MCP oficiales de Stitch; ante discrepancias prevalecen
-> las decisiones aprobadas de este documento.
+> handlers React, y puede divergir de forma independiente. La etapa 5 se cerró
+> el 2026-10-19 tras el cotejo con la publicación y el MCP oficiales de Stitch;
+> su resultado aprobado queda registrado en este documento.
 >
 > **Excepción cerrada:** por instrucción explícita, Ovación adoptó una línea
 > visual propia basada únicamente en su variante aprobada de `/desktop`. Está
 > implementada en mobile y desktop de la home real, no será adaptada a Stitch y
 > queda fuera del alcance de la etapa 5. Esta excepción no se extiende a ninguna
-> otra sección.
+> otra sección de `/`. Para `/opcion-2`, la autorización posterior permite usar
+> el tramo superior de `/desktop` con las reglas específicas que siguen.
+
+### Segunda home funcional `/opcion-2` — aprobada el 2026-10-19
+
+- Comparte con `/` la home mobile completa, Live/Muy Destacada y todos los
+  módulos desde MAM, incluido, hasta el footer. Solo cambia el tramo superior
+  desktop desde 1024 px; usa componentes React funcionales y wrappers, sin HTML
+  capturado. `/desktop` y `/desktop2` conservan sus diseños independientes.
+- Mantiene la grilla 8/4 y gap de 24 px en todos los anchos desktop. Apertura
+  apila foto 16:9 de alta resolución, título, bajada y meta; oculta cabezal
+  interno, volanta y claves. Principales conserva seis cards completas en 2×3.
+- El lateral es un panel `#111827` con padding de 24 px y radio de 8 px. Reúne
+  AHORA, anuncio Pepsi 300×600 escalado proporcionalmente, encuesta adicional y
+  AVANCES DE LA IA. Los cabezales de noticias son blancos; AHORA tiene punto
+  rojo y reloj real, mientras IA usa el símbolo azul de tres nodos.
+- Siempre se ven **seis titulares de AHORA y cuatro de IA**, desde 1024 px.
+  El lateral crece según su contenido, sin ocultar noticias ni recortar filas
+  para igualar la altura izquierda. MAM comienza debajo de la columna más alta;
+  se acepta espacio libre bajo la izquierda. Esta decisión reemplaza únicamente
+  en `/opcion-2` el conteo variable y la altura forzada de la referencia estática.
+- AHORA conserva la apariencia de Agencia con pastillas, pero abre el resumen
+  superpuesto como Timeline. IA no lleva pastillas y despliega el resumen en
+  flujo como Agencia. Se lee en home, sin scroll interno y sin cambiar el tamaño
+  exterior del módulo al abrir/cerrar. Ambos conservan cierre, Escape y foco.
+- La encuesta lateral comparte pregunta, total y cuatro resultados con la
+  principal, que sigue en su ubicación. Su título puede envolver a otra línea
+  para no truncarse; `SONDEO EXCLUSIVO` se oculta entre 1024 y 1100 px. No se
+  incorpora votación ni historial funcional.
+- El header alternativo conserva servicios en el flujo y mantiene sticky la
+  fila principal de 57 px al hacer scroll. Hasta 1023 px conserva el header
+  mobile; el header de `/` mantiene su comportamiento anterior.
+- El usuario aprobó visualmente la implementación después de las validaciones
+  técnicas y funcionales. No quedan ajustes visuales pendientes de este tramo.
 
 ### Diseño alternativo vigente de `/desktop`
 
@@ -62,9 +95,9 @@
   título uppercase 28/34 px y firma, sin bajada; las cuatro filas secundarias
   usan fotos 3:2 y títulos uppercase 16/22 px, o 14/19 px entre 1024–1100 px.
   Todos los títulos llevan volantas rojas y ambas columnas igualan su altura.
-- Salvo la excepción explícita de Ovación documentada debajo, estas reglas son
-  exclusivas del experimento `/desktop`; no son decisiones de la home integrada
-  ni de la etapa 5.
+- Estas reglas describen el experimento `/desktop`; no son decisiones generales
+  de `/` ni de la etapa 5. Ovación conserva su excepción propia y `/opcion-2`
+  adapta únicamente el tramo superior según su especificación precedente.
 
 ### Ovación integrado — diseño propio fuera de la etapa 5
 
@@ -103,19 +136,17 @@
   `CANAL 7 EN VIVO` y `RADIO NIHUIL EN VIVO`. El punto no anima con
   `prefers-reduced-motion`. Los reproductores se centran en el espacio restante.
 - Este ajuste no modifica `/desktop` ni cierra la revisión funcional de la
-  etapa 7 o el cotejo pendiente de estos módulos con Stitch.
+  etapa 7. La presentación visual vigente quedó aceptada con la etapa 5.
 
 ### Decisiones desktop aprobadas durante la etapa 5
 
-> **Estado:** la etapa 6, **ajuste de tamaño de fuentes**, quedó cerrada y
-> aprobada. La etapa 5 está suspendida por indicación del usuario y, cuando se
-> retome, continuará módulo por módulo. Shorts quedó adaptado y aprobado el
-> 2026-10-16; `# A COMER!`/Branded también quedó adaptado y aprobado ese día. Los
-> modales desktop de video y skeletons desktop están entre los pendientes para
-> su cierre.
-> Widgets/anuncios pueden adaptarse visualmente en la etapa 5; su revisión
-> funcional permanece en la etapa 7 y la validación integral y el cierre, en la
-> etapa 8.
+> **Estado:** las etapas 5 y 6 quedaron cerradas y aprobadas. La presentación
+> actual de la home es la línea base visual final de la etapa 5. Los módulos que
+> no tuvieron una adaptación específica —incluidos los skeletons desktop— se
+> aceptan en su estado vigente y ya no son pendientes visuales. Los modales de
+> video recibieron después una variante desktop aprobada, documentada debajo,
+> sin reabrir la etapa 5. La revisión funcional de widgets/anuncios permanece en
+> la etapa 7 y la validación integral y el cierre, en la etapa 8.
 
 - **Marco desktop de la home:** `max-width: 1360px` y padding horizontal de
   32 px desde 1024 px, equivalente al token `px-margin` de Stitch. A 1440 px el
@@ -136,7 +167,7 @@
   por vista con gap de 16 px. Los títulos Geist 14/17,5 se superponen en blanco
   sobre degradado, limitados a dos líneas; el badge individual se oculta y el
   thumbnail amplía en hover. Mobile y 1023 px permanecen intactos. No se agrega
-  suscripción y el modal desktop continúa diferido.
+  suscripción; el modal usa desde 1024 px la variante desktop compartida.
 - **`# A COMER!`/Branded:** desde 1024 px elimina el título y panel blanco
   exteriores y usa un cabezal oscuro con acento azul, logo `# A COMER!`,
   `BRANDED CONTENT • EXPERIENCIAS DE CUYO` y flechas conectadas al único Swiper.
@@ -145,12 +176,14 @@
   limitados a dos líneas; el video amplía en hover y se mantiene un único autoplay
   muteado. Mobile y 1023 px conservan título, panel, sponsor, densidad 1.2 y
   títulos inferiores. El rótulo del cabezal usa Geist 12/16 px, peso 700 y
-  tracking `0.06em`. El modal desktop continúa diferido.
-- **Header:** dos franjas fijas con Geist y 94 px totales desde 1024 px. Solo
-  logo, `PORTADA` y transmisiones en vivo son interactivos. La transmisión no
-  tiene fondo rojo y conserva el punto rojo pulsante; `Suscribite` usa fondo
-  rojo y texto blanco. Home y detalle compensan la altura; mobile y `/desktop`
-  permanecen intactos.
+  tracking `0.06em`. El modal usa desde 1024 px la variante desktop compartida.
+- **Header:** dos franjas con Geist y 94 px totales desde 1024 px cuando la
+  página está al inicio. Al hacer scroll se oculta la franja de servicios y solo
+  permanece fija la fila principal de 57 px; los 94 px reaparecen exclusivamente
+  en `scrollY = 0`. Solo logo, `PORTADA` y transmisiones en vivo son interactivos.
+  La transmisión no tiene fondo rojo y conserva el punto rojo pulsante;
+  `Suscribite` usa fondo rojo y texto blanco. Home, detalle y su banner fijo
+  compensan 94/57 px; mobile y `/desktop` permanecen intactos.
 - **Política:** panel blanco con padding de 24 px, cabezal
   `POLÍTICA & GOBIERNO` y cuerpo 7/5 con gap de 32 px desde 1024 px. Conserva
   una principal y cuatro secundarias locales; las columnas tienen igual altura,
@@ -178,14 +211,33 @@
   Playfair Display 500 de 18/24 px. Incluye categorías latinas de dos palabras,
   conserva las cuatro firmas locales y presenta un botón de carga estrictamente
   visual, sin paginación ni contenido adicional. Mobile permanece intacto.
+- **Gráfico interactivo + Chat Vox Dei:** desde 1024 px forman una fila
+  `minmax(0, 1fr) 448px` con gap de 24 px y paneles blancos de igual altura. La
+  izquierda conserva el wrapper de Legionarius pero reemplaza sus notas por
+  `video_nepal.mp4` en 16:9, autoplay muteado, loop continuo, `playsInline` y
+  sin controles; el video solo se monta en desktop. Su cabezal oscuro usa ícono
+  de gráfico, `GRÁFICO INTERACTIVO` y el meta aprobado `EDICIÓN ESPCIAL`. El chat
+  usa el mismo cabezal con ícono de conversación y `CHAT VOX DEI`; su historial
+  hace scroll interno sin cambiar la altura. Mobile conserva las cinco notas,
+  el chat de 60vh y Sudoku inmediatamente debajo. Sudoku se oculta desde
+  1024 px sin reservar espacio.
+- **Reserva para juegos:** solo desde 1024 px, inmediatamente después de Gráfico
+  interactivo/Chat Vox Dei y antes de Gente, se muestra un contenedor blanco
+  de ancho completo y 400 px de alto. Centra en ambos ejes, a 24 px, el texto
+  `Espacio reservado para juegos. Proyecto en fase de evaluación`. No incluye
+  controles ni funcionalidad y no existe visualmente en mobile.
+- **Orden central y segundo anuncio:** en mobile y desktop, Encuesta/Senatus,
+  Ovación, el segundo anuncio y Sociedad aparecen consecutivamente en ese orden.
+  El anuncio conserva el rectángulo animado
+  300×250 en mobile. Desde 1024 px adopta el leaderboard premium de Stitch a
+  todo el ancho: gradiente horizontal `#1c69a8` / `#0f3d61`, rótulo IAB, título
+  Playfair Display de 22/28 px `VENDIMIA CONNECT 2026`, bajada y CTA blanco
+  `Reservar Experiencia →`. El CTA es exclusivamente visual.
 - **Cursor de acción:** desde 1024 px y solo con puntero fino, las superficies
   visuales aprobadas de Muy Destacada, Principales, MAM, Política, Crimen,
   Sociedad, Gente y ULTIMATEM, junto con el botón visual de carga y los controles
   de presentación del header, usan `cursor: pointer`. No se agregan handlers,
   enlaces ni navegación; las funciones reales preexistentes se preservan.
-- Entre los pendientes de la etapa 5 se mantienen el diseño desktop de los
-  modales de video y la revisión visual de los skeletons desktop.
-
 ---
 
 ## 🎯 Identidad y filosofía
@@ -504,7 +556,7 @@ usuario después de esa evaluación. Se comparan dos formas de leer resúmenes
 sin salir de la home. **Ambos bloques se ocultan desde 1024 px (`lg:hidden`),
 sin reservar espacio, hasta definir su ubicación adecuada en desktop.** No se
 eliminan ni se trasladan a otro lugar: mobile conserva su posición y comportamiento.
-Ambas usan cuerpo negro y marco blanco redondeado;
+Ambos listados usan fondo `#111827` y conservan el marco blanco redondeado;
 el cabezal `AHORA` conserva el punto rojo pulsante y reloj local real.
 El pulso respeta movimiento reducido.
 Cada variante tiene un contenedor exterior con `data-home-module`, `pt-1 pb-2`
@@ -570,13 +622,17 @@ Borde inferior: border-b-2 separadores mx-2
 Desktop aprobado desde 1024 px:
 
 ```
-Altura: 94px (franja de datos 37px + barra principal 57px), posición fixed
+Inicio: 94px (franja de datos 37px + barra principal 57px), posición fixed
+Scroll: franja de datos colapsada; barra principal fija de 57px
+Retorno: la franja de datos reaparece únicamente en scrollY = 0
 Tipografía: Geist
 Interacción: logo + PORTADA + Canal 7/Radio Nihuil; el resto es solo visual
 Live: fondo transparente, texto blanco y punto rojo pulsante
 Suscribite: fondo rojo, texto blanco
 Anchos intermedios: fecha oculta; overflow interno sin scrollbar visible
-Offset: home y detalle compensan 94px; /desktop queda aislada
+Offset: home y detalle compensan 94/57px; el banner de detalle acompaña el cambio
+Accesibilidad: servicios ocultos con inert + aria-hidden; sin transición con reduced-motion
+/desktop queda aislada
 ```
 
 ### Footer
@@ -746,6 +802,7 @@ Alcance:     diseño propio; fuera del cotejo y adaptación de Stitch de etapa 5
 #### Arquetipo G: "Solo texto" (Listado sin fotos)
 
 ```
+Alcance: mobile y hasta 1023px; en desktop lo reemplaza Gráfico interactivo
 Layout:  flex flex-col, artículos separados por border-b border-gray-200
 Título:  font-serif text-base leading-snug, sin truncado
 Sin foto, sin bajada, sin byline.
@@ -811,10 +868,8 @@ Pagination: bullets circulares #9ca3af (10×10px), activo en píldora (16×10px 
 ### Modal inmersivo (fullscreen vertical)
 
 ```
-Shell:     fixed inset-0 z-50 bg-black  |  h-dvh w-full
 Portal:    createPortal sobre document.body (obligatorio por transform de Swiper)
 Swiper:    direction="vertical", slidesPerView=1, mousewheel, keyboard
-Close:     absolute right-4 top-4  |  h-10 w-10 rounded-full bg-black/60
 Gradient:  bg-gradient-to-t from-black/80 to-transparent pt-16
 Controls:  flex items-end gap-3 px-4 pb-3
   Play/Pause: h-9 w-9 rounded-full bg-black/50 border-white/40
@@ -824,6 +879,26 @@ Controls:  flex items-end gap-3 px-4 pb-3
 Metadata:
   MAM:     font-sans text-sm text-white/80 underline (link a nota)
   Branded: font-sans text-xs uppercase tracking-wider text-white/70 (marca · categoría)
+```
+
+Hasta 1023 px:
+
+```
+Shell:     fixed inset-0 z-50 bg-black  |  h-dvh w-full
+Player:    h-full w-full object-cover, a sangre completa
+Close:     absolute right-4 top-4  |  h-10 w-10 rounded-full bg-black/60
+Laterales: ocultos
+```
+
+Desde 1024 px:
+
+```
+Shell:     fixed inset-0 z-50 bg-black/75 backdrop-blur-sm
+Player:    h-dvh w-auto aspect-9/16, centrado (video nativo o iframe activo)
+Laterales: anterior/siguiente, h-12 w-12, blancos, a ambos lados del player
+           deshabilitados en el primer/último video
+Close:     right-6 top-6  |  h-12 w-12 bg-white/90 text-gray-900
+Fondo:     la home permanece visible detrás del velo
 ```
 
 ---
@@ -870,7 +945,9 @@ Link:      text-xs font-bold text-[#1c69a8] uppercase tracking-wider hover:under
 #### Chat Bot ("Chat Vox Dei")
 
 ```
-Container: h-[60vh] border border-gray-300 rounded-lg shadow-lg/30
+Mobile:    h-[60vh] border border-gray-300 rounded-lg shadow-lg/30
+Desktop:   panel blanco p-6; cabezal oscuro con ícono + CHAT VOX DEI
+           altura igual al panel de video; historial con scroll interno
 Messages:  grow p-4 space-y-4 overflow-y-auto
 User msg:  w-3/4 bg-black text-white rounded-lg justify-end
 Bot msg:   w-3/4 bg-gray-200 text-gray-800 rounded-lg justify-start
@@ -882,6 +959,7 @@ Icon:      SendIcon w-6 h-6 (paper airplane)
 #### Sudoku
 
 ```
+Alcance:   visible debajo del chat hasta 1023px; oculto en desktop
 Card:      max-w-md mx-auto rounded-lg shadow-md p-4 border border-gray-200
 Grid:      grid grid-cols-9 border-2 border-gray-800 bg-gray-800 gap-px
 Cells:     w-8 h-8 sm:w-10 sm:h-10 text-lg font-semibold text-center
@@ -895,11 +973,13 @@ Subgrid:   mr-0.5 / mb-0.5 cada 3 columnas/filas
 #### Banner publicitario
 
 ```
-Outer:     mb-4 p-4 bg-white rounded-lg shadow-md flex flex-col items-center
+Mobile:    mb-4 p-4 bg-white rounded-lg shadow-md flex flex-col items-center
 Label:     text-[10px] text-gray-400 uppercase tracking-wider mb-2 "Publicidad"
-Ad slot:   w-[300px] h-[250px] (IAB Medium Rectangle)
+Ad slot:   w-[300px] h-[250px] (IAB Medium Rectangle); ambas inserciones
            rounded-md bg-gradient-to-br from-[#1c69a8] to-[#0f3d61] shadow-inner
 Shimmer:   animate-shimmer (brillo continuo via-white/10)
+Desktop:   ad-listado conserva el rectángulo; ad-ovacion usa leaderboard de
+           ancho completo con gradiente azul, contenido max-w-4xl y CTA visual
 ```
 
 ---
@@ -914,8 +994,8 @@ Aspect ratios bloqueados para prevenir CLS:
 Thumbnails: w-24 h-24 rounded-md (o w-24 aspect-[4/3])
 ```
 
-`MuyDestacadaSkeleton` conserva temporalmente su placeholder 1:1. Su adaptación
-desktop está incluida en la revisión de skeletons diferida al final de la etapa 5.
+`MuyDestacadaSkeleton` conserva su placeholder 1:1. La presentación desktop
+vigente de los skeletons quedó aceptada al cerrar la etapa 5.
 
 9 skeletons: MuyDestacada, SeccionListado (reutilizado ×7), MAM, Shorts, Ovación,
 Más noticias, Apertura, Listado sin fotos, Branded.
@@ -933,28 +1013,33 @@ el reader de detalle. No extender esos clamps a los módulos calibrados.
 
 ## 🗂 Estructura de secciones en la Home (orden)
 
+La lista refleja el orden mobile vigente. Servicios permanece implementado pero
+está oculto en `/`. Desde 1024 px, Listado sin fotos se reemplaza por Gráfico
+interactivo junto al chat, Sudoku se oculta sin reservar espacio y la reserva
+para juegos se inserta antes de Gente.
+
 1. MuyDestacada — nota principal con video 16:9 + LIVE
 2. Apertura — hero card con foto 4:3
-3. Principales — carrusel Swiper de **6 cards** de noticias
-4. **Carrusel MAM** — videos de producción (mp4)
-5. Política — principal + 4 listado
-6. **YouTube Shorts** — Shorts del canal
-7. Servicios — widgets clima, dólar, tránsito, claves
+3. Última hora — variantes temporales Timeline y Agencia, solo en mobile
+4. Principales — carrusel Swiper de **6 cards** de noticias
+5. **Carrusel MAM** — videos de producción (mp4)
+6. Política — principal + 4 listado
+7. **YouTube Shorts** — Shorts del canal
 8. Opinión — grid 2×2 columnistas
 9. **Branded Content** — videos por vertical comercial
 10. Encuesta — poll interactivo
 11. Senatus Romano — 2 cards apiladas (video + imagen; conservar el video en la home integrada desktop)
-12. Banner Publicitario — 300×250 animado
-13. Sociedad — **5 noticias**: 1 principal + 4 secundarias en mobile y desktop
-14. Canal 7 Live — stream 16:9
-15. Radio Nihuil Live — click-to-load stream
-16. Listado sin fotos — feed solo texto
-17. ChatBot — "Chat Vox Dei"
-18. Ovación — deportes (widget + principal + listado)
-19. Banner Publicitario — segundo 300×250
-20. Gente — 6 retratos: grid 2×3 mobile y 3×2 desktop
-21. Crimen — principal + 4 listado
-22. Sudoku — juego interactivo
+12. Ovación — deportes (widget + principal + listado)
+13. Banner Publicitario — segundo 300×250 mobile; leaderboard desktop
+14. Sociedad — **5 noticias**: 1 principal + 4 secundarias en mobile y desktop
+15. Canal 7 Live — stream 16:9
+16. Radio Nihuil Live — click-to-load stream
+17. Banner Publicitario — primer anuncio 300×250 animado
+18. Listado sin fotos — feed solo texto; Gráfico interactivo en desktop
+19. ChatBot — "Chat Vox Dei"
+20. Sudoku — juego interactivo solo hasta 1023px
+21. Gente — 6 retratos: grid 2×3 mobile y 3×2 desktop
+22. Crimen — principal + 4 listado
 23. Más noticias — feed 50/50 texto + foto
 24. Footer
 
@@ -986,7 +1071,7 @@ el reader de detalle. No extender esos clamps a los módulos calibrados.
   segundo y tercero de mobile con categorías y bajadas de Stitch. El video se
   obtiene por el ID fijo de Pexels `34634812`, hay una sola instancia y solo usa
   controles nativos. No se agregan los metadatos inferiores de Stitch ni se
-  modifica `/desktop` o el skeleton pendiente.
+  modifica `/desktop`; el skeleton conserva la presentación aceptada al cierre.
 - **Política aprobada (2026-10-15):** desde 1024 px usa panel con cabezal
   `POLÍTICA & GOBIERNO`, cuerpo 7/5 y cuatro secundarias; principal y listado
   ocupan el mismo alto. Conserva contenido y firmas locales, miniaturas 112×112
