@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# Local design source archive; the implemented prototypes are versioned separately.
+/stitch_diario_uno_desktop_redesign (1).zip
+
 # debug
 npm-debug.log*
 yarn-debug.log*

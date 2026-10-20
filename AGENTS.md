@@ -15,6 +15,13 @@ las decisiones visuales y los patrones de componentes de la versión mobile.
 
 ## Reglas que no se negocian
 
+- **Sin worktrees.** Trabajar siempre en la carpeta principal `uno-2026-1`.
+  No crear, solicitar ni usar worktrees para este proyecto, tampoco al abrir
+  sesiones o delegar tareas. Si una sesión arranca en un worktree, informar
+  el conflicto y detener las modificaciones: no editar allí ni migrar cambios
+  automáticamente. Al configurar una sesión, elegir carpeta/workspace sin
+  aislamiento (`isolation: false` si la herramienta usa un booleano).
+  No eliminar worktrees existentes sin autorización y revisión de su contenido.
 - **`page.tsx` importa wrappers.** Todo componente que traiga datos expone un
   archivo `-wrapper.tsx` que es su única puerta de entrada: nunca importar cards,
   carruseles ni servicios directamente desde una página. Es una convención
@@ -32,6 +39,22 @@ las decisiones visuales y los patrones de componentes de la versión mobile.
 
 La lista completa está en la sección *Convenciones a respetar* de
 [PROGRESS.md](./PROGRESS.md).
+
+## Navegador compartido de pruebas
+
+- Usar exclusivamente Chrome DevTools MCP conectado a
+  `http://127.0.0.1:9222`, según la [guía de pruebas](./BROWSER_TESTING.md).
+- Antes de abrir una pestaña, listar las existentes y reutilizar la del proyecto.
+  No lanzar Chrome, Chromium, Playwright ni navegadores headless adicionales,
+  tampoco mediante capturas por CLI o el navegador integrado del editor.
+- Si el navegador compartido no está disponible, informar el bloqueo y pedir
+  que se abra; no iniciar otro como fallback. No iniciar servidores de desarrollo
+  duplicados.
+- Un solo agente controla cada pestaña. En tareas simultáneas, usar pestañas
+  distintas dentro del mismo Chrome y coordinar su propiedad.
+- Cerrar solo las pestañas temporales creadas por la tarea. No cerrar el Chrome
+  compartido al terminar, salvo pedido explícito del usuario.
+- No visitar cuentas personales ni sitios sensibles en el perfil de pruebas.
 
 ## Al cerrar un tramo de trabajo
 

@@ -1,0 +1,22 @@
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = [
+  "-y",
+  "chrome-devtools-mcp@1.11.0",
+  "--browser-url=http://127.0.0.1:9222",
+  "--no-usage-statistics",
+  "--no-performance-crux",
+]
+startup_timeout_sec = 30
+
+[mcp_servers.chrome-devtools.tools.navigate_page]
+approval_mode = "approve"
+
+[mcp_servers.chrome-devtools.tools.emulate]
+approval_mode = "approve"
+
+[mcp_servers.chrome-devtools.tools.evaluate_script]
+approval_mode = "approve"
+
+[mcp_servers.chrome-devtools.tools.press_key]
+approval_mode = "approve"
