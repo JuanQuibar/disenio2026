@@ -16,12 +16,15 @@ visualmente `/opcion-2` el 2026-10-19.
 **Mobile first**: la home `/` conserva la experiencia mobile y compone su
 presentación desktop desde 1024 px. Para revisar mobile, usar el modo dispositivo
 del navegador (por ejemplo 414×896).
+Las dos variantes temporales de Última hora muestran cinco noticias cada una en
+mobile. El lateral de `/opcion-2` conserva seis titulares en AHORA y cuatro en
+AVANCES DE LA IA desde 1024 px.
 La home usa una columna general. En mobile, las cinco notas de Legionarius, el
 chat y Sudoku aparecen consecutivamente. Desde 1024 px, esa zona se convierte
 en una fila con `GRÁFICO INTERACTIVO` a la izquierda y `CHAT VOX DEI` en una
 columna de 448 px; ambos paneles igualan su altura y Sudoku queda oculto.
-Debajo aparece únicamente en desktop una reserva blanca de ancho completo y
-400 px de altura para el futuro espacio de juegos, antes de Gente.
+Debajo de Crimen aparece únicamente en desktop una reserva blanca de ancho
+completo y 400 px de altura para el futuro espacio de juegos.
 Después de Encuesta/Senatus, la composición aprobada continúa con Ovación, el
 segundo anuncio y Sociedad, en ese orden y en ambos anchos. Ese anuncio conserva
 el formato 300×250 en mobile y adopta desde 1024 px el leaderboard
@@ -41,6 +44,11 @@ conservan sus Swipers y muestran seis piezas con navegación anterior/siguiente
 sobre la misma instancia. Los tres módulos mantienen sus modales y reglas de
 reproducción/sonido; no se montan iframes de Shorts en el feed. La disponibilidad
 de reproducción de YouTube sigue dependiendo del proveedor externo.
+
+Las cuatro homes presentan desde 1024 px una selección de doce fotos editoriales
+tomadas en Argentina. Las homes funcionales mantienen sus imágenes mobile y
+sirven originales de resolución suficiente para los recortes desktop; las dos
+rutas estáticas guardan la misma selección en sus propias instantáneas.
 
 La integración sigue el
 [plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop):

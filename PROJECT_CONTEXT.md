@@ -35,8 +35,8 @@ Crear un prototipo de alto impacto ("Wow Effect") para el rediseño de `diarioun
     agrupaciones responsive. Desde el 2026-10-19, mobile conserva Legionarius,
     chat y Sudoku en ese orden. Desde 1024 px, Legionarius se reemplaza por el
     Gráfico interactivo, comparte fila y altura con el chat, y Sudoku se oculta
-    sin reservar espacio. Debajo se inserta una reserva presentacional blanca de
-    400 px para un futuro espacio de juegos, antes de Gente. También desde esa
+    sin reservar espacio. La reserva presentacional blanca de 400 px para un
+    futuro espacio de juegos aparece debajo de Crimen. También desde esa
     fecha,
     Canal 7, Radio Nihuil y el primer anuncio comparten una fila de tres
     columnas desde 1024 px: el anuncio reserva 332 px y el espacio restante se
@@ -115,6 +115,31 @@ Reglas:
     desaparece por completo (no deja contenedores vacíos).
 *   Los componentes internos de una sección no se importan desde otras secciones.
 
+### Resolución de las fotos en desktop
+
+`components/editorial-image.tsx` es una primitive presentacional, sin fetch.
+Conserva las props y la fuente del `<Image>` mobile y agrega un `<source>` desde
+1024 px. Para Pexels retira los parámetros `h` y `w` de la copia reducida antes
+de pasarla al optimizador de Next; pedir más ancho sobre la copia `medium` de
+350 px no recupera el detalle del original. Los retratos locales también usan
+una selección desktop ajustada a su recorte circular.
+
+`desktopSizes` debe cubrir la imagen completa **antes** del recorte
+`object-cover`, no solo el ancho del contenedor. Por eso Gente, las fotos 4:3 y
+las miniaturas cuadradas pueden necesitar más ancho de descarga que su ancho
+CSS. Se verificó suficiencia hasta densidad 2× con los originales actuales.
+La selección desktop aprobada de doce fotos tomadas en Argentina se define para
+las dos homes funcionales en `app/content/desktop-editorial-photos.ts` y cubre
+Apertura, Principales, Política, Ovación, Sociedad, Gente y Crimen. Los
+originales verificados tienen entre 3011 y 6016 px de ancho. Las fuentes y
+fotografías mobile, junto con las medidas del diseño, se conservan.
+`/desktop` y `/desktop2` conservan fuentes equivalentes dentro de su HTML
+estático independiente; la selección de fotos se incorporó por separado a cada
+instantánea. No importan esta primitive ni se regeneran desde las homes. La
+publicidad Pepsi usa el original aportado por el usuario
+`public/aviso_pepsi.jpeg` (1440×2912), suficiente para su recuadro de hasta
+300×600 también a densidad 2×, en las tres rutas que la muestran.
+
 ### Segunda home funcional aprobada (`/opcion-2`)
 
 El usuario aprobó visualmente esta propuesta el 2026-10-19. Se implementó para
@@ -140,9 +165,10 @@ Tiene altura natural y MAM comienza después de la columna más alta: puede qued
 espacio libre bajo la izquierda. No heredar de `/desktop` las reglas que ocultan
 filas por ancho ni su `contain: size` para forzar la altura del lateral.
 
-`UltimaHoraComparacionWrapper` acepta `alternativa` y entrega el mismo dataset
-por carga a las dos variantes mobile y a AHORA. `UltimaHoraLateralWrapper` limita
-AHORA a las seis primeras noticias y compone el lateral. IA usa los primeros
+`UltimaHoraComparacionWrapper` acepta `alternativa` y genera un dataset por
+carga. Entrega las primeras cinco noticias a cada variante mobile y el dataset
+completo al lateral desktop. `UltimaHoraLateralWrapper` limita AHORA a las seis
+primeras noticias y compone el lateral. IA usa los primeros
 cuatro titulares y fuentes de la referencia, con resúmenes ficticios en
 `avances-ia-noticias.ts`; no son citas reales de esos medios. La primitive
 `UltimaHoraResumenes` separa `variante` (interacción) de `apariencia` y permite
@@ -197,7 +223,7 @@ panel negro que abarca Apertura y Principales, con radio exterior de 8 px y
 de ambos laterales, usa radio de 6 px y presenta en negro el punto rojo, `AHORA`
 y el reloj congelado. Se muestran sólo los primeros seis titulares. A
 continuación, un fragmento HTML estático añade una tarjeta blanca con separador
-`PUBLICIDAD` y la pieza Pepsi 300×600 de `public/ads/pepsi-300x600.png`, seguida
+`PUBLICIDAD` y la pieza Pepsi 300×600 de `public/aviso_pepsi.jpeg`, seguida
 por un corte `PARTICIPACIÓN` y una réplica visual de la encuesta. La pieza escala
 proporcionalmente a 1024 px; el cabezal de la encuesta replica al original y
 oculta su meta hasta 1100 px. La encuesta original permanece en su ubicación.
@@ -249,11 +275,11 @@ La composición actual invierte el patrón foto/título de la instantánea origi
 Cobertura extraordinaria, Apertura, las seis tarjetas de
 Legionarius/Principales, Política, Ovación, Sociedad, Crimen y las dos tarjetas
 de Senatus muestran título, firma y metadatos antes del medio. Apertura usa una
-relación 4:3. Las 16 bajadas capturadas no se muestran, incluidas las dos del
-foco de cobertura. Para evitar huecos después de retirarlas, Política, Sociedad
-y Crimen permiten que la imagen principal crezca hasta completar exactamente la
-altura del listado lateral; el resto de las tarjetas conserva sus proporciones
-naturales.
+relación 4:3. Las 14 bajadas editoriales con clase `bajada` no se muestran;
+las dos descripciones de `FOCO DE COBERTURA` permanecen visibles. Para evitar
+huecos después de retirar las bajadas, Política, Sociedad y Crimen permiten que
+la imagen principal crezca hasta completar exactamente la altura del listado
+lateral; el resto de las tarjetas conserva sus proporciones naturales.
 
 La variante fue revisada en 1024×900, 1366×900 y 1440×900, sin overflow
 horizontal ni errores o warnings de consola. `git diff --check`,
@@ -382,8 +408,10 @@ error sin exponer credenciales. Los wrappers omiten su sección cuando no hay da
     un solo dataset por carga y lo pasa a los dos wrappers de servidor.
     `ultima-hora-noticias.ts` centraliza identidad, titular, hora ficticia,
     volanta y contribuciones estructuradas como fuente/párrafo.
-    Las diez noticias comparten entre variantes entre dos y cuatro fuentes
-    únicas aleatorias, estables hasta recargar, del catálogo Infobae, Clarín,
+    De las diez noticias generadas, las dos variantes mobile muestran las mismas
+    primeras cinco; el lateral desktop de `/opcion-2` conserva seis en AHORA.
+    Cada noticia reúne entre dos y cuatro fuentes únicas aleatorias, estables
+    hasta recargar, del catálogo Infobae, Clarín,
     La Nación, Cronista, Página 12, iProfesional y a24. Son datos de maqueta,
     no contenido ni citas reales de esos medios.
     `ultima-hora-resumenes.tsx` es la primitive cliente local de interacción y
@@ -513,8 +541,8 @@ la documentación aprobada y el ZIP preservado; `/desktop` no es un fallback.
 - Mobile define el inventario base y desktop lo conserva salvo por decisiones
   explícitamente aprobadas: Servicios está fuera de `/`, Sudoku se oculta y las
   cinco notas de Legionarius son reemplazadas por el gráfico interactivo.
-  Desktop agrega además la reserva presentacional para juegos entre esa fila y
-  Gente. Stitch define la referencia visual, no habilita por sí solo agregar
+  Desktop agrega además la reserva presentacional para juegos debajo de Crimen.
+  Stitch define la referencia visual, no habilita por sí solo agregar
   funcionalidades ni eliminar módulos.
 - Mantener orden y comportamiento mobile. Desktop sigue ese mismo orden, no el
   de Stitch. Desde **1024 px (`lg`)**, Encuesta/Senatus y Gráfico
@@ -1275,7 +1303,7 @@ especificación visual canónica está en
   Legionarius/asistente → Gente → Crimen → últimas noticias → footer. Servicios
   se conserva implementado pero está oculto. En mobile, Sudoku se ubica debajo
   del asistente; desde 1024 px queda oculto, Legionarius pasa a ser Gráfico
-  interactivo y la reserva para juegos aparece antes de Gente.
+  interactivo y la reserva para juegos aparece debajo de Crimen.
 - Los wrappers de pareja en `app/components/home/` resuelven y validan ambos
   módulos antes de crear el contenedor. Si falta cualquiera, la pareja completa
   devuelve `null` en ambos anchos. Conservar las puertas de entrada por wrapper,
@@ -1380,7 +1408,7 @@ Principales antes de MAM y Política antes de Shorts. La especificación
   no acordados.
 - Orden mobile preservado también visualmente en desktop salvo la ocultación de
   Sudoku, el reemplazo aprobado de Legionarius por el gráfico interactivo y la
-  reserva para juegos antes de Gente; solo las agrupaciones locales
+  reserva para juegos debajo de Crimen; solo las agrupaciones locales
   documentadas comparten fila. Comparar con Stitch por jerarquía, proporciones y
   espacios internos, no secuencia, agrupaciones descartadas ni fotos/copys.
 - Probar 414×896, 768×1024, anchos 1023 y 1024, y 1440×900: sin overflow horizontal,

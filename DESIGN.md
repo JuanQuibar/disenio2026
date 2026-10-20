@@ -221,8 +221,8 @@
   hace scroll interno sin cambiar la altura. Mobile conserva las cinco notas,
   el chat de 60vh y Sudoku inmediatamente debajo. Sudoku se oculta desde
   1024 px sin reservar espacio.
-- **Reserva para juegos:** solo desde 1024 px, inmediatamente después de Gráfico
-  interactivo/Chat Vox Dei y antes de Gente, se muestra un contenedor blanco
+- **Reserva para juegos:** solo desde 1024 px, inmediatamente después de Crimen
+  y antes de Últimas noticias, se muestra un contenedor blanco
   de ancho completo y 400 px de alto. Centra en ambos ejes, a 24 px, el texto
   `Espacio reservado para juegos. Proyecto en fase de evaluación`. No incluye
   controles ni funcionalidad y no existe visualmente en mobile.
@@ -556,6 +556,7 @@ usuario después de esa evaluación. Se comparan dos formas de leer resúmenes
 sin salir de la home. **Ambos bloques se ocultan desde 1024 px (`lg:hidden`),
 sin reservar espacio, hasta definir su ubicación adecuada en desktop.** No se
 eliminan ni se trasladan a otro lugar: mobile conserva su posición y comportamiento.
+Cada variante muestra las mismas cinco noticias, en el mismo orden.
 Ambos listados usan fondo `#111827` y conservan el marco blanco redondeado;
 el cabezal `AHORA` conserva el punto rojo pulsante y reloj local real.
 El pulso respeta movimiento reducido.
@@ -1016,7 +1017,7 @@ el reader de detalle. No extender esos clamps a los módulos calibrados.
 La lista refleja el orden mobile vigente. Servicios permanece implementado pero
 está oculto en `/`. Desde 1024 px, Listado sin fotos se reemplaza por Gráfico
 interactivo junto al chat, Sudoku se oculta sin reservar espacio y la reserva
-para juegos se inserta antes de Gente.
+para juegos se inserta debajo de Crimen.
 
 1. MuyDestacada — nota principal con video 16:9 + LIVE
 2. Apertura — hero card con foto 4:3

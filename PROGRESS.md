@@ -21,6 +21,9 @@ La composición alternativa mantiene 8/4 y muestra siempre seis titulares en
 AHORA y cuatro en AVANCES DE LA IA, con resúmenes interactivos y altura natural
 del lateral. `/desktop` y `/desktop2` siguen siendo experimentos estáticos
 independientes; no confundirlos con la segunda home funcional.
+En mobile, las dos variantes temporales de Última hora muestran cinco noticias
+cada una. Las cuatro rutas usan desde 1024 px la selección de fotos editoriales
+tomadas en Argentina, sin reemplazar las imágenes mobile de las homes funcionales.
 
 Prototipo mobile-first funcionando. La home renderiza los **tres carruseles de
 video definitivos** (MAM, Shorts y Branded), validados en viewport 414×896 sin
@@ -46,9 +49,9 @@ Mobile conserva las cinco notas de Legionarius y ubica Sudoku inmediatamente
 debajo del chat. Desde 1024 px, Legionarius se reemplaza por el video local de
 Nepal en loop continuo, el chat comparte su altura y Sudoku se oculta sin
 reservar espacio.
-Inmediatamente debajo de Gráfico interactivo/chat, desktop incorpora un
-contenedor blanco de 400 px de alto y ancho completo para reservar el futuro
-espacio de juegos; permanece ausente en mobile.
+Inmediatamente debajo de Crimen, desktop incorpora un contenedor blanco de
+400 px de alto y ancho completo para reservar el futuro espacio de juegos;
+permanece ausente en mobile.
 Desde 1024 px los tres contenedores mantienen la misma altura; los streams
 tienen cabezales `CANAL 7 EN VIVO` y `RADIO NIHUIL EN VIVO` con punto rojo
 pulsante, respetando la preferencia de movimiento reducido.
@@ -74,8 +77,9 @@ incluidos sus estilos locales, y guarda toda la instantánea en un único
 datos de `/desktop`, no hidrata handlers y puede abrirse directamente. Desde
 esa captura evolucionó de forma deliberada: los módulos editoriales acordados
 presentan título y firma antes del medio, Apertura usa foto 4:3 y las bajadas no
-se muestran. Política, Sociedad y Crimen expanden su imagen principal para
-terminar a la misma altura que el listado lateral.
+se muestran, salvo las dos del panel `FOCO DE COBERTURA`. Política, Sociedad y
+Crimen expanden su imagen principal para terminar a la misma altura que el
+listado lateral.
 
 Por instrucción explícita del usuario, la variante de Ovación de `/desktop`
 fue trasladada después al módulo real de Ovación en `/` como un trabajo
@@ -145,6 +149,67 @@ pública, no autoriza mutaciones y su credencial nunca se guarda en el repositor
 
 ## ✅ Hecho
 
+### 2026-10-19 — Cinco noticias por variante de Última hora mobile
+
+Timeline y Agencia comparten ahora las primeras cinco noticias del mismo dataset
+en `/` y `/opcion-2`. La reducción se hace en
+`UltimaHoraComparacionWrapper`; el lateral desktop de `/opcion-2` sigue
+recibiendo el dataset completo y conserva seis titulares en AHORA y cuatro en
+AVANCES DE LA IA. `/desktop` y `/desktop2` no cambiaron en este tramo. Se
+comprobaron ambas homes a 414 px, la interacción del quinto titular y el conteo
+desktop a 1440 px. Pasaron tipos, build y `git diff --check`.
+
+### 2026-10-19 — Fotos editoriales argentinas en las cuatro homes desktop
+
+Tras la revisión visual de las candidatas, se eligieron doce fotos de Pexels
+tomadas en Argentina para Apertura, dos tarjetas de Principales, las principales
+de Política, Ovación, Sociedad y Crimen, una secundaria de Sociedad y cuatro
+retratos de Gente. Apertura usa la misma foto de viñedo mendocino en las cuatro
+rutas. Las homes funcionales declaran la selección en
+`app/content/desktop-editorial-photos.ts` y la muestran solo desde 1024 px
+mediante `EditorialImage`; `/desktop` y `/desktop2` conservan copias propias
+en sus instantáneas. Las fotos mobile siguen siendo las del servicio.
+
+Se comprobaron las dimensiones originales, entre 3011 y 6016 px de ancho, y
+los recortes principales a 1440 px, incluida la Apertura 4:3 de `/desktop2`.
+Las cuatro rutas muestran la selección esperada, sin overflow, y las dos homes
+funcionales mantienen sus fuentes mobile a 414 px. Pasaron tipos, build y
+`git diff --check`.
+
+### 2026-10-19 — Reserva de juegos ubicada debajo de Crimen
+
+Por indicación del usuario, el mismo bloque de 400 px se trasladó de debajo
+de Gráfico interactivo/Chat a entre Crimen y Últimas noticias. La ubicación
+coincide en `/`, `/opcion-2`, `/desktop` y `/desktop2`; en las dos homes
+funcionales sigue oculto en mobile. No cambian su contenido ni sus medidas.
+
+### 2026-10-19 — Fotos desktop desde originales con resolución suficiente
+
+Se auditaron `/`, `/opcion-2`, `/desktop` y `/desktop2`, comparando el tamaño
+real de los archivos servidos con el tamaño necesario antes del recorte
+`object-cover`. Varias fotos usaban la copia Pexels `medium` de 350 px de alto
+y se ampliaban en desktop; algunas miniaturas también seleccionaban un archivo
+demasiado pequeño para cubrir su recuadro cuadrado.
+
+Las homes funcionales incorporan `EditorialImage`, una primitive presentacional
+que conserva el `<Image>` mobile y agrega una fuente desde 1024 px. Desktop
+optimiza el original sin los límites `h`/`w` de la miniatura; `desktopSizes`
+contempla el recorte, incluyendo Gente y los retratos de Opinión. Las dos rutas
+estáticas guardan fuentes equivalentes dentro de su propia instantánea, sin
+conectarlas a los componentes ni a los datos de las homes. Se conservan las
+fotografías, el diseño y las fuentes mobile.
+
+Las cuatro rutas se comprobaron a 1024, 1280 y 1440 px, incluida densidad 2×:
+las fotografías tienen píxeles suficientes y no hay overflow. A 414 px las
+fuentes y medidas de ambas homes coinciden con las anteriores. El usuario
+aportó `public/aviso_pepsi.jpeg` (1440×2912) para resolver también la falta de
+resolución Retina de la publicidad anterior: se usa en `/opcion-2`, `/desktop`
+y `/desktop2`, conservando el recuadro de hasta 300×600 y su recorte.
+Por indicación posterior del usuario, Apertura en ambas rutas estáticas usa la
+foto actual de `/` (Pexels `12909990`), manteniendo respectivamente 16:9 y 4:3.
+Pasaron `npx tsc --noEmit`, `npm run build` y `git diff --check`. El build
+requirió acceso de red para descargar las fuentes de Google.
+
 ### 2026-10-19 — Segunda home funcional `/opcion-2`, aprobada visualmente
 
 Se incorporó una segunda propuesta para accionistas mediante React y los
@@ -189,10 +254,11 @@ se sincroniza automáticamente con cambios futuros de `/` o `/desktop`.
 Sobre esa base se invirtió el orden interno a título/firma antes del medio en
 Cobertura extraordinaria, Apertura, las seis tarjetas de
 Legionarius/Principales, Política, Ovación, Sociedad, Crimen y las dos tarjetas
-de Senatus. Apertura usa relación 4:3. Se retiraron visualmente las 16 bajadas
-capturadas, incluidas las del foco de cobertura; Política, Sociedad y Crimen
-compensan ese espacio haciendo crecer la imagen principal hasta igualar
-exactamente la altura del listado derecho.
+de Senatus. Apertura usa relación 4:3. Se retiraron visualmente las 14 bajadas
+editoriales con clase `bajada`; las dos descripciones de `FOCO DE COBERTURA`
+se conservan. Política, Sociedad y Crimen compensan el espacio retirado haciendo
+crecer la imagen principal hasta igualar exactamente la altura del listado
+derecho.
 
 Se verificó la ruta a 1024×900, 1366×900 y 1440×900: conserva el orden de
 módulos, no presenta overflow horizontal ni errores o warnings de consola.

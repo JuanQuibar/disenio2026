@@ -25,7 +25,7 @@ export function UltimaHoraLateralWrapper({ noticias }: { noticias: NoticiaUltima
       <section className="home-alternative-ad-container" aria-label="Publicidad">
         <div className="home-alternative-divider"><span>PUBLICIDAD</span></div>
         <div className="home-alternative-ad">
-          <Image src="/ads/pepsi-300x600.png" alt="Pepsi: Nuevo sabor, nueva generación" width={300} height={600} sizes="(max-width: 1100px) 224px, 300px" />
+          <Image src="/aviso_pepsi.jpeg" alt="Pepsi: Nuevo sabor, nueva generación" width={300} height={600} sizes="(max-width: 1100px) 224px, 300px" />
         </div>
       </section>
 

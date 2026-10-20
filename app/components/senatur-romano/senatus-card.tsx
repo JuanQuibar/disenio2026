@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import { useRef, useEffect } from "react";
 import {
@@ -67,7 +67,8 @@ export function SenatusCard({
             className="senatus-card-visual w-full h-full object-cover"
           />
         ) : (
-          <Image
+          <EditorialImage
+            desktopSizes="(max-width: 1360px) 30vw, 340px"
             src={mediaSrc}
             alt={alt}
             fill

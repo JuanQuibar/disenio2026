@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
 import { getCalibrationTitle } from "@/app/content/typography-calibration";
 
 const stories = Array.from({ length: 4 }, (_, index) =>
@@ -32,7 +32,8 @@ export function CrimenListado({ fotos }: CrimenListadoProps) {
           }`}
         >
           <div className="editorial-side-card-media relative w-24 h-24 flex-shrink-0 overflow-hidden rounded-md">
-            <Image
+            <EditorialImage
+              desktopSizes="200px"
               src={foto.src}
               alt={foto.alt}
               fill

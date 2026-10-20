@@ -7,11 +7,12 @@ import { UltimaHoraLateralWrapper } from "./ultima-hora-lateral-wrapper";
 export async function UltimaHoraComparacionWrapper({ alternativa = false }: { alternativa?: boolean } = {}) {
   await connection();
   const noticias = crearNoticiasUltimaHora();
+  const noticiasMobile = noticias.slice(0, 5);
 
   return (
     <>
-      <UltimaHoraWrapper noticias={noticias} />
-      <UltimaHoraAgenciaWrapper noticias={noticias} />
+      <UltimaHoraWrapper noticias={noticiasMobile} />
+      <UltimaHoraAgenciaWrapper noticias={noticiasMobile} />
       {alternativa && <UltimaHoraLateralWrapper noticias={noticias} />}
     </>
   );

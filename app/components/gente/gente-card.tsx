@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
+import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { getCalibrationTitle } from "@/app/content/typography-calibration";
 
 interface GenteListadoProps {
@@ -18,8 +19,10 @@ export function GenteListado({ fotos }: GenteListadoProps) {
           className="news-portrait-card flex flex-col gap-2 rounded-md"
         >
           <div className="gente-card-media border border-gray-300 w-full aspect-[3/4] overflow-hidden object-cover rounded-md">
-            <Image
+            <EditorialImage
+              desktopSizes="(max-width: 1360px) 70vw, 900px"
               src={foto.src}
+              desktopSrc={desktopEditorialPhotos.gente[index]}
               alt={foto.alt}
               width={525}
               height={350}

@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
+import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import {
   getCalibrationSummary,
@@ -19,8 +20,10 @@ export function OvacionPrincipal({ foto }: OvacionPrincipalProps) {
   return (
     <div className="news-ovacion-principal mb-2">
       <div className="news-ovacion-main-image relative aspect-[4/3] w-full overflow-hidden rounded-md mb-2">
-        <Image
+        <EditorialImage
+          desktopSizes="(max-width: 1360px) 65vw, 840px"
           src={foto.src}
+          desktopSrc={desktopEditorialPhotos.ovacion}
           alt={foto.alt}
           fill
           className="object-cover"

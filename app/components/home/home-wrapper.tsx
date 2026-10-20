@@ -58,7 +58,7 @@ export function HomeWrapper({ variante = "original" }: { variante?: HomeVariant 
           </HomeModuleFallback>
         }
       >
-        <AperturaWrapper variante={variante} />
+        <AperturaWrapper />
       </Suspense>
       <UltimaHoraComparacionWrapper alternativa={alternativa} />
       <Suspense
@@ -175,7 +175,6 @@ export function HomeWrapper({ variante = "original" }: { variante?: HomeVariant 
       </Suspense>
       <TransmisionesWrapper />
       <LegionariusChatWrapper />
-      <EspacioJuegos />
       <Suspense
         fallback={
           <HomeModuleFallback module="gente">
@@ -194,6 +193,7 @@ export function HomeWrapper({ variante = "original" }: { variante?: HomeVariant 
       >
         <CrimenWrapper />
       </Suspense>
+      <EspacioJuegos />
       <Suspense
         fallback={
           <HomeModuleFallback module="ultimas">

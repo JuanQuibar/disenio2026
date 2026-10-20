@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
+import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import { CardSummary } from "./card-summary";
 import {
@@ -20,8 +21,10 @@ export function CardPrincipales({
   return (
     <article className="news-principales-card rounded-md bg-white aspect-square border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 pb-6">
       <div className="news-principales-card-media">
-        <Image
+        <EditorialImage
+          desktopSizes="(max-width: 1360px) 45vw, 570px"
           src={fotos.src}
+          desktopSrc={desktopEditorialPhotos.principales[contentIndex]}
           alt={fotos.alt}
           width={525}
           height={350}

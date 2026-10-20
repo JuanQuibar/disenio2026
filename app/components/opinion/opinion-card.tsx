@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
 
 interface OpinionCardProps {
   author: string;
@@ -18,7 +18,8 @@ export function OpinionCard({
   return (
     <article className="opinion-card flex h-full flex-col items-center rounded-md border border-gray-200 bg-white p-4 text-center shadow-sm transition-shadow duration-300 hover:shadow-md">
       <div className="opinion-card-avatar relative mb-3 h-20 w-20 lg:h-24 lg:w-24">
-        <Image
+        <EditorialImage
+          desktopSizes="128px"
           src={imageSrc}
           alt={`Foto de ${author}`}
           fill

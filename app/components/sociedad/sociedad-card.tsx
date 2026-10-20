@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
+import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import {
   getCalibrationSummary,
@@ -38,8 +39,10 @@ export function SociedadPrincipal({ foto }: SociedadPrincipalProps) {
   return (
     <article className="editorial-lead-story mb-2">
       <div className="editorial-lead-story-media relative aspect-[3/2] w-full overflow-hidden rounded-md mb-2">
-        <Image
+        <EditorialImage
+          desktopSizes="(max-width: 1360px) 65vw, 760px"
           src={foto.src}
+          desktopSrc={desktopEditorialPhotos.sociedad}
           alt={foto.alt}
           fill
           className="object-cover transition-transform duration-300"
@@ -75,8 +78,10 @@ export function SociedadListado({ fotos }: SociedadNoticiasProps) {
           }`}
         >
           <div className="editorial-side-card-media relative w-24 h-24 flex-shrink-0 overflow-hidden rounded-md">
-            <Image
+            <EditorialImage
+              desktopSizes="200px"
               src={foto.src}
+              desktopSrc={index === 0 ? desktopEditorialPhotos.sociedadSecundaria : undefined}
               alt={foto.alt}
               fill
               className="object-cover transition-transform duration-300"

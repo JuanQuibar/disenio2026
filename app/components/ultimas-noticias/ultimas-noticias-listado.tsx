@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
 import { getCalibrationTitle } from "@/app/content/typography-calibration";
 import { ArrowDownIcon } from "@/app/components/icons";
 
@@ -71,7 +71,8 @@ export function UltimasNoticiasListado({ fotos }: UltimasNoticiasListadoProps) {
             </div>
 
             <div className="ultimatem-image flex-1 relative aspect-[4/3] flex-shrink-0 overflow-hidden rounded-md">
-              <Image
+              <EditorialImage
+                desktopSizes="200px"
                 src={foto.src}
                 alt={foto.alt}
                 fill

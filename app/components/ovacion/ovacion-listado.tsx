@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { EditorialImage } from "@/app/components/editorial-image";
 import { getCalibrationTitle } from "@/app/content/typography-calibration";
 
 interface OvacionListadoProps {
@@ -23,7 +23,8 @@ export function OvacionListado({ fotos }: OvacionListadoProps) {
           }`}
         >
           <div className="news-ovacion-list-image relative w-30 aspect-[3/2] flex-shrink-0 overflow-hidden rounded-md">
-            <Image
+            <EditorialImage
+              desktopSizes="260px"
               src={foto.src}
               alt={foto.alt}
               fill
