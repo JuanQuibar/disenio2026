@@ -1088,6 +1088,8 @@ hamburguesa y `PORTADA`, con 40 px libres a cada lado y el nav desplazado a la
 derecha. Usa el mismo padding horizontal de 32 px que el contenido principal;
 así `Suscribite` termina en su borde derecho. La
 página de detalle conserva su padding de 24 px y las rutas estáticas no cambian.
+El logo desktop del header compartido mide 120 px de ancho y cabe dentro de la
+barra principal de 57 px; el logo mobile y la altura de su fila permanecen iguales.
 
 #### Política aprobada (2026-10-15)
 

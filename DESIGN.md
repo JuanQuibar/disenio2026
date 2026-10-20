@@ -616,6 +616,7 @@ Suscribite: fondo rojo, texto blanco
 Homes funcionales: sin sello visual MENDOZA junto al logo; logo centrado entre
 hamburguesa y PORTADA, con 40px libres a cada lado; nav desplazado a la derecha;
 padding horizontal de 32px alineado con el main y su borde derecho
+Logo desktop del header compartido: 120px de ancho; la barra conserva 57px de alto
 Anchos intermedios: fecha oculta; overflow interno sin scrollbar visible
 Offset: home y detalle compensan 94/57px; el banner de detalle acompaña el cambio
 Accesibilidad: servicios ocultos con inert + aria-hidden; sin transición con reduced-motion
