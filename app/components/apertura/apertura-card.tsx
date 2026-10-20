@@ -1,5 +1,4 @@
 import { EditorialImage } from "@/app/components/editorial-image";
-import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import {
   getCalibrationSummary,
@@ -21,7 +20,6 @@ export function AperturaCard({ foto }: AperturaCardProps) {
           height={350}
           sizes="(max-width: 1023px) 100vw, (max-width: 1360px) 58vw, 794px"
           desktopSizes="(max-width: 1360px) 65vw, 900px"
-          desktopSrc={desktopEditorialPhotos.apertura}
           className="w-full h-auto rounded-t-md overflow-hidden object-cover aspect-4/3"
         />
       </div>

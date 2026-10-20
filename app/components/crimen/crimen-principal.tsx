@@ -1,5 +1,4 @@
 import { EditorialImage } from "@/app/components/editorial-image";
-import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import {
@@ -25,7 +24,6 @@ export function CrimenPrincipal({ foto }: CrimenPrincipalProps) {
         <EditorialImage
           desktopSizes="(max-width: 1360px) 65vw, 760px"
           src={foto.src}
-          desktopSrc={desktopEditorialPhotos.crimen}
           alt={foto.alt}
           fill
           className="object-cover transition-transform duration-300"

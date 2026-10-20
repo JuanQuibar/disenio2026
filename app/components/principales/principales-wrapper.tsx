@@ -1,10 +1,13 @@
 import { CarruselSwiper } from "./carrusel-swiper";
 import { fetchFotos } from "@/app/services/fetchs";
+import { editorialPhotos } from "@/app/content/editorial-photos";
 import type { HomeVariant } from "@/app/components/home/home-types";
 
 export async function PrincipalesWrapper({ variante = "original" }: { variante?: HomeVariant } = {}) {
   const fotos = await fetchFotos();
-  const fotosPrincipales = fotos.slice(0, 6);
+  const fotosPrincipales = fotos
+    .slice(0, 6)
+    .map((foto, index) => editorialPhotos.principales[index] ?? foto);
 
   if (fotosPrincipales.length === 0) {
     return null;

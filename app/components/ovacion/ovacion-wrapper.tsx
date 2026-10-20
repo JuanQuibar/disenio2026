@@ -3,6 +3,7 @@ import { OvacionPrincipal } from "./ovacion-principal";
 import { OvacionListado } from "./ovacion-listado";
 import { OvacionAgenda } from "./ovacion-agenda";
 import { fetchDeportes } from "@/app/services/fetchs";
+import { editorialPhotos } from "@/app/content/editorial-photos";
 
 const tickerItems = [
   {
@@ -82,7 +83,7 @@ export async function OvacionWrapper() {
         <OvacionAgenda />
         <div className="news-ovacion-content">
           <div className="news-ovacion-main">
-            <OvacionPrincipal foto={fotoPrincipal} />
+            <OvacionPrincipal foto={editorialPhotos.ovacion} />
           </div>
           <div className="news-ovacion-divider my-2 border-t border-gray-200"></div>
           <div className="news-ovacion-list">

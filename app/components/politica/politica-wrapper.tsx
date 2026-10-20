@@ -1,6 +1,7 @@
 import { PoliticaPrincipal } from "./politica-principal";
 import { PoliticaListado } from "./politica-listado";
 import { fetchFotos } from "@/app/services/fetchs";
+import { editorialPhotos } from "@/app/content/editorial-photos";
 import { EditorialLeadListLayout } from "@/app/components/news-shared/editorial-lead-list-layout";
 
 export async function PoliticaWrapper() {
@@ -19,7 +20,7 @@ export async function PoliticaWrapper() {
       mobileTitle="Política"
       desktopTitle="Política & Gobierno"
       desktopMeta="Legislatura y Poder Ejecutivo"
-      lead={<PoliticaPrincipal foto={principalFoto} />}
+      lead={<PoliticaPrincipal foto={editorialPhotos.politica} />}
       list={<PoliticaListado fotos={listaFotos} />}
     />
   );

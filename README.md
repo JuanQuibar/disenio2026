@@ -45,10 +45,10 @@ sobre la misma instancia. Los tres módulos mantienen sus modales y reglas de
 reproducción/sonido; no se montan iframes de Shorts en el feed. La disponibilidad
 de reproducción de YouTube sigue dependiendo del proveedor externo.
 
-Las cuatro homes presentan desde 1024 px una selección de doce fotos editoriales
-tomadas en Argentina. Las homes funcionales mantienen sus imágenes mobile y
-sirven originales de resolución suficiente para los recortes desktop; las dos
-rutas estáticas guardan la misma selección en sus propias instantáneas.
+Las dos homes funcionales presentan en mobile y desktop la misma selección de
+doce fotos editoriales tomadas en Argentina, con resoluciones adecuadas a cada
+recorte. Las dos rutas estáticas guardan esa selección en sus instantáneas
+desktop independientes.
 
 La integración sigue el
 [plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop):

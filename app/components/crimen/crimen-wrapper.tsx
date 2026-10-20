@@ -1,6 +1,7 @@
 import { CrimenPrincipal } from "./crimen-principal";
 import { CrimenListado } from "./crimen-listado";
 import { fetchFotos } from "@/app/services/fetchs";
+import { editorialPhotos } from "@/app/content/editorial-photos";
 import { EditorialLeadListLayout } from "@/app/components/news-shared/editorial-lead-list-layout";
 
 export async function CrimenWrapper() {
@@ -20,7 +21,7 @@ export async function CrimenWrapper() {
       desktopTitle="Crimen & Policiales"
       desktopMeta="Investigación y Justicia"
       tone="crime"
-      lead={<CrimenPrincipal foto={principalFoto} />}
+      lead={<CrimenPrincipal foto={editorialPhotos.crimen} />}
       list={<CrimenListado fotos={listaFotos} />}
     />
   );

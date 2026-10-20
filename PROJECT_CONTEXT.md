@@ -115,10 +115,10 @@ Reglas:
     desaparece por completo (no deja contenedores vacíos).
 *   Los componentes internos de una sección no se importan desde otras secciones.
 
-### Resolución de las fotos en desktop
+### Resolución y selección de las fotos editoriales
 
-`components/editorial-image.tsx` es una primitive presentacional, sin fetch.
-Conserva las props y la fuente del `<Image>` mobile y agrega un `<source>` desde
+`components/editorial-image.tsx` es un componente presentacional, sin fetch.
+Usa `<Image>` con tamaños responsive para mobile y agrega un `<source>` desde
 1024 px. Para Pexels retira los parámetros `h` y `w` de la copia reducida antes
 de pasarla al optimizador de Next; pedir más ancho sobre la copia `medium` de
 350 px no recupera el detalle del original. Los retratos locales también usan
@@ -128,11 +128,13 @@ una selección desktop ajustada a su recorte circular.
 `object-cover`, no solo el ancho del contenedor. Por eso Gente, las fotos 4:3 y
 las miniaturas cuadradas pueden necesitar más ancho de descarga que su ancho
 CSS. Se verificó suficiencia hasta densidad 2× con los originales actuales.
-La selección desktop aprobada de doce fotos tomadas en Argentina se define para
-las dos homes funcionales en `app/content/desktop-editorial-photos.ts` y cubre
+La selección aprobada de doce fotos tomadas en Argentina se define para
+las dos homes funcionales en `app/content/editorial-photos.ts` y cubre
 Apertura, Principales, Política, Ovación, Sociedad, Gente y Crimen. Los
-originales verificados tienen entre 3011 y 6016 px de ancho. Las fuentes y
-fotografías mobile, junto con las medidas del diseño, se conservan.
+originales verificados tienen entre 3011 y 6016 px de ancho. Los wrappers
+entregan estas fotos y sus textos alternativos tanto en mobile como en desktop;
+conservan las fuentes de datos y la omisión de secciones cuando faltan noticias.
+Las medidas del diseño mobile se conservan.
 `/desktop` y `/desktop2` conservan fuentes equivalentes dentro de su HTML
 estático independiente; la selección de fotos se incorporó por separado a cada
 instantánea. No importan esta primitive ni se regeneran desde las homes. La
@@ -158,7 +160,8 @@ de reproductores para resolver el responsive.
 Desde 1024 px, Apertura y Principales ocupan las ocho columnas izquierdas y el
 lateral las cuatro derechas, con gap de 24 px. Apertura presenta foto 16:9 de
 alta resolución y Principales sus seis cards en 2×3 sobre el mismo Swiper.
-El `<picture>` de Apertura conserva la imagen original en mobile. El lateral
+El `<picture>` de Apertura sirve la misma foto editorial en mobile y desktop,
+con tamaños adecuados a cada ancho. El lateral
 reúne AHORA, publicidad Pepsi 300×600, encuesta adicional y AVANCES DE LA IA.
 Siempre muestra seis titulares de AHORA y cuatro de IA, incluso a 1024 px.
 Tiene altura natural y MAM comienza después de la columna más alta: puede quedar

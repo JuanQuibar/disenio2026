@@ -3,16 +3,14 @@ import Image, { getImageProps, type ImageProps } from "next/image";
 type EditorialImageProps = ImageProps & {
   // Include the width needed by object-cover before the image is cropped.
   desktopSizes: string;
-  desktopSrc?: string;
 };
 
-/** Keep the mobile source; let desktop optimize the full-resolution photo. */
+/** Let desktop optimize the full-resolution photo independently of mobile sizes. */
 export function EditorialImage({
   desktopSizes,
-  desktopSrc,
   ...imageProps
 }: EditorialImageProps) {
-  let source = desktopSrc ?? imageProps.src;
+  let source = imageProps.src;
 
   if (
     typeof source === "string" &&

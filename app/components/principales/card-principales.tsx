@@ -1,5 +1,4 @@
 import { EditorialImage } from "@/app/components/editorial-image";
-import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import { CardSummary } from "./card-summary";
 import {
@@ -24,7 +23,6 @@ export function CardPrincipales({
         <EditorialImage
           desktopSizes="(max-width: 1360px) 45vw, 570px"
           src={fotos.src}
-          desktopSrc={desktopEditorialPhotos.principales[contentIndex]}
           alt={fotos.alt}
           width={525}
           height={350}

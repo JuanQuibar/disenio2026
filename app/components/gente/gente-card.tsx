@@ -1,5 +1,4 @@
 import { EditorialImage } from "@/app/components/editorial-image";
-import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { getCalibrationTitle } from "@/app/content/typography-calibration";
 
 interface GenteListadoProps {
@@ -22,7 +21,6 @@ export function GenteListado({ fotos }: GenteListadoProps) {
             <EditorialImage
               desktopSizes="(max-width: 1360px) 70vw, 900px"
               src={foto.src}
-              desktopSrc={desktopEditorialPhotos.gente[index]}
               alt={foto.alt}
               width={525}
               height={350}

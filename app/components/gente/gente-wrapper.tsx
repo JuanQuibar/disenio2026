@@ -1,9 +1,12 @@
 import { GenteListado } from "./gente-card";
 import { fetchFotos } from "@/app/services/fetchs";
+import { editorialPhotos } from "@/app/content/editorial-photos";
 
 export async function GenteWrapper() {
   const fotos = await fetchFotos();
-  const fotosGente = fotos.slice(16, 22);
+  const fotosGente = fotos
+    .slice(16, 22)
+    .map((foto, index) => editorialPhotos.gente[index] ?? foto);
 
   if (fotosGente.length === 0) {
     return null;

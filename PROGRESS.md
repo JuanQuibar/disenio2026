@@ -16,14 +16,15 @@ Hay dos homes funcionales aprobadas para la presentación: `/` y `/opcion-2`.
 La segunda recibió aprobación visual del usuario el 2026-10-19 y comparte
 `HomeWrapper` con la primera. Solo difiere desde 1024 px en el header y el tramo
 editorial anterior a MAM; Live/Muy Destacada y todo el contenido desde MAM,
-incluido, conservan la implementación de `/`. Mobile permanece intacto.
+incluido, conservan la implementación de `/`. Ambas comparten la misma mobile.
 La composición alternativa mantiene 8/4 y muestra siempre seis titulares en
 AHORA y cuatro en AVANCES DE LA IA, con resúmenes interactivos y altura natural
 del lateral. `/desktop` y `/desktop2` siguen siendo experimentos estáticos
 independientes; no confundirlos con la segunda home funcional.
 En mobile, las dos variantes temporales de Última hora muestran cinco noticias
-cada una. Las cuatro rutas usan desde 1024 px la selección de fotos editoriales
-tomadas en Argentina, sin reemplazar las imágenes mobile de las homes funcionales.
+cada una. Las dos homes funcionales usan la selección de doce fotos editoriales
+tomadas en Argentina tanto en mobile como en desktop; `/desktop` y `/desktop2`
+conservan esa selección en sus instantáneas desktop independientes.
 
 Prototipo mobile-first funcionando. La home renderiza los **tres carruseles de
 video definitivos** (MAM, Shorts y Branded), validados en viewport 414×896 sin
@@ -148,6 +149,17 @@ pública, no autoriza mutaciones y su credencial nunca se guarda en el repositor
 ---
 
 ## ✅ Hecho
+
+### 2026-10-19 — Selección editorial compartida con mobile
+
+Las doce fotos argentinas ya elegidas para desktop se aplican también a mobile
+en `/` y `/opcion-2`, sin cambiar la composición ni las fuentes de datos. Los
+wrappers siguen omitiendo la sección si el servicio no trae noticias y entregan
+las fotos y sus textos alternativos a las cards correspondientes. La fuente de
+la selección está en `app/content/editorial-photos.ts`; `EditorialImage` pide
+resoluciones adecuadas al ancho y al recorte en cada viewport. Las dos rutas
+estáticas mantienen sus instantáneas independientes. Se comprobaron ambas homes
+a 414 px sin desborde y pasaron tipos, build y `git diff --check`.
 
 ### 2026-10-19 — Cinco noticias por variante de Última hora mobile
 

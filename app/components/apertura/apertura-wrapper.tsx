@@ -1,4 +1,5 @@
 import { fetchFotos } from "@/app/services/fetchs";
+import { editorialPhotos } from "@/app/content/editorial-photos";
 import { AperturaCard } from "./apertura-card";
 
 export async function AperturaWrapper() {
@@ -30,7 +31,7 @@ export async function AperturaWrapper() {
               EDICIÓN CENTRAL
             </span>
           </div>
-          <AperturaCard foto={fotoApertura[0]} />
+          <AperturaCard foto={editorialPhotos.apertura} />
         </div>
       </div>
     </>

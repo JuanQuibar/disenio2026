@@ -1,5 +1,4 @@
 import { EditorialImage } from "@/app/components/editorial-image";
-import { desktopEditorialPhotos } from "@/app/content/desktop-editorial-photos";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import {
   getCalibrationSummary,
@@ -23,7 +22,6 @@ export function OvacionPrincipal({ foto }: OvacionPrincipalProps) {
         <EditorialImage
           desktopSizes="(max-width: 1360px) 65vw, 840px"
           src={foto.src}
-          desktopSrc={desktopEditorialPhotos.ovacion}
           alt={foto.alt}
           fill
           className="object-cover"
