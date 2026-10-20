@@ -18,6 +18,8 @@ export function RadioNihuilLive() {
             <img
               src="https://img.youtube.com/vi/fkbDYjUVkho/maxresdefault.jpg"
               alt="Radio Nihuil en Vivo"
+              width={1280}
+              height={720}
               className="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
             />
             

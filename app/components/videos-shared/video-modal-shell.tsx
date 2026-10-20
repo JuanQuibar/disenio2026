@@ -38,7 +38,9 @@ export function VideoModalShell<T extends VideoItem>({
   );
 
   const [activeIndex, setActiveIndex] = useState(initialSlide);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
@@ -53,7 +55,43 @@ export function VideoModalShell<T extends VideoItem>({
     closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusable = Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter(
+        (element) =>
+          !element.closest("[inert]") &&
+          element.getClientRects().length > 0
+      );
+
+      if (focusable.length === 0) {
+        event.preventDefault();
+        closeButtonRef.current?.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const activeElement = document.activeElement;
+
+      if (event.shiftKey && (activeElement === first || !dialog.contains(activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (activeElement === last || !dialog.contains(activeElement))) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -68,14 +106,19 @@ export function VideoModalShell<T extends VideoItem>({
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.activeIndex);
+
+    if (document.activeElement?.closest(".swiper-slide")) {
+      closeButtonRef.current?.focus();
+    }
   };
 
   return createPortal(
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label="Reproductor de video"
-      className="fixed inset-0 z-50 bg-black"
+      className="fixed inset-0 z-50 bg-black lg:bg-black/75 lg:backdrop-blur-sm"
     >
       <Swiper
         direction="vertical"
@@ -85,20 +128,70 @@ export function VideoModalShell<T extends VideoItem>({
         mousewheel
         keyboard={{ enabled: true }}
         className="h-dvh w-full"
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
         onSlideChange={handleSlideChange}
       >
         {videos.map((video, index) => (
-          <SwiperSlide key={video.id}>
+          <SwiperSlide
+            key={video.id}
+            aria-hidden={index !== activeIndex}
+            inert={index !== activeIndex ? true : undefined}
+          >
             {renderSlide(video, index === activeIndex)}
           </SwiperSlide>
         ))}
       </Swiper>
 
+      <div className="pointer-events-none absolute inset-0 z-10 hidden items-center justify-center gap-4 lg:flex">
+        <button
+          type="button"
+          onClick={() => swiperRef.current?.slidePrev()}
+          disabled={activeIndex === 0}
+          aria-label="Ver video anterior"
+          className="pointer-events-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/90 text-gray-900 shadow-xl transition-colors hover:bg-white disabled:cursor-default disabled:opacity-30"
+        >
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19 8 12l7-7" />
+          </svg>
+        </button>
+
+        <div aria-hidden="true" className="h-dvh aspect-9/16 shrink-0" />
+
+        <button
+          type="button"
+          onClick={() => swiperRef.current?.slideNext()}
+          disabled={activeIndex === videos.length - 1}
+          aria-label="Ver video siguiente"
+          className="pointer-events-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/90 text-gray-900 shadow-xl transition-colors hover:bg-white disabled:cursor-default disabled:opacity-30"
+        >
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="m9 5 7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
       <button
         ref={closeButtonRef}
+        type="button"
         onClick={onClose}
         aria-label="Cerrar video"
-        className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm"
+        className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm lg:right-6 lg:top-6 lg:h-12 lg:w-12 lg:bg-white/90 lg:text-gray-900 lg:shadow-xl"
       >
         <svg
           className="h-5 w-5"

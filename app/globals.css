@@ -338,25 +338,16 @@ body {
   scroll-margin-top: 110px;
 }
 
-@media (max-width: 1023px) {
-  .home-page > [data-home-pair="legionarius-chat"],
-  .home-page > #ovacion,
-  .home-page > #ad-ovacion,
-  .home-page > #gente,
-  .home-page > #crimen,
-  .home-page > #sudoku,
-  .home-page > #ultimas {
-    order: 2;
-  }
-}
-
 .news-principales-heading-marker,
 .news-principales-heading-desktop,
 .news-principales-heading-meta,
 .youtube-shorts-desktop-header,
 .branded-desktop-header,
 .participacion-desktop-header,
-.encuesta-total-desktop {
+.encuesta-total-desktop,
+.listado-desktop-header,
+.chat-desktop-header,
+.legionarius-desktop-video {
   display: none;
 }
 
@@ -601,19 +592,53 @@ body {
     font-family: var(--font-geist-sans), sans-serif;
     background: #0b1320;
     box-shadow: 0 2px 8px rgb(15 23 42 / 15%);
+    transition: height 180ms ease;
   }
 
   .site-page-frame {
     padding-top: 94px;
+    transition: padding-top 180ms ease;
   }
 
   .site-header__utility {
     display: block;
     height: 37px;
+    overflow: hidden;
     border-bottom: 1px solid rgb(255 255 255 / 10%);
     color: rgb(255 255 255 / 90%);
     background: #0a0f18;
     font-size: 12px;
+    opacity: 1;
+    transition:
+      height 180ms ease,
+      border-bottom-width 180ms ease,
+      border-color 180ms ease,
+      opacity 120ms ease;
+  }
+
+  /* La franja de servicios solo se conserva mientras la página está arriba. */
+  .site-header--compact {
+    height: 57px;
+  }
+
+  .site-header--compact .site-header__utility {
+    height: 0;
+    border-bottom-width: 0;
+    border-bottom-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .site-header--compact + .site-page-frame {
+    padding-top: 57px;
+  }
+
+  .site-detail-banner {
+    transition: top 180ms ease;
+  }
+
+  .site-header--compact + .site-page-frame .site-detail-banner {
+    top: 57px;
   }
 
   .site-header__main {
@@ -2943,6 +2968,154 @@ body {
       0 2px 4px -2px rgb(0 0 0 / 10%);
   }
 
+  [data-home-pair="legionarius-chat"] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  [data-home-pair="legionarius-chat"] > #listado {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  [data-home-pair="legionarius-chat"] > #chat-vox-dei {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  [data-home-pair="legionarius-chat"] > #sudoku {
+    display: none;
+  }
+
+  .listado-module,
+  .chat-module {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    padding: 24px;
+    border-top: 0;
+    border-radius: 8px;
+    background: var(--color-surface-card);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 10%),
+      0 2px 4px -2px rgb(0 0 0 / 10%);
+  }
+
+  .chat-module {
+    contain: size;
+  }
+
+  .listado-module > .listado-mobile-heading {
+    display: none;
+  }
+
+  .chat-module > .chat-mobile-heading {
+    display: none;
+  }
+
+  .listado-module > .listado-panel,
+  .chat-module > .chat-panel {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .listado-desktop-header,
+  .chat-desktop-header {
+    display: flex;
+    min-width: 0;
+    min-height: 26px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 4px 16px;
+    border-top: 2px solid var(--color-primary);
+    border-radius: 6px;
+    color: #fff;
+    background: var(--color-text-primary);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  }
+
+  .listado-desktop-heading,
+  .chat-desktop-heading {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .listado-desktop-heading h3,
+  .chat-desktop-heading h3 {
+    margin: 0;
+    font-family: var(--font-geist-sans);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .listado-desktop-icon,
+  .chat-desktop-icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    color: var(--color-primary-container);
+  }
+
+  .listado-desktop-meta {
+    flex: 0 0 auto;
+    color: var(--color-surface-container-high);
+    font-family: var(--font-geist-mono);
+    font-size: 11px;
+    line-height: 14px;
+  }
+
+  .listado-mobile-content {
+    display: none;
+  }
+
+  .legionarius-desktop-video {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    background: #000;
+  }
+
+  .legionarius-desktop-video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .chat-module .chatbot-shell {
+    display: flex;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  .chat-module .chatbot-frame {
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+  }
+
   .participacion-mobile-heading {
     display: none;
   }
@@ -3304,7 +3477,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Mantener estáticos los elementos editoriales que comunican estado en vivo. */
+  .site-header,
+  .site-header__utility,
+  .site-detail-banner,
+  .site-page-frame {
+    transition: none;
+  }
+
   .ovacion-integrated .news-ovacion-ticker-track,
+  .site-header__live .site-live-indicator,
   .live-heading > .live-heading-dot {
     animation: none;
   }

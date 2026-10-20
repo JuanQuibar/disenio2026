@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 
-const initialBoard = [
+type SudokuCell = number | "";
+type SudokuBoard = SudokuCell[][];
+
+const initialBoard: SudokuBoard = [
   [5, 3, "", "", 7, "", "", "", ""],
   [6, "", "", 1, 9, 5, "", "", ""],
   ["", 9, 8, "", "", "", "", 6, ""],
@@ -19,9 +22,8 @@ export function SudokuCard() {
 
   function handleChange(row: number, col: number, value: string) {
     if (/^[1-9]?$/.test(value)) {
-      const newBoard = board.map((arr) => [...arr]);
-      // @ts-ignore - Simple casting for the demo
-      newBoard[row][col] = value;
+      const newBoard: SudokuBoard = board.map((arr) => [...arr]);
+      newBoard[row][col] = value === "" ? "" : Number(value);
       setBoard(newBoard);
     }
   }
@@ -52,6 +54,8 @@ export function SudokuCard() {
               type="text"
               inputMode="numeric"
               maxLength={1}
+              id={`sudoku-cell-${i + 1}-${j + 1}`}
+              aria-label={`Fila ${i + 1}, columna ${j + 1}`}
               value={cell}
               onChange={(e) => handleChange(i, j, e.target.value)}
               disabled={initialBoard[i][j] !== ""}

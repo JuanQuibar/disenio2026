@@ -229,7 +229,7 @@ export function YoutubeShortsModalSlide({
   }, []);
 
   return (
-    <div className="relative h-full w-full bg-black">
+    <div className="relative h-full w-full bg-black lg:mx-auto lg:h-dvh lg:w-auto lg:aspect-9/16">
       {/* Tapa toda la carga del iframe, que es mucho mas lenta que arrancar un
           mp4 propio. Se desvanece recien cuando el video esta reproduciendo, no
           cuando el player responde: en el medio se ve la pantalla negra con
@@ -252,7 +252,7 @@ export function YoutubeShortsModalSlide({
           controles son propios, asi que el iframe no necesita recibir nada. */}
       <div
         ref={containerRef}
-        className="relative h-full w-full overflow-hidden [&>iframe]:pointer-events-none [&>iframe]:absolute [&>iframe]:top-1/2 [&>iframe]:left-1/2 [&>iframe]:h-[max(100dvh,calc(100dvw*16/9))] [&>iframe]:w-[max(100dvw,calc(100dvh*9/16))] [&>iframe]:-translate-x-1/2 [&>iframe]:-translate-y-1/2"
+        className="relative h-full w-full overflow-hidden [&>iframe]:pointer-events-none [&>iframe]:absolute [&>iframe]:top-1/2 [&>iframe]:left-1/2 [&>iframe]:h-[max(100dvh,calc(100dvw*16/9))] [&>iframe]:w-[max(100dvw,calc(100dvh*9/16))] [&>iframe]:-translate-x-1/2 [&>iframe]:-translate-y-1/2 lg:[&>iframe]:h-full lg:[&>iframe]:w-full"
       />
 
       <VideoModalControls

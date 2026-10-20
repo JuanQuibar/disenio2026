@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   CalendarDaysIcon,
   MagnifyingGlassIcon,
@@ -7,9 +11,9 @@ import {
 import Nav from "./nav";
 import { LogoIcon } from "./icons";
 
-function LiveLink({ className }: { className: string }) {
+function LiveLink({ className, homeHref }: { className: string; homeHref: string }) {
   return (
-    <Link href="/#canal-7" className={className}>
+    <Link href={`${homeHref}#canal-7`} className={className}>
       <span className="site-live-indicator" aria-hidden="true" />
       Canal 7 &amp; Radio Nihuil <span className="site-live-label">EN VIVO</span>
     </Link>
@@ -17,9 +21,26 @@ function LiveLink({ className }: { className: string }) {
 }
 
 export default function Header() {
+  const alternativa = usePathname() === "/opcion-2";
+  const homeHref = alternativa ? "/opcion-2" : "/";
+  const [isCompact, setIsCompact] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setIsCompact(alternativa ? window.scrollY >= 37 : window.scrollY > 0);
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, [alternativa]);
+
   return (
-    <header className="site-header">
-      <div className="site-header__utility">
+    <header className={`site-header${alternativa ? " site-header--alternative" : isCompact ? " site-header--compact" : ""}`}>
+      <div
+        className="site-header__utility"
+        aria-hidden={isCompact || undefined}
+        inert={isCompact ? true : undefined}
+      >
         <div className="site-header__inner site-header__utility-inner">
           <div className="site-header__utility-data">
             <span className="site-header__utility-weather">
@@ -64,7 +85,7 @@ export default function Header() {
               <CalendarDaysIcon aria-hidden="true" />
               Mendoza, Argentina — Lunes, 24 de Febrero de 2026
             </span>
-            <LiveLink className="site-header__live" />
+            <LiveLink className="site-header__live" homeHref={homeHref} />
           </div>
         </div>
       </div>
@@ -83,8 +104,8 @@ export default function Header() {
               <span />
             </span>
             <Link
-              href="/"
-              aria-label="Diario UNO, portada"
+              href={homeHref}
+              aria-label="Diario UNO Mendoza, portada"
               className="site-header__brand-link"
             >
               <LogoIcon className="site-header__mobile-logo" />
@@ -93,7 +114,7 @@ export default function Header() {
             </Link>
           </div>
 
-          <Nav />
+          <Nav homeHref={homeHref} />
 
           <div className="site-header__actions" aria-hidden="true">
             <span className="site-header__search-mark">

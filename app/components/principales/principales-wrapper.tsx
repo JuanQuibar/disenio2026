@@ -1,7 +1,8 @@
 import { CarruselSwiper } from "./carrusel-swiper";
 import { fetchFotos } from "@/app/services/fetchs";
+import type { HomeVariant } from "@/app/components/home/home-types";
 
-export async function PrincipalesWrapper() {
+export async function PrincipalesWrapper({ variante = "original" }: { variante?: HomeVariant } = {}) {
   const fotos = await fetchFotos();
   const fotosPrincipales = fotos.slice(0, 6);
 
@@ -32,7 +33,7 @@ export async function PrincipalesWrapper() {
           <span className="news-principales-heading-meta">Al minuto</span>
         </h3>
         <div className="news-principales-panel p-2 pb-4 bg-white rounded-lg shadow-md">
-          <CarruselSwiper fotos={fotosPrincipales} />
+          <CarruselSwiper fotos={fotosPrincipales} desktopColumns={variante === "alternativa" ? 2 : 3} />
         </div>
       </div>
     </>

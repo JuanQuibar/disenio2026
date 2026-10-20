@@ -15,11 +15,15 @@ export const Chatbot: React.FC = () => {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
-  const messagesEndRef = useRef<null | HTMLDivElement>(null);
+  const messagesContainerRef = useRef<null | HTMLDivElement>(null);
   const textareaRef = useRef<null | HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = messagesContainerRef.current;
+
+    if (!container) return;
+
+    container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -71,9 +75,12 @@ export const Chatbot: React.FC = () => {
   };
 
   return (
-    <section className="p-1 bg-white rounded-lg  max-w-2xl mx-auto mb-2">
-      <div className="flex flex-col justify-between h-[60vh] bg-white shadow-lg/30 rounded-lg border border-gray-300">
-        <div className="grow p-4 space-y-4 overflow-y-auto ">
+    <section className="chatbot-shell p-1 bg-white rounded-lg max-w-2xl mx-auto mb-2">
+      <div className="chatbot-frame flex flex-col justify-between h-[60vh] bg-white shadow-lg/30 rounded-lg border border-gray-300">
+        <div
+          ref={messagesContainerRef}
+          className="min-h-0 grow p-4 space-y-4 overflow-y-auto"
+        >
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -92,7 +99,6 @@ export const Chatbot: React.FC = () => {
               </div>
             </div>
           ))}
-          <div ref={messagesEndRef} />
         </div>
         <div className="p-2 bg-white">
           <form

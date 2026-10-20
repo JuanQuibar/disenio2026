@@ -1,0 +1,273 @@
+.home-alternative-editorial {
+  display: contents;
+}
+
+.home-alternative-sidebar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  /* El overflow global no debe crear un scroll container para el header sticky. */
+  html:has(.site-header--alternative),
+  body:has(.site-header--alternative) {
+    overflow-x: clip;
+  }
+
+  .site-header.site-header--alternative {
+    position: sticky;
+    top: -37px;
+    height: 94px;
+    transition: none;
+  }
+
+  .site-header--alternative + .site-page-frame {
+    padding-top: 0;
+    transition: none;
+  }
+
+  .home-alternative-editorial {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: min-content 1fr;
+    align-items: start;
+    gap: 24px;
+    min-width: 0;
+  }
+
+  .home-alternative-editorial > [data-home-module="apertura"] {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+  }
+
+  .home-alternative-editorial > [data-home-module="principales"] {
+    grid-column: 1 / span 8;
+    grid-row: 2;
+  }
+
+  .home-alternative-editorial .news-opening-content {
+    grid-template-columns: minmax(0, 1fr);
+    aspect-ratio: auto;
+    gap: 16px;
+  }
+
+  .home-alternative-editorial .news-opening-desktop-header,
+  .home-alternative-editorial .news-opening-desktop-category,
+  .home-alternative-editorial .news-opening-desktop-keys {
+    display: none;
+  }
+
+  .home-alternative-editorial .news-opening-media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .home-alternative-editorial .news-opening-media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .home-alternative-editorial .news-opening-media img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+
+  .home-alternative-editorial .news-principales-carousel .swiper-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-alternative-sidebar {
+    display: block;
+    grid-column: 9 / -1;
+    grid-row: 1 / span 2;
+    min-width: 0;
+    padding: 24px;
+    border-radius: 8px;
+    color: #fff;
+    background: #111827;
+  }
+
+  .home-alternative-sidebar-heading {
+    display: flex;
+    min-height: 26px;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    border-radius: 6px;
+    color: #111827;
+    background: #fff;
+    font-family: var(--font-geist-sans), sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.06em;
+  }
+
+  .home-alternative-sidebar [data-home-module="ahora-desktop"] > [data-summary-variant] {
+    margin-top: 8px;
+  }
+
+  .home-alternative-ad-container {
+    margin-top: 32px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .home-alternative-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #1c69a8;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .home-alternative-divider::before,
+  .home-alternative-divider::after {
+    height: 1px;
+    flex: 1;
+    content: "";
+    background: #d1d5db;
+  }
+
+  .home-alternative-ad {
+    width: min(300px, 100%);
+    aspect-ratio: 1 / 2;
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 18%);
+    border-radius: 12px;
+    background: #a80008;
+    box-shadow: 0 18px 44px rgb(0 0 0 / 32%);
+  }
+
+  .home-alternative-ad img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .home-alternative-participation {
+    margin-top: 32px;
+    color: #9dcaff;
+  }
+
+  .home-alternative-participation::before,
+  .home-alternative-participation::after {
+    background: #334155;
+  }
+
+  .home-alternative-survey > .participacion-mobile-heading {
+    display: none;
+  }
+
+  .home-alternative-survey > div {
+    padding-bottom: 0;
+  }
+
+  .home-alternative-survey .encuesta-card {
+    padding: 16px;
+    border: 0;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .home-alternative-survey .encuesta-desktop-header {
+    min-height: 30px;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding: 5px 16px;
+    border-top: 0;
+  }
+
+  .home-alternative-survey .participacion-desktop-header-main {
+    gap: 8px;
+  }
+
+  .home-alternative-survey .encuesta-desktop-header h2 {
+    overflow: visible;
+    white-space: normal;
+    text-overflow: clip;
+  }
+
+  .home-alternative-survey .encuesta-question {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .home-alternative-survey .encuesta-total-mobile {
+    display: block;
+    margin: 8px 0 20px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .home-alternative-survey .encuesta-total-desktop {
+    display: none;
+  }
+
+  .home-alternative-survey .encuesta-option > div:first-child {
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .home-alternative-survey .encuesta-option > div:first-child span {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+
+  .home-alternative-survey .encuesta-option > div:first-child span:last-child {
+    flex-shrink: 0;
+  }
+
+  .home-alternative-survey .encuesta-option > div:last-child,
+  .home-alternative-survey .encuesta-option > div:last-child > div {
+    height: 8px;
+  }
+
+  .home-alternative-survey .encuesta-footer {
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .home-alternative-survey .encuesta-history-button {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  .home-page .home-alternative-sidebar .home-alternative-ia {
+    margin-top: 24px;
+    padding-bottom: 7px;
+  }
+
+  .home-alternative-ia-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: #1c69a8;
+  }
+
+  .home-alternative-ia [data-summary-row] {
+    padding-block: 7px;
+  }
+
+  .home-alternative-ia [data-summary-trigger] {
+    min-height: 40px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1100px) {
+  .home-alternative-survey .encuesta-desktop-header > span {
+    display: none;
+  }
+}

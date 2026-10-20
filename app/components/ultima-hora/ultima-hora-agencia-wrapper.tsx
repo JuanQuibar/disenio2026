@@ -22,7 +22,7 @@ export function UltimaHoraAgenciaWrapper({ noticias }: { noticias: NoticiaUltima
           <UltimaHoraReloj />
         </span>
       </h3>
-      <div className="px-2">
+      <div className="px-2 bg-[#111827]">
         <UltimaHoraAgenciaListado noticias={noticias} />
       </div>
     </section>

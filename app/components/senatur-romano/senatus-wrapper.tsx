@@ -52,7 +52,9 @@ export async function SenatusWrapper() {
           />
         )}
 
-        <div className="senatus-divider border-t border-gray-200 my-1"></div>
+        {videoSrc && imageSrc && (
+          <div className="senatus-divider border-t border-gray-200 my-1"></div>
+        )}
 
         {imageSrc && (
           <SenatusCard

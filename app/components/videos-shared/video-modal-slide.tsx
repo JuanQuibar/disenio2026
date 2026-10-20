@@ -116,7 +116,7 @@ export function VideoModalSlide({
   };
 
   return (
-    <div className="relative h-full w-full bg-black">
+    <div className="relative h-full w-full bg-black lg:mx-auto lg:h-dvh lg:w-auto lg:aspect-9/16">
       <video
         ref={videoRef}
         src={videoUrl}

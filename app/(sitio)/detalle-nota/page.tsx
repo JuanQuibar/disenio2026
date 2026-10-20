@@ -6,7 +6,7 @@ export default async function DetalleNota() {
   return (
     <main className="site-detail-page">
       {/* Fixed Banner - Option 1 */}
-      <div className="fixed top-16 lg:top-[94px] left-0 right-0 h-[50px] z-10 px-2 lg:px-8">
+      <div className="site-detail-banner fixed top-16 lg:top-[94px] left-0 right-0 h-[50px] z-10 px-2 lg:px-8">
         <div className="bg-gray-200 border-b border-gray-300 flex items-center justify-center h-full max-w-4xl mx-auto rounded-t-lg">
           <p className="text-gray-500 text-sm">Banner Superior 100% × 50px</p>
         </div>

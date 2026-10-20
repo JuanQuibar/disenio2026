@@ -8,8 +8,10 @@ import { useState, useRef } from "react"; // 1. Importa useRef
 
 export function CarruselSwiper({
   fotos,
+  desktopColumns = 3,
 }: {
   fotos: { src: string; alt: string }[];
+  desktopColumns?: 2 | 3;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -25,9 +27,9 @@ export function CarruselSwiper({
         grid={{ rows: 1 }}
         breakpoints={{
           1024: {
-            slidesPerView: 3,
+            slidesPerView: desktopColumns,
             spaceBetween: 24,
-            grid: { rows: 2, fill: "row" },
+            grid: { rows: 6 / desktopColumns, fill: "row" },
           },
         }}
         pagination={false}

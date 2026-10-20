@@ -7,9 +7,13 @@ import type { NoticiaUltimaHora } from "./ultima-hora-noticias";
 export function UltimaHoraResumenes({
   noticias,
   variante,
+  apariencia = variante,
+  mostrarPastillas = apariencia === "agencia",
 }: {
   noticias: NoticiaUltimaHora[];
   variante: "timeline" | "agencia";
+  apariencia?: "timeline" | "agencia";
+  mostrarPastillas?: boolean;
 }) {
   const id = useId();
   const areaRef = useRef<HTMLDivElement>(null);
@@ -19,6 +23,7 @@ export function UltimaHoraResumenes({
   const [alto, setAlto] = useState<number>();
   const [posicion, setPosicion] = useState({ panel: 0, desplazamiento: 0 });
   const timeline = variante === "timeline";
+  const timelineVisual = apariencia === "timeline";
 
   useLayoutEffect(() => {
     const contenido = contenidoRef.current;
@@ -127,6 +132,7 @@ export function UltimaHoraResumenes({
     <div
       ref={areaRef}
       data-summary-variant={variante}
+      data-summary-appearance={apariencia}
       className="relative overflow-hidden [overflow-anchor:none]"
       style={{ height: alto }}
       onKeyDown={(event) => {
@@ -145,11 +151,11 @@ export function UltimaHoraResumenes({
           <article key={noticia.id}>
             <div
               data-summary-row
-              className={timeline
+              className={timelineVisual
                 ? `relative flex gap-3 ${index === 0 ? "pt-3" : ""}`
                 : `py-3 ${index > 0 ? "border-t border-gray-700" : ""}`}
             >
-              {timeline && (
+              {timelineVisual && (
                 <>
                   <time
                     dateTime={noticia.hora}
@@ -169,11 +175,11 @@ export function UltimaHoraResumenes({
                   </div>
                 </>
               )}
-              <div className={timeline
+              <div className={timelineVisual
                 ? `min-w-0 flex-1 ${index === noticias.length - 1 ? "pb-2" : "pb-5"}`
                 : "min-w-0"}
               >
-                {timeline && index === 0 && (
+                {timelineVisual && index === 0 && (
                   <span className="mb-1.5 block font-sans text-[10px] font-bold uppercase leading-4 tracking-widest text-red-400">
                     Lo último
                   </span>
@@ -182,10 +188,10 @@ export function UltimaHoraResumenes({
                   <span className="font-sans text-[10px] font-semibold uppercase leading-4 tracking-wide text-gray-400">
                     {noticia.volanta}
                   </span>
-                  {!timeline && <UltimaHoraAgenciaPastilla />}
+                  {mostrarPastillas && <UltimaHoraAgenciaPastilla />}
                 </div>
                 <h3 className={`font-sans text-white ${
-                  timeline && index === 0 ? "text-base font-semibold leading-snug" : "text-sm leading-snug"
+                  timelineVisual && index === 0 ? "text-base font-semibold leading-snug" : "text-sm leading-snug"
                 }`}>
                   <button
                     id={`${id}-titulo-${index}`}

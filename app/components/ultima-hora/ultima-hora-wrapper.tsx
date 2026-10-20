@@ -17,7 +17,7 @@ export function UltimaHoraWrapper({ noticias }: { noticias: NoticiaUltimaHora[] 
           AHORA
           <UltimaHoraReloj compacto />
         </h3>
-        <div className=" px-2 bg-[color-background] ">
+        <div className="px-2 bg-[#111827]">
           <UltimaHoraCard noticias={noticias} />
         </div>
       </div>

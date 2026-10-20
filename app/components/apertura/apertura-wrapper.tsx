@@ -1,7 +1,8 @@
 import { fetchFotos } from "@/app/services/fetchs";
 import { AperturaCard } from "./apertura-card";
+import type { HomeVariant } from "@/app/components/home/home-types";
 
-export async function AperturaWrapper() {
+export async function AperturaWrapper({ variante = "original" }: { variante?: HomeVariant } = {}) {
   const fotos = await fetchFotos();
   const fotoApertura = fotos.slice(39, 40);
 
@@ -30,7 +31,7 @@ export async function AperturaWrapper() {
               EDICIÓN CENTRAL
             </span>
           </div>
-          <AperturaCard foto={fotoApertura[0]} />
+          <AperturaCard foto={fotoApertura[0]} alternativa={variante === "alternativa"} />
         </div>
       </div>
     </>

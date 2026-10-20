@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import { PencilIcon } from "@heroicons/react/16/solid";
 import {
   getCalibrationSummary,
@@ -7,20 +7,37 @@ import {
 
 interface AperturaCardProps {
   foto: { src: string; alt: string };
+  alternativa?: boolean;
 }
 
-export function AperturaCard({ foto }: AperturaCardProps) {
+export function AperturaCard({ foto, alternativa = false }: AperturaCardProps) {
+  const imagen = (
+    <Image
+      src={foto.src}
+      alt={foto.alt}
+      width={525}
+      height={350}
+      sizes="(max-width: 1023px) 100vw, (max-width: 1360px) 58vw, 794px"
+      className="w-full h-auto rounded-t-md overflow-hidden object-cover aspect-4/3"
+    />
+  );
+  const desktopImage = alternativa ? getImageProps({
+    src: "https://images.pexels.com/photos/16018046/pexels-photo-16018046.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: foto.alt,
+    width: 1920,
+    height: 1080,
+    sizes: "(max-width: 1360px) 60vw, 856px",
+  }).props : null;
+
   return (
     <article className="news-opening-content rounded-md bg-white aspect-square border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 pb-6">
       <div className="news-opening-media">
-        <Image
-          src={foto.src}
-          alt={foto.alt}
-          width={525}
-          height={350}
-          sizes="(max-width: 1023px) 100vw, (max-width: 1360px) 58vw, 794px"
-          className="w-full h-auto rounded-t-md overflow-hidden object-cover aspect-4/3"
-        />
+        {desktopImage ? (
+          <picture>
+            <source media="(min-width: 1024px)" srcSet={desktopImage.srcSet} sizes={desktopImage.sizes} />
+            {imagen}
+          </picture>
+        ) : imagen}
       </div>
       <div className="news-opening-copy px-2 pt-2">
         <div className="news-opening-mobile-byline flex gap-1">
