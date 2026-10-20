@@ -21,7 +21,9 @@ function LiveLink({ className, homeHref }: { className: string; homeHref: string
 }
 
 export default function Header() {
-  const alternativa = usePathname() === "/opcion-2";
+  const pathname = usePathname();
+  const alternativa = pathname === "/opcion-2";
+  const home = pathname === "/" || alternativa;
   const homeHref = alternativa ? "/opcion-2" : "/";
   const [isCompact, setIsCompact] = useState(false);
 
@@ -35,7 +37,7 @@ export default function Header() {
   }, [alternativa]);
 
   return (
-    <header className={`site-header${alternativa ? " site-header--alternative" : isCompact ? " site-header--compact" : ""}`}>
+    <header className={`site-header${home ? " site-header--home" : ""}${alternativa ? " site-header--alternative" : isCompact ? " site-header--compact" : ""}`}>
       <div
         className="site-header__utility"
         aria-hidden={isCompact || undefined}
@@ -110,7 +112,6 @@ export default function Header() {
             >
               <LogoIcon className="site-header__mobile-logo" />
               <LogoIcon className="site-header__desktop-logo" tone="sky" />
-              <span className="site-header__edition">MENDOZA</span>
             </Link>
           </div>
 

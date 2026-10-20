@@ -3,7 +3,7 @@ import "./home-alternative.css";
 import type { HomeVariant } from "./home-types";
 import type { ReactNode } from "react";
 import { MuyDestacadaWrapper } from "@/app/components/muy-destacada/muy-destacada-wrapper";
-import { UltimaHoraComparacionWrapper } from "@/app/components/ultima-hora/ultima-hora-comparacion-wrapper";
+import { UltimaHoraWrapper } from "@/app/components/ultima-hora/ultima-hora-wrapper";
 import { AperturaWrapper } from "@/app/components/apertura/apertura-wrapper";
 import { PrincipalesWrapper } from "@/app/components/principales/principales-wrapper";
 import { PoliticaWrapper } from "@/app/components/politica/politica-wrapper";
@@ -60,7 +60,7 @@ export function HomeWrapper({ variante = "original" }: { variante?: HomeVariant 
       >
         <AperturaWrapper />
       </Suspense>
-      <UltimaHoraComparacionWrapper alternativa={alternativa} />
+      <UltimaHoraWrapper alternativa={alternativa} />
       <Suspense
         fallback={
           <HomeModuleFallback module="principales">

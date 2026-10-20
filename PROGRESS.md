@@ -21,8 +21,8 @@ La composición alternativa mantiene 8/4 y muestra siempre seis titulares en
 AHORA y cuatro en AVANCES DE LA IA, con resúmenes interactivos y altura natural
 del lateral. `/desktop` y `/desktop2` siguen siendo experimentos estáticos
 independientes; no confundirlos con la segunda home funcional.
-En mobile, las dos variantes temporales de Última hora muestran cinco noticias
-cada una. Las dos homes funcionales usan la selección de doce fotos editoriales
+En mobile, Última hora muestra solo Agencia con cinco noticias y resúmenes
+superpuestos. Las dos homes funcionales usan la selección de doce fotos editoriales
 tomadas en Argentina tanto en mobile como en desktop; `/desktop` y `/desktop2`
 conservan esa selección en sus instantáneas desktop independientes.
 
@@ -113,15 +113,12 @@ visuales residuales dentro de esa etapa.
 La etapa 6, **ajuste de tamaño de fuentes**, quedó cerrada y aprobada con títulos
 y bajadas largos, completos, sin punto final y sin truncado dentro del alcance
 acordado. El tramo
-independiente de Última hora se limita a mobile y conserva dos variantes
-conservadas temporalmente para un focus group: timeline y agencia. Tras esa
-evaluación, el usuario elegirá una sola variante definitiva; la coexistencia
-no es el diseño final. Ambas tienen cabezal pulsante,
-reloj real y resúmenes por fuente que se leen sin salir de la home ni cambiar
-el tamaño del recuadro al abrir o cerrar. Ambos bloques se ocultan desde
-1024 px, sin reservar espacio, en `/`; mobile permanece intacto. `/opcion-2`
-reutiliza sus dos comportamientos en el lateral desktop aprobado, sin cambiar
-esa ocultación en la primera home.
+independiente de Última hora conserva solo Agencia en mobile, por decisión del
+usuario del 2026-10-20. Tiene cabezal pulsante, reloj real y resúmenes por
+fuente superpuestos que se leen sin salir de la home ni cambiar el tamaño del
+recuadro al abrir o cerrar. El bloque mobile se oculta desde 1024 px, sin
+reservar espacio, en ambas homes. `/opcion-2` conserva AHORA e IA en su lateral
+desktop aprobado, con sus respectivas interacciones.
 Servicios quedó oculto en `/` para mobile y desktop por indicación del usuario;
 su implementación se conserva fuera de la composición para una posible
 reactivación.
@@ -150,6 +147,24 @@ pública, no autoriza mutaciones y su credencial nunca se guarda en el repositor
 
 ## ✅ Hecho
 
+### 2026-10-20 — Agencia elegida como única Última hora mobile
+
+Después de comparar ambas interacciones, el usuario eligió Agencia como única
+presentación mobile en `/` y `/opcion-2`. Se retiró Timeline, sus componentes
+exclusivos y el wrapper de comparación. `UltimaHoraWrapper` genera una sola vez
+el dataset por carga y entrega las primeras cinco noticias a Agencia; en
+`/opcion-2`, el lateral desktop sigue recibiendo el dataset completo y conserva
+seis titulares en AHORA y cuatro en AVANCES DE LA IA. Las instantáneas estáticas
+`/desktop` y `/desktop2` no se sincronizan con esta decisión.
+
+Agencia adoptó la apertura superpuesta del antiguo Timeline: el título no salta
+de posición y la altura exterior permanece estable. Si un resumen largo no cabe
+entero arriba ni debajo del título, el panel limita su altura y permite desplazar
+solo su contenido para conservar visibles tanto el título como el resumen.
+El aspecto de Agencia, el cierre, Escape y el retorno de foco se mantienen.
+Se verificaron las dos homes a 414 px y el lateral de `/opcion-2` a 1440 px;
+pasaron tipos, build y `git diff --check`.
+
 ### 2026-10-19 — Selección editorial compartida con mobile
 
 Las doce fotos argentinas ya elegidas para desktop se aplican también a mobile
@@ -162,6 +177,9 @@ estáticas mantienen sus instantáneas independientes. Se comprobaron ambas home
 a 414 px sin desborde y pasaron tipos, build y `git diff --check`.
 
 ### 2026-10-19 — Cinco noticias por variante de Última hora mobile
+
+Estado de la comparación en esa fecha; la elección de Agencia del 2026-10-20
+reemplazó esta coexistencia.
 
 Timeline y Agencia comparten ahora las primeras cinco noticias del mismo dataset
 en `/` y `/opcion-2`. La reducción se hace en
@@ -1625,9 +1643,8 @@ quedó cerrada tras la revisión del usuario; no hay ajustes pendientes de este
 tramo ni una intervención siguiente automática.
 
 Las etapas 1–8 están cerradas y no hay una intervención visual en curso en la home
-integrada. Última hora conserva temporalmente sus dos variantes mobile, timeline
-y agencia, para un focus group que permitirá al usuario elegir una única versión
-definitiva; no hay una nueva intervención en curso en ese módulo. La tarea
+integrada. Última hora usa únicamente Agencia en mobile; no hay una nueva
+intervención en curso en ese módulo. La tarea
 alternativa de `/desktop` mantiene su evolución independiente y tampoco tiene un
 tramo activo. `/desktop2` queda igualmente cerrada como instantánea independiente
 hasta una nueva indicación explícita.
@@ -1645,16 +1662,11 @@ trabajará antes de volver a modificar `/desktop` o `/desktop2`. Mantener los
 tramos aprobados y no sincronizar automáticamente ninguna de esas rutas con
 cambios futuros de `/` ni entre sí.
 
-Esperar la evaluación del focus group y la elección del usuario de una sola
-variante definitiva de Última hora. Hasta entonces, conservar ambas variantes
-mobile en su orden actual; no elegir, eliminar ni fusionar una por cuenta propia.
-La coexistencia es temporal y no representa la composición final de la home.
-La actualización real de noticias sigue fuera del alcance.
-Preservar la lectura en home, las fuentes compartidas y el tamaño estable de
-los recuadros durante la interacción.
-Mantener ambos bloques mobile ocultos desde 1024 px en `/`. En `/opcion-2`,
-conservar la ubicación y las interacciones desktop ya aprobadas de AHORA e IA;
-la elección pendiente del focus group se refiere a las variantes mobile.
+Última hora mobile quedó definida como Agencia en ambas homes; conservar sus
+cinco noticias, la lectura en home y el tamaño estable del recuadro. La
+actualización real de noticias sigue fuera del alcance. Mantener ese bloque
+oculto desde 1024 px; en `/opcion-2`, conservar la ubicación y las
+interacciones desktop ya aprobadas de AHORA e IA.
 El plan responsive no tiene una etapa siguiente automática. Cualquier ajuste
 visual nuevo parte de la home aprobada como línea base y se documenta después
 del OK del usuario.

@@ -153,9 +153,9 @@ Las páginas `(sitio)/page.tsx` y `(sitio)/opcion-2/page.tsx` delegan en
 `HomeWrapper` con `variante="original"` y `variante="alternativa"`. Live/Muy
 Destacada y todo el tramo desde MAM, incluido, comparten exactamente la misma
 composición, wrappers y fallbacks. Los cambios de presentación de la alternativa
-se limitan a desktop; hasta 1023 px se mantiene la home mobile actual, incluidos
-los dos lectores de Última hora. No se montan dos homes completas ni dos juegos
-de reproductores para resolver el responsive.
+se limitan a desktop; hasta 1023 px se mantiene la home mobile actual, incluido
+el único bloque de Última hora (Agencia). No se montan dos homes completas ni
+dos juegos de reproductores para resolver el responsive.
 
 Desde 1024 px, Apertura y Principales ocupan las ocho columnas izquierdas y el
 lateral las cuatro derechas, con gap de 24 px. Apertura presenta foto 16:9 de
@@ -168,22 +168,26 @@ Tiene altura natural y MAM comienza después de la columna más alta: puede qued
 espacio libre bajo la izquierda. No heredar de `/desktop` las reglas que ocultan
 filas por ancho ni su `contain: size` para forzar la altura del lateral.
 
-`UltimaHoraComparacionWrapper` acepta `alternativa` y genera un dataset por
-carga. Entrega las primeras cinco noticias a cada variante mobile y el dataset
+`UltimaHoraWrapper` acepta `alternativa` y genera un dataset por carga. Entrega
+las primeras cinco noticias al único bloque mobile, Agencia, y el dataset
 completo al lateral desktop. `UltimaHoraLateralWrapper` limita AHORA a las seis
 primeras noticias y compone el lateral. IA usa los primeros
 cuatro titulares y fuentes de la referencia, con resúmenes ficticios en
 `avances-ia-noticias.ts`; no son citas reales de esos medios. La primitive
 `UltimaHoraResumenes` separa `variante` (interacción) de `apariencia` y permite
-configurar `mostrarPastillas`, con defaults que conservan mobile:
+configurar `mostrarPastillas`:
 
-- AHORA: apariencia de Agencia y apertura superpuesta de Timeline, hacia arriba
-  si falta espacio debajo; reloj real y pastillas de maqueta.
+- Agencia mobile: apertura superpuesta y apariencia de Agencia, con cinco
+  noticias y pastillas de maqueta.
+- AHORA desktop: misma apertura y apariencia, con seis noticias; reloj real y
+  pastillas de maqueta.
 - IA: apariencia de Agencia sin pastillas y resumen en flujo, con desplazamiento
   interno del contenido para revelar la selección.
-- Ambos: una noticia abierta por módulo, sin navegación ni scroll interno;
-  altura exterior estable al abrir/cerrar, recalculada al cambiar el ancho;
-  cierre por titular, botón o Escape, retorno de foco y filas tapadas inertes.
+- Los tres: una noticia abierta por módulo, sin navegación; altura exterior estable
+  al abrir/cerrar, recalculada al cambiar el ancho; cierre por titular, botón o
+  Escape, retorno de foco y filas tapadas inertes. Si un resumen superpuesto no
+  cabe entero en ninguno de los lados del título, el panel limita su altura y
+  permite desplazar su contenido sin tapar el titular seleccionado.
 
 `EncuestaWrapper` acepta `lateral`, reutiliza los datos actuales y usa un ID
 distinto para la copia adicional. La encuesta principal sigue en su lugar;
@@ -397,55 +401,35 @@ degradan a array vacío ante errores de red o una API key faltante, y registran 
 error sin exponer credenciales. Los wrappers omiten su sección cuando no hay datos.
 
 ### Otros componentes (`app/components/`)
-*   **`ultima-hora/`**: Dos variantes mobile conservadas temporalmente para un
-    focus group por decisión del usuario (2026-10-17). Tras esa evaluación,
-    el usuario elegirá una única variante definitiva; no se pretende mantener
-    ambos módulos en la versión final. Se muestran inmediatamente después de
-    Apertura y antes de Principales, primero timeline y debajo agencia, sin
-    márgenes verticales propios. Cada variante tiene un contenedor exterior
-    con `data-home-module`, `pt-1 pb-2` y `lg:hidden`, separado del recuadro
-    visual: su padding exterior de 4/8 px se combina con el gap de 8 px de
-    la home, siguiendo el criterio de Apertura, Principales y Política.
-    La página importa
-    `ultima-hora-comparacion-wrapper.tsx`, que espera `connection()` para generar
-    un solo dataset por carga y lo pasa a los dos wrappers de servidor.
-    `ultima-hora-noticias.ts` centraliza identidad, titular, hora ficticia,
-    volanta y contribuciones estructuradas como fuente/párrafo.
-    De las diez noticias generadas, las dos variantes mobile muestran las mismas
-    primeras cinco; el lateral desktop de `/opcion-2` conserva seis en AHORA.
+*   **`ultima-hora/`**: Agencia es la única variante mobile desde la decisión
+    del usuario del 2026-10-20. Se ubica inmediatamente después de Apertura y
+    antes de Principales, sin margen vertical propio. Su contenedor exterior
+    usa `data-home-module`, `pt-1 pb-2` y `lg:hidden`; el padding de 4/8 px
+    se combina con el gap de 8 px de la home. El bloque mobile se oculta desde
+    1024 px sin reservar espacio en ambas homes.
+    `ultima-hora-wrapper.tsx` espera `connection()`, genera un solo dataset por
+    carga y entrega las primeras cinco noticias a Agencia. En `/opcion-2`
+    también entrega el dataset completo al lateral desktop, que muestra seis
+    titulares en AHORA. `ultima-hora-noticias.ts` centraliza identidad, titular,
+    hora ficticia, volanta y contribuciones estructuradas como fuente/párrafo.
     Cada noticia reúne entre dos y cuatro fuentes únicas aleatorias, estables
-    hasta recargar, del catálogo Infobae, Clarín,
-    La Nación, Cronista, Página 12, iProfesional y a24. Son datos de maqueta,
-    no contenido ni citas reales de esos medios.
-    `ultima-hora-resumenes.tsx` es la primitive cliente local de interacción y
-    medición: una noticia abierta por módulo, titular accionable sin `+`/`−`,
-    cierre explícito, Escape, retorno del foco y filas tapadas/recortadas inertes.
-    Timeline superpone el panel y abre hacia arriba si falta espacio; agencia
-    expande en flujo con overflow hidden, sin scroll interno, y desplaza
-    temporalmente el contenido si hace falta para mostrar la última selección.
-    La altura base suma las filas cerradas y se recalcula con ResizeObserver;
-    nunca incluye el resumen. Abrir/cerrar no altera las dimensiones exteriores
-    ni desplaza la home o el módulo siguiente; un cambio de viewport sí puede
-    recalcular el alto. Los resúmenes blancos muestran el titular y un párrafo
-    por fuente con su atribución debajo.
-    Ambas variantes tienen volantas y fuentes bajo el título, y comparten el
-    reloj cliente local `HH:mm:ss` del cabezal `AHORA`, actualizado cada segundo.
-    El reloj acepta `compacto`: timeline lo usa alineado a la derecha, con
-    horas/minutos de 14 px y segundos de 12 px, todos negros sobre cabezal
-    gris claro. Agencia mantiene el cabezal negro y reloj blanco de 16 px junto
-    a `AHORA`. En agencia, una línea blanca continua abarca el punto rojo,
-    `AHORA` y el reloj, con 8 px de padding inferior y 8 px de margen hacia
-    el listado. Ambos usan Geist Mono; los detalles están en `DESIGN.md`.
-    Solo agencia lleva
-    pastillas `URGENTE`/`TENDENCIA`, aleatorias al montar y estables hasta recargar;
-    timeline conserva horas de muestra y destaca la primera noticia.
-    Las etiquetas no representan clasificación editorial ni actualizaciones
-    reales. No sustituir una variante por la otra sin indicación; no hay
-    adaptación desktop ni conexión a noticias en tiempo real.
-    Ambos bloques se ocultan desde 1024 px mediante `lg:hidden`, sin reservar
-    espacio, hasta que el usuario defina su ubicación adecuada en desktop.
-    La ocultación es temporal e independiente de la elección de variante por
-    focus group; mobile conserva ambos bloques y sus comportamientos.
+    hasta recargar, del catálogo Infobae, Clarín, La Nación, Cronista, Página 12,
+    iProfesional y a24. Son datos de maqueta, no citas reales.
+    `ultima-hora-resumenes.tsx` mide la altura de las cinco filas cerradas con
+    ResizeObserver y superpone el resumen sobre el listado, debajo o arriba del
+    título según el espacio disponible. Si un resumen largo no cabe entero en
+    ninguno de los dos lados, limita la altura del panel y permite desplazar
+    solo su contenido: el título sigue visible. Abrir/cerrar no mueve el título
+    seleccionado ni altera el tamaño exterior o los módulos siguientes. Hay
+    una noticia abierta por módulo, cierre por titular, botón o Escape, retorno
+    de foco y filas tapadas inertes. Los resúmenes blancos incluyen título y
+    un párrafo por fuente con atribución.
+    Agencia conserva fondo oscuro, volantas y fuentes bajo cada titular,
+    separadores y pastillas `URGENTE`/`TENDENCIA` de muestra. El cabezal negro
+    muestra punto rojo y reloj cliente `HH:mm:ss` en Geist Mono, actualizado
+    cada segundo, con una línea blanca bajo el grupo. Las etiquetas no son
+    clasificación editorial ni noticias en tiempo real. `/desktop` y
+    `/desktop2` son instantáneas independientes y no se sincronizan.
 *   **`muy-destacada/`**: Noticia principal con gran impacto visual.
 *   **`principales/`**: Carrusel interactivo de noticias destacadas.
 *   **`live/`**: Transmisiones en vivo (Canal 7, Radio Nihuil).
@@ -620,7 +604,7 @@ observación de la fuente de ese día, no un nuevo límite.
 | Header (layout) | Logo con link a `/`, hamburguesa sin acción en mobile; desde `md`, logo y placeholder `nav` | Barra de datos, fecha, categorías, acceso, búsqueda, suscripción y acceso a live. Referencia de marco, no funcionalidades a incorporar |
 | 1. MuyDestacada | 1 noticia con LIVE, título, bajada y firma; video cuadrado Pexels con controles nativos, autoplay muteado y loop; 2 relacionadas con volanta (la segunda con firma) | Cobertura: video simulado 16:9 a la izquierda y 2 relacionadas a la derecha. Conservar video real y ambas relacionadas; no implementar selector de calidad ni transmisión simultánea sugeridos por el mock |
 | 2. Apertura | 1 foto 4:3, firma encima del título y bajada | 1 foto y texto lateral; añade caja de 3 claves y metadatos. Conservar la card mobile, sin crear contenido adicional |
-| 3. Última hora | Dos variantes temporales mobile, Timeline y Agencia, con reloj y resúmenes internos | Ocultas desde 1024 px hasta que el focus group defina una variante y su ubicación desktop |
+| 3. Última hora | Agencia como única variante mobile: cinco noticias, reloj y resúmenes superpuestos | Oculta desde 1024 px; `/opcion-2` conserva AHORA e IA en su lateral desktop interactivo |
 | 4. Principales | 6 cards: foto 4:3, título, bajada y firma; 1 Swiper, 1 slide visible y 6 bullets clicables | Grilla de 6 noticias: paridad de cantidad acordada; `LEGIONARIUS • NOTICIAS DESTACADAS` corresponde a Principales, no al listado sin fotos |
 | 5. MAM | 30 videos en el baseline; cards 9:16, poster, duración cuando existe, mute inline y apertura por `id`; título enlazado solo si hay URL de nota | 15 imágenes simulando videos en grilla 5×3. Conservar dataset completo, carrusel, autoplay solo del activo en viewport y modal de MAM; no limitar a 15 |
 | 6. Política | 1 principal con foto, título, bajada y firma + 4 filas con thumb y firma condicional | 1 principal + 4 filas: correspondencia completa. Conservar textos y firmas existentes |
@@ -1097,6 +1081,13 @@ fija únicamente la fila principal de 57 px. No reaparece por cambiar la direcci
 del scroll, sino solo al volver al comienzo. El offset del marco y el banner fijo
 de `/detalle-nota` acompañan 94/57 px; la franja oculta usa `inert` y
 `aria-hidden`. Hasta 1023 px no cambia el header mobile.
+
+El 2026-10-20 se retiró el sello visual `MENDOZA` junto al logo en el header
+compartido. En las dos homes funcionales, la barra desktop centra el logo entre
+hamburguesa y `PORTADA`, con 40 px libres a cada lado y el nav desplazado a la
+derecha. Usa el mismo padding horizontal de 32 px que el contenido principal;
+así `Suscribite` termina en su borde derecho. La
+página de detalle conserva su padding de 24 px y las rutas estáticas no cambian.
 
 #### Política aprobada (2026-10-15)
 

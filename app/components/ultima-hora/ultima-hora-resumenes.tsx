@@ -21,7 +21,11 @@ export function UltimaHoraResumenes({
   const panelRef = useRef<HTMLDivElement>(null);
   const [abierta, setAbierta] = useState<number | null>(null);
   const [alto, setAlto] = useState<number>();
-  const [posicion, setPosicion] = useState({ panel: 0, desplazamiento: 0 });
+  const [posicion, setPosicion] = useState<{
+    panel: number;
+    desplazamiento: number;
+    maxHeight?: number;
+  }>({ panel: 0, desplazamiento: 0 });
   const timeline = variante === "timeline";
   const timelineVisual = apariencia === "timeline";
 
@@ -49,27 +53,40 @@ export function UltimaHoraResumenes({
       const seleccionada = abierta === null ? undefined : filas[abierta];
       let panelTop = 0;
       let desplazamiento = 0;
+      let maxHeight: number | undefined;
       if (seleccionada && panel && alto !== undefined) {
         const inicio = seleccionada.offsetTop;
         const fin = inicio + seleccionada.offsetHeight;
-        const panelAlto = panel.getBoundingClientRect().height;
+        const panelAlto = panel.scrollHeight;
         if (timeline) {
           panelTop = fin + panelAlto <= alto
             ? fin
             : Math.max(0, inicio - panelAlto);
+          if (!timelineVisual && fin + panelAlto > alto && panelAlto > inicio) {
+            const espacioArriba = inicio;
+            const espacioAbajo = alto - fin;
+            if (espacioArriba >= espacioAbajo) {
+              panelTop = 0;
+              maxHeight = espacioArriba;
+            } else {
+              panelTop = fin;
+              maxHeight = espacioAbajo;
+            }
+          }
         } else {
           desplazamiento = Math.max(0, fin + panelAlto - alto);
         }
+        const altoVisible = maxHeight ?? panelAlto;
         filas.forEach((fila, index) => {
           const top = fila.offsetTop - desplazamiento;
           const bottom = top + fila.offsetHeight;
-          const tapada = timeline && top < panelTop + panelAlto && bottom > panelTop;
+          const tapada = timeline && top < panelTop + altoVisible && bottom > panelTop;
           fila.inert = index !== abierta && (top < 0 || bottom > alto || tapada);
         });
       } else {
         filas.forEach((fila) => { fila.inert = false; });
       }
-      setPosicion({ panel: panelTop, desplazamiento });
+      setPosicion({ panel: panelTop, desplazamiento, maxHeight });
     };
     colocar();
     const observer = new ResizeObserver(colocar);
@@ -97,7 +114,11 @@ export function UltimaHoraResumenes({
             ? "absolute inset-x-0 z-10 shadow-lg"
             : "mb-3"
         }`}
-        style={timeline ? { top: posicion.panel } : undefined}
+        style={timeline ? {
+          top: posicion.panel,
+          maxHeight: posicion.maxHeight,
+          overflowY: posicion.maxHeight === undefined ? undefined : "auto",
+        } : undefined}
       >
         <div className="mb-2 flex items-center justify-between gap-3">
           <span className="font-sans text-[10px] uppercase tracking-wide text-gray-600">

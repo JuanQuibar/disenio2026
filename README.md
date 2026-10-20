@@ -16,9 +16,11 @@ visualmente `/opcion-2` el 2026-10-19.
 **Mobile first**: la home `/` conserva la experiencia mobile y compone su
 presentación desktop desde 1024 px. Para revisar mobile, usar el modo dispositivo
 del navegador (por ejemplo 414×896).
-Las dos variantes temporales de Última hora muestran cinco noticias cada una en
-mobile. El lateral de `/opcion-2` conserva seis titulares en AHORA y cuatro en
-AVANCES DE LA IA desde 1024 px.
+Última hora muestra únicamente Agencia con cinco noticias en mobile. Sus
+resúmenes se superponen sin mover el título ni el tamaño exterior del módulo;
+si uno es demasiado largo, el panel permite desplazarse dentro de él. El
+lateral de `/opcion-2` conserva seis titulares en AHORA y cuatro en AVANCES DE
+LA IA desde 1024 px.
 La home usa una columna general. En mobile, las cinco notas de Legionarius, el
 chat y Sudoku aparecen consecutivamente. Desde 1024 px, esa zona se convierte
 en una fila con `GRÁFICO INTERACTIVO` a la izquierda y `CHAT VOX DEI` en una

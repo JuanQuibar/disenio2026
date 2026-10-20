@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export function UltimaHoraReloj({ compacto = false }: { compacto?: boolean }) {
+export function UltimaHoraReloj() {
   const [hora, setHora] = useState<string | null>(null);
 
   useEffect(() => {
@@ -23,18 +23,9 @@ export function UltimaHoraReloj({ compacto = false }: { compacto?: boolean }) {
   return (
     <time
       dateTime={hora ?? undefined}
-      className={compacto
-        ? "ml-auto inline-flex items-baseline gap-0.5 font-mono text-sm font-normal tracking-normal text-inherit tabular-nums"
-        : "font-mono text-base font-extralight tabular-nums"}
+      className="font-mono text-base font-extralight tabular-nums"
     >
-      {compacto ? (
-        <>
-          <span>{hora?.slice(0, 5) ?? "--:--"}</span>
-          <span className="text-xs">
-            {hora?.slice(5) ?? ":--"}
-          </span>
-        </>
-      ) : hora ?? "--:--:--"}
+      {hora ?? "--:--:--"}
     </time>
   );
 }

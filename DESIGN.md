@@ -40,10 +40,11 @@
   para igualar la altura izquierda. MAM comienza debajo de la columna más alta;
   se acepta espacio libre bajo la izquierda. Esta decisión reemplaza únicamente
   en `/opcion-2` el conteo variable y la altura forzada de la referencia estática.
-- AHORA conserva la apariencia de Agencia con pastillas, pero abre el resumen
-  superpuesto como Timeline. IA no lleva pastillas y despliega el resumen en
-  flujo como Agencia. Se lee en home, sin scroll interno y sin cambiar el tamaño
-  exterior del módulo al abrir/cerrar. Ambos conservan cierre, Escape y foco.
+- AHORA conserva la apariencia de Agencia con pastillas y abre el resumen
+  superpuesto. IA no lleva pastillas y despliega el resumen en flujo. Ambos se
+  leen en home sin cambiar el tamaño exterior del módulo al abrir/cerrar y
+  conservan cierre, Escape y foco. Si un resumen superpuesto es demasiado alto,
+  solo su panel permite desplazamiento interno para dejar visible el titular.
 - La encuesta lateral comparte pregunta, total y cuatro resultados con la
   principal, que sigue en su ubicación. Su título puede envolver a otra línea
   para no truncarse; `SONDEO EXCLUSIVO` se oculta entre 1024 y 1100 px. No se
@@ -546,54 +547,36 @@ Variantes:
 
 ## 📦 Catálogo de componentes
 
-### Última hora — dos variantes mobile
+### Última hora — Agencia mobile
 
-Se conservan temporalmente timeline y agencia, en ese orden después de Apertura
-y antes de Principales,
-para someterlas a un focus group y elegir una sola variante definitiva.
-La coexistencia no forma parte del diseño final: la elección corresponde al
-usuario después de esa evaluación. Se comparan dos formas de leer resúmenes
-sin salir de la home. **Ambos bloques se ocultan desde 1024 px (`lg:hidden`),
-sin reservar espacio, hasta definir su ubicación adecuada en desktop.** No se
-eliminan ni se trasladan a otro lugar: mobile conserva su posición y comportamiento.
-Cada variante muestra las mismas cinco noticias, en el mismo orden.
-Ambos listados usan fondo `#111827` y conservan el marco blanco redondeado;
-el cabezal `AHORA` conserva el punto rojo pulsante y reloj local real.
-El pulso respeta movimiento reducido.
-Cada variante tiene un contenedor exterior con `data-home-module`, `pt-1 pb-2`
-(4 px arriba y 8 px abajo) y `lg:hidden`, separado del recuadro visual.
+Agencia es la única variante mobile en `/` y `/opcion-2`, por decisión del
+usuario del 2026-10-20. Aparece después de Apertura y antes de Principales con
+cinco noticias. **El bloque se oculta desde 1024 px (`lg:hidden`) sin reservar
+espacio.** Su listado usa fondo `#111827` y marco blanco redondeado; el cabezal
+`AHORA` conserva punto rojo pulsante y reloj local real. El pulso respeta
+movimiento reducido.
+El contenedor exterior usa `data-home-module`, `pt-1 pb-2` (4 px arriba y 8 px
+abajo) y `lg:hidden`, separado del recuadro visual.
 No lleva `my-2`: este padding exterior se combina con el `gap-2` (8 px) de
 la home, sin márgenes verticales adicionales. Es el criterio de espaciado
 contrastado con Apertura, Principales y Política y aprobado visualmente.
 El padding interior de cada recuadro y cabezal se conserva independientemente.
 
-- **Cabezal timeline:** franja gris muy suave `bg-gray-100` con texto negro,
-  esquinas superiores de 7 px y padding `px-2 py-1` (8 px horizontal y 4 px
-  vertical). Reloj Geist Mono alineado a la derecha, peso 400: horas/minutos
-  de 14 px y segundos de 12 px, todos del mismo color negro. El módulo conserva
-  padding inferior de 8 px; no agrega padding exterior sobre la franja.
-- **Cabezal agencia:** fondo negro y texto blanco, sin franja clara; padding
+- **Cabezal:** fondo negro y texto blanco, sin franja clara; padding
   horizontal de 8 px en el cabezal y vertical de 8 px en el módulo. Reloj Geist
   Mono de 16 px, peso 200, junto a `AHORA`, con horas, minutos y segundos del
   mismo tamaño. Una línea blanca continua de 1 px abarca el grupo completo
   (punto rojo, `AHORA` y reloj), no todo el ancho del módulo. Se implementa como
   borde inferior del grupo con `pb-2` (8 px de aire bajo el contenido) y `mb-2`
   (8 px adicionales antes del listado, además del padding de su primera fila).
-  No adopta la posición ni el formato compacto del timeline.
-
-- **Timeline:** horas ficticias, línea tenue y punto por noticia; la primera
-  conserva `LO ÚLTIMO` y titular de 16 px semibold. Las demás usan 14 px.
-  El panel de resumen es superpuesto, con sombra; abre debajo o arriba según
-  el espacio disponible dentro del recuadro.
-- **Agencia:** sin horas ni timeline; titulares de 14 px, separadores tenues y
+- **Listado:** titulares de 14 px, separadores tenues y
   pastillas discretas de fondo rojo/verde al 10%, texto de 9 px y peso 500.
-  El resumen entra en flujo y desplaza las filas siguientes, recortadas sin
-  scroll interno; las últimas selecciones pueden desplazar el contenido hacia
-  arriba para mostrar íntegro el panel.
-- **Volantas compartidas:** Geist 10/16 px, peso 600, mayúsculas, tracking
-  `0.025em`, `text-gray-400`. Separación inferior de 2 px con el titular y
-  horizontal de 6 px con la pastilla de agencia. No agregar pastillas al
-  timeline: ya tiene hora, punto y `LO ÚLTIMO`.
+  El resumen se superpone con sombra, debajo o arriba del título según el
+  espacio disponible. Si no cabe entero en ninguno de los lados, el panel
+  limita su altura y permite desplazarse dentro de él sin tapar el título.
+- **Volantas:** Geist 10/16 px, peso 600, mayúsculas, tracking `0.025em`,
+  `text-gray-400`. Separación inferior de 2 px con el titular y horizontal de
+  6 px con la pastilla.
 - **Fuentes bajo cada titular:** prefijo `Fuentes:` sin mayúsculas sostenidas,
   Geist 10/16 px, peso normal, `text-gray-400`, separación superior de 4 px.
   De dos a cuatro medios únicos, separados por `·`, con wrap y sin truncado.
@@ -630,6 +613,9 @@ Tipografía: Geist
 Interacción: logo + PORTADA + Canal 7/Radio Nihuil; el resto es solo visual
 Live: fondo transparente, texto blanco y punto rojo pulsante
 Suscribite: fondo rojo, texto blanco
+Homes funcionales: sin sello visual MENDOZA junto al logo; logo centrado entre
+hamburguesa y PORTADA, con 40px libres a cada lado; nav desplazado a la derecha;
+padding horizontal de 32px alineado con el main y su borde derecho
 Anchos intermedios: fecha oculta; overflow interno sin scrollbar visible
 Offset: home y detalle compensan 94/57px; el banner de detalle acompaña el cambio
 Accesibilidad: servicios ocultos con inert + aria-hidden; sin transición con reduced-motion
@@ -1021,7 +1007,7 @@ para juegos se inserta debajo de Crimen.
 
 1. MuyDestacada — nota principal con video 16:9 + LIVE
 2. Apertura — hero card con foto 4:3
-3. Última hora — variantes temporales Timeline y Agencia, solo en mobile
+3. Última hora — Agencia, cinco noticias, solo en mobile
 4. Principales — carrusel Swiper de **6 cards** de noticias
 5. **Carrusel MAM** — videos de producción (mp4)
 6. Política — principal + 4 listado
