@@ -3,15 +3,14 @@
 Prototipo de alto impacto para el rediseño de `diariouno.com.ar`, pensado para
 presentar la visión a los accionistas.
 
-Hay dos propuestas funcionales aprobadas: **`/` y `/opcion-2`**. Ambas usan
-`HomeWrapper`, comparten la experiencia mobile, Live y todos los módulos desde
-MAM, incluido. La segunda cambia solo desde 1024 px: Apertura y Principales
-ocupan ocho columnas y el lateral cuatro, con seis titulares interactivos en
-AHORA, publicidad, encuesta y cuatro titulares interactivos en AVANCES DE LA IA.
-El lateral tiene altura natural y no oculta noticias según el ancho. Su diseño
-superior toma `/desktop` como referencia visual, pero está implementado con
-React, sin `String.raw` ni `dangerouslySetInnerHTML`. El usuario aprobó
-visualmente `/opcion-2` el 2026-10-19.
+Hay dos propuestas funcionales: **`/` es la portada aprobada** y **`/opcion`**
+conserva la portada anterior. Ambas usan `HomeWrapper`, comparten mobile, Live y
+todos los módulos desde MAM, incluido. Desde 1024 px, `/` presenta Apertura y
+Principales en ocho columnas y un lateral de cuatro con AHORA, publicidad,
+encuesta y AVANCES DE LA IA. El lateral tiene altura natural y siempre muestra
+seis titulares de AHORA y cuatro de IA. La implementación usa React y wrappers,
+sin `String.raw` ni `dangerouslySetInnerHTML`. El usuario aprobó visualmente esta
+variante el 2026-10-19 y la eligió como portada el 2026-10-26.
 
 **Mobile first**: la home `/` conserva la experiencia mobile y compone su
 presentación desktop desde 1024 px. Para revisar mobile, usar el modo dispositivo
@@ -19,14 +18,15 @@ del navegador (por ejemplo 414×896).
 Última hora muestra únicamente Agencia con cinco noticias en mobile. Sus
 resúmenes se superponen sin mover el título ni el tamaño exterior del módulo;
 si uno es demasiado largo, el panel permite desplazarse dentro de él. El
-lateral de `/opcion-2` conserva seis titulares en AHORA y cuatro en AVANCES DE
+lateral de `/` conserva seis titulares en AHORA y cuatro en AVANCES DE
 LA IA desde 1024 px.
-La home usa una columna general. En mobile, las cinco notas de Legionarius, el
-chat y Sudoku aparecen consecutivamente. Desde 1024 px, esa zona se convierte
-en una fila con `GRÁFICO INTERACTIVO` a la izquierda y `CHAT VOX DEI` en una
-columna de 448 px; ambos paneles igualan su altura y Sudoku queda oculto.
-Debajo de Crimen aparece únicamente en desktop una reserva blanca de ancho
-completo y 400 px de altura para el futuro espacio de juegos.
+La home usa una columna general. En mobile, un espacio reservado para el futuro
+gráfico interactivo responsive aparece antes de `CHAT VOX DEI`. Desde 1024 px,
+ambos forman una fila: la izquierda muestra temporalmente el video de Nepal en
+loop hasta disponer del gráfico HTML interactivo y el chat ocupa 448 px a la
+derecha; los paneles igualan su altura. El espacio de juegos es otro bloque:
+debajo de Crimen muestra Sudoku como muestra mobile y, en desktop, una reserva
+blanca de ancho completo y 400 px de altura para el futuro producto.
 Después de Encuesta/Senatus, la composición aprobada continúa con Ovación, el
 segundo anuncio y Sociedad, en ese orden y en ambos anchos. Ese anuncio conserva
 el formato 300×250 en mobile y adopta desde 1024 px el leaderboard
@@ -49,32 +49,19 @@ de reproducción de YouTube sigue dependiendo del proveedor externo.
 
 Las dos homes funcionales presentan en mobile y desktop la misma selección de
 doce fotos editoriales tomadas en Argentina, con resoluciones adecuadas a cada
-recorte. Las dos rutas estáticas guardan esa selección en sus instantáneas
-desktop independientes.
+recorte.
 
-La integración sigue el
-[plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop):
-una misma home responsive con las mismas secciones, cotejada con la publicación
-y el MCP oficiales de Stitch. La ruta `/desktop` inició una tarea independiente
-de diseño alternativo y no participa de esta integración. Su punto de partida es
-una réplica HTML estática de la home actual desde 1024 px. Su primera variante
-aprobada deja fija solo la fila principal del header. Apertura y Principales usan
-las ocho columnas izquierdas; Agencia ocupa las cuatro derechas durante ambos
-módulos y reúne seis noticias, un anuncio Pepsi 300×600 y una copia visual de la
-encuesta. El lateral cierra con `AVANCES DE LA IA`, un segundo listado estático
-sin pastillas que adapta su cantidad visible al ancho disponible. Apertura usa
-foto 16:9 sin cabezal interno. Ovación ya cuenta con una variante oscura de
-ancho completo, agenda DataFactory enmarcada, principal/listado de igual altura
-y una cinta deportiva CSS junto al logo. La réplica continúa sin hidratar React,
-pero su diseño de Ovación fue trasladado después, por instrucción explícita, al
-módulo real de `/` mediante sus wrappers y componentes. Esa excepción no vuelve
-a `/desktop` una referencia general.
+La integración se desarrolló según el
+[plan aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop)
+y se cotejó con la publicación y el MCP oficiales de Stitch. Las antiguas rutas
+estáticas `/desktop` y `/desktop2`, y la URL `/opcion-2`, se retiraron al elegir
+la nueva portada; su evolución permanece en la bitácora histórica.
 La API de Diario UNO y la segunda grilla 3+6+3 quedan fuera del tramo.
 
 ## Estado de la integración responsive
 
 Las etapas 1–8 están implementadas, verificadas y aprobadas. El usuario cerró la
-etapa 5 el 2026-10-19 y la presentación visual actual de `/` constituye su línea
+etapa 5 el 2026-10-19 y la presentación visual de `/opcion` constituye su línea
 base final. Los módulos que no recibieron una adaptación específica a Stitch se
 aceptan tal como están implementados y no quedan pendientes visuales dentro de
 esa etapa.
@@ -84,8 +71,8 @@ mobile y desktop, con panel `#111827`, ticker CSS, agenda general de DataFactory
 títulos uppercase y sin bajada principal ni rótulo de fixture. No se adapta a
 la versión de Stitch y quedó incorporado a la línea base al cerrar la etapa 5.
 
-Las revisiones funcional e integral cerraron las etapas 7 y 8. `/opcion-2` es
-un tramo posterior también cerrado y aprobado; no hay una etapa siguiente
+Las revisiones funcional e integral cerraron las etapas 7 y 8. La nueva portada
+`/` es un tramo posterior también cerrado y aprobado; no hay una etapa siguiente
 automática.
 
 ## Navegador de pruebas compartido
@@ -147,12 +134,8 @@ npx tsc --noEmit
 ## Rutas
 
 Referencia original: [diseño público completo de Stitch](https://2eaa6e7d-diario-uno-desktop-redesign.netlify.app/#).
-La home integrada debe ajustarse al inventario mobile, no incorporar
-automáticamente agregados u omisiones de Stitch. `/desktop` no es un fallback
-ni una referencia general de `/`: conserva su implementación estática y
-aportó el diseño superior acordado para `/opcion-2`. `/desktop2` es otro
-experimento estático independiente. Ninguna de esas instantáneas se sincroniza
-automáticamente con las homes funcionales.
+Las homes funcionales conservan el inventario mobile acordado. Las referencias
+estáticas utilizadas durante el diseño ya no son rutas disponibles.
 
 El cliente del agente puede disponer además del MCP oficial de Stitch. Esta
 integración es una fuente consultiva externa, no una dependencia del proyecto ni
@@ -164,11 +147,9 @@ para modificar el diseño remoto.
 
 | Ruta | Descripción |
 |---|---|
-| `/` | Primera home funcional; diseño original aprobado |
-| `/opcion-2` | Segunda home funcional; variante 8/4 desde 1024 px, misma home mobile y tramo compartido desde MAM |
+| `/` | Portada funcional aprobada; variante 8/4 desde 1024 px, con lateral AHORA/IA |
+| `/opcion` | Home funcional anterior; misma experiencia mobile y tramo compartido desde MAM |
 | `/detalle-nota` | Prototipo de página de nota |
-| `/desktop` | Prototipo desktop alternativo; baseline estático con experimentos visuales independientes desde 1024 px |
-| `/desktop2` | Segunda instantánea estática independiente, con experimentos editoriales propios; distinta de `/opcion-2` |
 
 ## Documentación
 
@@ -178,6 +159,7 @@ para modificar el diseño remoto.
 | [Plan responsive aprobado](./PROJECT_CONTEXT.md#plan-aprobado-integración-mobile-y-desktop) | Paridad, arquitectura, etapas y validación para la nueva sesión |
 | [PROGRESS.md](./PROGRESS.md) | Bitácora, backlog y convenciones. **Empezar por acá al retomar el trabajo** |
 | [DESIGN.md](./DESIGN.md) | Sistema visual mobile: colores, tipografía, layout y catálogo de componentes |
+| [CATALOGO_FORMATOS_PORTADA.md](./CATALOGO_FORMATOS_PORTADA.md) | Formatos editoriales de la portada aprobada para editores y proveedor del CMS |
 | [AGENTS.md](./AGENTS.md) | Punto de entrada para agentes de IA: orden de lectura y reglas que no se negocian |
 
 ## Stack

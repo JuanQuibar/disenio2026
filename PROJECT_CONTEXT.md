@@ -5,38 +5,32 @@ Crear un prototipo de alto impacto ("Wow Effect") para el rediseño de `diarioun
 *   **Fase actual**: Prototipo enfocado en UI/UX Mobile First. El contenido de texto
     y el bloque branded son de maqueta (Lorem Ipsum + Pexels); el carrusel MAM ya
     consume **contenido real de producción**.
-*   **Alcance actual**: La home del prototipo integra mobile y desktop en `/`, con
-    composición desktop desde 1024 px. La ruta `/desktop` inició una tarea de
-    diseño alternativo aislada: parte de una réplica HTML estática de la home,
-    sin conectarse a sus datos ni participar de las referencias o validaciones
-    de la integración original. Para `/`, la excepción fue una instrucción explícita para
-    trasladar exclusivamente el diseño aprobado de Ovación al módulo real de
-    `/`; esa intervención es independiente de la etapa 5 y no convierte a
-    `/desktop` en referencia general de esa home. Ovación ya tiene su
-    presentación propia cerrada en mobile y desktop: no será adaptado a Stitch
-    y queda fuera del alcance y los criterios de cierre de la etapa 5.
-    `/desktop2` es otra instantánea estática aislada: nació de una captura del
-    HTML final de `/desktop`, pero desde entonces evoluciona por separado y no
-    constituye una referencia para `/` ni para `/desktop`.
-*   **Segunda home funcional, aprobada el 2026-10-19**: `/opcion-2` reutiliza
-    la composición de `/` y adopta el diseño superior de `/desktop` solo desde
-    1024 px, conservando Live y todo el tramo desde MAM, incluido. Ambas rutas
-    muestran la misma experiencia mobile. Esta autorización es específica de
-    `/opcion-2` y no reabre el diseño aprobado de `/` ni las etapas 1–8.
+*   **Alcance actual**: Hay dos homes funcionales con composición desktop desde
+    1024 px: `/` presenta la variante 8/4 aprobada y `/opcion` conserva la
+    antigua portada de `/`. Comparten toda la experiencia mobile, Live y el
+    tramo desde MAM. Ovación conserva su diseño propio aprobado en ambos anchos.
+*   **Cambio de rutas del 2026-10-26**: la antigua `/opcion-2` pasó a `/` y la
+    antigua `/` pasó a `/opcion`. Se eliminaron `/desktop` y `/desktop2`, que
+    eran instantáneas estáticas. Las menciones posteriores a esas URLs en las
+    secciones históricas documentan decisiones anteriores, no rutas vigentes.
 *   **Fase futura**: Posible integración con API real y entrega a proveedores para implementación final.
 *   **Destino de la maqueta**: aprobación del directorio. Si se aprueba, el
     proveedor del CMS reconstruirá el diseño en su propia tecnología; no se
     pretende entregar este código como implementación de producción.
 *   **Integración responsive**: etapas 1 a 8 verificadas y cerradas según el
     [plan persistente](#plan-aprobado-integración-mobile-y-desktop). La etapa 5
-    quedó cerrada por el usuario el 2026-10-19 y el estado visual actual de `/`
-    es su línea base final.
+    quedó cerrada por el usuario el 2026-10-19; la antigua `/`, hoy `/opcion`,
+    conserva esa línea base visual.
     La composición se simplificó el 2026-10-13: una columna general y tres
-    agrupaciones responsive. Desde el 2026-10-19, mobile conserva Legionarius,
-    chat y Sudoku en ese orden. Desde 1024 px, Legionarius se reemplaza por el
-    Gráfico interactivo, comparte fila y altura con el chat, y Sudoku se oculta
-    sin reservar espacio. La reserva presentacional blanca de 400 px para un
-    futuro espacio de juegos aparece debajo de Crimen. También desde esa
+    agrupaciones responsive. Desde el 2026-10-26, mobile muestra una reserva
+    para el futuro gráfico interactivo responsive y después Chat Vox Dei; el
+    listado Legionarius salió de la home. Desde 1024 px, el video local de Nepal
+    sigue como sustituto temporal del gráfico HTML aún no disponible y comparte
+    fila y altura con el chat. El espacio de juegos es independiente: debajo de
+    Crimen muestra Sudoku como ejemplo mobile y la reserva blanca de 400 px en
+    desktop. El [catálogo de formatos](./CATALOGO_FORMATOS_PORTADA.md) los
+    identifica como `grafico-chat` y `espacio-juegos` para que el futuro CMS
+    permita ubicarlos por separado. También desde esa
     fecha,
     Canal 7, Radio Nihuil y el primer anuncio comparten una fila de tres
     columnas desde 1024 px: el anuncio reserva 332 px y el espacio restante se
@@ -83,20 +77,13 @@ componentes) está en [DESIGN.md](./DESIGN.md).
 ## 🏗 Arquitectura del Proyecto
 
 ### Estructura de Directorios (`app/`)
-*   `(sitio)/`: Route group de `/`, `/opcion-2` y `/detalle-nota`, con header y
+*   `(sitio)/`: Route group de `/`, `/opcion` y `/detalle-nota`, con header y
     footer compartidos. Las dos páginas de home importan **únicamente
     `HomeWrapper`** y eligen su variante; no importan servicios ni cards.
 *   `components/home/home-wrapper.tsx`: Composición compartida de las dos homes.
     `home-types.ts` define `HomeVariant` (`original` o `alternativa`, con
     `original` por defecto); `home-alternative.css` contiene la presentación
-    específica de la segunda opción.
-*   `desktop/page.tsx`: Prototipo desktop alternativo, fuera del marco del sitio.
-    Usa `dangerouslySetInnerHTML` para una instantánea visual congelada de `/`
-    desde 1024 px; no importa wrappers, servicios ni componentes de la home.
-*   `desktop2/page.tsx`: Segunda instantánea desktop autosuficiente. Contiene el
-    HTML y los estilos locales en un único `String.raw` y lo renderiza solamente
-    con `dangerouslySetInnerHTML`; no importa ni comparte implementación con
-    `/desktop`.
+    8/4, ahora usada por `/`.
 *   `layout.tsx`: Layout global (fuentes, metadatos e idioma).
 *   `globals.css`: Estilos globales y configuración de Tailwind.
 *   `services/`: Capa de datos.
@@ -135,22 +122,19 @@ originales verificados tienen entre 3011 y 6016 px de ancho. Los wrappers
 entregan estas fotos y sus textos alternativos tanto en mobile como en desktop;
 conservan las fuentes de datos y la omisión de secciones cuando faltan noticias.
 Las medidas del diseño mobile se conservan.
-`/desktop` y `/desktop2` conservan fuentes equivalentes dentro de su HTML
-estático independiente; la selección de fotos se incorporó por separado a cada
-instantánea. No importan esta primitive ni se regeneran desde las homes. La
-publicidad Pepsi usa el original aportado por el usuario
+La publicidad Pepsi usa el original aportado por el usuario
 `public/aviso_pepsi.jpeg` (1440×2912), suficiente para su recuadro de hasta
-300×600 también a densidad 2×, en las tres rutas que la muestran.
+300×600 también a densidad 2× en `/`.
 
-### Segunda home funcional aprobada (`/opcion-2`)
+### Portada funcional aprobada (`/`)
 
-El usuario aprobó visualmente esta propuesta el 2026-10-19. Se implementó para
-presentar una segunda opción interactiva a los accionistas, conservando `/`
-como primera propuesta. No utiliza HTML capturado, `String.raw` ni
-`dangerouslySetInnerHTML`; `/desktop` y `/desktop2` permanecen independientes.
+El usuario aprobó visualmente esta propuesta el 2026-10-19 y la promovió a `/`
+el 2026-10-26. La antigua portada sigue disponible en `/opcion`. Ambas son
+funcionales; no utilizan HTML capturado, `String.raw` ni
+`dangerouslySetInnerHTML`.
 
-Las páginas `(sitio)/page.tsx` y `(sitio)/opcion-2/page.tsx` delegan en
-`HomeWrapper` con `variante="original"` y `variante="alternativa"`. Live/Muy
+Las páginas `(sitio)/page.tsx` y `(sitio)/opcion/page.tsx` delegan en
+`HomeWrapper` con `variante="alternativa"` y `variante="original"`, respectivamente. Live/Muy
 Destacada y todo el tramo desde MAM, incluido, comparten exactamente la misma
 composición, wrappers y fallbacks. Los cambios de presentación de la alternativa
 se limitan a desktop; hasta 1023 px se mantiene la home mobile actual, incluido
@@ -165,8 +149,8 @@ con tamaños adecuados a cada ancho. El lateral
 reúne AHORA, publicidad Pepsi 300×600, encuesta adicional y AVANCES DE LA IA.
 Siempre muestra seis titulares de AHORA y cuatro de IA, incluso a 1024 px.
 Tiene altura natural y MAM comienza después de la columna más alta: puede quedar
-espacio libre bajo la izquierda. No heredar de `/desktop` las reglas que ocultan
-filas por ancho ni su `contain: size` para forzar la altura del lateral.
+espacio libre bajo la izquierda. La referencia estática retirada no imponía
+ninguna regla de ocultación de filas ni altura forzada a la home funcional.
 
 `UltimaHoraWrapper` acepta `alternativa` y genera un dataset por carga. Entrega
 las primeras cinco noticias al único bloque mobile, Agencia, y el dataset
@@ -193,12 +177,13 @@ configurar `mostrarPastillas`:
 distinto para la copia adicional. La encuesta principal sigue en su lugar;
 ninguna agrega votación, historial funcional ni persistencia.
 
-El header reconoce `/opcion-2`: en desktop, servicios se desplaza con la página
+El header reconoce `/`: en desktop, servicios se desplaza con la página
 y la fila principal queda sticky; logo, Portada y enlace a transmisiones
-mantienen al usuario en la alternativa. El CSS usa `overflow-x: clip` en
-`html/body` exclusivamente para esa ruta y breakpoint para no crear un
-contenedor de scroll que rompa el sticky. `/`, detalle y mobile mantienen su
-presentación anterior. El footer sigue siendo el compartido de `(sitio)`.
+mantienen al usuario en la portada. En `/opcion` esos enlaces conservan la
+variante anterior. El CSS usa `overflow-x: clip` en `html/body` solo para la
+portada desde 1024 px, sin crear un contenedor de scroll que rompa el sticky.
+`/opcion`, detalle y mobile mantienen su presentación anterior. El footer sigue
+siendo el compartido de `(sitio)`.
 
 Pasaron tipos, build y whitespace. Se comprobó paridad a 414/768/1023 px y la
 alternativa a 1024/1200/1280/1366/1440 px, incluyendo cantidades, dimensiones,
@@ -206,7 +191,7 @@ resúmenes, teclado, resize, header, modales, radio y chat. Las recargas finales
 de ambas homes quedaron sin errores de consola. La revisión visual posterior
 del usuario cerró el tramo y habilitó esta documentación.
 
-### Prototipo desktop alternativo (`/desktop`)
+### Archivo histórico: prototipo desktop alternativo (`/desktop`, retirado)
 
 La tarea independiente comenzó el 2026-10-17. Su baseline es el
 `outerHTML` congelado de `.site-layout`, capturado desde la home integrada a
@@ -267,7 +252,7 @@ Enlaces, iframes y medios conservan solo el comportamiento nativo del HTML. No
 tiene requisitos por debajo de 1024 px, no se regenera cuando cambia `/` y puede
 evolucionar de forma independiente. Sigue excluida de las etapas 5, 7 y 8.
 
-### Segunda alternativa estática (`/desktop2`)
+### Archivo histórico: segunda alternativa estática (`/desktop2`, retirada)
 
 La ruta se creó el 2026-10-19 capturando el HTML final renderizado de
 `/desktop`, incluidos sus estilos locales. Toda la captura vive en la constante
@@ -408,7 +393,7 @@ error sin exponer credenciales. Los wrappers omiten su sección cuando no hay da
     se combina con el gap de 8 px de la home. El bloque mobile se oculta desde
     1024 px sin reservar espacio en ambas homes.
     `ultima-hora-wrapper.tsx` espera `connection()`, genera un solo dataset por
-    carga y entrega las primeras cinco noticias a Agencia. En `/opcion-2`
+    carga y entrega las primeras cinco noticias a Agencia. En `/`
     también entrega el dataset completo al lateral desktop, que muestra seis
     titulares en AHORA. `ultima-hora-noticias.ts` centraliza identidad, titular,
     hora ficticia, volanta y contribuciones estructuradas como fuente/párrafo.
@@ -428,8 +413,7 @@ error sin exponer credenciales. Los wrappers omiten su sección cuando no hay da
     separadores y pastillas `URGENTE`/`TENDENCIA` de muestra. El cabezal negro
     muestra punto rojo y reloj cliente `HH:mm:ss` en Geist Mono, actualizado
     cada segundo, con una línea blanca bajo el grupo. Las etiquetas no son
-    clasificación editorial ni noticias en tiempo real. `/desktop` y
-    `/desktop2` son instantáneas independientes y no se sincronizan.
+    clasificación editorial ni noticias en tiempo real.
 *   **`muy-destacada/`**: Noticia principal con gran impacto visual.
 *   **`principales/`**: Carrusel interactivo de noticias destacadas.
 *   **`live/`**: Transmisiones en vivo (Canal 7, Radio Nihuil).
@@ -474,11 +458,9 @@ error sin exponer credenciales. Los wrappers omiten su sección cuando no hay da
     Shorts se usan **controles propios** (`controls: 0`) para mantener la misma
     interfaz en los tres carruseles. El iframe va con `pointer-events: none`,
     porque si no se queda con el gesto táctil y bloquea el swipe vertical.
-*   **Las homes funcionales siguen siendo mobile-first.** `/` y `/opcion-2`
-    comparten la base mobile y los módulos desde MAM. La segunda incorpora el
-    lateral desktop aprobado. `/desktop` conserva su implementación estática:
-    fue referencia visual explícita para esa alternativa, pero no se conecta a
-    sus datos ni se sincroniza automáticamente con ella.
+*   **Las homes funcionales siguen siendo mobile-first.** `/` y `/opcion`
+    comparten la base mobile y los módulos desde MAM. La portada `/` incorpora
+    el lateral desktop aprobado; `/opcion` conserva el diseño anterior.
 *   **Arquitectura responsive vigente (simplificada el 2026-10-13)**: contenido,
     piezas y comportamiento compartidos en un único árbol. El orden mobile se
     conserva también visualmente en desktop; Encuesta/Senatus, Canal 7/
@@ -489,6 +471,9 @@ error sin exponer credenciales. Los wrappers omiten su sección cuando no hay da
     homes ni duplicar players.
 
 ## Plan aprobado: integración mobile y desktop
+
+Este plan documenta la implementación original de `/`, ahora disponible en
+`/opcion`. Las rutas estáticas que menciona fueron eliminadas el 2026-10-26.
 
 ### Alcance y límites
 
@@ -1430,10 +1415,9 @@ eliminando o mostrando la configuración local.
 *   **API de Diario UNO**: evaluar acceso y equivalencia editorial si se solicita
     comparar ambos diseños con el mismo contenido real; fuera del tramo aprobado.
 *   **Exploración desktop 3+6+3**: no decidida ni incluida en las propuestas
-    actuales. La segunda home funcional aprobada es `/opcion-2` y utiliza 8/4.
-*   **Próxima intervención visual**: `/opcion-2` está cerrada y aprobada;
-    cualquier evolución de las homes o de los experimentos estáticos
-    `/desktop` y `/desktop2` requiere un nuevo objetivo del usuario.
+    actuales. La portada funcional aprobada `/` utiliza 8/4.
+*   **Próxima intervención visual**: `/` está cerrada y aprobada; cualquier
+    evolución de `/` o `/opcion` requiere un nuevo objetivo del usuario.
 
 ---
 

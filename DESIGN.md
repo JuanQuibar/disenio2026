@@ -2,32 +2,31 @@
 
 > Sistema de diseño extraído del prototipo mobile existente.
 > Consumidores previstos: **Google Stitch**, agentes de IA, diseñadores.
+> Los nombres editoriales, cupos y reglas de instancias de la portada aprobada están en el [Catálogo de formatos de portada](./CATALOGO_FORMATOS_PORTADA.md).
 
 > [!IMPORTANT]
 > La base de este documento corresponde a mobile (viewport ~414px). Las
 > decisiones desktop ya aprobadas se registran explícitamente y prevalecen desde
 > 1024 px sin reemplazar la especificación mobile.
 >
-> Desde el 2026-10-17, `/desktop` no es fuente de verdad, referencia ni criterio
-> de aceptación de la home integrada. Su tarea alternativa ya comenzó: parte de
-> una réplica HTML visual y congelada de `/` desde 1024 px, sin hidratación ni
-> handlers React, y puede divergir de forma independiente. La etapa 5 se cerró
-> el 2026-10-19 tras el cotejo con la publicación y el MCP oficiales de Stitch;
-> su resultado aprobado queda registrado en este documento.
+> Desde el 2026-10-26, `/` muestra la opción 8/4 aprobada y `/opcion` conserva
+> el diseño anterior. Ambas comparten mobile. `/desktop`, `/desktop2` y
+> `/opcion-2` fueron retiradas; sus menciones posteriores documentan estados
+> históricos, no rutas disponibles. La etapa 5 se cerró el 2026-10-19 tras el
+> cotejo con la publicación y el MCP oficiales de Stitch.
 >
-> **Excepción cerrada:** por instrucción explícita, Ovación adoptó una línea
-> visual propia basada únicamente en su variante aprobada de `/desktop`. Está
-> implementada en mobile y desktop de la home real, no será adaptada a Stitch y
-> queda fuera del alcance de la etapa 5. Esta excepción no se extiende a ninguna
-> otra sección de `/`. Para `/opcion-2`, la autorización posterior permite usar
-> el tramo superior de `/desktop` con las reglas específicas que siguen.
+> **Excepción cerrada:** Ovación adoptó una línea visual propia basada en su
+> antigua variante de `/desktop`. Está implementada en mobile y desktop de
+> ambas homes funcionales y queda fuera del alcance de la etapa 5. La portada
+> `/` adopta el tramo superior aprobado de aquella referencia, con las reglas
+> específicas que siguen.
 
-### Segunda home funcional `/opcion-2` — aprobada el 2026-10-19
+### Portada funcional `/` — aprobada el 2026-10-19
 
-- Comparte con `/` la home mobile completa, Live/Muy Destacada y todos los
+- Comparte con `/opcion` la home mobile completa, Live/Muy Destacada y todos los
   módulos desde MAM, incluido, hasta el footer. Solo cambia el tramo superior
   desktop desde 1024 px; usa componentes React funcionales y wrappers, sin HTML
-  capturado. `/desktop` y `/desktop2` conservan sus diseños independientes.
+  capturado. Desde el 2026-10-26 es la portada principal.
 - Mantiene la grilla 8/4 y gap de 24 px en todos los anchos desktop. Apertura
   apila foto 16:9 de alta resolución, título, bajada y meta; oculta cabezal
   interno, volanta y claves. Principales conserva seis cards completas en 2×3.
@@ -39,7 +38,7 @@
   El lateral crece según su contenido, sin ocultar noticias ni recortar filas
   para igualar la altura izquierda. MAM comienza debajo de la columna más alta;
   se acepta espacio libre bajo la izquierda. Esta decisión reemplaza únicamente
-  en `/opcion-2` el conteo variable y la altura forzada de la referencia estática.
+  en `/` el conteo variable y la altura forzada de la antigua referencia estática.
 - AHORA conserva la apariencia de Agencia con pastillas y abre el resumen
   superpuesto. IA no lleva pastillas y despliega el resumen en flujo. Ambos se
   leen en home sin cambiar el tamaño exterior del módulo al abrir/cerrar y
@@ -51,11 +50,11 @@
   incorpora votación ni historial funcional.
 - El header alternativo conserva servicios en el flujo y mantiene sticky la
   fila principal de 57 px al hacer scroll. Hasta 1023 px conserva el header
-  mobile; el header de `/` mantiene su comportamiento anterior.
+  mobile; el header de `/opcion` mantiene su comportamiento anterior.
 - El usuario aprobó visualmente la implementación después de las validaciones
   técnicas y funcionales. No quedan ajustes visuales pendientes de este tramo.
 
-### Diseño alternativo vigente de `/desktop`
+### Archivo histórico: diseño alternativo de `/desktop` (ruta retirada)
 
 - Desde 1024 px, la fila de servicios del header se desplaza con la página y
   solo la fila principal de 57 px permanece sticky. Al volver al inicio se ven
@@ -96,9 +95,9 @@
   título uppercase 28/34 px y firma, sin bajada; las cuatro filas secundarias
   usan fotos 3:2 y títulos uppercase 16/22 px, o 14/19 px entre 1024–1100 px.
   Todos los títulos llevan volantas rojas y ambas columnas igualan su altura.
-- Estas reglas describen el experimento `/desktop`; no son decisiones generales
-  de `/` ni de la etapa 5. Ovación conserva su excepción propia y `/opcion-2`
-  adapta únicamente el tramo superior según su especificación precedente.
+- Estas reglas describían el experimento `/desktop`, retirado el 2026-10-26.
+  La portada `/` usa solo el tramo superior funcional descrito arriba; Ovación
+  conserva su excepción propia en ambas homes.
 
 ### Ovación integrado — diseño propio fuera de la etapa 5
 
@@ -120,7 +119,7 @@
 - Desde 1024 px rigen además el título principal 28/34 px, las filas secundarias
   iguales con fotos 3:2 y títulos 16/22 px —14/19 px entre 1024 y 1100 px—, y la
   igualdad exacta de altura entre principal y listado.
-- Este diseño es la referencia definitiva de Ovación en `/`. El módulo no entra
+- Este diseño es la referencia definitiva de Ovación en ambas homes. El módulo no entra
   en el inventario pendiente, el cotejo ni los criterios de cierre de la etapa
   5 y no debe compararse con Stitch cuando esa etapa se retome.
 
@@ -214,19 +213,22 @@
   visual, sin paginación ni contenido adicional. Mobile permanece intacto.
 - **Gráfico interactivo + Chat Vox Dei:** desde 1024 px forman una fila
   `minmax(0, 1fr) 448px` con gap de 24 px y paneles blancos de igual altura. La
-  izquierda conserva el wrapper de Legionarius pero reemplaza sus notas por
-  `video_nepal.mp4` en 16:9, autoplay muteado, loop continuo, `playsInline` y
-  sin controles; el video solo se monta en desktop. Su cabezal oscuro usa ícono
-  de gráfico, `GRÁFICO INTERACTIVO` y el meta aprobado `EDICIÓN ESPCIAL`. El chat
-  usa el mismo cabezal con ícono de conversación y `CHAT VOX DEI`; su historial
-  hace scroll interno sin cambiar la altura. Mobile conserva las cinco notas,
-  el chat de 60vh y Sudoku inmediatamente debajo. Sudoku se oculta desde
-  1024 px sin reservar espacio.
-- **Reserva para juegos:** solo desde 1024 px, inmediatamente después de Crimen
-  y antes de Últimas noticias, se muestra un contenedor blanco
-  de ancho completo y 400 px de alto. Centra en ambos ejes, a 24 px, el texto
-  `Espacio reservado para juegos. Proyecto en fase de evaluación`. No incluye
-  controles ni funcionalidad y no existe visualmente en mobile.
+  izquierda muestra temporalmente `video_nepal.mp4` en 16:9, autoplay muteado,
+  loop continuo, `playsInline` y sin controles; será sustituido por el HTML del
+  gráfico interactivo cuando esté disponible. El video solo se monta en desktop.
+  Su cabezal oscuro usa ícono de gráfico, `GRÁFICO INTERACTIVO` y meta `EDICIÓN
+  ESPECIAL`. El chat usa el mismo cabezal con ícono de conversación y `CHAT VOX
+  DEI`; su historial
+  hace scroll interno sin cambiar la altura. Mobile muestra una reserva 4:3 en
+  teléfono y 16:9 desde 768 px para el gráfico responsive, seguida del chat de
+  60vh. Legionarius salió de este
+  bloque y Sudoku ya no pertenece a él.
+- **Espacio de juegos:** bloque independiente inmediatamente después de Crimen
+  y antes de Últimas noticias. Mobile presenta Sudoku como muestra del futuro
+  espacio. Desde 1024 px muestra un contenedor blanco de ancho completo y 400 px
+  de alto, con el texto centrado `Espacio reservado para juegos. Proyecto en fase
+  de evaluación`; Sudoku se oculta en desktop. Ambos representan el mismo
+  espacio editorial.
 - **Orden central y segundo anuncio:** en mobile y desktop, Encuesta/Senatus,
   Ovación, el segundo anuncio y Sociedad aparecen consecutivamente en ese orden.
   El anuncio conserva el rectángulo animado
@@ -549,7 +551,7 @@ Variantes:
 
 ### Última hora — Agencia mobile
 
-Agencia es la única variante mobile en `/` y `/opcion-2`, por decisión del
+Agencia es la única variante mobile en `/` y `/opcion`, por decisión del
 usuario del 2026-10-20. Aparece después de Apertura y antes de Principales con
 cinco noticias. **El bloque se oculta desde 1024 px (`lg:hidden`) sin reservar
 espacio.** Su listado usa fondo `#111827` y marco blanco redondeado; el cabezal
@@ -787,13 +789,12 @@ Desktop:     principal y listado terminan a igual altura desde 1024px
 Alcance:     diseño propio; fuera del cotejo y adaptación de Stitch de etapa 5
 ```
 
-#### Arquetipo G: "Solo texto" (Listado sin fotos)
+#### Arquetipo G: "Gráfico + chat"
 
 ```
-Alcance: mobile y hasta 1023px; en desktop lo reemplaza Gráfico interactivo
-Layout:  flex flex-col, artículos separados por border-b border-gray-200
-Título:  font-serif text-base leading-snug, sin truncado
-Sin foto, sin bajada, sin byline.
+Mobile:  reserva 4:3 para gráfico interactivo responsive; Chat Vox Dei debajo
+Desktop: muestra temporal del gráfico en video 16:9 + chat, fila 1fr/448px
+Orden interno: gráfico y luego chat. Sudoku pertenece a Espacio de juegos.
 ```
 
 #### Arquetipo H: "50/50 con foto" (Más noticias)
@@ -947,7 +948,7 @@ Icon:      SendIcon w-6 h-6 (paper airplane)
 #### Sudoku
 
 ```
-Alcance:   visible debajo del chat hasta 1023px; oculto en desktop
+Alcance:   muestra mobile del Espacio de juegos debajo de Crimen; oculto en desktop
 Card:      max-w-md mx-auto rounded-lg shadow-md p-4 border border-gray-200
 Grid:      grid grid-cols-9 border-2 border-gray-800 bg-gray-800 gap-px
 Cells:     w-8 h-8 sm:w-10 sm:h-10 text-lg font-semibold text-center
@@ -1002,9 +1003,9 @@ el reader de detalle. No extender esos clamps a los módulos calibrados.
 ## 🗂 Estructura de secciones en la Home (orden)
 
 La lista refleja el orden mobile vigente. Servicios permanece implementado pero
-está oculto en `/`. Desde 1024 px, Listado sin fotos se reemplaza por Gráfico
-interactivo junto al chat, Sudoku se oculta sin reservar espacio y la reserva
-para juegos se inserta debajo de Crimen.
+está oculto en `/`. Mobile muestra la reserva del gráfico antes del chat y el
+Sudoku como parte del Espacio de juegos bajo Crimen. Desde 1024 px, el gráfico
+usa temporalmente un video junto al chat y los juegos muestran su reserva.
 
 1. MuyDestacada — nota principal con video 16:9 + LIVE
 2. Apertura — hero card con foto 4:3
@@ -1023,11 +1024,11 @@ para juegos se inserta debajo de Crimen.
 15. Canal 7 Live — stream 16:9
 16. Radio Nihuil Live — click-to-load stream
 17. Banner Publicitario — primer anuncio 300×250 animado
-18. Listado sin fotos — feed solo texto; Gráfico interactivo en desktop
+18. Gráfico interactivo — reserva responsive mobile; video de muestra desktop
 19. ChatBot — "Chat Vox Dei"
-20. Sudoku — juego interactivo solo hasta 1023px
-21. Gente — 6 retratos: grid 2×3 mobile y 3×2 desktop
-22. Crimen — principal + 4 listado
+20. Gente — 6 retratos: grid 2×3 mobile y 3×2 desktop
+21. Crimen — principal + 4 listado
+22. Espacio de juegos — Sudoku mobile; reserva blanca desktop
 23. Más noticias — feed 50/50 texto + foto
 24. Footer
 

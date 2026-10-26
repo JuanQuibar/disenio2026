@@ -12,19 +12,21 @@
 
 ## 📍 Estado actual
 
-Hay dos homes funcionales aprobadas para la presentación: `/` y `/opcion-2`.
-La segunda recibió aprobación visual del usuario el 2026-10-19 y comparte
-`HomeWrapper` con la primera. Solo difiere desde 1024 px en el header y el tramo
-editorial anterior a MAM; Live/Muy Destacada y todo el contenido desde MAM,
-incluido, conservan la implementación de `/`. Ambas comparten la misma mobile.
-La composición alternativa mantiene 8/4 y muestra siempre seis titulares en
-AHORA y cuatro en AVANCES DE LA IA, con resúmenes interactivos y altura natural
-del lateral. `/desktop` y `/desktop2` siguen siendo experimentos estáticos
-independientes; no confundirlos con la segunda home funcional.
+Hay dos homes funcionales aprobadas para la presentación: `/` es la opción 2
+elegida como principal el 2026-10-26; `/opcion` conserva la anterior home de `/`.
+Ambas comparten `HomeWrapper` y la misma experiencia mobile. Solo difieren desde
+1024 px en el header y el tramo editorial anterior a MAM. Live/Muy Destacada y
+todo el contenido desde MAM, incluido, usan la misma implementación. La nueva
+portada mantiene 8/4 y muestra siempre seis titulares en AHORA y cuatro en
+AVANCES DE LA IA, con resúmenes interactivos y altura natural del lateral.
+El [catálogo de formatos de portada](./CATALOGO_FORMATOS_PORTADA.md) define los
+nombres y cupos editoriales para la futura implementación del CMS; no convierte
+esta maqueta en una portada configurable.
+`/desktop`, `/desktop2` y `/opcion-2` fueron retiradas; sus menciones en tramos
+anteriores de esta bitácora describen estados históricos, no rutas vigentes.
 En mobile, Última hora muestra solo Agencia con cinco noticias y resúmenes
 superpuestos. Las dos homes funcionales usan la selección de doce fotos editoriales
-tomadas en Argentina tanto en mobile como en desktop; `/desktop` y `/desktop2`
-conservan esa selección en sus instantáneas desktop independientes.
+tomadas en Argentina tanto en mobile como en desktop.
 
 Prototipo mobile-first funcionando. La home renderiza los **tres carruseles de
 video definitivos** (MAM, Shorts y Branded), validados en viewport 414×896 sin
@@ -38,50 +40,23 @@ altura completa del viewport, deja la home visible detrás de un velo oscuro y
 agrega botones laterales para avanzar o retroceder. Hasta 1023 px conserva sin
 cambios el fullscreen mobile.
 
-La home `/` ya comparte un único árbol para mobile y desktop; el cambio visual a
+Las dos homes comparten un único árbol para mobile y desktop; el cambio visual a
 desktop comienza en 1024 px. La composición desktop presenta Encuesta/Senatus y
 Gráfico interactivo/chat en parejas de dos columnas, y Canal 7/Radio Nihuil
 junto al primer anuncio en una fila de tres columnas. Mobile apila el contenido
 y deja ese anuncio inmediatamente debajo de los dos streams.
-El header desktop muestra sus dos franjas únicamente al inicio: al hacer scroll
+El header desktop de `/opcion` muestra sus dos franjas únicamente al inicio: al hacer scroll
 oculta la barra superior de servicios y mantiene fija la fila principal de
 57 px; la barra completa reaparece solo al volver a `scrollY = 0`.
-Mobile conserva las cinco notas de Legionarius y ubica Sudoku inmediatamente
-debajo del chat. Desde 1024 px, Legionarius se reemplaza por el video local de
-Nepal en loop continuo, el chat comparte su altura y Sudoku se oculta sin
-reservar espacio.
-Inmediatamente debajo de Crimen, desktop incorpora un contenedor blanco de
-400 px de alto y ancho completo para reservar el futuro espacio de juegos;
-permanece ausente en mobile.
+Mobile muestra una reserva para el futuro gráfico interactivo responsive y
+ubica el chat debajo; Legionarius salió de la home. Desde 1024 px, el video
+local de Nepal sigue en loop como sustituto temporal del gráfico HTML aún no
+disponible y comparte fila y altura con el chat. El espacio de juegos es un
+bloque independiente bajo Crimen: Sudoku sirve de muestra mobile y desktop
+conserva la reserva blanca de ancho completo y 400 px de alto.
 Desde 1024 px los tres contenedores mantienen la misma altura; los streams
 tienen cabezales `CANAL 7 EN VIVO` y `RADIO NIHUIL EN VIVO` con punto rojo
 pulsante, respetando la preferencia de movimiento reducido.
-La ruta `/desktop` inició su tarea independiente de diseño alternativo. Su
-baseline es una réplica HTML estática de la home actual desde 1024 px, aislada
-de sus wrappers, datos y handlers React. Su primera composición aprobada usa
-header sticky de una sola fila y una columna editorial de ocho columnas para
-Apertura y Principales. Apertura evolucionó a foto 16:9 sin cabezal interno.
-Agencia ocupa las cuatro derechas durante ambos módulos;
-su panel negro reúne seis noticias, una pieza publicitaria 300×600 y una copia
-visual de la encuesta; debajo cierra con el listado estático `AVANCES DE LA IA`.
-Ovación ya tiene una variante aprobada de ancho completo: panel oscuro, agenda
-DataFactory enmarcada, contenido editorial principal/listado de igual altura y
-una cinta deportiva continua junto al logo.
-Sigue excluida de las referencias y validaciones de la integración original de
-`/`. Su tramo superior fue la referencia visual explícita de `/opcion-2`.
-
-La ruta `/desktop2` conserva una segunda alternativa completamente estática e
-independiente. Se creó a partir del HTML final renderizado de `/desktop`,
-incluidos sus estilos locales, y guarda toda la instantánea en un único
-`String.raw` de `app/desktop2/page.tsx`, renderizado exclusivamente mediante
-`dangerouslySetInnerHTML`. No importa componentes, wrappers, servicios ni
-datos de `/desktop`, no hidrata handlers y puede abrirse directamente. Desde
-esa captura evolucionó de forma deliberada: los módulos editoriales acordados
-presentan título y firma antes del medio, Apertura usa foto 4:3 y las bajadas no
-se muestran, salvo las dos del panel `FOCO DE COBERTURA`. Política, Sociedad y
-Crimen expanden su imagen principal para terminar a la misma altura que el
-listado lateral.
-
 Por instrucción explícita del usuario, la variante de Ovación de `/desktop`
 fue trasladada después al módulo real de Ovación en `/` como un trabajo
 independiente de la etapa 5. El
@@ -117,7 +92,7 @@ independiente de Última hora conserva solo Agencia en mobile, por decisión del
 usuario del 2026-10-20. Tiene cabezal pulsante, reloj real y resúmenes por
 fuente superpuestos que se leen sin salir de la home ni cambiar el tamaño del
 recuadro al abrir o cerrar. El bloque mobile se oculta desde 1024 px, sin
-reservar espacio, en ambas homes. `/opcion-2` conserva AHORA e IA en su lateral
+reservar espacio, en ambas homes. `/` conserva AHORA e IA en su lateral
 desktop aprobado, con sus respectivas interacciones.
 Servicios quedó oculto en `/` para mobile y desktop por indicación del usuario;
 su implementación se conserva fuera de la composición para una posible
@@ -141,11 +116,46 @@ identificaron el proyecto `Diario UNO Desktop Redesign` y su pantalla principal
 `Diario UNO — Portada Desktop 2026`; los identificadores y las reglas de uso
 consultivo están en `PROJECT_CONTEXT.md`. Es una fuente complementaria a la web
 pública, no autoriza mutaciones y su credencial nunca se guarda en el repositorio.
-`/desktop` queda excluida del cotejo.
+La antigua `/desktop` ya no es una ruta disponible.
 
 ---
 
 ## ✅ Hecho
+
+### 2026-10-26 — Gráfico/chat y juegos separados
+
+El usuario aclaró que el video de Nepal es solo una muestra temporal del futuro
+gráfico interactivo y que el gráfico también necesitará una versión responsive.
+Se retiraron las cinco notas de Legionarius en mobile y se dejó allí una reserva
+responsive antes del chat. Sudoku pasó de debajo del chat al espacio de juegos bajo
+Crimen, donde funciona como muestra mobile del bloque cuya reserva de 400 px
+permanece en desktop. En el [catálogo](./CATALOGO_FORMATOS_PORTADA.md) se
+identifican como dos formatos independientes, `grafico-chat` y `espacio-juegos`,
+para que el futuro editor pueda ubicarlos por separado. Se actualizaron las
+capturas de ambos formatos sin cambiar los otros módulos ni el video desktop.
+
+### 2026-10-26 — Catálogo editorial de la portada aprobada
+
+Se fijó un vocabulario separado de formato, tema e instancia para que editores y
+proveedor del CMS puedan reconocer y repetir bloques sin confundirlos con
+secciones. La [guía de 15 formatos](./CATALOGO_FORMATOS_PORTADA.md) incluye
+capturas reales mobile y desktop de `/`, cupos, campos, fuentes, comportamiento
+e interacciones. La cabecera editorial conserva su composición interna aprobada.
+`principal-cuatro` ocupa siempre el ancho completo: Política, Sociedad y Crimen
+son instancias del mismo formato, y Gente usa `retratos`. El contrato editorial
+permite ordenar bloques compuestos como unidades y crear instancias con
+contenido y fuentes propios. No prescribe tecnología ni cambia la maqueta.
+La revisión integral de los demás documentos se hará en la tarea separada que
+anunció el usuario.
+
+### 2026-10-26 — Opción aprobada promovida a portada
+
+La anterior `/opcion-2` pasó a `/` y la anterior `/` pasó a `/opcion`, mediante
+la selección de variante en las páginas y el ajuste de enlaces y comportamiento
+del header. Las dos homes conservan su composición mobile compartida. Se
+retiraron las instantáneas estáticas `/desktop` y `/desktop2`; no se redirigen
+las URLs eliminadas. La bitácora anterior se conserva como historia del diseño.
+Se verificaron tipos, build, rutas y ausencia de referencias antiguas en código.
 
 ### 2026-10-20 — Agencia elegida como única Última hora mobile
 
@@ -1638,34 +1648,25 @@ Branded ya no arrastra el contenedor blanco duplicado.
 
 ## 🔄 En curso
 
-`/opcion-2` está implementada, validada y aprobada visualmente. Su documentación
-quedó cerrada tras la revisión del usuario; no hay ajustes pendientes de este
-tramo ni una intervención siguiente automática.
+La opción aprobada ya es `/`; la anterior portada está disponible en `/opcion`.
+No hay ajustes pendientes de este tramo ni una intervención siguiente automática.
 
 Las etapas 1–8 están cerradas y no hay una intervención visual en curso en la home
 integrada. Última hora usa únicamente Agencia en mobile; no hay una nueva
-intervención en curso en ese módulo. La tarea
-alternativa de `/desktop` mantiene su evolución independiente y tampoco tiene un
-tramo activo. `/desktop2` queda igualmente cerrada como instantánea independiente
-hasta una nueva indicación explícita.
+intervención en curso en ese módulo. Las dos instantáneas estáticas se retiraron.
 
 ---
 
 ## ⏭️ Siguiente
 
-Esperar el próximo objetivo del usuario para `/` o `/opcion-2`, preservando la
+Esperar el próximo objetivo del usuario para `/` o `/opcion`, preservando la
 composición compartida y las dos propuestas aprobadas. No trasladar cambios del
 tramo superior de una variante a la otra por cuenta propia.
-
-Definir con el usuario cuál alternativa y qué módulo u objetivo visual se
-trabajará antes de volver a modificar `/desktop` o `/desktop2`. Mantener los
-tramos aprobados y no sincronizar automáticamente ninguna de esas rutas con
-cambios futuros de `/` ni entre sí.
 
 Última hora mobile quedó definida como Agencia en ambas homes; conservar sus
 cinco noticias, la lectura en home y el tamaño estable del recuadro. La
 actualización real de noticias sigue fuera del alcance. Mantener ese bloque
-oculto desde 1024 px; en `/opcion-2`, conservar la ubicación y las
+oculto desde 1024 px; en `/`, conservar la ubicación y las
 interacciones desktop ya aprobadas de AHORA e IA.
 El plan responsive no tiene una etapa siguiente automática. Cualquier ajuste
 visual nuevo parte de la home aprobada como línea base y se documenta después
@@ -1707,15 +1708,6 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
   en algunos textos pequeños de publicidad, sponsor y estado EN VIVO. No se
   modificaron porque la presentación visual está congelada; revisar solo si el
   usuario autoriza un ajuste visual de accesibilidad.
-- **Prueba desktop alternativa.** `/desktop` ya inició su tarea independiente y
-  conserva como baseline una réplica HTML visual de `/` desde 1024 px. No
-  interviene en las etapas 5, 7 u 8 ni funciona como fallback de `/`. Su
-  composición aprobada usa Apertura/Principales en ocho columnas y una columna
-  derecha continua para Agencia, publicidad, encuesta y `AVANCES DE LA IA`; el
-  módulo Ovación ya tiene su variante oscura aprobada con agenda, ticker y
-  composición editorial. Su tramo superior ya sirvió de referencia para la
-  segunda home funcional `/opcion-2`, cerrada y aprobada. El próximo objetivo
-  sobre los experimentos estáticos debe acordarse antes de continuar.
 - **Verticales branded adicionales.** `branded-content.ts` ya soporta `comidas` y
   `autos`; agregar más es declarativo. Definir cuáles se muestran en la
   presentación.
@@ -1733,6 +1725,10 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
 | Branded en producción | ¿De dónde vendrá el contenido brandeado real: CMS, anunciante o MAM? |
 
 ### Decisiones ya resueltas
+
+- **Rutas de presentación (2026-10-26):** la variante funcional 8/4 aprobada
+  ocupa `/`; la antigua portada queda en `/opcion`. Las instantáneas estáticas
+  `/desktop` y `/desktop2`, y la URL anterior `/opcion-2`, se eliminaron.
 
 - **Segunda home funcional (2026-10-19):** `/opcion-2` comparte `HomeWrapper`
   con `/` y solo diverge en desktop antes de MAM, preservando Live. Se eligió
@@ -1754,16 +1750,12 @@ Shorts arranca mudo por política de iOS y el botón de sonido lo activa
   responsive. Las limitaciones externas y visuales aceptadas permanecen en
   Backlog; no existe una etapa siguiente automática.
 
-- **Gráfico interactivo/chat y Sudoku (2026-10-19):** mobile conserva las cinco
-  notas de Legionarius, el chat y Sudoku en ese orden. Desde 1024 px, la misma
-  zona muestra el video local de Nepal junto al chat, ambos con igual altura, y
-  oculta Sudoku sin reservar espacio. Esta decisión sustituye su ubicación
-  desktop posterior a Crimen y queda cerrada visualmente.
-
-- **Reserva para juegos desktop (2026-10-19):** desde 1024 px, un bloque blanco
-  de 400 px y ancho completo aparece entre Gráfico interactivo/Chat Vox Dei y
-  Gente. Solo comunica que el proyecto está en evaluación; no incorpora aún
-  funcionalidad ni tiene equivalente mobile.
+- **Gráfico + chat y espacio de juegos (2026-10-26):** el primero conserva el
+  video de Nepal solo como sustituto desktop del futuro gráfico HTML y muestra
+  una reserva responsive antes del chat en mobile. El segundo muestra Sudoku
+  mobile debajo de Crimen y reserva 400 px desktop; ambos son formatos de
+  portada independientes. Sustituye las decisiones de 2026-10-19 que ubicaban
+  Legionarius y Sudoku junto al chat y dejaban la reserva de juegos solo desktop.
 
 - **Alcance del modal (2026-09-27)**: se implementó primero en MAM y Branded, que
   sirven mp4 propio, y después en Shorts vía IFrame Player API. Los tres
