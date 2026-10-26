@@ -22,9 +22,9 @@ function LiveLink({ className, homeHref }: { className: string; homeHref: string
 
 export default function Header() {
   const pathname = usePathname();
-  const alternativa = pathname === "/opcion-2";
-  const home = pathname === "/" || alternativa;
-  const homeHref = alternativa ? "/opcion-2" : "/";
+  const alternativa = pathname === "/";
+  const home = alternativa || pathname === "/opcion";
+  const homeHref = pathname === "/opcion" ? "/opcion" : "/";
   const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
