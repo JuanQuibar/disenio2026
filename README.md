@@ -1,8 +1,9 @@
 # UNO 2026 — Prototipo de rediseño de Diario UNO
 
 Prototipo responsive de `diariouno.com.ar`. El directorio aprobó el **look and
-feel y la estructura de la portada `/`**. Quedan por diseñar detalles de nota,
-portadas de sección y otras páginas públicas; el
+feel y la estructura de la portada `/`**. La portada de sección genérica
+también tiene diseño aprobado en mobile y desktop. Quedan por diseñar detalles
+de nota y otras páginas públicas; el
 [inventario vigente](./PROGRESS.md#inventario-de-pantallas) registra su estado.
 Más adelante, el proveedor del CMS reconstruirá el producto en su propia
 tecnología. Este repositorio es una referencia de diseño, no una implementación
@@ -15,6 +16,7 @@ de producción ni una especificación del stack del proveedor.
 | `/` | Portada aprobada en mobile y desktop. Composición editorial 8/4 desde 1024 px. |
 | `/opcion` | Variante anterior de la home; referencia secundaria. |
 | `/detalle-nota` | Borrador revisable de nota común. |
+| `/portada-seccion` | Portada de sección genérica aprobada en mobile y desktop; [ficha visual](./PORTADA_SECCION.md). |
 
 Las otras páginas del inventario aún no tienen ruta propia. Las antiguas
 `/desktop`, `/desktop2` y `/opcion-2` fueron retiradas.
@@ -76,6 +78,8 @@ Además:
 
 - [CATALOGO_FORMATOS_PORTADA.md](./CATALOGO_FORMATOS_PORTADA.md): 15 formatos,
   capturas y acuerdos editoriales de la portada para el futuro traspaso.
+- [PORTADA_SECCION.md](./PORTADA_SECCION.md): composición, capturas y alcance
+  funcional de la portada de sección genérica aprobada.
 - [AGENTS.md](./AGENTS.md): reglas operativas para agentes, incluida la
   prohibición de worktrees.
 - [BROWSER_TESTING.md](./BROWSER_TESTING.md): uso del Chrome compartido. Para

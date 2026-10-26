@@ -9,9 +9,10 @@ reglas visuales en [DESIGN.md](./DESIGN.md) y la memoria de las iteraciones en e
 
 El proyecto presenta una visión de rediseño para `diariouno.com.ar`. El
 directorio aprobó el **look and feel y la estructura de la portada**. La home
-responsive `/` materializa esa decisión. Queda diseñar el resto de las páginas
-públicas enumeradas en PROGRESS; la página existente `/detalle-nota` es un
-borrador revisable.
+responsive `/` materializa esa decisión. La portada de sección genérica
+`/portada-seccion` también tiene diseño aprobado en mobile y desktop. Queda
+diseñar el resto de las páginas públicas enumeradas en PROGRESS; la página
+existente `/detalle-nota` es un borrador revisable.
 
 Después del diseño y la aprobación de esas páginas, el proveedor del CMS usará
 el repositorio como referencia para reconstruir el sitio en su propia
@@ -33,11 +34,12 @@ un detalle de nota, una registración o una página de error.
 | `/` | Portada aprobada, funcional y responsive. Referencia principal para páginas nuevas. |
 | `/opcion` | Variante anterior de la home, disponible como referencia secundaria. Comparte toda la experiencia mobile. |
 | `/detalle-nota` | Borrador de nota común con contenido de muestra; requiere revisión visual y funcional. |
+| `/portada-seccion` | Plantilla genérica aprobada en mobile y desktop para secciones generales; [ficha visual](./PORTADA_SECCION.md). |
 
 No existen todavía rutas propias para live blog, videonota, los detalles de
-Ovación y Opinión, portadas de sección, portada de Ovación ni registración. No
-hay una página 404 personalizada. Las antiguas `/desktop`, `/desktop2` y
-`/opcion-2` fueron retiradas; solo aparecen en el archivo histórico.
+Ovación y Opinión, portada de Ovación ni registración. No hay una página 404
+personalizada. Las antiguas `/desktop`, `/desktop2` y `/opcion-2` fueron
+retiradas; solo aparecen en el archivo histórico.
 
 La portada usa un único árbol mobile-first. El cambio visual a desktop comienza
 en **1024 px**. `/` y `/opcion` comparten mobile, la cobertura Live/Muy
@@ -60,7 +62,7 @@ El prototipo está construido con Next.js 16 (App Router), React 19, TypeScript,
 Tailwind CSS 4 y Swiper. Estas son herramientas **del prototipo**, no un
 contrato tecnológico de producción.
 
-- `app/(sitio)/` agrupa las tres rutas actuales bajo un header y footer
+- `app/(sitio)/` agrupa las cuatro rutas actuales bajo un header y footer
   compartidos. El layout raíz define idioma, fuentes y estilos globales.
 - Las páginas de home importan solo `HomeWrapper`: `/` usa la variante
   `alternativa` y `/opcion` la variante `original`. `HomeWrapper` compone las
@@ -80,6 +82,10 @@ contrato tecnológico de producción.
 - `/detalle-nota` contiene hoy una maqueta estática con un wrapper MAM. Sus
   elementos sirven para inventariar lo existente, no para declarar aprobado su
   diseño ni para definir todas las variantes de nota.
+- `/portada-seccion` obtiene su selección editorial de muestra a través de
+  `PortadaSeccionWrapper`. La página combina una nota principal y diez notas
+  paginadas; desktop y mobile presentan los mismos contenidos con composiciones
+  diferentes. Los anuncios del lateral son reservas visuales.
 
 Los textos, titulares, anuncios y fotografías editoriales son muestras, salvo
 las fuentes externas identificadas: MAM consume una playlist pública, Shorts
@@ -104,6 +110,9 @@ presentarse como funciones de producción.
    posteriores documentadas.
 3. **Detalle actual:** usar `/detalle-nota` solo como borrador para revisar
    contenido y elementos, no como patrón visual definitivo.
+4. **Portada de sección genérica:** usar
+   [PORTADA_SECCION.md](./PORTADA_SECCION.md) y `/portada-seccion` como patrón
+   aprobado para portadas generales de sección en ambos anchos.
 
 Si se crean nuevas pantallas en Stitch o se aprueba una página adicional,
 registrar su identificador, estado y decisiones en la documentación activa.

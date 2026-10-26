@@ -17,10 +17,11 @@ con `/opcion`. Esta última ruta conserva una variante anterior de la home como
 **referencia secundaria** y no define el diseño de las páginas nuevas.
 
 La próxima etapa del prototipo es diseñar y ajustar las demás páginas públicas.
-`/detalle-nota` ya existe, pero su composición es un **borrador revisable**, no
-un detalle aprobado. Las otras familias enumeradas abajo aún no tienen ruta ni
-diseño en este repositorio. No hay un orden obligatorio: se elige la próxima
-pantalla según la necesidad de cada sesión.
+La portada de sección genérica `/portada-seccion` quedó **aprobada en desktop y
+mobile**. `/detalle-nota` ya existe, pero su composición es un **borrador
+revisable**, no un detalle aprobado. Las demás familias pendientes aún no
+tienen ruta ni diseño en este repositorio. No hay un orden obligatorio: se
+elige la próxima pantalla según la necesidad de cada sesión.
 
 Cuando las páginas estén diseñadas y aprobadas, el proveedor del CMS recibirá el
 repositorio como referencia para reconstruir el producto en su tecnología,
@@ -39,7 +40,7 @@ stack del proveedor.
 | Videonota | Pendiente de diseño | Definir la relación entre video y lectura cuando se aborde. |
 | Detalle de nota de Ovación | Pendiente de diseño | Tomar la identidad deportiva aprobada en la home. |
 | Detalle de opinión | Pendiente de diseño | Tomar la identidad de Opinión aprobada en la home. |
-| Portadas de sección | Pendiente de diseño | Definir un patrón reutilizable y sus variaciones editoriales. |
+| Portada de sección genérica `/portada-seccion` | Aprobada en desktop y mobile | [Composición, capturas y alcance funcional](./PORTADA_SECCION.md); plantilla para secciones generales. |
 | Portada de Ovación | Pendiente de diseño | Tratar su identidad visual diferenciada. |
 | Registración | Pendiente de diseño | Acordar contenido y estados antes de fijar su experiencia. |
 | Página 404 | Pendiente de diseño | Diseñar una salida coherente con el sitio. |
@@ -54,6 +55,10 @@ de la maqueta.
 - La portada `/` es la referencia implementada. [DESIGN.md](./DESIGN.md) resume
   su lenguaje y cómo extenderlo. El [catálogo de formatos](./CATALOGO_FORMATOS_PORTADA.md)
   reúne los 15 formatos, cupos y capturas de la portada aprobada.
+- La [portada de sección genérica](./PORTADA_SECCION.md) comparte contenidos en
+  ambos anchos, con composición 8/4 y anuncios de muestra en desktop, y una
+  lista vertical con fotos a la derecha en mobile. El rótulo «Nombre sección»
+  sigue siendo un marcador de la maqueta.
 - Stitch contiene una pantalla de **portada desktop**, útil como referencia
   visual. No contiene diseños de las páginas pendientes. Cuando difieran, las
   decisiones aprobadas e implementadas en `/` prevalecen sobre esa referencia.

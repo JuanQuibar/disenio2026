@@ -21,7 +21,13 @@ const HEADER_NAV_ITEMS = [
   { label: "MAM", isLive: true },
 ] as const;
 
-export default function Nav({ homeHref = "/" }: { homeHref?: string } = {}) {
+export default function Nav({
+  homeHref = "/",
+  activeHome = true,
+}: {
+  homeHref?: string;
+  activeHome?: boolean;
+} = {}) {
   return (
     <nav className="site-nav" aria-label="Secciones principales">
       {HEADER_NAV_ITEMS.map((item) => {
@@ -39,7 +45,7 @@ export default function Nav({ homeHref = "/" }: { homeHref?: string } = {}) {
             <Link
               key={item.label}
               href={homeHref}
-              className="site-nav__item site-nav__item--active"
+              className={`site-nav__item${activeHome ? " site-nav__item--active" : ""}`}
             >
               {content}
             </Link>

@@ -1,9 +1,10 @@
 # Guía visual vigente — Diario UNO 2026
 
-El directorio aprobó el **look and feel y la estructura de la portada `/`**. Esta
-guía reúne las decisiones visuales que sirven para diseñar otras páginas del
-sitio. No convierte una composición de home en plantilla obligatoria para notas,
-secciones o formularios. El estado de cada página está en
+El directorio aprobó el **look and feel y la estructura de la portada `/`**. La
+portada de sección genérica `/portada-seccion` también quedó aprobada en desktop
+y mobile. Esta guía reúne las decisiones visuales que sirven para diseñar otras
+páginas del sitio. No convierte una composición de home en plantilla obligatoria
+para notas o formularios. El estado de cada página está en
 [PROGRESS.md](./PROGRESS.md); la especificación y las capturas de los 15
 formatos de home están en el
 [catálogo de portada](./CATALOGO_FORMATOS_PORTADA.md). La versión detallada
@@ -26,6 +27,9 @@ anterior de este documento permanece en el
 4. **`/detalle-nota` es un borrador revisable.** Su estructura actual puede
    ayudar a listar contenido y acciones existentes, pero no define el estilo
    aprobado de los futuros detalles.
+5. **`/portada-seccion` es el patrón aprobado para secciones generales.** La
+   [ficha de la portada de sección](./PORTADA_SECCION.md) registra su composición,
+   capturas y límites del prototipo.
 
 Para un cambio nuevo, distinguir siempre entre **aprobado**, **muestra temporal**
 y **propuesta por revisar**. No presentar un control meramente visual o un dato
@@ -85,6 +89,26 @@ requieren diseño propio.
 El [catálogo](./CATALOGO_FORMATOS_PORTADA.md) contiene la composición,
 cantidad de piezas, diferencias responsive e interacciones de cada formato de
 portada. Las capturas allí enlazadas muestran la implementación aprobada.
+
+## Portada de sección genérica
+
+- Política, Sociedad, Economía y otras secciones generales comparten la
+  plantilla de `/portada-seccion`: nombre de sección azul `#1c69a8` en Geist
+  mayúsculas y peso 800, acompañado por una línea azul. El nombre es la
+  jerarquía principal de la página; no agregar un cabezal «Principales» antes
+  del listado.
+- En desktop, el cabezal, la nota principal con formato de Apertura y la grilla
+  de dos columnas ocupan el área editorial de ocho columnas. El lateral de
+  cuatro columnas aloja dos anuncios 300 × 250 sticky, fuera del cabezal.
+- En mobile, cabezal y notas forman un contenedor blanco. La principal sigue el
+  formato de Política mobile de la home; las notas del listado llevan título y
+  firma a la izquierda, foto 4:3 a la derecha y más aire vertical entre filas.
+  Mantener la misma selección de noticias que en desktop y paginar después de
+  diez notas.
+
+Las medidas, capturas y funciones efectivas de esta página están en
+[PORTADA_SECCION.md](./PORTADA_SECCION.md). Las fotos y anuncios de la maqueta
+no son contenido final.
 
 ## Patrones de interacción que ya existen
 
