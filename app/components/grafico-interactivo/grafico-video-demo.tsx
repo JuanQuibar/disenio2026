@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const desktopQuery = "(min-width: 1024px)";
 
-export function LegionariusVideo() {
+export function GraficoVideoDemo() {
   const [isDesktop, setIsDesktop] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -25,7 +25,7 @@ export function LegionariusVideo() {
   }, [isDesktop]);
 
   return (
-    <div className="legionarius-desktop-video">
+    <div className="grafico-desktop-video">
       {isDesktop ? (
         <video
           ref={videoRef}

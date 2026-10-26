@@ -11,6 +11,9 @@ export function SudokuWrapper() {
         {" "}
         juegos
       </h3>
+      <p className="pb-2 font-sans text-xs text-gray-300">
+        Una muestra del futuro espacio de juegos
+      </p>
       <div className="pb-4">
         <SudokuCard />
       </div>

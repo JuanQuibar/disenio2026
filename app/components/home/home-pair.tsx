@@ -6,7 +6,7 @@ export function HomePair({
   second,
   third,
 }: {
-  name: "participacion" | "transmisiones" | "legionarius-chat";
+  name: "participacion" | "transmisiones" | "grafico-chat";
   first: ReactElement | null;
   second: ReactElement | null;
   third?: ReactElement | null;

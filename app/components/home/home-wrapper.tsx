@@ -12,7 +12,7 @@ import { ParticipacionWrapper } from "@/app/components/home/participacion-wrappe
 import { HomePair } from "@/app/components/home/home-pair";
 import { YoutubeShortsWrapper } from "@/app/components/youtube-shorts/youtube-shorts-wrapper";
 import { TransmisionesWrapper } from "@/app/components/home/transmisiones-wrapper";
-import { LegionariusChatWrapper } from "@/app/components/home/legionarius-chat-wrapper";
+import { GraficoChatWrapper } from "@/app/components/home/grafico-chat-wrapper";
 import { SociedadWrapper } from "@/app/components/sociedad/sociedad-wrapper";
 import { GenteWrapper } from "@/app/components/gente/gente-wrapper";
 import { CrimenWrapper } from "@/app/components/crimen/crimen-wrapper";
@@ -174,7 +174,7 @@ export function HomeWrapper({ variante = "original" }: { variante?: HomeVariant 
         <SociedadWrapper />
       </Suspense>
       <TransmisionesWrapper />
-      <LegionariusChatWrapper />
+      <GraficoChatWrapper />
       <Suspense
         fallback={
           <HomeModuleFallback module="gente">
