@@ -1,6 +1,13 @@
 # Catálogo de formatos de portada
 
-Referencia para los futuros editores de portada y el proveedor del CMS. Describe la portada aprobada [`/`](./README.md#rutas) en mobile y desktop (corte visual en 1024 px). Los nombres de esta página identifican **formas de presentar contenido**, no secciones del diario ni componentes de React. Los textos, fotografías y anuncios actuales son muestras, salvo las fuentes externas indicadas.
+Referencia visual y editorial de la portada [`/`](./README.md#rutas-actuales),
+aprobada por el directorio en mobile y desktop (corte visual en 1024 px). Sus
+reglas para los futuros editores y el proveedor del CMS son **acuerdos
+editoriales existentes para una etapa posterior**: el CMS aún no está
+implementado ni se define aquí su tecnología o interfaz interna. Los nombres
+identifican formas de presentar contenido, no secciones del diario ni
+componentes de React. Los textos, fotografías y anuncios actuales son muestras,
+salvo las fuentes externas indicadas.
 
 > **Capturas:** tomadas de la portada `/` en el Chrome compartido el 2026-10-26, a 414 px y 1440 px. Cada imagen enlaza su versión de resolución completa. Los reproductores y widgets externos reflejan el estado disponible al capturar; un panel sin imagen no es una especificación de su contenido. Las vistas de «Gráfico + chat» y «Espacio de juegos» se actualizaron tras separar ambos formatos.
 
@@ -237,4 +244,4 @@ El editor debe poder agregar **más de una instancia de cualquier formato** y or
 
 El orden observado en `/` es: Cobertura con video → Cabecera editorial → Videos MAM → Principal + cuatro (Política) → Videos Shorts → Firmas → Videos Branded → Participación y análisis → Panel deportivo → Publicidad adaptable → Principal + cuatro (Sociedad) → Transmisiones y anuncio → Gráfico + chat → Retratos → Principal + cuatro (Crimen) → Espacio de juegos → Últimas noticias. La cabecera mantiene su composición interna propia.
 
-**Política y Gente no son nombres de formato:** Política, Sociedad y Crimen usan `principal-cuatro`; Gente usa `retratos`. Los IDs del catálogo se conservarán aunque cambien los títulos visibles o se sumen secciones. La revisión integral de los demás documentos del proyecto queda fuera de este catálogo.
+**Política y Gente no son nombres de formato:** Política, Sociedad y Crimen usan `principal-cuatro`; Gente usa `retratos`. Los IDs del catálogo se conservarán aunque cambien los títulos visibles o se sumen secciones. Para el estado y los diseños pendientes, ver [PROGRESS.md](./PROGRESS.md).
