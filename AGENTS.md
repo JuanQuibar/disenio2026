@@ -19,8 +19,8 @@ más adelante el producto en su propia tecnología.
 Los documentos de [historia](./archivo/2026-10-26/README.md) preservan
 iteraciones anteriores. Pueden describir rutas y decisiones reemplazadas; no
 son instrucciones vigentes.
-La carpeta [docs/](./docs/README.md) reúne las capturas y un índice; las guías
-vigentes están en la raíz del repositorio.
+La carpeta [docs/](./docs/README.md) reúne las capturas de los formatos de home
+y un índice; las guías vigentes están en la raíz del repositorio.
 
 ## Reglas que no se negocian
 
@@ -76,6 +76,11 @@ vigentes están en la raíz del repositorio.
 - Cerrar solo las pestañas temporales creadas por la tarea. No cerrar el Chrome
   compartido al terminar, salvo pedido explícito del usuario.
 - No visitar cuentas personales ni sitios sensibles en el perfil de pruebas.
+- Las capturas temporales pueden ayudar a verificar cambios visuales en mobile
+  y desktop. No guardarlas en `docs/` ni incluirlas en commits por rutina. Las
+  capturas del [catálogo de formatos](./CATALOGO_FORMATOS_PORTADA.md) tienen una
+  finalidad documental concreta; agregar otras solo cuando la tarea pida
+  expresamente documentar una referencia visual.
 
 ## Al cerrar un tramo de trabajo
 

@@ -6,9 +6,8 @@ secciones generales. La aprobación comprende **desktop y mobile**, con cambio
 de composición en 1024 px. «Nombre sección» es un rótulo de muestra: la maqueta
 no permite elegir todavía una sección real.
 
-**Captura desktop de la implementación aprobada (2026-10-26):**
-[1440 px](./docs/portada-seccion/desktop.webp). Para el estado mobile vigente,
-consultar la ruta y las medidas de esta ficha.
+La ruta en ejecución es la referencia visual vigente. Esta ficha registra las
+medidas y el alcance funcional aprobados.
 
 ## Composición compartida
 

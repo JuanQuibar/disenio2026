@@ -54,7 +54,9 @@ de la maqueta.
 
 - La portada `/` es la referencia implementada. [DESIGN.md](./DESIGN.md) resume
   su lenguaje y cómo extenderlo. El [catálogo de formatos](./CATALOGO_FORMATOS_PORTADA.md)
-  reúne los 15 formatos, cupos y capturas de la portada aprobada.
+  reúne los 15 formatos, cupos y capturas de la portada aprobada. Esas capturas
+  documentan las diferencias entre formatos de home; las páginas completas se
+  consultan en el navegador y no requieren capturas versionadas por rutina.
 - La [portada de sección genérica](./PORTADA_SECCION.md) comparte contenidos en
   ambos anchos, con composición 8/4 y anuncios de muestra en desktop, y una
   lista vertical con fotos 4:3 de 120 × 90 px a la derecha en mobile. El rótulo

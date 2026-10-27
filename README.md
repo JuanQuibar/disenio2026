@@ -85,7 +85,7 @@ Además:
 - [BROWSER_TESTING.md](./BROWSER_TESTING.md): uso del Chrome compartido. Para
   pruebas del proyecto, no abrir navegadores alternativos.
 - [Índice de docs](./docs/README.md): ubicación de las guías vigentes y las
-  capturas de referencia.
+  capturas de los formatos de home.
 - [Archivo histórico](./archivo/2026-10-26/README.md): decisiones y
   etapas anteriores, incluidas rutas retiradas. No es una guía vigente.
 
