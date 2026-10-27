@@ -291,7 +291,8 @@
   }
 
   .section-front__politica-mobile .editorial-side-card-media {
-    height: 72px;
+    width: 120px;
+    height: 90px;
     align-self: center;
     aspect-ratio: 4 / 3;
   }

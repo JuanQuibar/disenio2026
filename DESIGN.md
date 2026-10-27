@@ -29,7 +29,7 @@ anterior de este documento permanece en el
    aprobado de los futuros detalles.
 5. **`/portada-seccion` es el patrón aprobado para secciones generales.** La
    [ficha de la portada de sección](./PORTADA_SECCION.md) registra su composición,
-   capturas y límites del prototipo.
+   medidas y límites del prototipo.
 
 Para un cambio nuevo, distinguir siempre entre **aprobado**, **muestra temporal**
 y **propuesta por revisar**. No presentar un control meramente visual o un dato
@@ -106,7 +106,7 @@ portada. Las capturas allí enlazadas muestran la implementación aprobada.
   Mantener la misma selección de noticias que en desktop y paginar después de
   diez notas.
 
-Las medidas, capturas y funciones efectivas de esta página están en
+Las medidas y funciones efectivas de esta página están en
 [PORTADA_SECCION.md](./PORTADA_SECCION.md). Las fotos y anuncios de la maqueta
 no son contenido final.
 

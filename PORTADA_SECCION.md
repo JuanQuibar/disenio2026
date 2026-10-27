@@ -6,9 +6,9 @@ secciones generales. La aprobación comprende **desktop y mobile**, con cambio
 de composición en 1024 px. «Nombre sección» es un rótulo de muestra: la maqueta
 no permite elegir todavía una sección real.
 
-**Capturas de la implementación aprobada (2026-10-26):**
-[mobile, 412 px](./docs/portada-seccion/mobile.webp) ·
-[desktop, 1440 px](./docs/portada-seccion/desktop.webp).
+**Captura desktop de la implementación aprobada (2026-10-26):**
+[1440 px](./docs/portada-seccion/desktop.webp). Para el estado mobile vigente,
+consultar la ruta y las medidas de esta ficha.
 
 ## Composición compartida
 
@@ -49,7 +49,7 @@ no permite elegir todavía una sección real.
   en la home: foto primero, titular Playfair Display, bajada y firma. No lleva
   volanta.
 - El listado se apila en diez filas. **Títulos y firmas a la izquierda;
-  fotos a la derecha**, recortadas a 4:3 (96 × 72 px). No muestra volantas ni
+  fotos a la derecha**, recortadas a 4:3 (120 × 90 px). No muestra volantas ni
   bajadas. Cada fila tiene 16 px de espacio vertical por lado y una división
   fina respecto de la siguiente. La paginación aparece al final.
 - El lateral publicitario desktop no se muestra en mobile.

@@ -40,7 +40,7 @@ stack del proveedor.
 | Videonota | Pendiente de diseño | Definir la relación entre video y lectura cuando se aborde. |
 | Detalle de nota de Ovación | Pendiente de diseño | Tomar la identidad deportiva aprobada en la home. |
 | Detalle de opinión | Pendiente de diseño | Tomar la identidad de Opinión aprobada en la home. |
-| Portada de sección genérica `/portada-seccion` | Aprobada en desktop y mobile | [Composición, capturas y alcance funcional](./PORTADA_SECCION.md); plantilla para secciones generales. |
+| Portada de sección genérica `/portada-seccion` | Aprobada en desktop y mobile | [Composición, medidas y alcance funcional](./PORTADA_SECCION.md); plantilla para secciones generales. |
 | Portada de Ovación | Pendiente de diseño | Tratar su identidad visual diferenciada. |
 | Registración | Pendiente de diseño | Acordar contenido y estados antes de fijar su experiencia. |
 | Página 404 | Pendiente de diseño | Diseñar una salida coherente con el sitio. |
@@ -57,8 +57,8 @@ de la maqueta.
   reúne los 15 formatos, cupos y capturas de la portada aprobada.
 - La [portada de sección genérica](./PORTADA_SECCION.md) comparte contenidos en
   ambos anchos, con composición 8/4 y anuncios de muestra en desktop, y una
-  lista vertical con fotos a la derecha en mobile. El rótulo «Nombre sección»
-  sigue siendo un marcador de la maqueta.
+  lista vertical con fotos 4:3 de 120 × 90 px a la derecha en mobile. El rótulo
+  «Nombre sección» sigue siendo un marcador de la maqueta.
 - Stitch contiene una pantalla de **portada desktop**, útil como referencia
   visual. No contiene diseños de las páginas pendientes. Cuando difieran, las
   decisiones aprobadas e implementadas en `/` prevalecen sobre esa referencia.

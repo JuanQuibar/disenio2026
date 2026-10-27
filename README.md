@@ -78,7 +78,7 @@ Además:
 
 - [CATALOGO_FORMATOS_PORTADA.md](./CATALOGO_FORMATOS_PORTADA.md): 15 formatos,
   capturas y acuerdos editoriales de la portada para el futuro traspaso.
-- [PORTADA_SECCION.md](./PORTADA_SECCION.md): composición, capturas y alcance
+- [PORTADA_SECCION.md](./PORTADA_SECCION.md): composición, medidas y alcance
   funcional de la portada de sección genérica aprobada.
 - [AGENTS.md](./AGENTS.md): reglas operativas para agentes, incluida la
   prohibición de worktrees.
