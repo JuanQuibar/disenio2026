@@ -2,7 +2,7 @@
 
 > Punto de entrada para retomar el proyecto. Describe qué está aprobado, qué existe
 > solo como maqueta y qué falta diseñar. La bitácora completa anterior está en el
-> [archivo histórico](./docs/historico/2026-10-26/PROGRESS.md).
+> [archivo histórico](./archivo/2026-10-26/PROGRESS.md).
 >
 > Después, leer [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md) para el propósito y la
 > arquitectura, [README.md](./README.md) para ejecutar el prototipo y
@@ -70,6 +70,9 @@ de la maqueta.
   pública; Shorts y algunos widgets dependen de servicios externos. No presentar
   los datos ficticios como hechos ni las interacciones visuales como funciones
   de producción.
+- En todas las pruebas de páginas editoriales, los títulos y bajadas se alternan
+  desde `app/content/typography-calibration.ts`, según la
+  [regla de diseño](./DESIGN.md#títulos-y-bajadas-para-todas-las-pruebas).
 
 ## Pendientes posteriores al diseño
 
@@ -84,7 +87,7 @@ una definición propia antes de producir el sitio:
   de juegos. La maqueta conserva fuentes y reservas temporales.
 - Revisión del audio inicial de Shorts en iOS, contraste de algunos rótulos
   auxiliares y refinamientos opcionales del modal. Los antecedentes y motivos
-  están en la [bitácora histórica](./docs/historico/2026-10-26/PROGRESS.md).
+  están en la [bitácora histórica](./archivo/2026-10-26/PROGRESS.md).
 
 ## Cómo mantener este archivo
 

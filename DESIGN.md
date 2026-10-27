@@ -9,7 +9,7 @@ para notas o formularios. El estado de cada página está en
 formatos de home están en el
 [catálogo de portada](./CATALOGO_FORMATOS_PORTADA.md). La versión detallada
 anterior de este documento permanece en el
-[archivo histórico](./docs/historico/2026-10-26/DESIGN.md).
+[archivo histórico](./archivo/2026-10-26/DESIGN.md).
 
 ## Referencias y criterio de uso
 
@@ -110,6 +110,23 @@ Las medidas, capturas y funciones efectivas de esta página están en
 [PORTADA_SECCION.md](./PORTADA_SECCION.md). Las fotos y anuncios de la maqueta
 no son contenido final.
 
+## Títulos y bajadas para todas las pruebas
+
+Toda prueba visual de una página o módulo editorial que tenga títulos o bajadas
+debe alternar los textos de `app/content/typography-calibration.ts`. Usar
+`getCalibrationTitle(index)` y `getCalibrationSummary(index)` avanzando el índice
+entre piezas para recorrer sus diez variantes, sin repetir siempre la misma;
+los helpers vuelven al inicio al agotarlas. Esto se aplica también a los
+detalles de nota, portadas de sección y variantes de Opinión u Ovación cuando
+tengan esos campos.
+
+El objetivo es comprobar la composición con textos largos y variados, en mobile
+y desktop. No reemplazar el dataset por copys breves elegidos para que el
+layout parezca funcionar. El contenido es ficticio y solo calibra la interfaz;
+volantas, controles, cuerpo de nota y demás textos cumplen otras funciones.
+Las maquetas existentes que todavía usan titulares o bajadas fijos se alinean
+con esta regla al intervenirlas.
+
 ## Patrones de interacción que ya existen
 
 - Los carruseles MAM, Shorts y Branded abren un modal vertical. En mobile ocupa
@@ -139,8 +156,9 @@ no son contenido final.
    Marcar las preguntas que requieran una decisión del usuario; no completar
    con supuestos de CMS, autenticación o datos en tiempo real.
 3. Proponer mobile y desktop con un criterio compartido de marca, pero con una
-   composición adecuada a la página. Revisar textos largos, espacios vacíos,
-   tamaño de medios, desplazamiento, header fijo, teclado y movimiento reducido.
+   composición adecuada a la página. Usar los textos de calibración para
+   títulos y bajadas; revisar espacios vacíos, tamaño de medios,
+   desplazamiento, header fijo, teclado y movimiento reducido.
 4. Registrar la solución específica **después de su aprobación**: actualizar
    su estado en PROGRESS y añadir aquí únicamente las reglas visuales que
    deban respetar diseños posteriores. Si se usa una nueva pantalla de Stitch,

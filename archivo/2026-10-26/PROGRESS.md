@@ -2,7 +2,7 @@
 > reorganización documental; puede describir rutas y decisiones superadas.
 > Solo se ajustaron los enlaces relativos para que sigan funcionando
 > desde esta carpeta. Para el estado vigente, consultar
-> [PROGRESS.md](../../../PROGRESS.md).
+> [PROGRESS.md](../../PROGRESS.md).
 
 # PROGRESS — Bitácora y Backlog
 
@@ -11,8 +11,8 @@
 > agente. Responde a: de dónde venimos, dónde estamos y qué sigue.
 >
 > - ¿Qué es el proyecto y cómo está arquitecturado? → [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md)
-> - ¿Cómo levanto el proyecto? → [README.md](../../../README.md)
-> - ¿Sos un agente de IA? → [AGENTS.md](../../../AGENTS.md)
+> - ¿Cómo levanto el proyecto? → [README.md](../../README.md)
+> - ¿Sos un agente de IA? → [AGENTS.md](../../AGENTS.md)
 
 ---
 
@@ -25,7 +25,7 @@ Ambas comparten `HomeWrapper` y la misma experiencia mobile. Solo difieren desde
 todo el contenido desde MAM, incluido, usan la misma implementación. La nueva
 portada mantiene 8/4 y muestra siempre seis titulares en AHORA y cuatro en
 AVANCES DE LA IA, con resúmenes interactivos y altura natural del lateral.
-El [catálogo de formatos de portada](../../../CATALOGO_FORMATOS_PORTADA.md) define los
+El [catálogo de formatos de portada](../../CATALOGO_FORMATOS_PORTADA.md) define los
 nombres y cupos editoriales para la futura implementación del CMS; no convierte
 esta maqueta en una portada configurable.
 `/desktop`, `/desktop2` y `/opcion-2` fueron retiradas; sus menciones en tramos
@@ -135,7 +135,7 @@ gráfico interactivo y que el gráfico también necesitará una versión respons
 Se retiraron las cinco notas de Legionarius en mobile y se dejó allí una reserva
 responsive antes del chat. Sudoku pasó de debajo del chat al espacio de juegos bajo
 Crimen, donde funciona como muestra mobile del bloque cuya reserva de 400 px
-permanece en desktop. En el [catálogo](../../../CATALOGO_FORMATOS_PORTADA.md) se
+permanece en desktop. En el [catálogo](../../CATALOGO_FORMATOS_PORTADA.md) se
 identifican como dos formatos independientes, `grafico-chat` y `espacio-juegos`,
 para que el futuro editor pueda ubicarlos por separado. Se actualizaron las
 capturas de ambos formatos sin cambiar los otros módulos ni el video desktop.
@@ -144,7 +144,7 @@ capturas de ambos formatos sin cambiar los otros módulos ni el video desktop.
 
 Se fijó un vocabulario separado de formato, tema e instancia para que editores y
 proveedor del CMS puedan reconocer y repetir bloques sin confundirlos con
-secciones. La [guía de 15 formatos](../../../CATALOGO_FORMATOS_PORTADA.md) incluye
+secciones. La [guía de 15 formatos](../../CATALOGO_FORMATOS_PORTADA.md) incluye
 capturas reales mobile y desktop de `/`, cupos, campos, fuentes, comportamiento
 e interacciones. La cabecera editorial conserva su composición interna aprobada.
 `principal-cuatro` ocupa siempre el ancho completo: Política, Sociedad y Crimen

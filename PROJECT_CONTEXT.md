@@ -3,7 +3,7 @@
 Este documento explica el propósito y la arquitectura **actuales** del
 prototipo. El estado de cada pantalla está en [PROGRESS.md](./PROGRESS.md), las
 reglas visuales en [DESIGN.md](./DESIGN.md) y la memoria de las iteraciones en el
-[archivo histórico](./docs/historico/2026-10-26/PROJECT_CONTEXT.md).
+[archivo histórico](./archivo/2026-10-26/PROJECT_CONTEXT.md).
 
 ## Propósito y etapas
 

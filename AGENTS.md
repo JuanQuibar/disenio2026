@@ -16,9 +16,11 @@ más adelante el producto en su propia tecnología.
    aprobada y guía para diseñar páginas nuevas. Para formatos de home, consultar
    también [CATALOGO_FORMATOS_PORTADA.md](./CATALOGO_FORMATOS_PORTADA.md).
 
-Los documentos de [historia](./docs/historico/2026-10-26/README.md) preservan
+Los documentos de [historia](./archivo/2026-10-26/README.md) preservan
 iteraciones anteriores. Pueden describir rutas y decisiones reemplazadas; no
 son instrucciones vigentes.
+La carpeta [docs/](./docs/README.md) reúne las capturas y un índice; las guías
+vigentes están en la raíz del repositorio.
 
 ## Reglas que no se negocian
 
@@ -49,6 +51,10 @@ son instrucciones vigentes.
 - **Contenido de muestra.** Los textos, fotografías editoriales y anuncios de
   la maqueta no son contenido final. MAM, Shorts y algunos widgets consultan
   servicios externos; identificar siempre qué datos e interacciones son reales.
+- **Calibración tipográfica en todas las pruebas editoriales.** Alternar títulos
+  y bajadas desde `app/content/typography-calibration.ts` mediante sus helpers,
+  también al diseñar detalles y portadas de sección. Probar los textos largos
+  en mobile y desktop; la regla completa está en [DESIGN.md](./DESIGN.md#títulos-y-bajadas-para-todas-las-pruebas).
 - **No inventar el CMS.** El catálogo conserva acuerdos editoriales futuros,
   pero las tecnologías, APIs y pantallas internas del proveedor aún no están
   definidas. Diseñar cada página pública pendiente sin convertir una propuesta

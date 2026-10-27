@@ -2,13 +2,13 @@
 > reorganización documental; puede describir rutas y decisiones superadas.
 > Solo se ajustaron los enlaces relativos para que sigan funcionando
 > desde esta carpeta. Para el estado vigente, consultar
-> [PROGRESS.md](../../../PROGRESS.md).
+> [PROGRESS.md](../../PROGRESS.md).
 
 # DESIGN.md — Diario UNO 2026
 
 > Sistema de diseño extraído del prototipo mobile existente.
 > Consumidores previstos: **Google Stitch**, agentes de IA, diseñadores.
-> Los nombres editoriales, cupos y reglas de instancias de la portada aprobada están en el [Catálogo de formatos de portada](../../../CATALOGO_FORMATOS_PORTADA.md).
+> Los nombres editoriales, cupos y reglas de instancias de la portada aprobada están en el [Catálogo de formatos de portada](../../CATALOGO_FORMATOS_PORTADA.md).
 
 > [!IMPORTANT]
 > La base de este documento corresponde a mobile (viewport ~414px). Las

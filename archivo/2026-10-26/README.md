@@ -6,4 +6,4 @@ Estas copias preservan las iteraciones y decisiones anteriores a la revisión do
 - [Contexto anterior](./PROJECT_CONTEXT.md)
 - [Guía visual anterior](./DESIGN.md)
 
-Para continuar el trabajo, empezar por [el estado actual](../../../PROGRESS.md).
+Para continuar el trabajo, empezar por [el estado actual](../../PROGRESS.md).

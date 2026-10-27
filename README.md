@@ -84,7 +84,9 @@ Además:
   prohibición de worktrees.
 - [BROWSER_TESTING.md](./BROWSER_TESTING.md): uso del Chrome compartido. Para
   pruebas del proyecto, no abrir navegadores alternativos.
-- [Archivo histórico](./docs/historico/2026-10-26/README.md): decisiones y
+- [Índice de docs](./docs/README.md): ubicación de las guías vigentes y las
+  capturas de referencia.
+- [Archivo histórico](./archivo/2026-10-26/README.md): decisiones y
   etapas anteriores, incluidas rutas retiradas. No es una guía vigente.
 
 ## Stack del prototipo

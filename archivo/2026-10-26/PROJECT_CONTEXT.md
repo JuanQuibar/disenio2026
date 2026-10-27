@@ -2,7 +2,7 @@
 > reorganización documental; puede describir rutas y decisiones superadas.
 > Solo se ajustaron los enlaces relativos para que sigan funcionando
 > desde esta carpeta. Para el estado vigente, consultar
-> [PROGRESS.md](../../../PROGRESS.md).
+> [PROGRESS.md](../../PROGRESS.md).
 
 # Memoria del Proyecto: UNO 2026 (Rediseño Diario UNO)
 
@@ -34,7 +34,7 @@ Crear un prototipo de alto impacto ("Wow Effect") para el rediseño de `diarioun
     sigue como sustituto temporal del gráfico HTML aún no disponible y comparte
     fila y altura con el chat. El espacio de juegos es independiente: debajo de
     Crimen muestra Sudoku como ejemplo mobile y la reserva blanca de 400 px en
-    desktop. El [catálogo de formatos](../../../CATALOGO_FORMATOS_PORTADA.md) los
+    desktop. El [catálogo de formatos](../../CATALOGO_FORMATOS_PORTADA.md) los
     identifica como `grafico-chat` y `espacio-juegos` para que el futuro CMS
     permita ubicarlos por separado. También desde esa
     fecha,
