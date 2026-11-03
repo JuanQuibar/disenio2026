@@ -69,9 +69,10 @@ export function PortadaSeccion({
   pageCount: number;
 }) {
   const leadDesktopImage = lead.desktopImage ?? lead.image;
+  const isFirstPage = currentPage === 1;
 
   return (
-    <main className="section-front">
+    <main className={`section-front${isFirstPage ? "" : " section-front--continuation"}`}>
       <div className="section-front__layout">
         <div className="section-front__editorial">
           <header className="section-front__masthead">
@@ -83,17 +84,21 @@ export function PortadaSeccion({
           </header>
 
           <div className="section-front__politica-mobile editorial-lead-list-content p-2 pb-4 bg-white rounded-lg shadow-md flex flex-col gap-2">
-            <div className="editorial-lead-list-main">
-              <PoliticaPrincipal
-                foto={leadDesktopImage}
-                content={{
-                  title: lead.desktopTitle,
-                  summary: lead.desktopSummary,
-                  author: lead.desktopAuthor,
-                }}
-              />
-            </div>
-            <div className="editorial-lead-list-divider border-t border-gray-200 my-1" />
+            {isFirstPage && (
+              <>
+                <div className="editorial-lead-list-main">
+                  <PoliticaPrincipal
+                    foto={leadDesktopImage}
+                    content={{
+                      title: lead.desktopTitle,
+                      summary: lead.desktopSummary,
+                      author: lead.desktopAuthor,
+                    }}
+                  />
+                </div>
+                <div className="editorial-lead-list-divider border-t border-gray-200 my-1" />
+              </>
+            )}
             <div className="editorial-lead-list-side">
               <PoliticaListado
                 fotos={stories.map((story) => story.image)}
@@ -107,50 +112,52 @@ export function PortadaSeccion({
             <SectionPagination currentPage={currentPage} pageCount={pageCount} />
           </div>
 
-          <article className="section-front__lead">
-            <div className="section-front__lead-image">
-              <div className="section-front__lead-image-mobile">
-                <EditorialImage
-                  src={lead.image.src}
-                  alt={lead.image.alt}
-                  width={1000}
-                  height={563}
-                  sizes="100vw"
-                  desktopSizes="(max-width: 1360px) 62vw, 830px"
-                  priority
-                />
+          {isFirstPage && (
+            <article className="section-front__lead">
+              <div className="section-front__lead-image">
+                <div className="section-front__lead-image-mobile">
+                  <EditorialImage
+                    src={lead.image.src}
+                    alt={lead.image.alt}
+                    width={1000}
+                    height={563}
+                    sizes="100vw"
+                    desktopSizes="(max-width: 1360px) 62vw, 830px"
+                    priority
+                  />
+                </div>
+                <div className="section-front__lead-image-desktop">
+                  <EditorialImage
+                    src={leadDesktopImage.src}
+                    alt={leadDesktopImage.alt}
+                    width={1000}
+                    height={563}
+                    sizes="(max-width: 1360px) 62vw, 830px"
+                    desktopSizes="(max-width: 1360px) 62vw, 830px"
+                    priority
+                  />
+                </div>
               </div>
-              <div className="section-front__lead-image-desktop">
-                <EditorialImage
-                  src={leadDesktopImage.src}
-                  alt={leadDesktopImage.alt}
-                  width={1000}
-                  height={563}
-                  sizes="(max-width: 1360px) 62vw, 830px"
-                  desktopSizes="(max-width: 1360px) 62vw, 830px"
-                  priority
-                />
+              <div className="section-front__lead-copy">
+                <p className="section-front__kicker">{lead.category}</p>
+                <h2>
+                  <span className="section-front__mobile-copy">{lead.title}</span>
+                  <span className="section-front__desktop-copy">{lead.desktopTitle}</span>
+                </h2>
+                <p className="section-front__lead-summary">
+                  <span className="section-front__mobile-copy">{lead.summary}</span>
+                  <span className="section-front__desktop-copy">{lead.desktopSummary}</span>
+                </p>
+                <p className="section-front__byline">Por {lead.author}</p>
+                <div className="section-front__lead-desktop-meta">
+                  <span className="section-front__lead-desktop-author">
+                    <PencilIcon aria-hidden="true" />
+                    {lead.desktopAuthor}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="section-front__lead-copy">
-              <p className="section-front__kicker">{lead.category}</p>
-              <h2>
-                <span className="section-front__mobile-copy">{lead.title}</span>
-                <span className="section-front__desktop-copy">{lead.desktopTitle}</span>
-              </h2>
-              <p className="section-front__lead-summary">
-                <span className="section-front__mobile-copy">{lead.summary}</span>
-                <span className="section-front__desktop-copy">{lead.desktopSummary}</span>
-              </p>
-              <p className="section-front__byline">Por {lead.author}</p>
-              <div className="section-front__lead-desktop-meta">
-                <span className="section-front__lead-desktop-author">
-                  <PencilIcon aria-hidden="true" />
-                  {lead.desktopAuthor}
-                </span>
-              </div>
-            </div>
-          </article>
+            </article>
+          )}
 
           <section className="section-front__listing" aria-labelledby="section-front-list-title">
             <div className="section-front__listing-heading">

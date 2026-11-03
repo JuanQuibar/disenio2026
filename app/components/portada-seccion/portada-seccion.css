@@ -138,6 +138,10 @@
   padding: 18px;
 }
 
+.section-front--continuation .section-front__listing {
+  margin-top: 0;
+}
+
 .section-front__listing-heading {
   display: flex;
   min-height: 32px;

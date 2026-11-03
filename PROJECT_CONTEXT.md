@@ -83,9 +83,10 @@ contrato tecnológico de producción.
   elementos sirven para inventariar lo existente, no para declarar aprobado su
   diseño ni para definir todas las variantes de nota.
 - `/portada-seccion` obtiene su selección editorial de muestra a través de
-  `PortadaSeccionWrapper`. La página combina una nota principal y diez notas
-  paginadas; desktop y mobile presentan los mismos contenidos con composiciones
-  diferentes. Los anuncios del lateral son reservas visuales.
+  `PortadaSeccionWrapper`. La primera página combina una nota principal y diez
+  notas; desde la segunda, el listado continúa sin principal. Desktop y mobile
+  presentan los mismos contenidos con composiciones diferentes. Los anuncios
+  del lateral son reservas visuales.
 
 Los textos, titulares, anuncios y fotografías editoriales son muestras, salvo
 las fuentes externas identificadas: MAM consume una playlist pública, Shorts

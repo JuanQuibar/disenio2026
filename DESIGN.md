@@ -138,12 +138,15 @@ portada. Las capturas allí enlazadas muestran la implementación aprobada.
   mayúsculas y peso 800, acompañado por una línea azul. El nombre es la
   jerarquía principal de la página; no agregar un cabezal «Principales» antes
   del listado.
-- En desktop, el cabezal, la nota principal con formato de Apertura y la grilla
-  de dos columnas ocupan el área editorial de ocho columnas. El lateral de
-  cuatro columnas aloja dos anuncios 300 × 250 sticky, fuera del cabezal.
+- En desktop, el cabezal y la grilla de dos columnas ocupan el área editorial
+  de ocho columnas. La nota principal con formato de Apertura aparece solo en
+  la primera página; desde la segunda, la grilla comienza bajo el cabezal. El
+  lateral de cuatro columnas aloja dos anuncios 300 × 250 sticky, fuera del
+  cabezal.
 - En mobile, cabezal y notas forman un contenedor blanco. La principal sigue el
-  formato de Política mobile de la home; las notas del listado llevan título y
-  firma a la izquierda, foto 4:3 a la derecha y más aire vertical entre filas.
+  formato de Política mobile de la home solo en la primera página; las siguientes
+  comienzan con el listado bajo el cabezal. Las notas del listado llevan título
+  y firma a la izquierda, foto 4:3 a la derecha y más aire vertical entre filas.
   Mantener la misma selección de noticias que en desktop y paginar después de
   diez notas.
 

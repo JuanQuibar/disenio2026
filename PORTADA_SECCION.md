@@ -11,11 +11,13 @@ medidas y el alcance funcional aprobados.
 
 ## Composición compartida
 
-- Un cabezal identifica la sección; la nota principal aparece primero y el
-  listado paginado continúa debajo, sin un segundo cabezal «Principales».
-- Desktop y mobile muestran la **misma selección editorial**: una nota principal
-  y diez notas por página. Cambia la presentación, no el contenido. La muestra
-  contiene dos páginas y la paginación funciona mediante `?pagina=2`.
+- Un cabezal identifica la sección. La **primera página** muestra una nota
+  principal y luego el listado; las páginas siguientes comienzan con el listado
+  bajo el cabezal, sin repetir la principal ni agregar un cabezal «Principales».
+- Desktop y mobile muestran la **misma selección editorial**: diez notas por
+  página y una principal solo en la primera. Cambia la presentación, no el
+  contenido. La muestra contiene dos páginas y la paginación funciona mediante
+  `?pagina=2`.
 - Titulares y bajadas usan las variantes largas de
   [`typography-calibration.ts`](./app/content/typography-calibration.ts) para
   comprobar la lectura en ambos anchos. Los textos, firmas, fotos y anuncios
@@ -28,11 +30,13 @@ medidas y el alcance funcional aprobados.
   solo las ocho columnas editoriales; los anuncios quedan fuera de él.
 - Cabezal «Nombre sección» en Geist, mayúsculas, peso 800 y 36 px, en azul
   `#1c69a8`, con una línea horizontal de 2 px del mismo color.
-- La nota principal toma el formato de Apertura de la home: foto horizontal
-  16:9, titular Playfair Display, bajada y firma con ícono. No tiene volanta.
+- Solo en la primera página, la nota principal toma el formato de Apertura de
+  la home: foto horizontal 16:9, titular Playfair Display, bajada y firma con
+  ícono. No tiene volanta.
 - El listado forma **dos columnas por cinco filas**. Cada tarjeta incluye foto
   4:3, titular, bajada y firma; no muestra volanta ni título de módulo. La
-  paginación aparece después de las diez tarjetas.
+  paginación aparece después de las diez tarjetas. En las páginas siguientes,
+  el listado comienza 16 px debajo del cabezal.
 - El lateral reserva **dos anuncios de 300 × 250 px** en un bloque sticky. Son
   espacios publicitarios de muestra, sin carga de anuncios reales.
 
@@ -44,9 +48,10 @@ medidas y el alcance funcional aprobados.
 - El cabezal tiene 8 px de padding, sin altura mínima sobrante. El nombre usa
   Geist en mayúsculas, peso 800 y **20 px**, en `#1c69a8`, sobre blanco; una
   línea azul de 2 px cierra el cabezal.
-- La nota principal sigue el formato mobile de la nota principal de Política
-  en la home: foto primero, titular Playfair Display, bajada y firma. No lleva
-  volanta.
+- Solo en la primera página, la nota principal sigue el formato mobile de la
+  nota principal de Política en la home: foto primero, titular Playfair Display,
+  bajada y firma. No lleva volanta. En las páginas siguientes, el listado sigue
+  al cabezal dentro del mismo contenedor blanco, sin separador de principal.
 - El listado se apila en diez filas. **Títulos y firmas a la izquierda;
   fotos a la derecha**, recortadas a 4:3 (120 × 90 px). No muestra volantas ni
   bajadas. Cada fila tiene 16 px de espacio vertical por lado y una división

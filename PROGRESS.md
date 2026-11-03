@@ -8,7 +8,7 @@
 > arquitectura, [README.md](./README.md) para ejecutar el prototipo y
 > [DESIGN.md](./DESIGN.md) antes de trabajar en una interfaz.
 
-## Estado actual — 2026-11-02
+## Estado actual — 2026-11-03
 
 El **look and feel y la estructura de la portada están aprobados**. La
 portada vigente es `/`, responsive y consolidada en mobile y desktop. Desde
@@ -67,8 +67,10 @@ de la maqueta.
   Aplicar la paleta según el uso de cada color al diseñar las páginas pendientes.
 - La [portada de sección genérica](./PORTADA_SECCION.md) comparte contenidos en
   ambos anchos, con composición 8/4 y anuncios de muestra en desktop, y una
-  lista vertical con fotos 4:3 de 120 × 90 px a la derecha en mobile. El rótulo
-  «Nombre sección» sigue siendo un marcador de la maqueta.
+  lista vertical con fotos 4:3 de 120 × 90 px a la derecha en mobile. La nota
+  principal aparece solo en la primera página; las páginas siguientes conservan
+  el cabezal, diez notas y la paginación. El rótulo «Nombre sección» sigue siendo
+  un marcador de la maqueta.
 - Stitch contiene una pantalla de **portada desktop**, útil como referencia
   visual. No contiene diseños de las páginas pendientes. Cuando difieran, las
   decisiones aprobadas e implementadas en `/` prevalecen sobre esa referencia.
