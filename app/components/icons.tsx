@@ -112,11 +112,7 @@ export const RainIcon: React.FC = () => (
 
 export const LogoIcon: React.FC<{
   className?: string;
-  tone?: "brand" | "sky";
-}> = ({ className, tone = "brand" }) => {
-  const primary = tone === "sky" ? "#38bdf8" : "#1c69a8";
-  const secondary = tone === "sky" ? "#0284c7" : "#195f8e";
-
+}> = ({ className }) => {
   return (
     <svg
       id="Capa_1"
@@ -124,8 +120,9 @@ export const LogoIcon: React.FC<{
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 150 52"
       className={className}
+      fill="var(--color-logo)"
     >
-    <g fill={primary}>
+    <g>
       <path
         d="M121.49,1.16c-14.41,0-24.04,10.36-24.04,24.84s9.63,24.84,24.04,24.84,24.04-10.36,24.04-24.84S135.91,1.16,121.49,1.16ZM121.49,39.02c-3.72,0-9.43-2.46-9.43-13.02s5.71-13.02,9.43-13.02,9.43,2.46,9.43,13.02-5.71,13.02-9.43,13.02Z"
       />
@@ -136,9 +133,8 @@ export const LogoIcon: React.FC<{
         d="M37.35,2.29c-2.43,0-4.41,1.97-4.41,4.41v21.29c0,4.83,0,10.84-6.87,10.84s-7.07-6.01-7.07-10.84V6.7c0-2.44-1.98-4.41-4.41-4.41h0s-10.13,0-10.13,0v28.94c0,13.08,7.14,19.36,21.54,19.36s21.47-6.28,21.47-19.36V2.29h-10.13Z"
       />
     </g>
-    <path fill={secondary} d="M65.64,2.29l7.6,35.73-7.61-12.57V2.29Z" />
+    <path d="M65.64,2.29l7.6,35.73-7.61-12.57V2.29Z" />
     <path
-      fill={primary}
       d="M51.82,43.75v1.53c0,2.45,1.98,4.43,4.43,4.43h9.38v-5.97h-13.81Z"
     />
     </svg>

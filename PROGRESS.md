@@ -8,9 +8,9 @@
 > arquitectura, [README.md](./README.md) para ejecutar el prototipo y
 > [DESIGN.md](./DESIGN.md) antes de trabajar en una interfaz.
 
-## Estado actual — 2026-10-26
+## Estado actual — 2026-11-02
 
-El **directorio aprobó el look and feel y la estructura de la portada**. La
+El **look and feel y la estructura de la portada están aprobados**. La
 portada vigente es `/`, responsive y consolidada en mobile y desktop. Desde
 1024 px usa la composición editorial 8/4; la experiencia mobile es compartida
 con `/opcion`. Esta última ruta conserva una variante anterior de la home como
@@ -33,7 +33,7 @@ stack del proveedor.
 
 | Familia | Estado en este repositorio | Referencia para continuar |
 |---|---|---|
-| Portada `/` | Aprobada por el directorio | Fuente implementada del lenguaje visual y responsive. |
+| Portada `/` | Aprobada | Fuente implementada del lenguaje visual y responsive. |
 | Home `/opcion` | Variante existente, secundaria | Consulta histórica; no condiciona páginas nuevas. |
 | Detalle de nota común `/detalle-nota` | Borrador revisable | Revisar sus elementos y rediseñar lo necesario a partir de la portada. |
 | Detalle live blog | Pendiente de diseño | Definir su experiencia específica cuando se aborde. |
@@ -57,6 +57,14 @@ de la maqueta.
   reúne los 15 formatos, cupos y capturas de la portada aprobada. Esas capturas
   documentan las diferencias entre formatos de home; las páginas completas se
   consultan en el navegador y no requieren capturas versionadas por rutina.
+- La estructura, el look and feel y la
+  [paleta cromática vigente](./DESIGN.md#paleta-cromática-vigente) de `/` son la
+  referencia actual. Incluyen logo UNO
+  `#4298d4` sin halo en todas las rutas, carbón `#111827` en el marco y header
+  mobile de ambas homes, titulares `#111827` y bajadas `#374151` sobre tarjetas
+  claras, MAM `#111827` solo en `/` desktop y footer `#0b1320` en `/` a ambos
+  anchos, además de «SUSCRIBITE» `#ef4444` en el header desktop compartido.
+  Aplicar la paleta según el uso de cada color al diseñar las páginas pendientes.
 - La [portada de sección genérica](./PORTADA_SECCION.md) comparte contenidos en
   ambos anchos, con composición 8/4 y anuncios de muestra en desktop, y una
   lista vertical con fotos 4:3 de 120 × 90 px a la derecha en mobile. El rótulo

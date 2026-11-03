@@ -8,7 +8,7 @@ reglas visuales en [DESIGN.md](./DESIGN.md) y la memoria de las iteraciones en e
 ## Propósito y etapas
 
 El proyecto presenta una visión de rediseño para `diariouno.com.ar`. El
-directorio aprobó el **look and feel y la estructura de la portada**. La home
+**look and feel y la estructura de la portada están aprobados**. La home
 responsive `/` materializa esa decisión. La portada de sección genérica
 `/portada-seccion` también tiene diseño aprobado en mobile y desktop. Queda
 diseñar el resto de las páginas públicas enumeradas en PROGRESS; la página

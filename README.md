@@ -1,7 +1,7 @@
 # UNO 2026 — Prototipo de rediseño de Diario UNO
 
-Prototipo responsive de `diariouno.com.ar`. El directorio aprobó el **look and
-feel y la estructura de la portada `/`**. La portada de sección genérica
+Prototipo responsive de `diariouno.com.ar`. El **look and feel y la estructura
+de la portada `/` están aprobados**. La portada de sección genérica
 también tiene diseño aprobado en mobile y desktop. Quedan por diseñar detalles
 de nota y otras páginas públicas; el
 [inventario vigente](./PROGRESS.md#inventario-de-pantallas) registra su estado.

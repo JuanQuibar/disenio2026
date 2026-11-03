@@ -111,7 +111,7 @@ export default function Header() {
               className="site-header__brand-link"
             >
               <LogoIcon className="site-header__mobile-logo" />
-              <LogoIcon className="site-header__desktop-logo" tone="sky" />
+              <LogoIcon className="site-header__desktop-logo" />
             </Link>
           </div>
 

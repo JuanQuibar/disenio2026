@@ -1,7 +1,7 @@
 # Catálogo de formatos de portada
 
 Referencia visual y editorial de la portada [`/`](./README.md#rutas-actuales),
-aprobada por el directorio en mobile y desktop (corte visual en 1024 px). Sus
+aprobada en mobile y desktop (corte visual en 1024 px). Sus
 reglas para los futuros editores y el proveedor del CMS son **acuerdos
 editoriales existentes para una etapa posterior**: el CMS aún no está
 implementado ni se define aquí su tecnología o interfaz interna. Los nombres
@@ -9,7 +9,15 @@ identifican formas de presentar contenido, no secciones del diario ni
 componentes de React. Los textos, fotografías y anuncios actuales son muestras,
 salvo las fuentes externas indicadas.
 
-> **Capturas:** tomadas de la portada `/` en el Chrome compartido el 2026-10-26, a 414 px y 1440 px. Cada imagen enlaza su versión de resolución completa. Los reproductores y widgets externos reflejan el estado disponible al capturar; un panel sin imagen no es una especificación de su contenido. Las vistas de «Gráfico + chat» y «Espacio de juegos» se actualizaron tras separar ambos formatos.
+> **Capturas:** tomadas de la portada `/` en el Chrome compartido el 2026-10-26,
+> a 414 px y 1440 px. Cada imagen enlaza su versión de resolución completa. Los
+> reproductores y widgets externos reflejan el estado disponible al capturar;
+> un panel sin imagen no es una especificación de su contenido. Las vistas de
+> «Gráfico + chat» y «Espacio de juegos» se actualizaron tras separar ambos
+> formatos. Las capturas preceden a la
+> [paleta cromática vigente](./DESIGN.md#paleta-cromática-vigente):
+> sirven para documentar composición y formatos, no para fijar los colores
+> vigentes.
 
 ## Cómo usar este catálogo
 

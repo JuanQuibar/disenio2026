@@ -6,6 +6,40 @@
   display: none;
 }
 
+@media (max-width: 1023px) {
+  .site-layout:has(.home-page),
+  .site-layout:has(.home-page) > .site-page-frame,
+  .site-layout .home-page,
+  .site-header.site-header--home {
+    background: var(--color-text-primary);
+  }
+
+  .site-layout .home-page :is(
+    .news-lead h1,
+    .news-lead-related h2,
+    .news-opening-copy h2,
+    .news-principales-card-body h2,
+    .editorial-lead-story-title,
+    .editorial-side-card-title,
+    .opinion-card-title,
+    .gente-card-title,
+    .senatus-card-title,
+    .ultimatem-title,
+    .mam-card h4,
+    .youtube-shorts-card-title,
+    .branded-card-caption h4,
+    .encuesta-question,
+    #sudoku h2,
+    [data-summary-variant] [role="region"] h4
+  ) {
+    color: var(--color-text-primary);
+  }
+
+  .site-layout .home-page .bajada {
+    color: var(--color-text-body);
+  }
+}
+
 @media (min-width: 1024px) {
   /* El overflow global no debe crear un scroll container para el header sticky. */
   html:has(.site-header--alternative),

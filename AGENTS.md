@@ -1,7 +1,7 @@
 # Instrucciones para agentes
 
 Prototipo responsive de rediseño de **Diario UNO**. Next.js 16 · React 19 ·
-Tailwind CSS 4 · Swiper. El directorio aprobó el look and feel y la portada `/`;
+Tailwind CSS 4 · Swiper. El look and feel y la portada `/` están aprobados;
 quedan por diseñar otras páginas públicas. El proveedor del CMS implementará
 más adelante el producto en su propia tecnología.
 

@@ -1,11 +1,12 @@
 # Guía visual vigente — Diario UNO 2026
 
-El directorio aprobó el **look and feel y la estructura de la portada `/`**. La
+El **look and feel y la estructura de la portada `/`** están aprobados. La
 portada de sección genérica `/portada-seccion` también quedó aprobada en desktop
-y mobile. Esta guía reúne las decisiones visuales que sirven para diseñar otras
-páginas del sitio. No convierte una composición de home en plantilla obligatoria
-para notas o formularios. El estado de cada página está en
-[PROGRESS.md](./PROGRESS.md); la especificación y las capturas de los 15
+y mobile. La paleta cromática de esta guía es la **referencia vigente** del
+prototipo. Las decisiones visuales aquí reunidas sirven para diseñar otras
+páginas del sitio. Esta guía no convierte una composición de
+home en plantilla obligatoria para notas o formularios. El estado de cada
+página está en [PROGRESS.md](./PROGRESS.md); la especificación y las capturas de los 15
 formatos de home están en el
 [catálogo de portada](./CATALOGO_FORMATOS_PORTADA.md). La versión detallada
 anterior de este documento permanece en el
@@ -43,12 +44,19 @@ visuales de calidad y movimiento discreto. La home favorece el consumo directo
 de resúmenes, video y transmisiones; cada página nueva debe resolver su propia
 lectura y navegación según su propósito.
 
-| Recurso | Referencia aprobada | Uso orientativo |
+| Recurso | Valor actual | Uso en el prototipo |
 |---|---|---|
-| Azul institucional | `#1c69a8` | Marca, enlaces, acentos y foco. |
-| Carbón editorial | `#111827` | Paneles oscuros y títulos sobre fondo claro. |
-| Rojo de actualidad | `#dc2626` / `#ef4444` | En vivo, alertas y acentos deportivos. |
-| Fondo mobile de home | `#000000` | Marco de la portada mobile; no obliga a usar negro en todas las páginas. |
+| Logo UNO | `#4298d4` | Logo del header mobile y desktop en todas las rutas; marca «UNO» del footer. Sin halo. |
+| Azul institucional editorial | `#1c69a8` | Enlaces, acentos, foco y cabezal de la portada de sección genérica; ya no es el color del logo visible. |
+| Azul de interfaz | `#005087` | Token `--color-primary` usado en títulos, bordes y estados de algunos módulos desktop. |
+| Celeste auxiliar | `#38bdf8` | Algunos hovers y detalles del header y footer; ya no colorea el logo. |
+| Carbón editorial | `#111827` | Paneles oscuros, titulares sobre tarjetas claras y marco de ambas homes mobile; panel MAM de `/` desktop. |
+| Header desktop superior | `#0a0f18` | Franja de servicios. |
+| Header desktop principal | `#0b1320` | Barra de logo y navegación; también footer de `/` en ambos anchos. |
+| Gris oscuro | `#1f2937` | Footer de las rutas distintas de `/` en ambos anchos. |
+| Texto de bajadas | `#374151` | Bajadas visibles en las dos homes mobile y otros usos de texto secundario. |
+| Rojo de actualidad y suscripción | `#ef4444` | «EN VIVO», alertas y «SUSCRIBITE» en el header desktop; Ovación también usa `#d1222a`. |
+| Negro audiovisual | `#000000` | Fondos de video y panel MAM de `/opcion` desktop; ya no es el marco de las homes mobile. |
 | Fondo desktop de home | `#f1f5f9` | Lienzo de la portada con módulos blancos. |
 | Superficie de contenido | `#ffffff` | Tarjetas, paneles y espacios de lectura. |
 | Titulares editoriales | Playfair Display | Noticias generales y jerarquía principal. |
@@ -61,6 +69,39 @@ portada o nota de Ovación debe partir de esa identidad, no del diseño deportiv
 que aparecía en la antigua referencia de Stitch. Opinión se distingue en la
 home por retratos de autores y titulares serif en itálica; sus detalles aún
 requieren diseño propio.
+
+## Paleta cromática vigente
+
+La paleta implementada al **2026-11-02** tiene este alcance:
+
+- **Identidad compartida:** `LogoIcon` usa un solo `#4298d4` en todos sus trazos,
+  en mobile y desktop y en todas las rutas. La marca «UNO» del footer tiene el
+  mismo color. No hay halo, degradé ni sombra luminosa detrás del logo. Los SVG
+  alternativos guardados en `public/` no se usan en el header actual y conservan
+  sus variantes históricas; el componente visible es la referencia vigente.
+- **Desktop desde 1024 px:** el header conserva dos fondos distintos, franja
+  superior `#0a0f18` y barra principal `#0b1320`; el fondo de «SUSCRIBITE» es
+  `#ef4444` en todas las rutas. En `/`, el panel MAM pasó a
+  `#111827`; `/opcion` conserva MAM negro. El lienzo de la home sigue en
+  `#f1f5f9`.
+- **Mobile hasta 1023 px:** `/` y `/opcion` comparten header y marco
+  `#111827`. Los titulares editoriales sobre tarjetas claras usan `#111827` y
+  sus bajadas visibles usan `#374151`. El módulo AHORA con reloj tiene la lista
+  sobre `#111827`; su cabezal transparente deja ver el mismo marco. Los
+  rótulos sobre carbón y los titulares de Ovación conservan texto claro. MAM
+  mobile mantiene su panel blanco y los lienzos propios de video siguen negros.
+- **Footer y otras pantallas:** el footer de `/` usa `#0b1320` tanto en mobile
+  como en desktop. El de `/opcion` y las demás rutas conserva `#1f2937` en
+  ambos anchos. Estos cambios de home no rediseñan
+  `/portada-seccion`, `/detalle-nota` ni la futura portada de Ovación; comparten
+  únicamente el logo y el footer del marco general donde corresponde.
+
+Las reglas están en [globals.css](./app/globals.css),
+[home-alternative.css](./app/components/home/home-alternative.css) y
+[icons.tsx](./app/components/icons.tsx). La revisión en Chrome compartido
+confirmó los colores calculados del logo, el marco y los textos mobile. Para
+páginas nuevas, usar los valores de esta guía según la función de cada color y
+resolver su composición propia.
 
 ## Responsive y composición
 
