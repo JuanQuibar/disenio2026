@@ -35,7 +35,7 @@ un detalle de nota, una registración o una página de error.
 | `/opcion` | Variante anterior de la home, disponible como referencia secundaria. Comparte toda la experiencia mobile. |
 | `/detalle-nota` | Borrador de nota común con contenido de muestra; requiere revisión visual y funcional. |
 | `/portada-seccion` | Plantilla genérica aprobada en mobile y desktop para secciones generales; [ficha visual](./PORTADA_SECCION.md). |
-| `/deportes` | Propuesta de portada de Ovación: desktop en calibración y mobile pendiente de ajuste; [ficha visual](./DEPORTES.md). |
+| `/deportes` | Propuesta de portada de Ovación: desktop en calibración; falta diseñar mobile. [Ficha visual](./DEPORTES.md). |
 
 No existen todavía rutas propias para live blog, videonota, los detalles de
 Ovación y Opinión ni registración. No hay una página 404 personalizada. Las
@@ -92,8 +92,8 @@ contrato tecnológico de producción.
   `DeportesWrapper`. Reutiliza la agenda externa de DataFactory de la home y
   conserva la identidad de Ovación en mobile y desktop. La página 1 desktop
   combina apertura 8/4 y un listado inferior; la página 2 presenta doce cards
-  en tres columnas. Mobile conserva su composición anterior. El diseño de
-  página completa sigue pendiente de aprobación.
+  en tres columnas. Falta diseñar su versión mobile; la composición visible
+  allí es provisoria. El diseño de página completa sigue pendiente de aprobación.
 
 Los textos, titulares, anuncios y fotografías editoriales son muestras, salvo
 las fuentes externas identificadas: MAM consume una playlist pública, Shorts

@@ -20,8 +20,9 @@ La próxima etapa del prototipo es diseñar y ajustar las demás páginas públi
 La portada de sección genérica `/portada-seccion` quedó **aprobada en desktop y
 mobile**. `/detalle-nota` ya existe, pero su composición es un **borrador
 revisable**, no un detalle aprobado. La portada de Ovación ya tiene una
-**propuesta en `/deportes`**: su desktop está en calibración y mobile conserva
-una composición anterior pendiente de ajustar. La página sigue sin aprobación.
+**propuesta en `/deportes`**: su desktop está en calibración y falta diseñar la
+versión mobile. La composición que se ve en mobile es provisoria. La página
+sigue sin aprobación.
 Las demás familias pendientes aún no tienen ruta ni diseño en este repositorio.
 No hay un orden obligatorio: se elige la próxima pantalla según la necesidad de
 cada sesión.
@@ -44,7 +45,7 @@ stack del proveedor.
 | Detalle de nota de Ovación | Pendiente de diseño | Tomar la identidad deportiva aprobada en la home. |
 | Detalle de opinión | Pendiente de diseño | Tomar la identidad de Opinión aprobada en la home. |
 | Portada de sección genérica `/portada-seccion` | Aprobada en desktop y mobile | [Composición, medidas y alcance funcional](./PORTADA_SECCION.md); plantilla para secciones generales. |
-| Portada de Ovación `/deportes` | Desktop en calibración; mobile pendiente de ajuste | [Composición y alcance](./DEPORTES.md); parte de la identidad deportiva aprobada en la home. |
+| Portada de Ovación `/deportes` | Desktop en calibración; falta la versión mobile | [Composición y alcance](./DEPORTES.md); parte de la identidad deportiva aprobada en la home. |
 | Registración | Pendiente de diseño | Acordar contenido y estados antes de fijar su experiencia. |
 | Página 404 | Pendiente de diseño | Diseñar una salida coherente con el sitio. |
 
@@ -76,8 +77,8 @@ de la maqueta.
   un marcador de la maqueta.
 - La [portada de Ovación](./DEPORTES.md) amplía el panel deportivo aprobado de
   la home en una página completa. Desktop tiene una primera página con apertura
-  8/4 y una segunda con doce cards en tres columnas. Mobile conserva la
-  composición previa hasta su propia ronda de diseño. Los titulares,
+  8/4 y una segunda con doce cards en tres columnas. Falta diseñar la versión
+  mobile; la composición actual allí es provisoria. Los titulares,
   fotografías, firmas, anuncio, «Más leídas» y posiciones son muestras; la
   agenda es un widget externo de DataFactory.
 - Stitch contiene una pantalla de **portada desktop**, útil como referencia

@@ -17,7 +17,7 @@ de producción ni una especificación del stack del proveedor.
 | `/opcion` | Variante anterior de la home; referencia secundaria. |
 | `/detalle-nota` | Borrador revisable de nota común. |
 | `/portada-seccion` | Portada de sección genérica aprobada en mobile y desktop; [ficha visual](./PORTADA_SECCION.md). |
-| `/deportes` | Propuesta de portada de Ovación: desktop en calibración y mobile pendiente de ajuste; [ficha visual](./DEPORTES.md). |
+| `/deportes` | Propuesta de portada de Ovación: desktop en calibración; falta diseñar mobile. [Ficha visual](./DEPORTES.md). |
 
 Las otras páginas del inventario aún no tienen ruta propia. Las antiguas
 `/desktop`, `/desktop2` y `/opcion-2` fueron retiradas.

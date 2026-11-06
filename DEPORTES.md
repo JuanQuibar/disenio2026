@@ -2,8 +2,9 @@
 
 La ruta [`/deportes`](<./app/(sitio)/deportes/page.tsx>) extiende la identidad
 deportiva de Ovación a una portada propia. La composición desktop se está
-calibrando; mobile conserva una versión previa y todavía requiere una revisión
-específica. Ninguna de las dos está aprobada como diseño final.
+calibrando. **Falta diseñar la versión mobile de la portada de Deportes**; lo
+que se ve actualmente hasta 1023 px es una composición provisoria. La página
+todavía no está aprobada como diseño final.
 
 ## Desktop desde 1024 px
 
@@ -25,13 +26,14 @@ específica. Ninguna de las dos está aprobada como diseño final.
   arriba del listado situado bajo la apertura. La paginación enlaza ambas
   páginas; la segunda abre desde el inicio para mostrar el logo.
 
-## Mobile hasta 1023 px
+## Pendiente: versión mobile hasta 1023 px
 
-La composición vigente mantiene logo, cinta de disciplinas, agenda, principal
-y tres destacadas. La cinta se detiene cuando el usuario prefiere movimiento
-reducido. El listado inferior y la paginación de desktop no se muestran. La
-segunda página conserva por ahora esa misma composición mobile; su adaptación
-se abordará después de cerrar las pruebas desktop.
+Falta diseñar e implementar la versión mobile de esta portada. La composición
+provisoria mantiene logo, cinta de disciplinas, agenda, principal y tres
+destacadas. La cinta se detiene cuando el usuario prefiere movimiento reducido.
+El listado inferior y la paginación de desktop no se muestran. La segunda
+página conserva por ahora esa misma composición provisoria; su adaptación se
+abordará después de cerrar las pruebas desktop.
 
 ## Contenido e interacción
 
