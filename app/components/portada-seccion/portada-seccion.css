@@ -202,6 +202,49 @@
   display: none;
 }
 
+.section-front__ad {
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
+}
+
+.section-front__ad > span {
+  display: block;
+  margin-bottom: 9px;
+  color: #6b7280;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.section-front__ad-placeholder {
+  display: flex;
+  width: 300px;
+  height: 250px;
+  margin-inline: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 4px;
+  color: #94a3b8;
+  background: #f8fafc;
+}
+
+.section-front__ad-placeholder span {
+  font-size: 12px;
+}
+
+.section-front__ad-placeholder strong {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .section-front__pagination {
   display: flex;
   flex-wrap: wrap;
@@ -289,6 +332,20 @@
     color: #000;
   }
 
+  .section-front__mobile-ad {
+    margin-inline: -8px;
+    padding-block: 8px;
+  }
+
+  .section-front__mobile-ad .section-front__ad {
+    width: min(330px, 100%);
+    margin-inline: auto;
+  }
+
+  .section-front__mobile-ad .section-front__ad-placeholder {
+    max-width: 100%;
+  }
+
   .section-front__politica-mobile .editorial-side-card {
     flex-direction: row-reverse;
     padding-block: 16px;
@@ -303,6 +360,12 @@
 
   .section-front__politica-mobile .editorial-side-card-content {
     flex: 1;
+  }
+}
+
+@media (max-width: 340px) {
+  .section-front__mobile-ad .section-front__ad {
+    padding-inline: 2px;
   }
 }
 
@@ -516,49 +579,6 @@
     top: 76px;
     display: grid;
     gap: 24px;
-  }
-
-  .section-front__ad {
-    padding: 15px;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
-  }
-
-  .section-front__ad > span {
-    display: block;
-    margin-bottom: 9px;
-    color: #6b7280;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .section-front__ad-placeholder {
-    display: flex;
-    width: 300px;
-    height: 250px;
-    margin-inline: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    border: 1px dashed #cbd5e1;
-    border-radius: 4px;
-    color: #94a3b8;
-    background: #f8fafc;
-  }
-
-  .section-front__ad-placeholder span {
-    font-size: 12px;
-  }
-
-  .section-front__ad-placeholder strong {
-    font-family: var(--font-geist-mono), monospace;
-    font-size: 18px;
-    font-weight: 500;
   }
 }
 

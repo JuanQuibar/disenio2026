@@ -26,10 +26,13 @@ function SectionPagination({
   currentPage: number;
   pageCount: number;
 }) {
+  const hrefForPage = (page: number) =>
+    page === 1 ? "/portada-seccion" : `/portada-seccion?pagina=${page}`;
+
   return (
     <nav className="section-front__pagination" aria-label="Páginas de la sección">
       <Link
-        href={`/portada-seccion?pagina=${Math.max(1, currentPage - 1)}`}
+        href={hrefForPage(Math.max(1, currentPage - 1))}
         aria-disabled={currentPage === 1}
         tabIndex={currentPage === 1 ? -1 : undefined}
         className={currentPage === 1 ? "is-disabled" : ""}
@@ -39,14 +42,14 @@ function SectionPagination({
       {Array.from({ length: pageCount }, (_, index) => index + 1).map((page) => (
         <Link
           key={page}
-          href={`/portada-seccion?pagina=${page}`}
+          href={hrefForPage(page)}
           aria-current={currentPage === page ? "page" : undefined}
         >
           {page}
         </Link>
       ))}
       <Link
-        href={`/portada-seccion?pagina=${Math.min(pageCount, currentPage + 1)}`}
+        href={hrefForPage(Math.min(pageCount, currentPage + 1))}
         aria-disabled={currentPage === pageCount}
         tabIndex={currentPage === pageCount ? -1 : undefined}
         className={currentPage === pageCount ? "is-disabled" : ""}
@@ -96,6 +99,16 @@ export function PortadaSeccion({
                     }}
                   />
                 </div>
+                <div className="editorial-lead-list-divider border-t border-gray-200 my-1" />
+                <aside className="section-front__mobile-ad" aria-label="Espacio publicitario">
+                  <div className="section-front__ad">
+                    <span>Publicidad</span>
+                    <div className="section-front__ad-placeholder">
+                      <span>Espacio publicitario</span>
+                      <strong>300 × 250</strong>
+                    </div>
+                  </div>
+                </aside>
                 <div className="editorial-lead-list-divider border-t border-gray-200 my-1" />
               </>
             )}

@@ -50,8 +50,9 @@ medidas y el alcance funcional aprobados.
   línea azul de 2 px cierra el cabezal.
 - Solo en la primera página, la nota principal sigue el formato mobile de la
   nota principal de Política en la home: foto primero, titular Playfair Display,
-  bajada y firma. No lleva volanta. En las páginas siguientes, el listado sigue
-  al cabezal dentro del mismo contenedor blanco, sin separador de principal.
+  bajada y firma. No lleva volanta. Después aparece un anuncio de muestra de
+  300 × 250 px, antes del listado. En las páginas siguientes, el listado sigue
+  al cabezal dentro del mismo contenedor blanco, sin principal ni anuncio.
 - El listado se apila en diez filas. **Títulos y firmas a la izquierda;
   fotos a la derecha**, recortadas a 4:3 (120 × 90 px). No muestra volantas ni
   bajadas. Cada fila tiene 16 px de espacio vertical por lado y una división
