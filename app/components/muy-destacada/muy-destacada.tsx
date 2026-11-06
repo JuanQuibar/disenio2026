@@ -41,10 +41,10 @@ export function MuyDestacada({ videoUrl }: { videoUrl: string }) {
       <div className="news-lead-header">
         <div className="news-lead-header-main">
           <span className="news-lead-live-dot relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red-live opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-red-live"></span>
           </span>
-          <span className="news-lead-live-label font-sans font-bold text-red-600 uppercase text-xs tracking-wide">
+          <span className="news-lead-live-label font-sans font-bold text-accent-red-live-text uppercase text-xs tracking-wide">
             <span className="news-lead-live-mobile">LIVE</span>
             <span className="news-lead-live-desktop">EN VIVO</span>
           </span>

@@ -64,17 +64,23 @@ de la maqueta.
 - La estructura, el look and feel y la
   [paleta cromática vigente](./DESIGN.md#paleta-cromática-vigente) de `/` son la
   referencia actual. Incluyen logo UNO
-  `#4298d4` sin halo en todas las rutas, carbón `#111827` en el marco y header
-  mobile de ambas homes, titulares `#111827` y bajadas `#374151` sobre tarjetas
-  claras, MAM `#111827` solo en `/` desktop y footer `#0b1320` en `/` a ambos
-  anchos, además de «SUSCRIBITE» `#ef4444` en el header desktop compartido.
+  `#4298d4` sin halo en todas las rutas, header mobile `#0b1320` en todo el
+  sitio, carbón `#111827` en el marco de ambas homes mobile, titulares
+  `#111827` y bajadas `#374151` sobre tarjetas claras en ambos anchos, MAM
+  `#111827` solo en `/` desktop y footer `#0b1320` en `/` a ambos anchos. Los
+  indicadores editoriales y «SUSCRIBITE» usan `#ef4444`; «LIVE» sobre blanco
+  usa el rojo textual `#dc2626`.
   Aplicar la paleta según el uso de cada color al diseñar las páginas pendientes.
 - La [portada de sección genérica](./PORTADA_SECCION.md) comparte contenidos en
   ambos anchos, con composición 8/4 y anuncios de muestra en desktop, y una
   lista vertical con fotos 4:3 de 120 × 90 px a la derecha en mobile. La nota
   principal aparece solo en la primera página; las páginas siguientes conservan
-  el cabezal, diez notas y la paginación. El rótulo «Nombre sección» sigue siendo
-  un marcador de la maqueta.
+  el cabezal, diez notas y la paginación. La primera página mobile muestra un
+  anuncio de muestra de 300 × 250 px entre la principal y el listado. En mobile,
+  comparte con `/` el carbón
+  `#111827` del marco, el header y footer `#0b1320`, los titulares `#111827` y
+  la bajada `#374151`; el cabezal de sección conserva el azul `#1c69a8`. El
+  rótulo «Nombre sección» sigue siendo un marcador de la maqueta.
 - La [portada de Ovación](./DEPORTES.md) amplía el panel deportivo aprobado de
   la home en una página completa. Desktop tiene una primera página con apertura
   8/4 y una segunda con doce cards en tres columnas. Falta diseñar la versión

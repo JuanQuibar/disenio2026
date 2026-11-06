@@ -24,7 +24,7 @@ export function RadioNihuilLive() {
             />
             
             {/* Botón de Play superpuesto */}
-            <div className="relative z-10 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="relative z-10 w-16 h-16 bg-accent-red-live rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
               <svg
                 className="w-8 h-8 text-white ml-1"
                 fill="currentColor"
@@ -35,7 +35,7 @@ export function RadioNihuilLive() {
             </div>
 
             {/* Badge de "EN VIVO" estático */}
-            <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md shadow-sm z-10 pointer-events-none">
+            <div className="absolute top-3 left-3 bg-accent-red-live text-white text-xs font-bold px-2 py-1 rounded-md shadow-sm z-10 pointer-events-none">
               EN VIVO
             </div>
           </button>

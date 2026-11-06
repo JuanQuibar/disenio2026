@@ -13,8 +13,8 @@ export function UltimaHoraLateralWrapper({ noticias }: { noticias: NoticiaUltima
       <section data-home-module="ahora-desktop" aria-labelledby="ahora-desktop-title">
         <h2 id="ahora-desktop-title" className="home-alternative-sidebar-heading">
           <span aria-hidden="true" className="relative inline-flex h-2 w-2 shrink-0">
-            <span className="motion-safe:animate-ping motion-safe:[animation-duration:2s] absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+            <span className="motion-safe:animate-ping motion-safe:[animation-duration:2s] absolute inline-flex h-full w-full rounded-full bg-accent-red-live opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-red-live" />
           </span>
           AHORA
           <UltimaHoraReloj />

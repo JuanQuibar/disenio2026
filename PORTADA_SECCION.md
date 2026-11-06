@@ -17,7 +17,8 @@ medidas y el alcance funcional aprobados.
 - Desktop y mobile muestran la **misma selección editorial**: diez notas por
   página y una principal solo en la primera. Cambia la presentación, no el
   contenido. La muestra contiene dos páginas y la paginación funciona mediante
-  `?pagina=2`.
+  `?pagina=2`. Al volver a la primera, usa la ruta canónica
+  `/portada-seccion`, sin `?pagina=1`.
 - Titulares y bajadas usan las variantes largas de
   [`typography-calibration.ts`](./app/content/typography-calibration.ts) para
   comprobar la lectura en ambos anchos. Los textos, firmas, fotos y anuncios
@@ -42,6 +43,9 @@ medidas y el alcance funcional aprobados.
 
 ## Mobile · hasta 1023 px
 
+- El marco usa carbón `#111827`, como la home `/`; el header y footer usan
+  `#0b1320`. Las tarjetas siguen blancas. Los titulares usan `#111827` y la
+  bajada de la nota principal `#374151`.
 - El contenedor blanco que une cabezal y notas comienza **16 px debajo** de la
   línea blanca del header, como la tarjeta LIVE de la home. Mantiene 8 px de
   margen lateral.

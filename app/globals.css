@@ -12,6 +12,8 @@
   --color-tertiary-container: #ca151b;
   --color-on-tertiary: #ffffff;
   --color-accent-red-live: #ef4444;
+  --color-accent-red-live-text: #dc2626;
+  --color-accent-red-live-soft: rgb(239 68 68 / 10%);
   --color-error: #ba1a1a;
   --color-on-secondary-fixed-variant: #004b74;
   --color-surface-container-low: #f1f3ff;
@@ -243,7 +245,7 @@ body {
   z-index: 50;
   height: 64px;
   color: #fff;
-  background: #000;
+  background: #0b1320;
 }
 
 .site-header__utility,
@@ -1382,7 +1384,7 @@ body {
   }
 
   .news-lead-related-summary {
-    color: var(--color-text-muted);
+    color: var(--color-text-body);
     font-family: var(--font-body);
     font-size: 14px;
     line-height: 21px;
@@ -1678,7 +1680,7 @@ body {
   .news-principales-card-summary {
     margin-top: 4px;
     padding-top: 0;
-    color: var(--color-text-muted);
+    color: var(--color-text-body);
     font-size: 14px;
     line-height: 21px;
   }
@@ -3363,7 +3365,7 @@ body {
 
   .senatus-card-summary {
     margin: 4px 0 0;
-    color: var(--color-text-muted);
+    color: var(--color-text-body);
     font-size: 15px;
     line-height: 22px !important;
   }

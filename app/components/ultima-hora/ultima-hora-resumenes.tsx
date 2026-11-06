@@ -181,7 +181,7 @@ export function UltimaHoraResumenes({
                   <time
                     dateTime={noticia.hora}
                     className={`w-10 shrink-0 pt-0.5 font-mono text-[11px] leading-4 tabular-nums ${
-                      index === 0 ? "text-red-400" : "text-gray-400"
+                      index === 0 ? "text-accent-red-live" : "text-gray-400"
                     }`}
                   >
                     {noticia.hora}
@@ -191,7 +191,7 @@ export function UltimaHoraResumenes({
                       <span className="absolute top-2 bottom-0 w-px bg-gray-700" />
                     )}
                     <span className={`relative mt-1 h-2 w-2 rounded-full ${
-                      index === 0 ? "bg-red-500 ring-4 ring-red-500/15" : "bg-gray-500"
+                      index === 0 ? "bg-accent-red-live ring-4 ring-accent-red-live/15" : "bg-gray-500"
                     }`} />
                   </div>
                 </>
@@ -201,7 +201,7 @@ export function UltimaHoraResumenes({
                 : "min-w-0"}
               >
                 {timelineVisual && index === 0 && (
-                  <span className="mb-1.5 block font-sans text-[10px] font-bold uppercase leading-4 tracking-widest text-red-400">
+                  <span className="mb-1.5 block font-sans text-[10px] font-bold uppercase leading-4 tracking-widest text-accent-red-live">
                     Lo último
                   </span>
                 )}

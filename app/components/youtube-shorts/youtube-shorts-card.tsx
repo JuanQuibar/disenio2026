@@ -34,7 +34,7 @@ export function YoutubeShortsCard({ short, onOpen }: YoutubeShortsCardProps) {
           onClick={onOpen}
         />
 
-        <div className="youtube-shorts-card-badge absolute right-2 top-2 z-20 rounded-md bg-red-600 p-1 shadow-sm">
+        <div className="youtube-shorts-card-badge absolute right-2 top-2 z-20 rounded-md bg-accent-red-live p-1 shadow-sm">
           <svg
             className="h-3 w-3 text-white"
             fill="currentColor"

@@ -52,10 +52,11 @@ lectura y navegación según su propósito.
 | Celeste auxiliar | `#38bdf8` | Algunos hovers y detalles del header y footer; ya no colorea el logo. |
 | Carbón editorial | `#111827` | Paneles oscuros, titulares sobre tarjetas claras y marco de ambas homes mobile; panel MAM de `/` desktop. |
 | Header desktop superior | `#0a0f18` | Franja de servicios. |
-| Header desktop principal | `#0b1320` | Barra de logo y navegación; también footer de `/` en ambos anchos. |
-| Gris oscuro | `#1f2937` | Footer de las rutas distintas de `/` en ambos anchos. |
-| Texto de bajadas | `#374151` | Bajadas visibles en las dos homes mobile y otros usos de texto secundario. |
-| Rojo de actualidad y suscripción | `#ef4444` | «EN VIVO», alertas y «SUSCRIBITE» en el header desktop; Ovación también usa `#d1222a`. |
+| Azul noche de cabecera | `#0b1320` | Barra principal desktop y header mobile de todas las rutas; footer de `/` en ambos anchos y de `/portada-seccion` mobile. |
+| Gris oscuro | `#1f2937` | Footer de otras rutas y de `/portada-seccion` desktop. |
+| Texto de bajadas | `#374151` | Bajadas editoriales sobre fondo claro en mobile y desktop; `#6b7280` queda para firmas y metadatos. |
+| Rojo de actualidad y suscripción | `#ef4444` | Indicadores, insignias y controles de actualidad, y «SUSCRIBITE» en desktop. Ovación conserva `#d1222a`. |
+| Rojo textual | `#dc2626` | Rótulos rojos pequeños sobre blanco, como «LIVE» mobile. |
 | Negro audiovisual | `#000000` | Fondos de video y panel MAM de `/opcion` desktop; ya no es el marco de las homes mobile. |
 | Fondo desktop de home | `#f1f5f9` | Lienzo de la portada con módulos blancos. |
 | Superficie de contenido | `#ffffff` | Tarjetas, paneles y espacios de lectura. |
@@ -72,7 +73,7 @@ requieren diseño propio.
 
 ## Paleta cromática vigente
 
-La paleta implementada al **2026-11-02** tiene este alcance:
+La paleta vigente tiene este alcance:
 
 - **Identidad compartida:** `LogoIcon` usa un solo `#4298d4` en todos sus trazos,
   en mobile y desktop y en todas las rutas. La marca «UNO» del footer tiene el
@@ -84,17 +85,21 @@ La paleta implementada al **2026-11-02** tiene este alcance:
   `#ef4444` en todas las rutas. En `/`, el panel MAM pasó a
   `#111827`; `/opcion` conserva MAM negro. El lienzo de la home sigue en
   `#f1f5f9`.
-- **Mobile hasta 1023 px:** `/` y `/opcion` comparten header y marco
-  `#111827`. Los titulares editoriales sobre tarjetas claras usan `#111827` y
-  sus bajadas visibles usan `#374151`. El módulo AHORA con reloj tiene la lista
+- **Mobile hasta 1023 px:** el header de todas las rutas usa `#0b1320`; `/` y
+  `/opcion` conservan el marco `#111827`. Los titulares editoriales sobre
+  tarjetas claras usan `#111827` y sus bajadas visibles usan `#374151`. El
+  módulo AHORA con reloj tiene la lista
   sobre `#111827`; su cabezal transparente deja ver el mismo marco. Los
   rótulos sobre carbón y los titulares de Ovación conservan texto claro. MAM
   mobile mantiene su panel blanco y los lienzos propios de video siguen negros.
 - **Footer y otras pantallas:** el footer de `/` usa `#0b1320` tanto en mobile
-  como en desktop. El de `/opcion` y las demás rutas conserva `#1f2937` en
-  ambos anchos. Estos cambios de home no rediseñan
-  `/portada-seccion`, `/detalle-nota` ni la futura portada de Ovación; comparten
-  únicamente el logo y el footer del marco general donde corresponde.
+  como en desktop; `/portada-seccion` usa ese color en mobile y `#1f2937` en
+  desktop. El de `/opcion` y las demás rutas conserva `#1f2937` en ambos
+  anchos. Las otras pantallas comparten el logo del marco general.
+- **Rojo editorial y bajadas:** los indicadores, insignias y controles de
+  actualidad usan `#ef4444`. El rótulo «LIVE» sobre blanco usa `#dc2626` para
+  conservar legibilidad. Las bajadas editoriales de `/` usan `#374151` también
+  en desktop; el gris `#6b7280` se reserva para firmas y metadatos.
 
 Las reglas están en [globals.css](./app/globals.css),
 [home-alternative.css](./app/components/home/home-alternative.css) y
@@ -156,7 +161,9 @@ portada. Las capturas allí enlazadas muestran la implementación aprobada.
   comienzan con el listado bajo el cabezal. Las notas del listado llevan título
   y firma a la izquierda, foto 4:3 a la derecha y más aire vertical entre filas.
   Mantener la misma selección de noticias que en desktop y paginar después de
-  diez notas.
+  diez notas. El marco usa `#111827`; el header y footer usan `#0b1320`, los
+  titulares `#111827` y la bajada principal `#374151`, como en `/` mobile. El
+  nombre de sección y su línea conservan `#1c69a8`.
 
 Las medidas y funciones efectivas de esta página están en
 [PORTADA_SECCION.md](./PORTADA_SECCION.md). Las fotos y anuncios de la maqueta

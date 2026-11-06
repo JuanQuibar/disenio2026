@@ -16,7 +16,7 @@ export function UltimaHoraAgenciaPastilla() {
         estado === null
           ? "invisible"
           : estado === "urgente"
-            ? "bg-red-400/10 text-red-400"
+            ? "bg-accent-red-live-soft text-accent-red-live"
             : "bg-green-400/10 text-green-400"
       }`}
     >

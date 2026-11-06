@@ -15,8 +15,8 @@ export function UltimaHoraAgenciaWrapper({ noticias }: { noticias: NoticiaUltima
           aria-hidden="true"
           className="relative inline-flex h-2 w-2 shrink-0"
         >
-          <span className="motion-safe:animate-ping motion-safe:[animation-duration:2s] absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+          <span className="motion-safe:animate-ping motion-safe:[animation-duration:2s] absolute inline-flex h-full w-full rounded-full bg-accent-red-live opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-red-live"></span>
         </span>
           <span>AHORA</span>
           <UltimaHoraReloj />
