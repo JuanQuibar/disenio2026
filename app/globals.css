@@ -665,31 +665,23 @@ body {
   }
 
   .site-header__utility-inner {
-    gap: 16px;
+    gap: 12px;
     height: 100%;
     justify-content: space-between;
     overflow: hidden;
-  }
-
-  .site-header__utility-data {
-    display: flex;
-    min-width: 0;
-    flex: 1 1 auto;
-    align-items: center;
-    gap: 16px;
-    overflow-x: auto;
-    scrollbar-width: none;
     white-space: nowrap;
   }
 
-  .site-header__utility-data::-webkit-scrollbar,
+  .site-header__utility-inner > * {
+    flex: 0 0 auto;
+  }
+
   .site-nav::-webkit-scrollbar {
     display: none;
   }
 
   .site-header__utility-weather,
   .site-header__utility-item,
-  .site-header__utility-side,
   .site-header__date {
     display: flex;
     align-items: center;
@@ -711,7 +703,6 @@ body {
     color: #fbbf24;
   }
 
-  .site-header__utility-separator,
   .site-header__utility-label {
     color: rgb(255 255 255 / 60%);
   }
@@ -727,12 +718,6 @@ body {
     font-weight: 700;
   }
 
-  .site-header__utility-side {
-    flex: 0 0 auto;
-    gap: 16px;
-    white-space: nowrap;
-  }
-
   .site-header__date {
     display: none;
     gap: 6px;
@@ -742,6 +727,50 @@ body {
   .site-header__date svg {
     width: 14px;
     height: 14px;
+  }
+
+  .site-header__crossing {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: rgb(255 255 255 / 80%);
+  }
+
+  .site-header__crossing strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .site-header__crossing-lights {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 4px;
+    padding: 3px 5px;
+    border: 1px solid rgb(255 255 255 / 25%);
+    border-radius: 6px;
+    background: rgb(255 255 255 / 4%);
+  }
+
+  .site-header__crossing-light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .site-header__crossing-light--red {
+    background: #ef4444;
+    opacity: 0.25;
+  }
+
+  .site-header__crossing-light--yellow {
+    background: #facc15;
+    opacity: 0.25;
+  }
+
+  .site-header__crossing-light--green {
+    background: #4ade80;
+    box-shadow: 0 0 7px rgb(74 222 128 / 70%);
   }
 
   .site-header__live {

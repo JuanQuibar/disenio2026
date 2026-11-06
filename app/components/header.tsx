@@ -44,51 +44,37 @@ export default function Header() {
         inert={isCompact ? true : undefined}
       >
         <div className="site-header__inner site-header__utility-inner">
-          <div className="site-header__utility-data">
-            <span className="site-header__utility-weather">
-              <SunIcon aria-hidden="true" />
-              Mendoza 24°C
+          <span className="site-header__utility-weather">
+            <SunIcon aria-hidden="true" />
+            Mendoza 24°C
+          </span>
+          <span className="site-header__crossing">
+            Cruce a Chile: <strong>abierto</strong>
+            <span className="site-header__crossing-lights" aria-hidden="true">
+              <span className="site-header__crossing-light site-header__crossing-light--red" />
+              <span className="site-header__crossing-light site-header__crossing-light--yellow" />
+              <span className="site-header__crossing-light site-header__crossing-light--green" />
             </span>
-            <span className="site-header__utility-separator" aria-hidden="true">
-              |
-            </span>
-            <span className="site-header__utility-item">
-              <span className="site-header__utility-label">Dólar Blue:</span>
-              <strong className="site-header__utility-mono">$1.215</strong>
-              <strong className="site-header__utility-positive">▲ 0.4%</strong>
-            </span>
-            <span className="site-header__utility-separator" aria-hidden="true">
-              |
-            </span>
-            <span className="site-header__utility-item">
-              <span className="site-header__utility-label">Dólar Oficial:</span>
-              <strong className="site-header__utility-mono">$1.042</strong>
-            </span>
-            <span className="site-header__utility-separator" aria-hidden="true">
-              |
-            </span>
-            <span className="site-header__utility-item">
-              <span className="site-header__utility-label">Merval:</span>
-              <strong className="site-header__utility-positive site-header__utility-mono">
-                +1.8%
-              </strong>
-            </span>
-            <span className="site-header__utility-separator" aria-hidden="true">
-              |
-            </span>
-            <span className="site-header__utility-item">
-              <span className="site-header__utility-label">Riesgo País:</span>
-              <strong className="site-header__utility-mono">680 pts</strong>
-            </span>
-          </div>
-
-          <div className="site-header__utility-side">
-            <span className="site-header__date">
-              <CalendarDaysIcon aria-hidden="true" />
-              Mendoza, Argentina — Lunes, 24 de Febrero de 2026
-            </span>
-            <LiveLink className="site-header__live" homeHref={homeHref} />
-          </div>
+          </span>
+          <span className="site-header__utility-item">
+            <span className="site-header__utility-label">Dólar Oficial:</span>
+            <strong className="site-header__utility-mono">$1.042</strong>
+          </span>
+          <span className="site-header__utility-item">
+            <span className="site-header__utility-label">Merval:</span>
+            <strong className="site-header__utility-positive site-header__utility-mono">
+              +1.8%
+            </strong>
+          </span>
+          <span className="site-header__utility-item">
+            <span className="site-header__utility-label">Riesgo País:</span>
+            <strong className="site-header__utility-mono">680 pts</strong>
+          </span>
+          <span className="site-header__date">
+            <CalendarDaysIcon aria-hidden="true" />
+            Lunes, 24 de Febrero de 2026
+          </span>
+          <LiveLink className="site-header__live" homeHref={homeHref} />
         </div>
       </div>
 

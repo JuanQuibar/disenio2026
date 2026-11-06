@@ -118,6 +118,14 @@ resolver su composición propia.
   página se compacta y permanece la barra principal. Las páginas nuevas deben
   comprobar su contenido bajo ese header en ambos estados. Mobile usa el
   header compacto existente.
+- La franja de servicios desktop distribuye con la misma separación clima,
+  «Cruce a Chile: abierto», dólar oficial, Merval, riesgo país, fecha y el
+  enlace «Canal 7 & Radio Nihuil EN VIVO», en ese orden y sin separadores. El
+  clima, las cotizaciones, el riesgo, la fecha y el estado del cruce son muestras
+  fijas. «Abierto» va en blanco y el semáforo horizontal tiene un marco tenue y
+  redondeado, con rojo y amarillo atenuados y verde encendido. La fecha se
+  muestra desde 1280 px; entre 1024 y 1279 px se omite de la cinta para que las
+  demás piezas entren en una fila.
 - Los módulos editoriales de la home usan superficies de radio cercano a 8 px,
   separación clara entre secciones y fotos recortadas según su función. Elegir
   proporciones a partir del contenido de cada página; las fotos de retrato,

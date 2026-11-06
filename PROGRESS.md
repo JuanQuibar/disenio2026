@@ -95,6 +95,11 @@ de la maqueta.
 - En todas las pruebas de páginas editoriales, los títulos y bajadas se alternan
   desde `app/content/typography-calibration.ts`, según la
   [regla de diseño](./DESIGN.md#títulos-y-bajadas-para-todas-las-pruebas).
+- La franja de servicios desktop del header compartido quedó aprobada con
+  clima, cruce a Chile, dólar oficial, Merval, riesgo país, fecha y enlace en
+  vivo, en ese orden y con separación uniforme. Los valores de clima, mercado,
+  fecha y cruce son muestras fijas, no datos en tiempo real. La composición y
+  su comportamiento responsive están en [DESIGN.md](./DESIGN.md#responsive-y-composición).
 
 ## Pendientes posteriores al diseño
 
