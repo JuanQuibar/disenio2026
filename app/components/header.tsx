@@ -115,7 +115,7 @@ export default function Header() {
             </Link>
           </div>
 
-          <Nav homeHref={homeHref} activeHome={home} />
+          <Nav homeHref={homeHref} activeHome={home} activeSports={pathname === "/deportes"} />
 
           <div className="site-header__actions" aria-hidden="true">
             <span className="site-header__search-mark">

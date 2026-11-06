@@ -17,6 +17,7 @@ de producción ni una especificación del stack del proveedor.
 | `/opcion` | Variante anterior de la home; referencia secundaria. |
 | `/detalle-nota` | Borrador revisable de nota común. |
 | `/portada-seccion` | Portada de sección genérica aprobada en mobile y desktop; [ficha visual](./PORTADA_SECCION.md). |
+| `/deportes` | Propuesta de portada de Ovación: desktop en calibración y mobile pendiente de ajuste; [ficha visual](./DEPORTES.md). |
 
 Las otras páginas del inventario aún no tienen ruta propia. Las antiguas
 `/desktop`, `/desktop2` y `/opcion-2` fueron retiradas.
@@ -80,6 +81,8 @@ Además:
   capturas y acuerdos editoriales de la portada para el futuro traspaso.
 - [PORTADA_SECCION.md](./PORTADA_SECCION.md): composición, medidas y alcance
   funcional de la portada de sección genérica aprobada.
+- [DEPORTES.md](./DEPORTES.md): composición y alcance propuestos para la
+  portada de Ovación.
 - [AGENTS.md](./AGENTS.md): reglas operativas para agentes, incluida la
   prohibición de worktrees.
 - [BROWSER_TESTING.md](./BROWSER_TESTING.md): uso del Chrome compartido. Para

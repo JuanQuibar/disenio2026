@@ -3,7 +3,7 @@ import Link from "next/link";
 export const SITE_NAV_LINKS = [
   { label: "Portada", href: "/" },
   { label: "Política", href: "/#politica" },
-  { label: "Ovación", href: "/#ovacion" },
+  { label: "Ovación", href: "/deportes" },
   { label: "Sociedad", href: "/#sociedad" },
   { label: "Opinión", href: "/#opinion" },
   { label: "MAM", href: "/#mam" },
@@ -14,7 +14,7 @@ const HEADER_NAV_ITEMS = [
   { label: "Mendoza" },
   { label: "Política" },
   { label: "Economía" },
-  { label: "Ovación" },
+  { label: "Ovación", href: "/deportes" },
   { label: "Policiales" },
   { label: "Sociedad" },
   { label: "Opinión" },
@@ -24,9 +24,11 @@ const HEADER_NAV_ITEMS = [
 export default function Nav({
   homeHref = "/",
   activeHome = true,
+  activeSports = false,
 }: {
   homeHref?: string;
   activeHome?: boolean;
+  activeSports?: boolean;
 } = {}) {
   return (
     <nav className="site-nav" aria-label="Secciones principales">
@@ -41,11 +43,12 @@ export default function Nav({
         );
 
         if ("href" in item) {
+          const isHome = item.label === "Portada";
           return (
             <Link
               key={item.label}
-              href={homeHref}
-              className={`site-nav__item${activeHome ? " site-nav__item--active" : ""}`}
+              href={isHome ? homeHref : item.href}
+              className={`site-nav__item${(isHome && activeHome) || (!isHome && activeSports) ? " site-nav__item--active" : ""}`}
             >
               {content}
             </Link>

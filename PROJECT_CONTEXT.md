@@ -35,11 +35,12 @@ un detalle de nota, una registración o una página de error.
 | `/opcion` | Variante anterior de la home, disponible como referencia secundaria. Comparte toda la experiencia mobile. |
 | `/detalle-nota` | Borrador de nota común con contenido de muestra; requiere revisión visual y funcional. |
 | `/portada-seccion` | Plantilla genérica aprobada en mobile y desktop para secciones generales; [ficha visual](./PORTADA_SECCION.md). |
+| `/deportes` | Propuesta de portada de Ovación: desktop en calibración y mobile pendiente de ajuste; [ficha visual](./DEPORTES.md). |
 
 No existen todavía rutas propias para live blog, videonota, los detalles de
-Ovación y Opinión, portada de Ovación ni registración. No hay una página 404
-personalizada. Las antiguas `/desktop`, `/desktop2` y `/opcion-2` fueron
-retiradas; solo aparecen en el archivo histórico.
+Ovación y Opinión ni registración. No hay una página 404 personalizada. Las
+antiguas `/desktop`, `/desktop2` y `/opcion-2` fueron retiradas; solo aparecen
+en el archivo histórico.
 
 La portada usa un único árbol mobile-first. El cambio visual a desktop comienza
 en **1024 px**. `/` y `/opcion` comparten mobile, la cobertura Live/Muy
@@ -87,6 +88,12 @@ contrato tecnológico de producción.
   notas; desde la segunda, el listado continúa sin principal. Desktop y mobile
   presentan los mismos contenidos con composiciones diferentes. Los anuncios
   del lateral son reservas visuales.
+- `/deportes` obtiene su selección editorial de muestra a través de
+  `DeportesWrapper`. Reutiliza la agenda externa de DataFactory de la home y
+  conserva la identidad de Ovación en mobile y desktop. La página 1 desktop
+  combina apertura 8/4 y un listado inferior; la página 2 presenta doce cards
+  en tres columnas. Mobile conserva su composición anterior. El diseño de
+  página completa sigue pendiente de aprobación.
 
 Los textos, titulares, anuncios y fotografías editoriales son muestras, salvo
 las fuentes externas identificadas: MAM consume una playlist pública, Shorts

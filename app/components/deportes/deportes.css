@@ -1,0 +1,728 @@
+.sports-front {
+  width: 100%;
+  max-width: 1360px;
+  min-height: 100vh;
+  margin-inline: auto;
+  padding: 80px 8px 32px;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.sports-front__top {
+  overflow: hidden;
+  border-radius: 8px;
+  color: #fff;
+  background: #111827;
+}
+
+.sports-front__masthead {
+  padding: 18px 16px 0;
+}
+
+.sports-front__identity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #4b5563;
+}
+
+.sports-front__identity h1 {
+  flex: none;
+  width: 145px;
+}
+
+.sports-front__identity img {
+  width: 100%;
+  height: auto;
+}
+
+.sports-front__identity p {
+  max-width: 128px;
+  color: #cbd5e1;
+  font-size: 10px;
+  line-height: 1.3;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.sports-front__ticker {
+  overflow: hidden;
+  padding-block: 12px;
+  border-bottom: 1px solid #374151;
+  mask-image: linear-gradient(to right, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+}
+
+.sports-front__ticker-track,
+.sports-front__ticker-group {
+  display: flex;
+  width: max-content;
+  align-items: center;
+}
+
+.sports-front__ticker-track {
+  animation: sports-front-ticker 30s linear infinite;
+}
+
+.sports-front__ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 24px;
+  color: #f1f5f9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sports-front__ticker-item::before {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ef4444;
+  content: "";
+}
+
+.sports-front__agenda {
+  padding: 16px;
+}
+
+.sports-front__agenda-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #f87171;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.sports-front__agenda .news-ovacion-agenda {
+  margin: 0;
+  padding: 8px;
+  border-radius: 6px;
+  background: #e5e7eb;
+}
+
+.sports-front__agenda .news-ovacion-agenda > div {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sports-front__agenda .news-ovacion-agenda h3 {
+  display: none;
+}
+
+.sports-front__agenda iframe {
+  display: block;
+}
+
+.sports-front__hero {
+  display: grid;
+  gap: 14px;
+  padding: 0 16px 22px;
+}
+
+.sports-front__lead-image,
+.sports-front__featured-image {
+  position: relative;
+  overflow: hidden;
+  background: #243044;
+}
+
+.sports-front__lead-image {
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+}
+
+.sports-front__lead-copy {
+  padding-top: 14px;
+}
+
+.sports-front__kicker {
+  display: block;
+  color: #f87171;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.sports-front__lead h2,
+.sports-front__featured h3 {
+  overflow-wrap: anywhere;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.sports-front__lead h2 {
+  margin-top: 5px;
+  font-size: clamp(23px, 5.8vw, 29px);
+  line-height: 1.13;
+  letter-spacing: -.025em;
+}
+
+.sports-front__lead-summary {
+  margin-top: 10px;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.48;
+}
+
+.sports-front__byline {
+  margin-top: 12px;
+  color: #cbd5e1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+
+.sports-front__featured-story {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid #374151;
+}
+
+.sports-front__featured-image {
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  border-radius: 5px;
+}
+
+.sports-front__featured h3 {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.sports-front__featured .sports-front__byline {
+  margin-top: 8px;
+  font-size: 9px;
+}
+
+.sports-front__most-read {
+  display: none;
+}
+
+.sports-front__below-lead {
+  display: none;
+}
+
+.sports-front__latest {
+  display: none;
+}
+
+@keyframes sports-front-ticker {
+  to { transform: translateX(-50%); }
+}
+
+@media (min-width: 1024px) {
+  .site-page-frame:has(.sports-front) {
+    background: #f1f5f9;
+  }
+
+  .sports-front {
+    padding: 28px 32px 64px;
+    background: #f1f5f9;
+  }
+
+  .sports-front__top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sports-front__latest {
+    display: block;
+    margin-inline: 24px;
+    padding: 13px 0 28px;
+    border-top: 1px solid #374151;
+    scroll-margin-top: 80px;
+  }
+
+  .sports-front__latest-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(5, auto);
+    grid-auto-flow: column;
+    gap: 16px 24px;
+  }
+
+  .sports-front--continuation .sports-front__agenda,
+  .sports-front--continuation .sports-front__hero {
+    display: none;
+  }
+
+  .sports-front--continuation .sports-front__latest {
+    padding-top: 24px;
+    border-top: 0;
+  }
+
+  .sports-front--continuation .sports-front__latest-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: row;
+    gap: 24px;
+  }
+
+  .sports-front__latest-story {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #1f2937;
+  }
+
+  .sports-front__latest-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sports-front__latest h3 {
+    margin-top: 4px;
+    overflow-wrap: anywhere;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .sports-front__latest .sports-front__byline {
+    margin-top: 8px;
+    font-size: 9px;
+  }
+
+  .sports-front__latest-image {
+    position: relative;
+    width: 128px;
+    aspect-ratio: 4 / 3;
+    flex: none;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #243044;
+  }
+
+  .sports-front__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .sports-front__pagination a {
+    display: inline-flex;
+    min-width: 38px;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    background: #1f2937;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .sports-front__pagination a[aria-current="page"] {
+    border-color: #d1222a;
+    background: #d1222a;
+  }
+
+  .sports-front__pagination a.is-disabled {
+    color: #9ca3af;
+    pointer-events: none;
+  }
+
+  .sports-front__pagination a:focus-visible {
+    outline: 2px solid #d1222a;
+    outline-offset: 3px;
+  }
+
+  .sports-front__masthead {
+    padding: 24px 24px 0;
+  }
+
+  .sports-front__identity {
+    justify-content: center;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #4b5563;
+  }
+
+  .sports-front__identity h1 {
+    width: 230px;
+  }
+
+  .sports-front__identity p {
+    display: none;
+  }
+
+  .sports-front__ticker {
+    display: none;
+  }
+
+  .sports-front__agenda {
+    margin: 0 24px;
+    padding: 20px 12px 12px;
+    border-top: 1px solid #4b5563;
+  }
+
+  .sports-front__agenda-label {
+    display: none;
+  }
+
+  .sports-front__hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 24px;
+    padding: 20px 24px 14px;
+  }
+
+  .sports-front__main-column {
+    grid-column: span 8;
+    min-width: 0;
+  }
+
+  .sports-front__lead-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .sports-front__lead-copy {
+    padding-top: 17px;
+  }
+
+  .sports-front__lead h2 {
+    font-size: clamp(28px, 2.65vw, 38px);
+    line-height: 1.13;
+  }
+
+  .sports-front__lead-summary {
+    display: none;
+  }
+
+  .sports-front__below-lead {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .sports-front__lead,
+  .sports-front__below-lead-story {
+    min-width: 0;
+    padding: 16px;
+    border-radius: 8px;
+    background: #1f2937;
+  }
+
+  .sports-front__below-lead-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    background: #243044;
+  }
+
+  .sports-front__below-lead h3,
+  .sports-front--continuation .sports-front__latest h3 {
+    margin-top: 4px;
+    overflow-wrap: anywhere;
+    color: #fff;
+    font-size: clamp(17px, 1.6vw, 22px);
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .sports-front__below-lead .sports-front__byline,
+  .sports-front--continuation .sports-front__latest .sports-front__byline {
+    margin-top: 10px;
+    font-size: 9px;
+  }
+
+  .sports-front__featured {
+    display: none;
+  }
+
+  .sports-front__most-read {
+    display: flex;
+    flex-direction: column;
+    grid-column: span 4;
+    min-width: 0;
+    padding-left: 24px;
+    border-left: 1px solid #374151;
+  }
+
+  .sports-front__most-read > h2 {
+    padding-bottom: 12px;
+    border-bottom: 2px solid #ef4444;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: .025em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .sports-front__most-read ol {
+    list-style: none;
+  }
+
+  .sports-front__most-read li {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr) 72px;
+    align-items: start;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #374151;
+  }
+
+  .sports-front__most-read li:last-child {
+    border-bottom: 0;
+  }
+
+  .sports-front__rank {
+    color: #f87171;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .sports-front__most-read-copy {
+    min-width: 0;
+  }
+
+  .sports-front__most-read h3 {
+    margin-top: 4px;
+    overflow-wrap: anywhere;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.22;
+    text-transform: uppercase;
+  }
+
+  .sports-front__most-read-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #243044;
+  }
+
+  .sports-front__ad {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #374151;
+    text-align: center;
+  }
+
+  .sports-front__ad > span {
+    display: block;
+    margin-bottom: 10px;
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .sports-front__ad img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .sports-front__standings {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #374151;
+  }
+
+  .sports-front__standings-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #d1222a;
+  }
+
+  .sports-front__standings h2 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .sports-front__standings-viewport {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .sports-front__standings-scroll {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    overflow: auto;
+    border-radius: 6px;
+    background: #fff;
+    scrollbar-color: #aeb4be #fff;
+  }
+
+  .sports-front__standings-scroll:focus-visible {
+    outline: 2px solid #d1222a;
+    outline-offset: 3px;
+  }
+
+  .sports-front__standings table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    color: #242424;
+    font-size: 12px;
+  }
+
+  .sports-front__standings thead {
+    background: #2f3237;
+    color: #fff;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  .sports-front__standings thead th {
+    padding: 10px 6px;
+    text-align: left;
+  }
+
+  .sports-front__standings thead th:first-child {
+    width: 36px;
+    text-align: center;
+  }
+
+  .sports-front__standings thead th:last-child {
+    width: 52px;
+    text-align: center;
+  }
+
+  .sports-front__standings tbody tr:not(.sports-front__standings-group) {
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+  }
+
+  .sports-front__standings-group {
+    background: #e8eaed;
+  }
+
+  .sports-front__standings-group th {
+    padding: 9px 10px;
+    color: #3b3b3b;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .sports-front__standings-position {
+    padding: 7px 3px;
+    color: #d1222a;
+    font-size: 19px;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .sports-front__standings-team {
+    padding: 7px 3px 7px 0;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .sports-front__standings-team > span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .sports-front__standings-team img {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .sports-front__standings-team > span > span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .sports-front__standings-points {
+    padding: 7px 5px;
+    text-align: center;
+  }
+
+  .sports-front__standings-points span {
+    display: inline-block;
+    min-width: 30px;
+    padding: 4px 5px;
+    border-radius: 3px;
+    background: #d1222a;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sports-front__ad,
+  .sports-front__standings {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sports-front__latest h3 {
+    font-size: 18px;
+  }
+
+  .sports-front__most-read li {
+    grid-template-columns: 30px minmax(0, 1fr) 100px;
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .sports-front__most-read h3 {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sports-front__ticker-track {
+    animation: none;
+  }
+}

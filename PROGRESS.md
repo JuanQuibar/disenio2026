@@ -8,7 +8,7 @@
 > arquitectura, [README.md](./README.md) para ejecutar el prototipo y
 > [DESIGN.md](./DESIGN.md) antes de trabajar en una interfaz.
 
-## Estado actual — 2026-11-03
+## Estado actual — 2026-11-06
 
 El **look and feel y la estructura de la portada están aprobados**. La
 portada vigente es `/`, responsive y consolidada en mobile y desktop. Desde
@@ -19,9 +19,12 @@ con `/opcion`. Esta última ruta conserva una variante anterior de la home como
 La próxima etapa del prototipo es diseñar y ajustar las demás páginas públicas.
 La portada de sección genérica `/portada-seccion` quedó **aprobada en desktop y
 mobile**. `/detalle-nota` ya existe, pero su composición es un **borrador
-revisable**, no un detalle aprobado. Las demás familias pendientes aún no
-tienen ruta ni diseño en este repositorio. No hay un orden obligatorio: se
-elige la próxima pantalla según la necesidad de cada sesión.
+revisable**, no un detalle aprobado. La portada de Ovación ya tiene una
+**propuesta en `/deportes`**: su desktop está en calibración y mobile conserva
+una composición anterior pendiente de ajustar. La página sigue sin aprobación.
+Las demás familias pendientes aún no tienen ruta ni diseño en este repositorio.
+No hay un orden obligatorio: se elige la próxima pantalla según la necesidad de
+cada sesión.
 
 Cuando las páginas estén diseñadas y aprobadas, el proveedor del CMS recibirá el
 repositorio como referencia para reconstruir el producto en su tecnología,
@@ -41,7 +44,7 @@ stack del proveedor.
 | Detalle de nota de Ovación | Pendiente de diseño | Tomar la identidad deportiva aprobada en la home. |
 | Detalle de opinión | Pendiente de diseño | Tomar la identidad de Opinión aprobada en la home. |
 | Portada de sección genérica `/portada-seccion` | Aprobada en desktop y mobile | [Composición, medidas y alcance funcional](./PORTADA_SECCION.md); plantilla para secciones generales. |
-| Portada de Ovación | Pendiente de diseño | Tratar su identidad visual diferenciada. |
+| Portada de Ovación `/deportes` | Desktop en calibración; mobile pendiente de ajuste | [Composición y alcance](./DEPORTES.md); parte de la identidad deportiva aprobada en la home. |
 | Registración | Pendiente de diseño | Acordar contenido y estados antes de fijar su experiencia. |
 | Página 404 | Pendiente de diseño | Diseñar una salida coherente con el sitio. |
 
@@ -71,6 +74,12 @@ de la maqueta.
   principal aparece solo en la primera página; las páginas siguientes conservan
   el cabezal, diez notas y la paginación. El rótulo «Nombre sección» sigue siendo
   un marcador de la maqueta.
+- La [portada de Ovación](./DEPORTES.md) amplía el panel deportivo aprobado de
+  la home en una página completa. Desktop tiene una primera página con apertura
+  8/4 y una segunda con doce cards en tres columnas. Mobile conserva la
+  composición previa hasta su propia ronda de diseño. Los titulares,
+  fotografías, firmas, anuncio, «Más leídas» y posiciones son muestras; la
+  agenda es un widget externo de DataFactory.
 - Stitch contiene una pantalla de **portada desktop**, útil como referencia
   visual. No contiene diseños de las páginas pendientes. Cuando difieran, las
   decisiones aprobadas e implementadas en `/` prevalecen sobre esa referencia.

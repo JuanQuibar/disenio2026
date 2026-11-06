@@ -11,6 +11,7 @@ Documentos de consulta según la tarea:
   acuerdos editoriales de la home aprobada.
 - [PORTADA_SECCION.md](../PORTADA_SECCION.md): composición, medidas y alcance
   funcional de la portada de sección genérica aprobada.
+- [DEPORTES.md](../DEPORTES.md): propuesta de portada de Ovación para revisión.
 - [AGENTS.md](../AGENTS.md): reglas de trabajo para agentes.
 - [BROWSER_TESTING.md](../BROWSER_TESTING.md): guía del navegador compartido.
 
